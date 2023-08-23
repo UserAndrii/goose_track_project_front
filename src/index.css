@@ -1,11 +1,15 @@
 @import-normalize; /* bring in normalize.css styles */
 
+@import url('./styles/fonts.css');
+
 body {
+  font-family: 'Inter Tight', sans-serif;
+
   background-color: #ffffff;
   color: #171820;
 
-  font-family: 'Inter Tight', sans-serif;
   margin: 0;
+  padding: 0;
 }
 
 ul,
