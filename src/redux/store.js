@@ -10,14 +10,24 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+
+// import { authReducer } from './auth/slice';
 import { reviewsApi } from './reviews/reviewsApi';
 import { tasksApi } from './tasks/tasksApi';
 
+// const authPersistConfig = {
+//   key: 'auth',
+//   storage,
+//   whitelist: ['token'],
+// };
+
 export const store = configureStore({
   reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
     [reviewsApi.reducerPath]: reviewsApi.reducer,
     [tasksApi.reducerPath]: tasksApi.reducer,
   },
+
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {
@@ -27,3 +37,5 @@ export const store = configureStore({
     reviewsApi.middleware,
   ],
 });
+
+// export const persistor = persistStore(store);
