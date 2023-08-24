@@ -10,7 +10,10 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+
 // import { authReducer } from './auth/slice';
+import { reviewsApi } from './reviews/reviewsApi';
+import { tasksApi } from './tasks/tasksApi';
 
 // const authPersistConfig = {
 //   key: 'auth',
@@ -19,13 +22,19 @@ import {
 // };
 
 export const store = configureStore({
-  // reducer: { auth: persistReducer(authPersistConfig, authReducer) },
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    [reviewsApi.reducerPath]: reviewsApi.reducer,
+    [tasksApi.reducerPath]: tasksApi.reducer,
+  },
+
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    reviewsApi.middleware,
   ],
 });
 
