@@ -10,7 +10,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-
 // import { authReducer } from './auth/slice';
 import { reviewsApi } from './reviews/reviewsApi';
 import { tasksApi } from './tasks/tasksApi';
@@ -23,7 +22,7 @@ import { tasksApi } from './tasks/tasksApi';
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    // auth: persistReducer(authPersistConfig, authReducer),
     [reviewsApi.reducerPath]: reviewsApi.reducer,
     [tasksApi.reducerPath]: tasksApi.reducer,
   },
