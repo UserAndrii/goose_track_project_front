@@ -1,8 +1,8 @@
 {
-  "name": "goose_track_project",
+  "name": "goose_track_project_front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://UserAndrii.github.io/goose_track_project/",
+  "homepage": "https://UserAndrii.github.io/goose_track_project_front/",
   "dependencies": {
     "@emotion/styled": "^11.11.0",
     "@reduxjs/toolkit": "^1.9.5",
