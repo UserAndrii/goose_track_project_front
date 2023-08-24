@@ -10,8 +10,16 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+// import { authReducer } from './auth/slice';
+
+// const authPersistConfig = {
+//   key: 'auth',
+//   storage,
+//   whitelist: ['token'],
+// };
+
 export const store = configureStore({
-  reducer: {},
+  // reducer: { auth: persistReducer(authPersistConfig, authReducer) },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {
@@ -20,3 +28,5 @@ export const store = configureStore({
     }),
   ],
 });
+
+// export const persistor = persistStore(store);
