@@ -1,5 +1,7 @@
 // import { lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import MainLayout from './MainLayout/MainLayout';
 import TemporaryNavigation from '../TemporaryNavigation';
@@ -71,6 +73,7 @@ export const App = () => {
           element={<RestrictedRoute component={<MainPage />} navigateTo="/" />}
         />
       </Routes>
+      <ToastContainer />
     </>
   );
 };
