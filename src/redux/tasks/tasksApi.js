@@ -51,7 +51,7 @@ export const tasksApi = createApi({
 
 export const {
   useGetMonthlyTasksQuery,
-  useCreateTasksQuery,
-  useEditReviewQuery,
-  useDeleteTasksQuery,
+  useCreateTasksMutation,
+  useEditReviewMutation,
+  useDeleteTasksMutation,
 } = tasksApi;

@@ -1,5 +1,7 @@
+import { Button } from './AddFeedbackBtn.styled';
+
 const AddFeedbackBtn = () => {
-  return <h4>This is AddFeedbackBtn</h4>;
+  return <Button>Feedback</Button>;
 };
 
 export default AddFeedbackBtn;

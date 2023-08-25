@@ -43,10 +43,13 @@ const TemporaryNavigation = () => {
 const navigationListStyle = {
   backgroundColor: '#a1a2a3',
   listStyleType: 'none',
-  display: 'flex',
-  gap: '20px',
-  padding: 10,
-  justifyContent: 'center',
+
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+  gridGap: '1rem',
+  maxWidth: '1440px',
+  margin: '2rem auto',
+  padding: '0 1rem',
 };
 
 const navLinkStyle = {
