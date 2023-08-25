@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { Wrapper, Name, Avatar, Letter } from './UserInfo.styled';
 
 const user = {

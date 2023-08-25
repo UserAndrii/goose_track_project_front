@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  showErrorToast,
-  showSuccessToast,
-} from '../../components/ErrorFunction/showErrorToast';
+import { showErrorToast } from '../../components/ErrorFunction/showErrorToast';
 
 axios.defaults.baseURL = 'https://goose-track-project-back.onrender.com/';
 
