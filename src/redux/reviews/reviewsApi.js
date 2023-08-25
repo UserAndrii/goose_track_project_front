@@ -67,7 +67,7 @@ export const reviewsApi = createApi({
 export const {
   useFetchReviewsQuery,
   useGetUserReviewQuery,
-  useCreateReviewQuery,
-  useEditReviewQuery,
-  useDeleteReviewQuery,
+  useCreateReviewMutation,
+  useEditReviewMutation,
+  useDeleteReviewMutation,
 } = reviewsApi;
