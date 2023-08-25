@@ -6,7 +6,7 @@ import { Container, PageHeader, MenuBtn } from './Header.styled';
 import UserInfo from '../UserInfo';
 import ThemeToggler from '../ThemeToggler';
 import AddFeedbackBtn from '../AddFeedbackBtn';
-import AddFeedbackModal from '../AddFeedbackModal';
+// import AddFeedbackModal from '../AddFeedbackModal';
 
 const Header = () => {
   const location = useLocation();

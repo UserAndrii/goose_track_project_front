@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 
 import { Container } from './MainLayout.styled';
-import { getCurrentUser } from '../../redux/auth/operations';
+// import { getCurrentUser } from '../../redux/auth/operations';
 
 import Header from '../Header';
 import SideBar from '../SideBar';
