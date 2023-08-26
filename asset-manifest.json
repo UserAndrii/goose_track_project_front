@@ -1,18 +1,21 @@
 {
   "files": {
     "main.css": "/goose_track_project_front/static/css/main.80ab0b86.css",
-    "main.js": "/goose_track_project_front/static/js/main.e2f2c5a4.js",
+    "main.js": "/goose_track_project_front/static/js/main.d4458a10.js",
     "static/media/InterTight-BoldItalic.ttf": "/goose_track_project_front/static/media/InterTight-BoldItalic.3f0a005db82c9b368c07.ttf",
     "static/media/InterTight-Bold.ttf": "/goose_track_project_front/static/media/InterTight-Bold.d219d228cc7dca6752e3.ttf",
     "static/media/InterTight-SemiBold.ttf": "/goose_track_project_front/static/media/InterTight-SemiBold.709c6ccbc8b81ae7bf76.ttf",
     "static/media/InterTight-Medium.ttf": "/goose_track_project_front/static/media/InterTight-Medium.a046b2b6656b8304f5df.ttf",
     "static/media/InterTight-Regular.ttf": "/goose_track_project_front/static/media/InterTight-Regular.0b4f9817d731764e0a9c.ttf",
+    "static/media/mobile-calendar.jpg": "/goose_track_project_front/static/media/mobile-calendar.4acaba87e48076721eae.jpg",
+    "static/media/mobile-all.jpg": "/goose_track_project_front/static/media/mobile-all.408eb03f6b9a8adcfdf4.jpg",
+    "static/media/mobile-sidebar.jpg": "/goose_track_project_front/static/media/mobile-sidebar.b0e775fddb42fc9b88f3.jpg",
     "index.html": "/goose_track_project_front/index.html",
     "main.80ab0b86.css.map": "/goose_track_project_front/static/css/main.80ab0b86.css.map",
-    "main.e2f2c5a4.js.map": "/goose_track_project_front/static/js/main.e2f2c5a4.js.map"
+    "main.d4458a10.js.map": "/goose_track_project_front/static/js/main.d4458a10.js.map"
   },
   "entrypoints": [
     "static/css/main.80ab0b86.css",
-    "static/js/main.e2f2c5a4.js"
+    "static/js/main.d4458a10.js"
   ]
 }
