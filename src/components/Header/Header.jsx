@@ -1,16 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { Container, PageHeader, MenuBtn } from './Header.styled';
+import { Container, MenuBtn, PageHeader } from './Header.styled';
 
-import UserInfo from '../UserInfo';
-import ThemeToggler from '../ThemeToggler';
 import AddFeedbackBtn from '../AddFeedbackBtn';
-// import AddFeedbackModal from '../AddFeedbackModal';
+import AddFeedbackModal from '../AddFeedbackModal';
+import ThemeToggler from '../ThemeToggler';
+import UserInfo from '../UserInfo';
 
 const Header = () => {
   const location = useLocation();
   const [activePage, setActivePage] = useState('');
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   useEffect(() => {
     const currentPath = location.pathname;
@@ -31,14 +40,30 @@ const Header = () => {
     }
   }, [location]);
 
+  useEffect(() => {
+    const handleKeyDown = event => {
+      if (event.key === 'Escape') {
+        handleCloseModal();
+      }
+    };
+
+    if (isModalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isModalOpen]);
+
   return (
     <Container>
       <PageHeader>{activePage}</PageHeader>
       <MenuBtn hide={'true'} />
-      <AddFeedbackBtn />
+      <AddFeedbackBtn onClick={handleOpenModal} />
       <ThemeToggler />
       <UserInfo />
-      {/* <AddFeedbackModal /> */}
+      {isModalOpen && <AddFeedbackModal onClose={handleCloseModal} />}
     </Container>
   );
 };

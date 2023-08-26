@@ -1,5 +1,45 @@
-const Modal = () => {
-  return <h6>This is Modal</h6>;
+import { createPortal } from 'react-dom';
+import { ModalCloseButton, ModalContent, ModalOverlay } from './Modal.styled';
+
+const modalRoot = document.querySelector('#root-module');
+
+const Modal = ({ children, onClose }) => {
+  const handleContentClick = event => {
+    event.stopPropagation();
+  };
+
+  return createPortal(
+    <ModalOverlay onClick={onClose}>
+      <ModalContent onClick={handleContentClick}>
+        <ModalCloseButton onClick={onClose}>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="black"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6L6 18"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6 6L18 18"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </ModalCloseButton>
+        {children}
+      </ModalContent>
+    </ModalOverlay>,
+    modalRoot
+  );
 };
 
 export default Modal;
