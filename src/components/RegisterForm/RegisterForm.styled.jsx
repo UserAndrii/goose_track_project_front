@@ -22,8 +22,6 @@ export const InputGroupe = styled.li`
   
 `;
 export const InputWrapper = styled.li`
-  margin-bottom: 1rem;
-
   display: flex;
   flex-direction: column;
 
