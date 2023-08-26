@@ -8,7 +8,7 @@ import ThemeToggler from '../ThemeToggler';
 import AddFeedbackBtn from '../AddFeedbackBtn';
 // import AddFeedbackModal from '../AddFeedbackModal';
 
-const Header = () => {
+const Header = ({ openSidebar }) => {
   const location = useLocation();
   const [activePage, setActivePage] = useState('');
 
@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <Container>
       <PageHeader>{activePage}</PageHeader>
-      <MenuBtn hide={'true'} />
+      <MenuBtn onClick={openSidebar} hide={'true'} />
       <AddFeedbackBtn />
       <ThemeToggler />
       <UserInfo />
