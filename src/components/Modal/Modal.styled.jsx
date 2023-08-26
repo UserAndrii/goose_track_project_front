@@ -22,7 +22,18 @@ export const ModalContent = styled.div`
   padding: 20px;
   position: relative;
   z-index: 1100;
+
+  @media (max-width: 767px) { /* Телефоны */
+    width: 85%;
+    padding: 10px;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  }
 `;
+
 export const ModalCloseButton = styled.button`
   position: absolute;
   top: 10px;

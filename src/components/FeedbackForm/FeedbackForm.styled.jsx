@@ -29,11 +29,12 @@ export const TextAreaLabel = styled.label`
 
 export const TextArea = styled.textarea`
   color: #343434;
-  font-family: Inter;
+  padding: 14px 18px;
+  font-family: inherit;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 128%;
 
   resize: none;
   height: 120px;
@@ -47,12 +48,16 @@ export const TextArea = styled.textarea`
 export const BtnWrapper = styled.div`
   display: flex;
   gap: 8px;
+  @media (max-width: 767px) { /* Телефоны */
+  display: flex;
+  flex-direction: column;
+}
 `;
 
 export const Btn = styled.button`
   color: #343434;
   text-align: center;
-  font-family: Inter;
+  font-family: inherit;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;

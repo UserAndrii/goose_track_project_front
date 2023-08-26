@@ -74,7 +74,7 @@ const FeedbackForm = ({ onClose }) => {
       </RatingWrapper>
       <TextAreaLabel>
         Review:
-        <TextArea value={message} onChange={e => setMessage(e.target.value)} />
+        <TextArea value={message} placeholder='Enter Text' onChange={e => setMessage(e.target.value)} />
       </TextAreaLabel>
       <BtnWrapper>
         <Btn type="submit">Submit</Btn>
