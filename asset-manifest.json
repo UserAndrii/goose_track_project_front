@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/goose_track_project_front/static/css/main.80ab0b86.css",
-    "main.js": "/goose_track_project_front/static/js/main.d4458a10.js",
+    "main.css": "/goose_track_project_front/static/css/main.af11c815.css",
+    "main.js": "/goose_track_project_front/static/js/main.eedec79c.js",
     "static/media/InterTight-BoldItalic.ttf": "/goose_track_project_front/static/media/InterTight-BoldItalic.3f0a005db82c9b368c07.ttf",
     "static/media/InterTight-Bold.ttf": "/goose_track_project_front/static/media/InterTight-Bold.d219d228cc7dca6752e3.ttf",
     "static/media/InterTight-SemiBold.ttf": "/goose_track_project_front/static/media/InterTight-SemiBold.709c6ccbc8b81ae7bf76.ttf",
@@ -10,12 +10,18 @@
     "static/media/mobile-calendar.jpg": "/goose_track_project_front/static/media/mobile-calendar.4acaba87e48076721eae.jpg",
     "static/media/mobile-all.jpg": "/goose_track_project_front/static/media/mobile-all.408eb03f6b9a8adcfdf4.jpg",
     "static/media/mobile-sidebar.jpg": "/goose_track_project_front/static/media/mobile-sidebar.b0e775fddb42fc9b88f3.jpg",
+    "static/media/slick.svg": "/goose_track_project_front/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/goose_track_project_front/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/goose_track_project_front/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/goose_track_project_front/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/goose_track_project_front/index.html",
-    "main.80ab0b86.css.map": "/goose_track_project_front/static/css/main.80ab0b86.css.map",
-    "main.d4458a10.js.map": "/goose_track_project_front/static/js/main.d4458a10.js.map"
+    "static/media/reviews-arrow-right.svg": "/goose_track_project_front/static/media/reviews-arrow-right.a22cdf87a7132e781406da0f90b2321e.svg",
+    "static/media/reviews-arrow-left.svg": "/goose_track_project_front/static/media/reviews-arrow-left.419843934514a4ec72e12d89da762d2a.svg",
+    "main.af11c815.css.map": "/goose_track_project_front/static/css/main.af11c815.css.map",
+    "main.eedec79c.js.map": "/goose_track_project_front/static/js/main.eedec79c.js.map"
   },
   "entrypoints": [
-    "static/css/main.80ab0b86.css",
-    "static/js/main.d4458a10.js"
+    "static/css/main.af11c815.css",
+    "static/js/main.eedec79c.js"
   ]
 }
