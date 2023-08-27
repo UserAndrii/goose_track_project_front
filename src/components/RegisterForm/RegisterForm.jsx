@@ -15,9 +15,11 @@ import {
   ShowHideButton,
   InputWrapperWithIcon,
   InputList,
+  Error,
+  LinkTo,
 } from './RegisterForm.styled';
 // import { showErrorToast, showSuccessToast } from '../../utils/messages';
-import { Link } from 'react-router-dom';
+
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -26,8 +28,10 @@ import { register } from 'redux/auth/operations';
 const RegisterForm = () => {
   const dispatch = useDispatch();
 
+  const [isSuccess, setIsSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const emailRegexp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+  const emailRegexp =
+    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
   const validationSchema = yup.object({
     name: yup
@@ -86,11 +90,11 @@ const RegisterForm = () => {
         for (const [key, value] of formData.entries()) {
           console.log(`${key}: ${value}`);
         }
-  
+
         const response = await dispatch(register(formData)); // Передаємо FormData
-  
-        console.log('values', values)
-        console.log('response', response)
+        if (response.success) {
+          setIsSuccess(true); // Устанавливаем состояние успешного запроса
+        }
         return response;
       } catch (error) {
         console.error('An error occurred:', error);
@@ -99,9 +103,7 @@ const RegisterForm = () => {
   });
 
   return (
-    <StyledForm
-     onSubmit={formik.handleSubmit}
-    >
+    <StyledForm onSubmit={formik.handleSubmit}>
       <InputGroupe>
         <FormName>Sign Up</FormName>
         <InputList>
@@ -111,32 +113,36 @@ const RegisterForm = () => {
               type="text"
               id="name"
               name="name"
-              autoComplete='true'
+              autoComplete="true"
               value={formik.values.name}
               placeholder="Enter your name"
               onChange={handleChange}
-  onBlur={formik.handleBlur}
+              onBlur={formik.handleBlur}
+              hasError={formik.errors.name && formik.touched.name}
+              isSuccess={isSuccess}
             />
             {formik.errors.name && formik.touched.name && (
-  <div className="error">{formik.errors.name}</div>
-)}
+              <Error isSuccess={isSuccess}>{formik.errors.name}</Error>
+            )}
           </InputWrapper>
-          <InputWrapper isEmail = {'email'}>
+          <InputWrapper isEmail={'email'}>
             <Label htmlFor="email">Email</Label>
             <Input
               type="text"
               id="email"
               name="email"
-              autoComplete='true'
+              autoComplete="true"
               value={formik.values.email}
               placeholder="Enter email"
               onChange={handleChange}
+              hasError={formik.errors.name && formik.touched.name}
+              isSuccess={isSuccess}
             />
             {formik.errors.email && formik.touched.email && (
-  <div className="error">{formik.errors.email}</div>
-)}
+              <Error isSuccess={isSuccess}>{formik.errors.email}</Error>
+            )}
           </InputWrapper>
-          <InputWrapper isPassword = {'password'}>
+          <InputWrapper isPassword={'password'}>
             <Label htmlFor="password">Password</Label>
             <InputWrapperWithIcon>
               <Input
@@ -146,6 +152,8 @@ const RegisterForm = () => {
                 value={formik.values.password}
                 placeholder="Enter password"
                 onChange={handleChange}
+                hasError={formik.errors.name && formik.touched.name}
+                isSuccess={isSuccess}
               />
               <ShowHideButton
                 type="button"
@@ -155,19 +163,24 @@ const RegisterForm = () => {
               </ShowHideButton>
             </InputWrapperWithIcon>
             {formik.errors.password && formik.touched.password && (
-  <div className="error">{formik.errors.password}</div>
-)}
+              <Error isSuccess={isSuccess}>{formik.errors.password}</Error>
+            )}
           </InputWrapper>
         </InputList>
-        <Button type='submit'>
+        <Button type="submit">
           <ButtonText>Sign Up</ButtonText>
           <ItemIcon />
         </Button>
       </InputGroupe>
-      <LinksContainer><div>Forgot password?
-          <Link to="/"> change password</Link></div>
-          <div>Already registered?
-          <Link to="/login"> Log In</Link></div>
+      <LinksContainer>
+        <div>
+          Forgot password?
+          <LinkTo to="/"> Change password</LinkTo>
+        </div>
+        <div>
+          Already registered?
+          <LinkTo to="/login"> Log In</LinkTo>
+        </div>
       </LinksContainer>
     </StyledForm>
   );

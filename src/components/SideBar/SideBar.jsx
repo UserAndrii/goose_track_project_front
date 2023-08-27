@@ -52,9 +52,9 @@ const SideBar = ({ closeSidebar, sidebarVisible }) => {
 
       if (windowWidth >= 375 && windowWidth < 768) {
         newTransformValue = sidebarVisible ? '0' : '-225px';
-      } else if (windowWidth >= 768 && windowWidth <= 1400) {
+      } else if (windowWidth >= 768 && windowWidth <= 1439) {
         newTransformValue = sidebarVisible ? '0' : '-300px';
-      } else if (windowWidth > 1400) {
+      } else if (windowWidth >= 1440) {
         newTransformValue = sidebarVisible ? '0' : '0';
       }
 

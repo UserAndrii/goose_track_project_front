@@ -23,7 +23,7 @@ export const register = createAsyncThunk(
       if (error.response) {
         const { status } = error.response;
         if (status === 400) {
-          showErrorToast('User login error.');
+          showErrorToast('User register error.');
         }
         if (status === 409) {
           showErrorToast('User already exists.');
