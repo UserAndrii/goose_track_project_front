@@ -9,11 +9,14 @@ export const Container = styled.div`
 
 export const Text = styled.p`
   color: rgba(52, 52, 52, 0.5);
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
   margin-bottom: 32px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const LinkNav = styled(Link)`
@@ -21,43 +24,25 @@ export const LinkNav = styled(Link)`
   color: rgba(52, 52, 52, 0.5);
   font-size: 14px;
   font-weight: 600;
-  padding: 10px 0;
   margin-left: 8px;
-
-  &.active {
-    background-color: rgb(221, 240, 255);
-    color: rgb(56, 114, 240);
-  }
-
-  &:hover {
-    background-color: rgb(221, 240, 255);
-    color: rgb(56, 114, 240);
-  }
 `;
 
 export const IconUser = styled(LuUserCheck)`
   font-size: 24px;
-  color: rgba(52, 52, 52, 0.5);
-
-  &:hover {
-    color: rgb(56, 114, 240);
-  }
+  color: ${props =>
+    props.isActive ? 'rgb(56, 114, 240)' : 'rgba(52, 52, 52, 0.5)'};
 `;
 
 export const IconCalendar = styled(LuCalendarCheck2)`
   font-size: 24px;
-  color: rgba(52, 52, 52, 0.5);
-  &:hover {
-    color: rgb(56, 114, 240);
-  }
+  color: ${props =>
+    props.isActive ? 'rgb(56, 114, 240)' : 'rgba(52, 52, 52, 0.5)'};
 `;
 
 export const IconStatistics = styled(BsBarChart)`
   font-size: 24px;
-  color: rgba(52, 52, 52, 0.5);
-  &:hover {
-    color: rgb(56, 114, 240);
-  }
+  color: ${props =>
+    props.isActive ? 'rgb(56, 114, 240)' : 'rgba(52, 52, 52, 0.5)'};
 `;
 
 export const ListItem = styled.li`
@@ -65,7 +50,20 @@ export const ListItem = styled.li`
   align-items: center;
   padding: 10px 20px;
   border-radius: 8px;
+  margin-bottom: 16px;
   &:hover {
     background-color: rgb(221, 240, 255);
+  }
+  &:hover .icon,
+  &:hover .text {
+    color: rgb(56, 114, 240);
+  }
+  &.active {
+    background-color: rgb(221, 240, 255);
+  }
+
+  &.active .icon,
+  &.active .text {
+    color: rgb(56, 114, 240);
   }
 `;
