@@ -1,38 +1,32 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 47px;
-  padding-right: 47px;
+  align-items: center;
   margin: 0 auto;
   width: 100%;
-  background-color: #F7F6F9; 
+
+  background-color: #f7f6f9;
   text-align: center;
   min-height: 100vh;
-
-  @media screen and (min-width: 768px) {
-    padding-left: 132px;
-    padding-right: 132px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    padding-left: 261px;
-    padding-right: 261px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    padding-left: 469px;
-    padding-right: 469px;
-  }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  margin-bottom: 28px;
+
+  width: 252px;
+  height: 150px;
+
+  @media screen and (min-width: 768px) {
+    width: 503px;
+    height: 250px;
+    margin-bottom: 80px;
+  }
 `;
 
 export const Picture = styled.picture`
@@ -44,9 +38,9 @@ export const Picture = styled.picture`
 `;
 
 export const Number = styled.span`
-  color: #3E85F3; 
+  color: #3e85f3;
   font-size: 100px;
-  font-family: "InterBold";
+  font-weight: 700;
   line-height: 1.5;
 
   @media screen and (min-width: 768px) {
@@ -57,10 +51,9 @@ export const Number = styled.span`
 
 export const Text = styled.p`
   margin: 0 auto;
-  color: #111111B2;
+  color: #111111b2;
   font-size: 14px;
   line-height: 1.29;
-  font-family: "InterMedium";
   font-weight: 500;
   max-width: 281px;
 
@@ -69,32 +62,24 @@ export const Text = styled.p`
   }
 `;
 
-export const Link = styled(Link)`
-  color: #FFFFFF;
-  text-decoration-line: underline;
-  transition: ;
-
-  :hover,
-  :focus {
-    color: #E5EDFA; // !! ПЕРЕВіРИТИ 
-  }
-`;
-
-export const StyledButton = styled(Button)`
-  background-color: #3E85F3;
-  color: #FFFFFF;
+export const StyledButton = styled(Link)`
+  background-color: #3e85f3;
+  color: #ffffff;
   padding: 14px 32px;
   border-radius: 16px;
+  border: none;
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   margin-top: 24px;
-  font-family: 'Inter, sans-serif';
   font-weight: 600;
   font-size: 14px;
   line-height: 1.286;
   text-transform: none;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover, &:focus {
-    background-color:  #21222C;  // !! ПЕРЕВіРИТИ 
+  &:hover,
+  &:focus {
+    background-color: #2b78ef;
   }
 
   @media screen and (min-width: 768px) {

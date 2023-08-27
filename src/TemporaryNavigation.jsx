@@ -10,26 +10,37 @@ const TemporaryNavigation = () => {
             MainPage
           </Link>
         </li>
+
+        <li>
+          <Link to="/404" style={navLinkStyle}>
+            NotFoundPage
+          </Link>
+        </li>
+
         <li>
           <Link to="/register" style={navLinkStyle}>
             RegisterPage
           </Link>
         </li>
+
         <li>
           <Link to="/login" style={navLinkStyle}>
             LoginPage
           </Link>
         </li>
+
         <li>
           <Link to="/account" style={navLinkStyle}>
             AccountPage
           </Link>
         </li>
+
         <li>
           <Link to="/calendar" style={navLinkStyle}>
             CalendarPage
           </Link>
         </li>
+
         <li>
           <Link to="/statistics" style={navLinkStyle}>
             StatisticsPage

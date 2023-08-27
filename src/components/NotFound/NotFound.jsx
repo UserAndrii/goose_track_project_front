@@ -4,10 +4,10 @@ import {
   Wrapper,
   Container,
   Picture,
-  Link,
+  // LinkTo,
   StyledButton,
-} from "./NotFound.styled";
-import images from "./images";
+} from './NotFound.styled';
+import images from './images';
 
 const { phone, tablet, desktop } = images;
 
@@ -55,11 +55,10 @@ export const NotFound = () => {
         <Number>4</Number>
       </Wrapper>
       <Text>
-        We're sorry, the page <Link to={"/"}>homepage</Link>.
+        We’re sorry, the page you requested could not be found. Please go back
+        to the homepage.
       </Text>
-      <StyledButton onClick={() => navigate('/')}>
-        Back to home
-      </StyledButton>
+      <StyledButton to="/">Back to home</StyledButton>
     </Container>
   );
 };
