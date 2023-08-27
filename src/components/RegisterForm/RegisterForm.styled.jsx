@@ -44,8 +44,6 @@ export const InputWrapper = styled.li`
   display: flex;
   flex-direction: column;
 
-
-
   Input::placeholder {
     color: #858688;
     font-family: Inter;
@@ -53,6 +51,7 @@ export const InputWrapper = styled.li`
     font-style: normal;
     font-weight: 400;
     line-height: 18px;
+    background-color: #FFFFFF;
   }
 
   @media (min-width: 768px) {
@@ -66,6 +65,15 @@ flex-direction: column;
 align-items: flex-start;
 gap: 8px;
 position: relative;
+Input::placeholder {
+    color: #858688;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    background-color: #FFFFFF;
+  }
 `;
 
 export const Button = styled.button`
@@ -142,10 +150,7 @@ width: 287px;
 height: 46px;
 border-radius: 8px;
 border: 1px solid rgba(220, 227, 229, 0.60);
-background: #FFFFFF;
-background: ${props => (props.isPassword ? '#FFF' : 'inherit')};
+background: ${props => (props.isPassword || props.isEmail) ? '#FFFFFF' : 'none'};
 `;
-export const ViewSVG = styled.button`
 
-`;
 

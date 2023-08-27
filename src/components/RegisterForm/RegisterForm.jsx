@@ -20,8 +20,12 @@ import {
 import { Link } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
   const emailRegexp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
@@ -82,19 +86,12 @@ const RegisterForm = () => {
         for (const [key, value] of formData.entries()) {
           console.log(`${key}: ${value}`);
         }
-
-        // const response = await fetch('url/my_api/register', {
-        //   method: 'POST',
-        //   body: formData,
-        // });
-
-        // if (response.ok) {
-        //   const data = await response.json();
-        //   console.log('Server response:', data);
-        // } else {
-        //   const errorData = await response.json();
-        //   console.error('Error response from server:', errorData);
-        // }
+  
+        const response = await dispatch(register(formData)); // Передаємо FormData
+  
+        console.log('values', values)
+        console.log('response', response)
+        return response;
       } catch (error) {
         console.error('An error occurred:', error);
       }
@@ -124,7 +121,7 @@ const RegisterForm = () => {
   <div className="error">{formik.errors.name}</div>
 )}
           </InputWrapper>
-          <InputWrapper>
+          <InputWrapper isEmail = {'email'}>
             <Label htmlFor="email">Email</Label>
             <Input
               type="text"
@@ -139,7 +136,7 @@ const RegisterForm = () => {
   <div className="error">{formik.errors.email}</div>
 )}
           </InputWrapper>
-          <InputWrapper>
+          <InputWrapper isPassword = {'password'}>
             <Label htmlFor="password">Password</Label>
             <InputWrapperWithIcon>
               <Input
