@@ -1,5 +1,5 @@
 const AuthNavigate = () => {
-  return <h1>This is AuthNavigate</h1>;
+  return <h6>This is AuthNavigate</h6>;
 };
 
 export default AuthNavigate;

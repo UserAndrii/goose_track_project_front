@@ -1,5 +1,13 @@
+import React from 'react';
+import RegisterForm from '../components/RegisterForm'; // Зараз ви можете імпортувати звідси
+
 const RegisterPage = () => {
-  return <h1>This is RegisterPage</h1>;
+  return (
+    <div>
+      <h1>This is Register Page</h1>
+      <RegisterForm />
+    </div>
+  );
 };
 
 export default RegisterPage;

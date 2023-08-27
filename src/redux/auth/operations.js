@@ -20,7 +20,18 @@ export const register = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      showErrorToast(error.response.data.message);
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 400) {
+          showErrorToast('User login error.');
+        }
+        if (status === 409) {
+          showErrorToast('User already exists.');
+        }
+        if (status === 500) {
+          showErrorToast('Server error.');
+        }
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -34,7 +45,18 @@ export const logIn = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      showErrorToast(error.response.data.message);
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 400) {
+          showErrorToast('User login error.');
+        }
+        if (status === 401) {
+          showErrorToast('Email or password is wrong.');
+        }
+        if (status === 500) {
+          showErrorToast('Server error.');
+        }
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -45,7 +67,15 @@ export const logOut = createAsyncThunk('/logout', async (_, thunkAPI) => {
     await axios.post('/logout');
     clearAuthHeader();
   } catch (error) {
-    showErrorToast(error.response.data.message);
+    if (error.response) {
+      const { status } = error.response;
+      if (status === 401) {
+        showErrorToast('Not authorized.');
+      }
+      if (status === 500) {
+        showErrorToast('Server error.');
+      }
+    }
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -53,17 +83,25 @@ export const logOut = createAsyncThunk('/logout', async (_, thunkAPI) => {
 export const getCurrentUser = createAsyncThunk(
   '/current',
   async (_, thunkAPI) => {
-    // const state = thunkAPI.getState();
-    // const persistedToken = state.auth.token;
-    // if (persistedToken === null) {
-    //   return thunkAPI.rejectWithValue('Unable to fetch user');
-    // }
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
     try {
-      //   setAuthHeader(persistedToken);
+      setAuthHeader(persistedToken);
       const response = await axios.get('/current');
       return response.data;
     } catch (error) {
-      showErrorToast(error.response.data.message);
+      if (error.response) {
+        const { status } = error.response;
+        if (status === 401) {
+          showErrorToast('Not authorized.');
+        }
+        if (status === 500) {
+          showErrorToast('Server error.');
+        }
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

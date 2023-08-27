@@ -8,16 +8,27 @@ import {
   updateUser,
 } from './operations';
 
-// const initialState = {
-//     user: { name: null, email: null },
-//     token: null,
-//     isLoggedIn: false,
-//     isFetchingCurrentUser: false,
-//     error: null,
-// };
+const initialState = {
+  user: {
+    _id: null,
+    userName: null,
+    email: null,
+    avatarURL: null,
+    phone: null,
+    skype: null,
+    birthDay: null,
+    createdAt: null,
+    updatedAt: null,
+  },
+  token: null,
+  isLoggedIn: false,
+  isFetchingCurrentUser: false,
+  error: null,
+};
+
 const authSlice = createSlice({
   name: 'auth',
-  //   initialState,
+  initialState,
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {

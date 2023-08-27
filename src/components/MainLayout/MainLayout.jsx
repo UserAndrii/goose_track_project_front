@@ -2,7 +2,8 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 // import { useSelector, useDispatch } from 'react-redux';
 
-import { Container } from './MainLayout.styled';
+import { Container, Overlay } from './MainLayout.styled';
+import { useState } from 'react';
 // import { getCurrentUser } from '../../redux/auth/operations';
 
 import Header from '../Header';
@@ -14,12 +15,24 @@ const MainLayout = () => {
 
   // if (!user) dispatch(getCurrentUser);
 
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  const openSidebar = () => {
+    setSidebarVisible(true);
+  };
+  const closeSidebar = () => {
+    setSidebarVisible(false);
+  };
+
   return (
     <Container>
       <Header
-      // user={user}
+        openSidebar={openSidebar}
+        // user={user}
       />
-      <SideBar />
+
+      {sidebarVisible && <Overlay onClick={closeSidebar} />}
+      <SideBar closeSidebar={closeSidebar} sidebarVisible={sidebarVisible} />
       <main>
         <Suspense fallback={'Loading...'}>
           <Outlet />
