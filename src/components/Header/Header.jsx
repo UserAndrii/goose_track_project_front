@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { Container, MenuBtn, PageHeader } from './Header.styled';
+import { Container, PageHeader, MenuBtn } from './Header.styled';
 
+import UserInfo from '../UserInfo';
+import ThemeToggler from '../ThemeToggler';
 import AddFeedbackBtn from '../AddFeedbackBtn';
 import AddFeedbackModal from '../AddFeedbackModal';
-import ThemeToggler from '../ThemeToggler';
-import UserInfo from '../UserInfo';
 
 const Header = () => {
   const location = useLocation();
