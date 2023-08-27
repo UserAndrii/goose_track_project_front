@@ -3,10 +3,9 @@ import RegisterForm from '../components/RegisterForm'; // Зараз ви мож
 
 const RegisterPage = () => {
   return (
-    <div>
-      <h1>This is Register Page</h1>
+    <>
       <RegisterForm />
-    </div>
+    </>
   );
 };
 
