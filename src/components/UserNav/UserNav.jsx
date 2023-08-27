@@ -17,46 +17,46 @@ const UserNav = () => {
       <Text>User Panel</Text>
       <ul>
         <ListItem className={location.pathname === '/account' ? 'active' : ''}>
-          <IconUser
-            isActive={location.pathname === '/account' ? 'active' : ''}
-            className="icon"
-          />
           <LinkNav
             to="/account"
             className={`${
               location.pathname === '/account' ? 'active' : ''
             } text`}
           >
+            <IconUser
+              isActive={location.pathname === '/account' ? 'active' : ''}
+              className="icon"
+            />
             My account
           </LinkNav>
         </ListItem>
         <ListItem className={location.pathname === '/calendar' ? 'active' : ''}>
-          <IconCalendar
-            isActive={location.pathname === '/calendar' ? 'active' : ''}
-            className="icon"
-          />
           <LinkNav
             to="/calendar"
             className={`${
               location.pathname === '/calendar' ? 'active' : ''
             } text`}
           >
+            <IconCalendar
+              isActive={location.pathname === '/calendar' ? 'active' : ''}
+              className="icon"
+            />
             Calendar
           </LinkNav>
         </ListItem>
         <ListItem
           className={location.pathname === '/statistics' ? 'active' : ''}
         >
-          <IconStatistics
-            isActive={location.pathname === '/statistics' ? 'active' : ''}
-            className="icon"
-          />
           <LinkNav
             to="/statistics"
             className={`${
               location.pathname === '/statistics' ? 'active' : ''
             } text`}
           >
+            <IconStatistics
+              isActive={location.pathname === '/statistics' ? 'active' : ''}
+              className="icon"
+            />
             Statistics
           </LinkNav>
         </ListItem>

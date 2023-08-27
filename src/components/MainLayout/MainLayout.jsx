@@ -26,14 +26,14 @@ const MainLayout = () => {
 
   return (
     <Container>
-      <Header
-        openSidebar={openSidebar}
-        // user={user}
-      />
-
       {sidebarVisible && <Overlay onClick={closeSidebar} />}
       <SideBar closeSidebar={closeSidebar} sidebarVisible={sidebarVisible} />
+
       <main>
+        <Header
+          openSidebar={openSidebar}
+          // user={user}
+        />
         <Suspense fallback={'Loading...'}>
           <Outlet />
         </Suspense>

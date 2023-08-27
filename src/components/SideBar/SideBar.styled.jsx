@@ -9,21 +9,26 @@ export const Container = styled.div`
   height: 100%;
   background-color: #ffffff;
 
-  transition: transform 0.3s ease-in-out;
-  z-index: 200;
-
   @media screen and (max-width: 767px) {
     width: 185px;
     padding: 24px 20px;
+    transform: translateX(-185px);
+    transition: transform 0.3s ease-in-out;
+    z-index: 200;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1399px) {
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
     width: 225px;
     padding: 24px 32px;
+    transform: translateX(-300px);
+    transition: transform 0.3s ease-in-out;
+    z-index: 200;
   }
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 1440px) {
     padding: 32px 24px;
+    position: static;
+    width: 289px;
   }
 `;
 
@@ -38,7 +43,7 @@ export const Menu = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 1440px) {
     justify-content: flex-start;
   }
 `;
@@ -50,7 +55,7 @@ export const CloseBtn = styled(AiOutlineClose)`
   color: #000000;
   cursor: pointer;
   z-index: 100;
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1440px) {
     display: none;
   }
 `;
@@ -62,12 +67,12 @@ export const Image = styled.img`
   object-fit: cover;
   object-position: center;
 
-  @media screen and (min-width: 768px) and (max-width: 1399px) {
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
     width: 60px;
     height: 58px;
   }
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 1440px) {
     width: 71px;
     height: 68px;
   }
@@ -82,12 +87,12 @@ export const Text = styled.p`
   line-height: 22px;
   margin-right: 23px;
 
-  @media screen and (min-width: 768px) and (max-width: 1399px) {
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
     line-height: 24px;
     margin-right: 31px;
   }
 
-  @media screen and (min-width: 1400px) {
+  @media screen and (min-width: 1440px) {
     font-size: 24px;
     margin-right: 0;
   }

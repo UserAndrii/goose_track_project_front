@@ -21,26 +21,30 @@ export const Text = styled.p`
 
 export const LinkNav = styled(Link)`
   text-decoration: none;
+  width: 100%;
+  height: 100%;
   color: rgba(52, 52, 52, 0.5);
   font-size: 14px;
   font-weight: 600;
-  margin-left: 8px;
 `;
 
 export const IconUser = styled(LuUserCheck)`
   font-size: 24px;
+  margin-right: 8px;
   color: ${props =>
     props.isActive ? 'rgb(56, 114, 240)' : 'rgba(52, 52, 52, 0.5)'};
 `;
 
 export const IconCalendar = styled(LuCalendarCheck2)`
   font-size: 24px;
+  margin-right: 8px;
   color: ${props =>
     props.isActive ? 'rgb(56, 114, 240)' : 'rgba(52, 52, 52, 0.5)'};
 `;
 
 export const IconStatistics = styled(BsBarChart)`
   font-size: 24px;
+  margin-right: 8px;
   color: ${props =>
     props.isActive ? 'rgb(56, 114, 240)' : 'rgba(52, 52, 52, 0.5)'};
 `;
