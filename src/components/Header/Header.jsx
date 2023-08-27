@@ -19,12 +19,21 @@ import CalendarGooseRetina from 'images/calendar-goose@2x.png';
 import UserInfo from '../UserInfo';
 import ThemeToggler from '../ThemeToggler';
 import AddFeedbackBtn from '../AddFeedbackBtn';
-// import AddFeedbackModal from '../AddFeedbackModal';
+import AddFeedbackModal from '../AddFeedbackModal';
 
 const Header = ({ openSidebar }) => {
   const location = useLocation();
   const [activePage, setActivePage] = useState('');
   const [tasksСompleted] = useState(false); // setTasksСompleted
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   useEffect(() => {
     const currentPath = location.pathname;
@@ -44,6 +53,22 @@ const Header = ({ openSidebar }) => {
         return;
     }
   }, [location]);
+
+  useEffect(() => {
+    const handleKeyDown = event => {
+      if (event.key === 'Escape') {
+        handleCloseModal();
+      }
+    };
+
+    if (isModalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isModalOpen]);
 
   return (
     <Container>
@@ -74,10 +99,11 @@ const Header = ({ openSidebar }) => {
       )}
 
       <MenuBtn onClick={openSidebar} hide={'true'} />
-      <AddFeedbackBtn />
+      <AddFeedbackBtn onClick={handleOpenModal} />
       <ThemeToggler />
       <UserInfo />
-      {/* <AddFeedbackModal /> */}
+
+      {isModalOpen && <AddFeedbackModal onClose={handleCloseModal} />}
     </Container>
   );
 };
