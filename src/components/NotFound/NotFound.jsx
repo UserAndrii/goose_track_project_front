@@ -5,6 +5,7 @@ import {
   Container,
   Picture,
   Link,
+  StyledButton,
 } from "./NotFound.styled";
 import images from "./images";
 
