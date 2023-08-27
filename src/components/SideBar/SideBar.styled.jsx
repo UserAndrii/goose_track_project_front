@@ -5,12 +5,25 @@ export const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 185px;
+
   height: 100%;
   background-color: #ffffff;
-  padding: 24px 20px;
+
   transition: transform 0.3s ease-in-out;
   z-index: 200;
+
+  @media screen and (max-width: 767px) {
+    width: 185px;
+    padding: 24px 20px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1399px) {
+    width: 225px;
+    padding: 24px 32px;
+  }
+
+  @media screen and (min-width: 1400px) {
+    padding: 32px 24px;
   }
 `;
 
@@ -24,6 +37,10 @@ export const Menu = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (min-width: 1400px) {
+    justify-content: flex-start;
+  }
 `;
 
 export const CloseBtn = styled(AiOutlineClose)`
@@ -44,17 +61,36 @@ export const Image = styled.img`
   margin-right: 10px;
   object-fit: cover;
   object-position: center;
+
+  @media screen and (min-width: 768px) and (max-width: 1399px) {
+    width: 60px;
+    height: 58px;
+  }
+
+  @media screen and (min-width: 1400px) {
+    width: 71px;
+    height: 68px;
+  }
 `;
 
 export const Text = styled.p`
   color: #3e85f3;
   text-shadow: 0px 9.3px 57px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
-  font-family: Inter;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 22px;
-  margin-right: 25px;
+  margin-right: 23px;
+
+  @media screen and (min-width: 768px) and (max-width: 1399px) {
+    line-height: 24px;
+    margin-right: 31px;
+  }
+
+  @media screen and (min-width: 1400px) {
+    font-size: 24px;
+    margin-right: 0;
+  }
 `;
 
 export const Span = styled.span`

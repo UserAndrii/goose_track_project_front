@@ -10,6 +10,8 @@ import {
   Span,
 } from './SideBar.styled';
 
+import { useEffect, useState } from 'react';
+
 const SideBar = ({ closeSidebar, sidebarVisible }) => {
   const screenWidth = window.innerWidth;
   const pixelRatio = window.devicePixelRatio || 1;
@@ -38,9 +40,35 @@ const SideBar = ({ closeSidebar, sidebarVisible }) => {
   ];
 
   const selectedImagePath = imagePaths[imageIndex];
-  const containerStyle = {
+
+  const [containerStyle, setContainerStyle] = useState({
     transform: `translateX(${sidebarVisible ? '0' : '-225px'})`,
-  };
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      let newTransformValue = '';
+
+      if (windowWidth >= 375 && windowWidth < 768) {
+        newTransformValue = sidebarVisible ? '0' : '-225px';
+      } else if (windowWidth >= 768 && windowWidth <= 1400) {
+        newTransformValue = sidebarVisible ? '0' : '-300px';
+      } else if (windowWidth > 1400) {
+        newTransformValue = sidebarVisible ? '0' : '0';
+      }
+
+      setContainerStyle({
+        transform: `translateX(${newTransformValue})`,
+      });
+    };
+
+    handleResize(); // Call it initially
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [sidebarVisible]);
 
   return (
     <Container style={containerStyle}>
