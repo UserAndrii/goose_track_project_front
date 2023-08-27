@@ -132,6 +132,9 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 color: #111111;
+&.error {
+    color: #ff0000;
+  }
 `;
 
 export const Input = styled.input`

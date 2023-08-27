@@ -156,11 +156,7 @@ const RegisterForm = () => {
               >
                 {showPassword ? <FiEyeOff /> : <FiEye />}
               </ShowHideButton>
-              {formik.touched.password && formik.errors.password && (
-                <div className="error">{formik.errors.password}</div>
-              )}
             </InputWrapperWithIcon>
-
             {formik.errors.password && formik.touched.password && (
   <div className="error">{formik.errors.password}</div>
 )}
@@ -171,10 +167,10 @@ const RegisterForm = () => {
           <ItemIcon />
         </Button>
       </InputGroupe>
-      <LinksContainer><span>Forgot password?</span>
-          <Link to="/">change password</Link>
-          <span>Already registered?</span>
-          <Link to="/login">Log In</Link>
+      <LinksContainer><div>Forgot password?
+          <Link to="/"> change password</Link></div>
+          <div>Already registered?
+          <Link to="/login"> Log In</Link></div>
       </LinksContainer>
     </StyledForm>
   );
