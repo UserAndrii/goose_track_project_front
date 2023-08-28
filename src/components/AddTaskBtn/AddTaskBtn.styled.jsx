@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { IoAdd } from "react-icons/io5";
 
 export const Button = styled.button`
+  ${'' /* position: fixed; */}
   width: 100%;
   background-color: #E3F3FF;
   color: #111111;
