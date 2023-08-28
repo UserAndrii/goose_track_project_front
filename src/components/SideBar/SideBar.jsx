@@ -82,7 +82,6 @@ const SideBar = ({ closeSidebar, sidebarVisible }) => {
         </Menu>
 
         <UserNav closeSidebar={closeSidebar} />
-
         <LogoutBtn />
       </Wrapper>
     </Container>
