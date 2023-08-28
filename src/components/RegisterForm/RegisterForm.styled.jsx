@@ -4,13 +4,21 @@ import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { MdErrorOutline } from 'react-icons/md';
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+  min-width: 100%;
+  background: #dcebf7;
+`;
+
 export const StyledForm = styled.form`
   display: flex;
-  padding: 155px 20px 156px 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #dcebf7;
 `;
 export const FormName = styled.h1`
   color: #3e85f3;
@@ -231,13 +239,31 @@ export const LinkTo = styled(Link)`
 
 export const ErrorIcon = styled(MdErrorOutline)`
   position: absolute;
-  right: 8px;
-  bottom: 35px;
+  right: 12px;
+  bottom: 37px;
   width: 18px;
   height: 18px;
   color: #ff0000;
+
+  @media screen and (min-width: 768px) {
+    bottom: 41px;
+  }
 `;
 
 export const ContainerErrorIcon = styled.div`
   position: relative;
+`;
+
+export const PictureWrapper = styled.div`
+  display: ${props => (props.hide ? 'block' : 'none')};
+  position: absolute;
+  bottom: 0;
+  left: 49px;
+
+  width: 400px;
+  height: 416px;
+
+  @media screen and (min-width: 1440px) {
+    display: ${props => (props.hide ? 'none' : 'block')};
+  }
 `;
