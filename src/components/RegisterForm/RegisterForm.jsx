@@ -31,11 +31,11 @@ import { useNavigate } from 'react-router-dom';
 import registerElements from 'images/signup-elements.png';
 import registerElementsRetina from 'images/signup-elements@2x.png';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
+import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [showPassword, setShowPassword] = useState(false);
 
   const emailRegexp =
@@ -74,7 +74,15 @@ const RegisterForm = () => {
         const response = await dispatch(register(formData));
         if (response.payload.message === 'success') {
           formik.resetForm();
-          navigate('/calendar');
+
+          setShowSuccessMessage(true);
+
+          setTimeout(() => {
+            setShowSuccessMessage(false);
+            navigate('/calendar');
+          }, 5500); // Затримка у 2.5 секунди
+
+          // navigate('/calendar');
         }
         return response;
       } catch (error) {
@@ -108,7 +116,6 @@ const RegisterForm = () => {
                     : ''
                 }
               />
-
               {formik.touched.name ? (
                 formik.errors.name ? (
                   <ContainerErrorIcon>
@@ -175,13 +182,11 @@ const RegisterForm = () => {
                       : ''
                   }
                 />
-                {!formik.errors.password && (
-                  <ShowHideButton
-                    type="button"
-                    onClick={() => setShowPassword(show => !show)}
-                  >
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
-                  </ShowHideButton>
+                {formik.errors.name && formik.touched.name && (
+                  <ContainerErrorIcon>
+                    <Error isSuccess={isSuccess}>{formik.errors.name}</Error>
+                    <ErrorIcon />
+                  </ContainerErrorIcon>
                 )}
               </InputWrapperWithIcon>
               {formik.touched.password ? (
