@@ -17,6 +17,8 @@ import {
   InputList,
   Error,
   LinkTo,
+  ErrorIcon,
+  ContainerErrorIcon,
 } from './RegisterForm.styled';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
@@ -120,7 +122,10 @@ const RegisterForm = () => {
               isSuccess={isSuccess}
             />
             {formik.errors.name && formik.touched.name && (
-              <Error isSuccess={isSuccess}>{formik.errors.name}</Error>
+              <ContainerErrorIcon>
+                <Error isSuccess={isSuccess}>{formik.errors.name}</Error>
+                <ErrorIcon />
+              </ContainerErrorIcon>
             )}
           </InputWrapper>
           <InputWrapper isEmail={'email'}>
@@ -137,7 +142,10 @@ const RegisterForm = () => {
               isSuccess={isSuccess}
             />
             {formik.errors.email && formik.touched.email && (
-              <Error isSuccess={isSuccess}>{formik.errors.email}</Error>
+              <ContainerErrorIcon>
+                <Error isSuccess={isSuccess}>{formik.errors.email}</Error>
+                <ErrorIcon />
+              </ContainerErrorIcon>
             )}
           </InputWrapper>
           <InputWrapper isPassword={'password'}>
@@ -153,15 +161,20 @@ const RegisterForm = () => {
                 hasError={formik.errors.name && formik.touched.name}
                 isSuccess={isSuccess}
               />
-              <ShowHideButton
-                type="button"
-                onClick={() => setShowPassword(show => !show)}
-              >
-                {showPassword ? <FiEyeOff /> : <FiEye />}
-              </ShowHideButton>
+              {!formik.errors.password && (
+                <ShowHideButton
+                  type="button"
+                  onClick={() => setShowPassword(show => !show)}
+                >
+                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                </ShowHideButton>
+              )}
             </InputWrapperWithIcon>
             {formik.errors.password && formik.touched.password && (
-              <Error isSuccess={isSuccess}>{formik.errors.password}</Error>
+              <ContainerErrorIcon>
+                <Error isSuccess={isSuccess}>{formik.errors.password}</Error>
+                <ErrorIcon />
+              </ContainerErrorIcon>
             )}
           </InputWrapper>
         </InputList>
