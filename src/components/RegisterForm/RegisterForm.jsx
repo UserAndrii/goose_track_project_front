@@ -82,20 +82,12 @@ const RegisterForm = () => {
     validationSchema: validationSchema,
     onSubmit: async values => {
       try {
-        const formData = new FormData();
-        formData.append('userName', values.name);
-        formData.append('email', values.email);
-        formData.append('password', values.password);
-
-          let requestBody = {};
-        for (const [key, value] of formData.entries()) {
-          console.log(`${key}: ${value}`);
-          requestBody[key] = value
-        }
-        console.log('requestBody', requestBody)
-
-        const response = await dispatch(register(requestBody)); 
-        console.log('response', response)
+        const formData = {
+          userName: values.name,
+          email: values.email,
+          password: values.password,
+        };
+        const response = await dispatch(register(requestBody));
         if (response.success) {
           setIsSuccess(true); 
           formik.resetForm();
