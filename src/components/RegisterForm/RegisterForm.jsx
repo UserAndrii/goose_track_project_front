@@ -62,16 +62,40 @@ const RegisterForm = () => {
     switch (name) {
       case 'name':
         formik.setFieldValue('name', value);
-        formik.validateField('name');
         break;
 
       case 'email':
         formik.setFieldValue('email', value);
-        formik.validateField('email');
         break;
 
       case 'password':
         formik.setFieldValue('password', value);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const handleBlur = event => {
+    event.preventDefault();
+    const { name, value } = event.currentTarget;
+
+    switch (name) {
+      case 'name':
+        try {
+          validationSchema.fields.name.validateSync(value);
+          //поставити рамку зелену
+        } catch (error) {
+          //поставити рамку червону
+        }
+        break;
+
+      case 'email':
+        formik.validateField('email');
+        break;
+
+      case 'password':
         formik.validateField('password');
         break;
 
@@ -87,6 +111,7 @@ const RegisterForm = () => {
       password: '',
     },
     validationSchema: validationSchema,
+
     onSubmit: async values => {
       try {
         const formData = {
@@ -95,7 +120,7 @@ const RegisterForm = () => {
           password: values.password,
         };
         const response = await dispatch(register(formData));
-        if (response.success) {
+        if (response.payload.message === 'success') {
           setIsSuccess(true);
           formik.resetForm();
           navigate('/calendar');
@@ -123,9 +148,9 @@ const RegisterForm = () => {
                 value={formik.values.name}
                 placeholder="Enter your name"
                 onChange={handleChange}
-                onBlur={formik.handleBlur}
                 hasError={formik.errors.name && formik.touched.name}
                 isSuccess={isSuccess}
+                onBlur={handleBlur}
               />
               {formik.errors.name && formik.touched.name && (
                 <ContainerErrorIcon>
