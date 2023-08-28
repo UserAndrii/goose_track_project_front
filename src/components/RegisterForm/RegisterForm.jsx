@@ -87,12 +87,11 @@ const RegisterForm = () => {
           email: values.email,
           password: values.password,
         };
-        const response = await dispatch(register(requestBody));
+        const response = await dispatch(register(formData));
         if (response.success) {
-          setIsSuccess(true); 
+          setIsSuccess(true);
           formik.resetForm();
           navigate('/calendar');
-
         }
         return response;
       } catch (error) {
