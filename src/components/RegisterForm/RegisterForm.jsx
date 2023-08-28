@@ -20,6 +20,7 @@ import {
   ErrorIcon,
   ContainerErrorIcon,
   PictureWrapper,
+  SuccessIcon,
 } from './RegisterForm.styled';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
@@ -35,8 +36,8 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [isSuccess, setIsSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
   const emailRegexp =
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
@@ -55,55 +56,6 @@ const RegisterForm = () => {
       .required('This field is required'),
   });
 
-  const handleChange = event => {
-    event.preventDefault();
-    const { name, value } = event.currentTarget;
-
-    switch (name) {
-      case 'name':
-        formik.setFieldValue('name', value);
-        break;
-
-      case 'email':
-        formik.setFieldValue('email', value);
-        break;
-
-      case 'password':
-        formik.setFieldValue('password', value);
-        break;
-
-      default:
-        break;
-    }
-  };
-
-  const handleBlur = event => {
-    event.preventDefault();
-    const { name, value } = event.currentTarget;
-
-    switch (name) {
-      case 'name':
-        try {
-          validationSchema.fields.name.validateSync(value);
-          //поставити рамку зелену
-        } catch (error) {
-          //поставити рамку червону
-        }
-        break;
-
-      case 'email':
-        formik.validateField('email');
-        break;
-
-      case 'password':
-        formik.validateField('password');
-        break;
-
-      default:
-        break;
-    }
-  };
-
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -121,7 +73,6 @@ const RegisterForm = () => {
         };
         const response = await dispatch(register(formData));
         if (response.payload.message === 'success') {
-          setIsSuccess(true);
           formik.resetForm();
           navigate('/calendar');
         }
@@ -147,17 +98,30 @@ const RegisterForm = () => {
                 autoComplete="true"
                 value={formik.values.name}
                 placeholder="Enter your name"
-                onChange={handleChange}
-                hasError={formik.errors.name && formik.touched.name}
-                isSuccess={isSuccess}
-                onBlur={handleBlur}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                className={
+                  formik.touched.name
+                    ? formik.errors.name
+                      ? 'invalid-input'
+                      : 'valid-input'
+                    : ''
+                }
               />
-              {formik.errors.name && formik.touched.name && (
-                <ContainerErrorIcon>
-                  <Error isSuccess={isSuccess}>{formik.errors.name}</Error>
-                  <ErrorIcon />
-                </ContainerErrorIcon>
-              )}
+
+              {formik.touched.name ? (
+                formik.errors.name ? (
+                  <ContainerErrorIcon>
+                    <Error className="invalid">{formik.errors.name}</Error>
+                    <ErrorIcon />
+                  </ContainerErrorIcon>
+                ) : (
+                  <ContainerErrorIcon>
+                    <Error className="valid">{formik.errors.name}</Error>
+                    <SuccessIcon />
+                  </ContainerErrorIcon>
+                )
+              ) : null}
             </InputWrapper>
             <InputWrapper isEmail={'email'}>
               <Label htmlFor="email">Email</Label>
@@ -168,17 +132,29 @@ const RegisterForm = () => {
                 autoComplete="true"
                 value={formik.values.email}
                 placeholder="Enter email"
-                onChange={handleChange}
-                hasError={formik.errors.name && formik.touched.name}
-                isSuccess={isSuccess}
-                onBlur={handleBlur}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={
+                  formik.touched.email
+                    ? formik.errors.email
+                      ? 'invalid-input'
+                      : 'valid-input'
+                    : ''
+                }
               />
-              {formik.errors.email && formik.touched.email && (
-                <ContainerErrorIcon>
-                  <Error isSuccess={isSuccess}>{formik.errors.email}</Error>
-                  <ErrorIcon />
-                </ContainerErrorIcon>
-              )}
+              {formik.touched.email ? (
+                formik.errors.email ? (
+                  <ContainerErrorIcon>
+                    <Error className="invalid">{formik.errors.email}</Error>
+                    <ErrorIcon />
+                  </ContainerErrorIcon>
+                ) : (
+                  <ContainerErrorIcon>
+                    <Error className="valid">{formik.errors.email}</Error>
+                    <SuccessIcon />
+                  </ContainerErrorIcon>
+                )
+              ) : null}
             </InputWrapper>
             <InputWrapper isPassword={'password'}>
               <Label htmlFor="password">Password</Label>
@@ -189,10 +165,15 @@ const RegisterForm = () => {
                   name="password"
                   value={formik.values.password}
                   placeholder="Enter password"
-                  onChange={handleChange}
-                  hasError={formik.errors.name && formik.touched.name}
-                  isSuccess={isSuccess}
-                  onBlur={handleBlur}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={
+                    formik.touched.password
+                      ? formik.errors.password
+                        ? 'invalid-input'
+                        : 'valid-input'
+                      : ''
+                  }
                 />
                 {!formik.errors.password && (
                   <ShowHideButton
@@ -203,12 +184,19 @@ const RegisterForm = () => {
                   </ShowHideButton>
                 )}
               </InputWrapperWithIcon>
-              {formik.errors.password && formik.touched.password && (
-                <ContainerErrorIcon>
-                  <Error isSuccess={isSuccess}>{formik.errors.password}</Error>
-                  <ErrorIcon />
-                </ContainerErrorIcon>
-              )}
+              {formik.touched.password ? (
+                formik.errors.password ? (
+                  <ContainerErrorIcon>
+                    <Error className="invalid">{formik.errors.password}</Error>
+                    <ErrorIcon />
+                  </ContainerErrorIcon>
+                ) : (
+                  <ContainerErrorIcon>
+                    <Error className="valid">{formik.errors.password}</Error>
+                    <SuccessIcon />
+                  </ContainerErrorIcon>
+                )
+              ) : null}
             </InputWrapper>
           </InputList>
           <Button type="submit">
