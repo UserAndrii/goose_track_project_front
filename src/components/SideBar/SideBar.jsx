@@ -2,7 +2,7 @@ import UserNav from '../UserNav';
 import LogoutBtn from '../LogoutBtn';
 import {
   Container,
-  Container2,
+  Wrapper,
   Menu,
   CloseBtn,
   Image,
@@ -50,7 +50,7 @@ const SideBar = ({ closeSidebar, sidebarVisible }) => {
       const windowWidth = window.innerWidth;
       let newTransformValue = '';
 
-      if (windowWidth >= 375 && windowWidth < 768) {
+      if (windowWidth < 768) {
         newTransformValue = sidebarVisible ? '0' : '-225px';
       } else if (windowWidth >= 768 && windowWidth <= 1439) {
         newTransformValue = sidebarVisible ? '0' : '-300px';
@@ -72,17 +72,19 @@ const SideBar = ({ closeSidebar, sidebarVisible }) => {
 
   return (
     <Container style={containerStyle}>
-      <Menu>
-        <Image src={selectedImagePath} alt="Goose Track" />
-        <Text>
-          G<Span>oo</Span>seTrack
-        </Text>
-        <CloseBtn onClick={closeSidebar} />
-      </Menu>
-      <Container2>
-        <UserNav />
+      <Wrapper>
+        <Menu>
+          <Image src={selectedImagePath} alt="Goose Track" />
+          <Text>
+            G<Span>oo</Span>seTrack
+          </Text>
+          <CloseBtn onClick={closeSidebar} />
+        </Menu>
+
+        <UserNav closeSidebar={closeSidebar} />
+
         <LogoutBtn />
-      </Container2>
+      </Wrapper>
     </Container>
   );
 };

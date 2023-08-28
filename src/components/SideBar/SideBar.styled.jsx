@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
-import { AiOutlineClose } from 'react-icons/ai';
+import { CgClose } from 'react-icons/cg';
 
 export const Container = styled.div`
   position: absolute;
+
   top: 0;
   left: 0;
 
@@ -10,32 +11,38 @@ export const Container = styled.div`
   background-color: #ffffff;
 
   @media screen and (max-width: 767px) {
-    width: 185px;
-    padding: 24px 20px;
-    transform: translateX(-185px);
+    width: 225px;
+    transform: translateX(-225px);
     transition: transform 0.3s ease-in-out;
     z-index: 200;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    width: 225px;
-    padding: 24px 32px;
+    width: 289px;
     transform: translateX(-300px);
     transition: transform 0.3s ease-in-out;
     z-index: 200;
   }
 
   @media screen and (min-width: 1440px) {
-    padding: 32px 24px;
     position: static;
     width: 289px;
   }
 `;
 
-export const Container2 = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  height: 100%;
+  padding: 24px 20px;
+
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    padding: 24px 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 32px 24px 24px;
+  }
 `;
 
 export const Menu = styled.div`
@@ -48,13 +55,19 @@ export const Menu = styled.div`
   }
 `;
 
-export const CloseBtn = styled(AiOutlineClose)`
+export const CloseBtn = styled(CgClose)`
   right: 20px;
   width: 24px;
   height: 24px;
   color: #000000;
   cursor: pointer;
   z-index: 100;
+
+  @media screen and (min-width: 768px) {
+    width: 34px;
+    height: 34px;
+  }
+
   @media screen and (min-width: 1440px) {
     display: none;
   }
@@ -63,7 +76,7 @@ export const CloseBtn = styled(AiOutlineClose)`
 export const Image = styled.img`
   width: 36px;
   height: 35px;
-  margin-right: 10px;
+  margin-right: 6px;
   object-fit: cover;
   object-position: center;
 
@@ -73,6 +86,7 @@ export const Image = styled.img`
   }
 
   @media screen and (min-width: 1440px) {
+    margin-right: 10px;
     width: 71px;
     height: 68px;
   }
@@ -84,21 +98,21 @@ export const Text = styled.p`
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 16px;
   font-weight: 700;
-  line-height: 22px;
-  margin-right: 23px;
+  line-height: 1.37;
+  margin-right: 25px;
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    line-height: 24px;
+    line-height: 1.5;
     margin-right: 31px;
   }
 
   @media screen and (min-width: 1440px) {
     font-size: 24px;
+    line-height: 1;
     margin-right: 0;
   }
 `;
 
 export const Span = styled.span`
-  transform: rotate(5deg);
-  display: inline-block;
+  font-style: italic;
 `;

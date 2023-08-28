@@ -31,3 +31,7 @@ export const Overlay = styled.div`
   z-index: 100;
   backdrop-filter: blur(4px);
 `;
+
+export const Main = styled.main`
+  flex: 1;
+`;
