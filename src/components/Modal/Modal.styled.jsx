@@ -12,21 +12,20 @@ export const ModalOverlay = styled.div`
   backdrop-filter: blur(2px);
   align-items: center;
   z-index: 10;
+
 `;
 export const ModalContent = styled.div`
-  height: 349px;
-  width: 468px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   position: relative;
   z-index: 1100;
-
+  overflow:hidden;
   @media (max-width: 767px) { /* Телефоны */
-    width: 85%;
+    width: 303px;
     padding: 10px;
-    height: 70%;
+    height: 356px;
     display: flex;
     justify-content: center;
     align-items: center;
