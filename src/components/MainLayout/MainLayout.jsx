@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 // import { useSelector, useDispatch } from 'react-redux';
 
-import { Container, Overlay } from './MainLayout.styled';
+import { Container, Overlay, Main } from './MainLayout.styled';
 import { useState } from 'react';
 // import { getCurrentUser } from '../../redux/auth/operations';
 
@@ -29,7 +29,7 @@ const MainLayout = () => {
       {sidebarVisible && <Overlay onClick={closeSidebar} />}
       <SideBar closeSidebar={closeSidebar} sidebarVisible={sidebarVisible} />
 
-      <main>
+      <Main>
         <Header
           openSidebar={openSidebar}
           // user={user}
@@ -37,7 +37,7 @@ const MainLayout = () => {
         <Suspense fallback={'Loading...'}>
           <Outlet />
         </Suspense>
-      </main>
+      </Main>
     </Container>
   );
 };

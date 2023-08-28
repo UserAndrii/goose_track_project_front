@@ -3,18 +3,24 @@ import styled from '@emotion/styled';
 import { LuLogOut } from 'react-icons/lu';
 
 export const Button = styled.button`
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   font-family: inherit;
   font-weight: 600;
   font-size: 14px;
-  line-height: 1.33;
+  line-height: 1.28;
+  letter-spacing: -0.28px;
   cursor: pointer;
 
   color: #ffffff;
   background-color: #3e85f3;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   width: 131px;
-  padding: 14px 20px;
+  padding: 14px 28px;
+  margin-top: auto;
   border: none;
   border-radius: 16px;
 
@@ -24,12 +30,11 @@ export const Button = styled.button`
   }
 
   @media screen and (min-width: 768px) {
-    padding: 16px 23px;
     width: 141px;
+    padding: 16px 23px;
     font-size: 18px;
-    font-weight: 500;
-    line-height: 1.28;
-    margin-right: 24px;
+    line-height: 1.33;
+    letter-spacing: -0.36px;
   }
 `;
 
@@ -38,5 +43,11 @@ export const Icon = styled(LuLogOut)`
   height: 18px;
   vertical-align: middle;
   color: #ffffff;
-  margin-left: 8px;
+  margin-left: 6px;
+
+  @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+    margin-left: 11px;
+  }
 `;

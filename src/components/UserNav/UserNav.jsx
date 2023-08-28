@@ -1,6 +1,7 @@
 import {
   Container,
   Text,
+  List,
   ListItem,
   LinkNav,
   IconUser,
@@ -10,57 +11,67 @@ import {
 
 import { useLocation } from 'react-router-dom';
 
-const UserNav = () => {
+const UserNav = ({ closeSidebar }) => {
   const location = useLocation();
+
   return (
     <Container>
       <Text>User Panel</Text>
-      <ul>
-        <ListItem className={location.pathname === '/account' ? 'active' : ''}>
-          <LinkNav
-            to="/account"
-            className={`${
-              location.pathname === '/account' ? 'active' : ''
-            } text`}
+      <nav>
+        <List>
+          <ListItem
+            className={location.pathname === '/account' ? 'active' : ''}
           >
-            <IconUser
-              isActive={location.pathname === '/account' ? 'active' : ''}
-              className="icon"
-            />
-            My account
-          </LinkNav>
-        </ListItem>
-        <ListItem className={location.pathname === '/calendar' ? 'active' : ''}>
-          <LinkNav
-            to="/calendar"
-            className={`${
-              location.pathname === '/calendar' ? 'active' : ''
-            } text`}
+            <LinkNav
+              onClick={closeSidebar}
+              to="/account"
+              className={`${
+                location.pathname === '/account' ? 'active' : ''
+              } text`}
+            >
+              <IconUser
+                isactive={location.pathname === '/account' ? 'active' : ''}
+                className="icon"
+              />
+              My account
+            </LinkNav>
+          </ListItem>
+          <ListItem
+            className={location.pathname === '/calendar' ? 'active' : ''}
           >
-            <IconCalendar
-              isActive={location.pathname === '/calendar' ? 'active' : ''}
-              className="icon"
-            />
-            Calendar
-          </LinkNav>
-        </ListItem>
-        <ListItem
-          className={location.pathname === '/statistics' ? 'active' : ''}
-        >
-          <LinkNav
-            to="/statistics"
-            className={`${
-              location.pathname === '/statistics' ? 'active' : ''
-            } text`}
+            <LinkNav
+              onClick={closeSidebar}
+              to="/calendar"
+              className={`${
+                location.pathname === '/calendar' ? 'active' : ''
+              } text`}
+            >
+              <IconCalendar
+                isactive={location.pathname === '/calendar' ? 'active' : ''}
+                className="icon"
+              />
+              Calendar
+            </LinkNav>
+          </ListItem>
+          <ListItem
+            className={location.pathname === '/statistics' ? 'active' : ''}
           >
-            <IconStatistics
-              isActive={location.pathname === '/statistics' ? 'active' : ''}
-              className="icon"
-            />
-            Statistics
-          </LinkNav>
-        </ListItem>
-      </ul>
+            <LinkNav
+              onClick={closeSidebar}
+              to="/statistics"
+              className={`${
+                location.pathname === '/statistics' ? 'active' : ''
+              } text`}
+            >
+              <IconStatistics
+                isactive={location.pathname === '/statistics' ? 'active' : ''}
+                className="icon"
+              />
+              Statistics
+            </LinkNav>
+          </ListItem>
+        </List>
+      </nav>
     </Container>
   );
 };
