@@ -29,10 +29,12 @@ const Header = ({ openSidebar }) => {
 
   const handleOpenModal = () => {
     setModalOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
   const handleCloseModal = () => {
     setModalOpen(false);
+    document.body.style.overflow = 'auto';
   };
 
   useEffect(() => {

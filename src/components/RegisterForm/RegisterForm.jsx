@@ -17,16 +17,18 @@ import {
   InputList,
   Error,
   LinkTo,
+  ErrorIcon,
+  ContainerErrorIcon,
 } from './RegisterForm.styled';
-// import { showErrorToast, showSuccessToast } from '../../utils/messages';
-
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isSuccess, setIsSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -82,18 +84,16 @@ const RegisterForm = () => {
     validationSchema: validationSchema,
     onSubmit: async values => {
       try {
-        const formData = new FormData();
-        formData.append('name', values.name);
-        formData.append('email', values.email);
-        formData.append('password', values.password);
-
-        for (const [key, value] of formData.entries()) {
-          console.log(`${key}: ${value}`);
-        }
-
-        const response = await dispatch(register(formData)); // Передаємо FormData
+        const formData = {
+          userName: values.name,
+          email: values.email,
+          password: values.password,
+        };
+        const response = await dispatch(register(formData));
         if (response.success) {
-          setIsSuccess(true); // Устанавливаем состояние успешного запроса
+          setIsSuccess(true);
+          formik.resetForm();
+          navigate('/calendar');
         }
         return response;
       } catch (error) {
@@ -108,7 +108,7 @@ const RegisterForm = () => {
         <FormName>Sign Up</FormName>
         <InputList>
           <InputWrapper>
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="userName">Name</Label>
             <Input
               type="text"
               id="name"
@@ -122,7 +122,10 @@ const RegisterForm = () => {
               isSuccess={isSuccess}
             />
             {formik.errors.name && formik.touched.name && (
-              <Error isSuccess={isSuccess}>{formik.errors.name}</Error>
+              <ContainerErrorIcon>
+                <Error isSuccess={isSuccess}>{formik.errors.name}</Error>
+                <ErrorIcon />
+              </ContainerErrorIcon>
             )}
           </InputWrapper>
           <InputWrapper isEmail={'email'}>
@@ -139,7 +142,10 @@ const RegisterForm = () => {
               isSuccess={isSuccess}
             />
             {formik.errors.email && formik.touched.email && (
-              <Error isSuccess={isSuccess}>{formik.errors.email}</Error>
+              <ContainerErrorIcon>
+                <Error isSuccess={isSuccess}>{formik.errors.email}</Error>
+                <ErrorIcon />
+              </ContainerErrorIcon>
             )}
           </InputWrapper>
           <InputWrapper isPassword={'password'}>
@@ -155,15 +161,20 @@ const RegisterForm = () => {
                 hasError={formik.errors.name && formik.touched.name}
                 isSuccess={isSuccess}
               />
-              <ShowHideButton
-                type="button"
-                onClick={() => setShowPassword(show => !show)}
-              >
-                {showPassword ? <FiEyeOff /> : <FiEye />}
-              </ShowHideButton>
+              {!formik.errors.password && (
+                <ShowHideButton
+                  type="button"
+                  onClick={() => setShowPassword(show => !show)}
+                >
+                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                </ShowHideButton>
+              )}
             </InputWrapperWithIcon>
             {formik.errors.password && formik.touched.password && (
-              <Error isSuccess={isSuccess}>{formik.errors.password}</Error>
+              <ContainerErrorIcon>
+                <Error isSuccess={isSuccess}>{formik.errors.password}</Error>
+                <ErrorIcon />
+              </ContainerErrorIcon>
             )}
           </InputWrapper>
         </InputList>

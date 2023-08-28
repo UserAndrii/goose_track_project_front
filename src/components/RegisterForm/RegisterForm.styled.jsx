@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { FiLogIn } from 'react-icons/fi';
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
+import { MdErrorOutline } from 'react-icons/md';
 
 export const StyledForm = styled.form`
   display: flex;
@@ -33,6 +34,15 @@ export const InputGroupe = styled.div`
   padding: 40px 24px;
   border-radius: 8px;
   background: #fff;
+  width: 100%;
+
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+    width: 287px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 400px;
+  }
 `;
 
 export const InputList = styled.ul`
@@ -140,9 +150,17 @@ export const Label = styled.label`
   font-weight: 600;
   color: #111111;
 
-  &.error {
-    color: #ff0000;
-  }
+  ${props =>
+    props.hasError &&
+    css`
+      color: #ff0000;
+    `}
+
+  ${props =>
+    props.isSuccess &&
+    css`
+      color: #3cbc81;
+    `}
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -150,7 +168,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 287px;
+  width: 259px;
   height: 18px;
 
   border-radius: 8px;
@@ -179,7 +197,7 @@ export const Input = styled.input`
   }
 
   @media screen and (min-width: 768px) {
-    width: 400px;
+    width: 364px;
     height: 18px;
     padding: 18px;
   }
@@ -209,4 +227,17 @@ export const LinkTo = styled(Link)`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+export const ErrorIcon = styled(MdErrorOutline)`
+  position: absolute;
+  right: 8px;
+  bottom: 35px;
+  width: 18px;
+  height: 18px;
+  color: #ff0000;
+`;
+
+export const ContainerErrorIcon = styled.div`
+  position: relative;
 `;

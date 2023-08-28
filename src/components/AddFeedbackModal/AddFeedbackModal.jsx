@@ -5,7 +5,7 @@ import FeedbackForm from '../FeedbackForm';
 const AddFeedbackModal = ({ onClose }) => {
   return (
     <Modal onClose={onClose}>
-      <FeedbackForm />
+      <FeedbackForm onClose={onClose}/>
     </Modal>
   );
 };

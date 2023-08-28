@@ -6,6 +6,7 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 100px;
 
     @media screen and (max-width: 767px) {
         min-width: 375px;
@@ -24,29 +25,59 @@ export const Container = styled.div`
 `;
 
 export const List = styled.ul`
-
+    display: flex;
+    flex-direction: column;
 }
 `;
 
 export const Item = styled.li`
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     margin-top: 64px;
     padding: 0 20px;
 
     @media screen and (min-width: 768px) {
+        gap: 48px; 
         padding: 0 32px;
     }
 
     @media screen and (min-width: 1440px) {
         display: flex;
+        gap: 228px; 
         flex-direction: row;
         padding-left: 205px;
         padding-right: 128px;
+
+        &:nth-of-type(even) {
+            flex-direction: row-reverse;
+            padding-left: 128px;
+            padding-right: 205px;
+        }
     }
 `;
 
 export const ItemSpan = styled.div`
     
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+        width: 275px;
+
+        &.reverse {
+            margin-left: auto;
+        }
+        // &:nth-child(even) {
+        //     justify-content: flex-end;
+        // }
+
+    }
+
+    @media screen and (min-width: 1440px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 `;
+
 
 export const Number = styled.div`
     color: #3E85F3;
@@ -90,6 +121,7 @@ export const SubTitle = styled.div`
 `;
 
 export const TextSpan = styled.div`
+    display: inline-block;
     width: 335px;
     color: rgba(17, 17, 17, 0.90);
     font-size: 14px;
@@ -105,9 +137,6 @@ export const ImageWrapper = styled.div`
     display: block;
     border-radius: 40px;
     background: #E3F3FF;
-    margin-top: 40px;
-    // width: 335px;
-    // height: 457px;
 
     @media screen and (max-width: 767px) {
         min-width: 335px;
@@ -122,10 +151,7 @@ export const ImageWrapper = styled.div`
 
     @media screen and (min-width: 1440px) {
         min-width: 604px;
-        // min-height: 700px;
-        // border-radius: 100px;
-        margin-top: 0;
-        margin-left: 228px;
+        // margin-top: 0;       
     }
 `;
 

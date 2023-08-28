@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
-  //   persistStore,
-  //   persistReducer,
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -10,19 +10,20 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-// import { authReducer } from './auth/slice';
+import { authReducer } from './auth/slice';
 import { reviewsApi } from './reviews/reviewsApi';
 import { tasksApi } from './tasks/tasksApi';
+import storage from 'redux-persist/lib/storage';
 
-// const authPersistConfig = {
-//   key: 'auth',
-//   storage,
-//   whitelist: ['token'],
-// };
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
 
 export const store = configureStore({
   reducer: {
-    // auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authReducer),
     [reviewsApi.reducerPath]: reviewsApi.reducer,
     [tasksApi.reducerPath]: tasksApi.reducer,
   },
@@ -37,4 +38,4 @@ export const store = configureStore({
   ],
 });
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);
