@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/goose_track_project_front/static/css/main.cae66ef5.css",
+    "main.css": "/goose_track_project_front/static/css/main.d82b93ca.css",
     "main.js": "/goose_track_project_front/static/js/main.7f27931a.js",
     "static/media/InterTight-BoldItalic.ttf": "/goose_track_project_front/static/media/InterTight-BoldItalic.3f0a005db82c9b368c07.ttf",
     "static/media/InterTight-Bold.ttf": "/goose_track_project_front/static/media/InterTight-Bold.d219d228cc7dca6752e3.ttf",
@@ -49,11 +49,11 @@
     "index.html": "/goose_track_project_front/index.html",
     "static/media/reviews-arrow-right.svg": "/goose_track_project_front/static/media/reviews-arrow-right.a22cdf87a7132e781406da0f90b2321e.svg",
     "static/media/reviews-arrow-left.svg": "/goose_track_project_front/static/media/reviews-arrow-left.419843934514a4ec72e12d89da762d2a.svg",
-    "main.cae66ef5.css.map": "/goose_track_project_front/static/css/main.cae66ef5.css.map",
+    "main.d82b93ca.css.map": "/goose_track_project_front/static/css/main.d82b93ca.css.map",
     "main.7f27931a.js.map": "/goose_track_project_front/static/js/main.7f27931a.js.map"
   },
   "entrypoints": [
-    "static/css/main.cae66ef5.css",
+    "static/css/main.d82b93ca.css",
     "static/js/main.7f27931a.js"
   ]
 }
