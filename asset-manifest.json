@@ -1,14 +1,32 @@
 {
   "files": {
     "main.css": "/goose_track_project_front/static/css/main.d82b93ca.css",
-    "main.js": "/goose_track_project_front/static/js/main.baad9335.js",
+    "main.js": "/goose_track_project_front/static/js/main.861921fe.js",
     "static/media/InterTight-BoldItalic.ttf": "/goose_track_project_front/static/media/InterTight-BoldItalic.3f0a005db82c9b368c07.ttf",
     "static/media/InterTight-Bold.ttf": "/goose_track_project_front/static/media/InterTight-Bold.d219d228cc7dca6752e3.ttf",
     "static/media/InterTight-SemiBold.ttf": "/goose_track_project_front/static/media/InterTight-SemiBold.709c6ccbc8b81ae7bf76.ttf",
     "static/media/InterTight-Medium.ttf": "/goose_track_project_front/static/media/InterTight-Medium.a046b2b6656b8304f5df.ttf",
     "static/media/InterTight-Regular.ttf": "/goose_track_project_front/static/media/InterTight-Regular.0b4f9817d731764e0a9c.ttf",
+    "static/media/tablet-calendar@2x.jpg": "/goose_track_project_front/static/media/tablet-calendar@2x.3dfc7e52789efc24be04.jpg",
+    "static/media/desktop-calendar@2x.jpg": "/goose_track_project_front/static/media/desktop-calendar@2x.957e8761b04e9c8b5b37.jpg",
+    "static/media/tablet-all@2x.jpg": "/goose_track_project_front/static/media/tablet-all@2x.77b04dcbc316cf809a68.jpg",
+    "static/media/desktop-all@2x.jpg": "/goose_track_project_front/static/media/desktop-all@2x.ad57c1894202a5dfb0e6.jpg",
+    "static/media/tablet-sidebar@2x.jpg": "/goose_track_project_front/static/media/tablet-sidebar@2x.05c094b0d6a9144fcee8.jpg",
+    "static/media/desktop-sidebar@2x.jpg": "/goose_track_project_front/static/media/desktop-sidebar@2x.41135a241d66c7c8209a.jpg",
+    "static/media/mobile-calendar@2x.jpg": "/goose_track_project_front/static/media/mobile-calendar@2x.5ec804e73a3476a2e89c.jpg",
     "static/media/notFound@2x-min.png": "/goose_track_project_front/static/media/notFound@2x-min.4ceb43d7a3e024763163.png",
     "static/media/notFound@2x-min-t.png": "/goose_track_project_front/static/media/notFound@2x-min-t.601e4252cbfb9965dc84.png",
+    "static/media/mobile-all@2x.jpg": "/goose_track_project_front/static/media/mobile-all@2x.524cb8d227c3c2577bde.jpg",
+    "static/media/tablet-calendar.jpg": "/goose_track_project_front/static/media/tablet-calendar.88b5d5c58c5e11ea9c3f.jpg",
+    "static/media/mobile-sidebar@2x.jpg": "/goose_track_project_front/static/media/mobile-sidebar@2x.3746be716ec0c2952884.jpg",
+    "static/media/tablet-all.jpg": "/goose_track_project_front/static/media/tablet-all.9bcc8298207a63ebe477.jpg",
+    "static/media/desktop-calendar.jpg": "/goose_track_project_front/static/media/desktop-calendar.fd61eee393406c7bf69e.jpg",
+    "static/media/desktop-all.jpg": "/goose_track_project_front/static/media/desktop-all.dab383970ebe25855592.jpg",
+    "static/media/tablet-sidebar.jpg": "/goose_track_project_front/static/media/tablet-sidebar.b40f287abc34159faab3.jpg",
+    "static/media/desktop-sidebar.jpg": "/goose_track_project_front/static/media/desktop-sidebar.55678cc1f158943d2311.jpg",
+    "static/media/GOOSE_2_D@2x.png": "/goose_track_project_front/static/media/GOOSE_2_D@2x.cf97a81d5acf2bc6829f.png",
+    "static/media/GOOSE_2_T@2x.png": "/goose_track_project_front/static/media/GOOSE_2_T@2x.cf97a81d5acf2bc6829f.png",
+    "static/media/GOOSE_2_M@2x.png": "/goose_track_project_front/static/media/GOOSE_2_M@2x.91995d539c798805d40d.png",
     "static/media/notFound-min-p.png": "/goose_track_project_front/static/media/notFound-min-p.f13159bb65b9dacfdc1f.png",
     "static/media/notFound-min.png": "/goose_track_project_front/static/media/notFound-min.f13159bb65b9dacfdc1f.png",
     "static/media/notFound-min-t.png": "/goose_track_project_front/static/media/notFound-min-t.72a307d6538b84874e29.png",
@@ -30,10 +48,10 @@
     "static/media/reviews-arrow-right.svg": "/goose_track_project_front/static/media/reviews-arrow-right.a22cdf87a7132e781406da0f90b2321e.svg",
     "static/media/reviews-arrow-left.svg": "/goose_track_project_front/static/media/reviews-arrow-left.419843934514a4ec72e12d89da762d2a.svg",
     "main.d82b93ca.css.map": "/goose_track_project_front/static/css/main.d82b93ca.css.map",
-    "main.baad9335.js.map": "/goose_track_project_front/static/js/main.baad9335.js.map"
+    "main.861921fe.js.map": "/goose_track_project_front/static/js/main.861921fe.js.map"
   },
   "entrypoints": [
     "static/css/main.d82b93ca.css",
-    "static/js/main.baad9335.js"
+    "static/js/main.861921fe.js"
   ]
 }
