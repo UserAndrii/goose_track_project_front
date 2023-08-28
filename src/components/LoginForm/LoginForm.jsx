@@ -24,7 +24,7 @@ import {
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from 'redux/auth/operations';
+import { logIn } from 'redux/auth/operations';
 import { useNavigate } from 'react-router-dom';
 
 import registerElements from 'images/signup-elements.png';
@@ -41,10 +41,6 @@ const LoginForm = () => {
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
   const validationSchema = yup.object({
-    name: yup
-      .string()
-      .min(3, 'Name must be at least 3 characters')
-      .required('This field is required'),
     email: yup
       .string()
       .matches(emailRegexp, 'Invalid email')
@@ -60,10 +56,7 @@ const LoginForm = () => {
     const { name, value } = event.currentTarget;
 
     switch (name) {
-      case 'name':
-        formik.setFieldValue('name', value);
-        break;
-
+     
       case 'email':
         formik.setFieldValue('email', value);
         break;
@@ -106,7 +99,6 @@ const LoginForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
       email: '',
       password: '',
     },
@@ -115,12 +107,12 @@ const LoginForm = () => {
     onSubmit: async values => {
       try {
         const formData = {
-          userName: values.name,
           email: values.email,
           password: values.password,
         };
-        const response = await dispatch(register(formData));
+        const response = await dispatch(logIn(formData));
         if (response.payload.message === 'success') {
+          console.log('response', response)
           setIsSuccess(true);
           formik.resetForm();
           navigate('/calendar');
@@ -138,27 +130,7 @@ const LoginForm = () => {
         <InputGroupe>
           <FormName>Sign Up</FormName>
           <InputList>
-            <InputWrapper>
-              <Label htmlFor="userName">Name</Label>
-              <Input
-                type="text"
-                id="name"
-                name="name"
-                autoComplete="true"
-                value={formik.values.name}
-                placeholder="Enter your name"
-                onChange={handleChange}
-                hasError={formik.errors.name && formik.touched.name}
-                isSuccess={isSuccess}
-                onBlur={handleBlur}
-              />
-              {formik.errors.name && formik.touched.name && (
-                <ContainerErrorIcon>
-                  <Error isSuccess={isSuccess}>{formik.errors.name}</Error>
-                  <ErrorIcon />
-                </ContainerErrorIcon>
-              )}
-            </InputWrapper>
+          
             <InputWrapper isEmail={'email'}>
               <Label htmlFor="email">Email</Label>
               <Input
@@ -171,6 +143,7 @@ const LoginForm = () => {
                 onChange={handleChange}
                 hasError={formik.errors.name && formik.touched.name}
                 isSuccess={isSuccess}
+                onBlur={handleBlur}
               />
               {formik.errors.email && formik.touched.email && (
                 <ContainerErrorIcon>
@@ -191,6 +164,7 @@ const LoginForm = () => {
                   onChange={handleChange}
                   hasError={formik.errors.name && formik.touched.name}
                   isSuccess={isSuccess}
+                  onBlur={handleBlur}
                 />
                 {!formik.errors.password && (
                   <ShowHideButton
@@ -219,7 +193,7 @@ const LoginForm = () => {
       forgotPasswordText="Recover password"
       alreadyRegisteredText="New user?"
       forgotPasswordLink="/recover"
-      alreadyRegisteredLink="/signup"
+      alreadyRegisteredLink="/register"
     />
   </LinksContainer>
       </StyledForm>

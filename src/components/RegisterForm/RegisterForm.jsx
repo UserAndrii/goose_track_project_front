@@ -17,7 +17,6 @@ import {
   InputWrapperWithIcon,
   InputList,
   Error,
-  LinkTo,
   ErrorIcon,
   ContainerErrorIcon,
   PictureWrapper,
@@ -172,6 +171,7 @@ const RegisterForm = () => {
                 onChange={handleChange}
                 hasError={formik.errors.name && formik.touched.name}
                 isSuccess={isSuccess}
+                onBlur={handleBlur}
               />
               {formik.errors.email && formik.touched.email && (
                 <ContainerErrorIcon>
@@ -192,6 +192,7 @@ const RegisterForm = () => {
                   onChange={handleChange}
                   hasError={formik.errors.name && formik.touched.name}
                   isSuccess={isSuccess}
+                  onBlur={handleBlur}
                 />
                 {!formik.errors.password && (
                   <ShowHideButton
