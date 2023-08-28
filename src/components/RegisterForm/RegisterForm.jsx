@@ -82,18 +82,15 @@ const RegisterForm = () => {
     validationSchema: validationSchema,
     onSubmit: async values => {
       try {
-        const formData = new FormData();
-        formData.append('name', values.name);
-        formData.append('email', values.email);
-        formData.append('password', values.password);
-
-        for (const [key, value] of formData.entries()) {
-          console.log(`${key}: ${value}`);
-        }
+        const formData = {
+          userName: values.name,
+          email: values.email,
+          password: values.password,
+        };
 
         const response = await dispatch(register(formData)); // Передаємо FormData
         if (response.success) {
-          setIsSuccess(true); // Устанавливаем состояние успешного запроса
+          setIsSuccess(true);
         }
         return response;
       } catch (error) {
