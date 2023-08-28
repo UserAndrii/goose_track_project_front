@@ -2,6 +2,15 @@
 
 @import url('./styles/fonts.css');
 
+* {
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Inter Tight', sans-serif;
 
