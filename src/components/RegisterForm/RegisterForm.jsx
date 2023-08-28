@@ -30,6 +30,7 @@ import { useNavigate } from 'react-router-dom';
 
 import registerElements from 'images/signup-elements.png';
 import registerElementsRetina from 'images/signup-elements@2x.png';
+import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -215,14 +216,12 @@ const RegisterForm = () => {
           </Button>
         </InputGroupe>
         <LinksContainer>
-          <div>
-            Forgot password?
-            <LinkTo to="/"> Change password</LinkTo>
-          </div>
-          <div>
-            Already registered?
-            <LinkTo to="/login"> Log In</LinkTo>
-          </div>
+          <AuthNavigate
+            forgotPasswordText="Forgot password?"
+            alreadyRegisteredText="Already registered?"
+            forgotPasswordLink="/"
+            alreadyRegisteredLink="/login"
+          />
         </LinksContainer>
       </StyledForm>
       <PictureWrapper>
