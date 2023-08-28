@@ -1,9 +1,9 @@
 import { Container, Title, PlusBtn } from './ColumnHeadBar.styled';
 
-const ColumnHeadBar = ({ title }) => {
+const ColumnHeadBar = ({ category }) => {
     return (
         <Container>
-                <Title>{title}</Title> 
+                <Title>{category}</Title> 
                 <PlusBtn />
         </Container>
  )   

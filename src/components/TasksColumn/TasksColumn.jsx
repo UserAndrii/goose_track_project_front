@@ -1,18 +1,20 @@
+import React from 'react';
 import { Container } from './TasksColumn.styled';
 import ColumnHeadBar from '../ColumnHeadBar';
 import AddTaskBtn from '../AddTaskBtn';
-import ColumnsTasksList from 'components/ColumnsTasksList';
+import ColumnsTasksList from '../ColumnsTasksList';
 
 
-const TasksColumn = () => {
-   
+const TasksColumn = ({ category, tasks }) => {
+  
+ 
     return (
-    <Container>
-            <ColumnHeadBar
-                title={'To do'}
-               
+      <Container>
+         <ColumnHeadBar
+                category={category}
             />
-            <ColumnsTasksList/>
+        <ColumnsTasksList
+          tasks={tasks} />
             <AddTaskBtn/>
     </Container>
   );
