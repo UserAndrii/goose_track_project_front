@@ -140,9 +140,18 @@ export const Label = styled.label`
   font-weight: 600;
   color: #111111;
 
-  &.error {
-    color: #ff0000;
-  }
+ 
+  ${props =>
+    props.hasError &&
+    css`
+      color: #ff0000;
+    `}
+
+  ${props =>
+    props.isSuccess &&
+    css`
+      color: #3cbc81;
+    `}
 
   @media screen and (min-width: 768px) {
     font-size: 14px;

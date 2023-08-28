@@ -18,15 +18,15 @@ import {
   Error,
   LinkTo,
 } from './RegisterForm.styled';
-// import { showErrorToast, showSuccessToast } from '../../utils/messages';
-
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [isSuccess, setIsSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -87,10 +87,12 @@ const RegisterForm = () => {
           email: values.email,
           password: values.password,
         };
-
-        const response = await dispatch(register(formData)); // Передаємо FormData
+        const response = await dispatch(register(requestBody));
         if (response.success) {
-          setIsSuccess(true);
+          setIsSuccess(true); 
+          formik.resetForm();
+          navigate('/calendar');
+
         }
         return response;
       } catch (error) {
@@ -105,7 +107,7 @@ const RegisterForm = () => {
         <FormName>Sign Up</FormName>
         <InputList>
           <InputWrapper>
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="userName">Name</Label>
             <Input
               type="text"
               id="name"
