@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { FiLogIn } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
     background-color: #3E85F3;
@@ -90,7 +91,7 @@ export const List = styled.div`
 }
 `;
 
-export const Button = styled.button`
+export const Button = styled(Link)`
     background: #FFFFFF;
     display: flex;
     align-items: center;
@@ -126,7 +127,7 @@ export const ItemIcon = styled(FiLogIn)`
     color: #3E85F3;
 `;
 
-export const ItemText = styled.div`
+export const AuthLink = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;
