@@ -3,6 +3,7 @@ import { CgClose } from 'react-icons/cg';
 
 export const Container = styled.div`
   position: absolute;
+  display: flex;
 
   top: 0;
   left: 0;
@@ -33,7 +34,9 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
+
+  max-height: 100%;
   padding: 24px 20px;
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
