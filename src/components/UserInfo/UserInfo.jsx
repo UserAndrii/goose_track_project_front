@@ -1,24 +1,23 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Wrapper, Name, Avatar, Letter } from './UserInfo.styled';
-
-const user = {
-  name: 'Nadiia Doe',
-  avatar: '',
-};
+import { selectUser } from 'redux/auth/selectors';
 
 const UserInfo = () => {
-  // const user = useSelector(state => state.auth.user);
-  const { name, avatar } = user;
+  const { userName, avatarURL } = useSelector(selectUser);
 
-  const firstName = name.split(' ')[0];
-  const firstLetter = firstName[0].toUpperCase();
+  if (!userName) {
+    return;
+  }
+
+  const firstName = userName.split(' ')[0];
+  const firstLetter = firstName[0]?.toUpperCase();
 
   return (
     <Wrapper>
-      <Name>Nadiia</Name>
+      <Name>{firstName}</Name>
       <Avatar>
-        {avatar ? (
-          <img src={avatar} alt={name} />
+        {avatarURL ? (
+          <img src={avatarURL} alt={userName} />
         ) : (
           <Letter>{firstLetter}</Letter>
         )}

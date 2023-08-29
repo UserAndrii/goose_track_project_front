@@ -1,8 +1,17 @@
 // import { lazy } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
+import {
+  selectIsFetchingCurrentUser,
+  selectIsLoggedIn,
+} from 'redux/auth/selectors';
+import { getCurrentUser } from 'redux/auth/operations';
+
+import Spiner from './Spiner/Spiner';
 import MainLayout from './MainLayout/MainLayout';
 import TemporaryNavigation from '../TemporaryNavigation';
 
@@ -23,18 +32,22 @@ import NotFoundPage from 'pages/NotFoundPage';
 // const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsFetchingCurrentUser);
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <Spiner />
+  ) : (
     <>
       <TemporaryNavigation />
       <Routes>
         <Route path="/" element={<MainPage />} />
 
-        <Route
-          path="/404"
-          element={
-            <RestrictedRoute component={<NotFoundPage />} navigateTo="/" />
-          }
-        />
+        <Route path="/404" element={<NotFoundPage />} />
 
         <Route
           path="/register"
@@ -89,11 +102,14 @@ export const App = () => {
 };
 
 function RestrictedRoute({ component, navigateTo = '/' }) {
-  const isLogged = false;
+  const isLogged = useSelector(selectIsLoggedIn);
+
   return isLogged ? <Navigate to={navigateTo} /> : component;
 }
 
 function PrivateRoute({ component, navigateTo = '/' }) {
-  const isLogged = true;
-  return !isLogged ? <Navigate to={navigateTo} /> : component;
+  const isLogged = useSelector(selectIsLoggedIn);
+  const isFetching = useSelector(selectIsFetchingCurrentUser);
+
+  return !isLogged && !isFetching ? <Navigate to={navigateTo} /> : component;
 }

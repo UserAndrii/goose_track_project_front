@@ -56,7 +56,6 @@ const LoginForm = () => {
     const { name, value } = event.currentTarget;
 
     switch (name) {
-     
       case 'email':
         formik.setFieldValue('email', value);
         break;
@@ -112,7 +111,6 @@ const LoginForm = () => {
         };
         const response = await dispatch(logIn(formData));
         if (response.payload.message === 'success') {
-          console.log('response', response)
           setIsSuccess(true);
           formik.resetForm();
           navigate('/calendar');
@@ -130,7 +128,6 @@ const LoginForm = () => {
         <InputGroupe>
           <FormName>Sign Up</FormName>
           <InputList>
-          
             <InputWrapper isEmail={'email'}>
               <Label htmlFor="email">Email</Label>
               <Input
@@ -189,13 +186,13 @@ const LoginForm = () => {
           </Button>
         </InputGroupe>
         <LinksContainer>
-    <AuthNavigate
-      forgotPasswordText="Recover password"
-      alreadyRegisteredText="New user?"
-      forgotPasswordLink="/recover"
-      alreadyRegisteredLink="/register"
-    />
-  </LinksContainer>
+          <AuthNavigate
+            forgotPasswordText="Recover password"
+            alreadyRegisteredText="New user?"
+            forgotPasswordLink="/recover"
+            alreadyRegisteredLink="/register"
+          />
+        </LinksContainer>
       </StyledForm>
       <PictureWrapper>
         <picture>

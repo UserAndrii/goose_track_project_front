@@ -3,6 +3,7 @@ import { FiMoon } from 'react-icons/fi';
 import { BiSun } from 'react-icons/bi';
 
 export const MoonBtn = styled(FiMoon)`
+  display: none;
   width: 24px;
   height: 24px;
   margin-right: 8px;
@@ -10,13 +11,12 @@ export const MoonBtn = styled(FiMoon)`
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    width: 32px;
-    height: 32px;
-    margin-right: 14px;
+    display: none;
   }
 `;
 
 export const SunBtn = styled(BiSun)`
+  display: none;
   width: 24px;
   height: 24px;
   margin-right: 8px;
@@ -24,8 +24,6 @@ export const SunBtn = styled(BiSun)`
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    width: 32px;
-    height: 32px;
-    margin-right: 14px;
+    display: none;
   }
 `;
