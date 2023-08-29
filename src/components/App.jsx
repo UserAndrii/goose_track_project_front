@@ -36,7 +36,6 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-    console.log(dispatch(getCurrentUser()));
   }, [dispatch]);
 
   return isRefreshing ? (
