@@ -5,18 +5,30 @@ import {
   UserAvatar,
   UserName,
   UserReviews,
+  Letter,
 } from './ReviewsSlider.styled';
 
+
+
 export default function ReviewsBox({
-  avatarUrl = 'https://i.pinimg.com/originals/1e/2a/3c/1e2a3c967414574c5c728715cba165d5.jpg',
+  avatarUrl,
   name,
   rating = 0,
   comment,
-}) {
+})
+
+{
+  const firstName = name.split(' ')[0];
+  const firstLetter = firstName[0]?.toUpperCase();
+
   return (
     <ReviewsBoxStyle>
       <UserBox>
-        <UserAvatar src={avatarUrl} alt="User avatar" />
+        {avatarUrl ? (
+          <UserAvatar src={avatarUrl} alt="User avatar" />
+        ) : (
+          <Letter>{firstLetter}</Letter>
+        )}
         <div>
           <UserName>{name}</UserName>
           <RatingStar

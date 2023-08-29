@@ -14,13 +14,13 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import React from 'react';
 
-
 import { useFetchReviewsQuery } from '../../redux/reviews/reviewsApi'
 import Slider from 'react-slick';
 import Spiner from '../Spiner/Spiner';
 
 export default function ReviewsSlider() {
-    const { data: reviews } = useFetchReviewsQuery();
+   
+    const {  data: reviews, isFetching } = useFetchReviewsQuery();
   
    
     const handlePrevious = () => {
@@ -55,14 +55,14 @@ export default function ReviewsSlider() {
   return (
     <ReviewsWrapper>
       <ReviewsHeader>Reviews</ReviewsHeader>
-      {reviews && reviews.length > 0 ? (
+      {isFetching ? (
+        <Spiner />
+      ) : (
         <>
           <UserReviewsBlock>
             <Slider {...sliderSettings} ref={c => (slider = c)}>
-              {reviews.map(item => {
-                const avatarUrl = item
-                  ? item.avatarURL
-                  : 'https://i.pinimg.com/originals/1e/2a/3c/1e2a3c967414574c5c728715cba165d5.jpg';
+              {reviews.data.map(item => {
+                const avatarUrl = item.avatarURL || null;
 
                 return (
                   <ReviewsBox
@@ -85,9 +85,8 @@ export default function ReviewsSlider() {
             </ButtonArrow>
           </ButtonList>
         </>
-      ) : (
-        <Spiner />
-      )}
+      ) 
+      }
     </ReviewsWrapper>
   );
 }

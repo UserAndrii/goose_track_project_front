@@ -15,14 +15,14 @@ export const device = {
 
 export const ReviewsWrapper = styled.div`
   margin: 0 auto;
-  width: 335px;
+  max-width: 335px;
 
   @media ${device.tablet} {
-    width: 580px;
+    max-width: 580px;
   }
 
   @media ${device.desktop} {
-    width: 1184px;
+    max-width: 1184px;
   }
 `;
 
@@ -82,6 +82,27 @@ export const UserAvatar = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50px;
+`;
+
+export const Letter = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: 1.8px solid #3e85f3;
+
+  color: #3e85f3;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.28;
+  overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 export const UserName = styled.p`
