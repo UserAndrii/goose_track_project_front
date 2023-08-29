@@ -49,9 +49,7 @@ export const App = () => {
 
         <Route
           path="/team"
-          element={
-            <RestrictedRoute component={<TeamPage />} navigateTo="/" />
-          }
+          element={<RestrictedRoute component={<TeamPage />} navigateTo="/" />}
         />
 
         <Route

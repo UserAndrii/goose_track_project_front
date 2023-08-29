@@ -1,18 +1,38 @@
-import React from 'react';
-import { LinkTo } from './AuthNavigate.styled';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { LinkTo, Wrapper, Text } from './AuthNavigate.styled';
 
-const AuthNavigate = ({ forgotPasswordText, alreadyRegisteredText, forgotPasswordLink, alreadyRegisteredLink }) => {
-  return (
-    <div>
-      <div>
-        {forgotPasswordText}
-        <LinkTo to={forgotPasswordLink}> {forgotPasswordText}</LinkTo>
-      </div>
-      <div>
-        {alreadyRegisteredText}
-        <LinkTo to={alreadyRegisteredLink}> {alreadyRegisteredText}</LinkTo>
-      </div>
-    </div>
+const AuthNavigate = () => {
+  const { pathname } = useLocation();
+  const [activePageQuestions, setActivePageQuestions] = useState('');
+
+  useEffect(() => {
+    switch (pathname) {
+      case '/login':
+        return setActivePageQuestions("Don't have an account?");
+
+      case '/register':
+        return setActivePageQuestions('Already have an account?');
+
+      default:
+        setActivePageQuestions('');
+        return;
+    }
+  }, [pathname]);
+
+  return pathname === '/login' ? (
+    <Wrapper>
+      <Text>
+        {activePageQuestions} <LinkTo to="/register">Sign Up</LinkTo>
+      </Text>
+      <LinkTo to="/recover">Forgot password?</LinkTo>
+    </Wrapper>
+  ) : (
+    <Wrapper>
+      <Text>
+        {activePageQuestions} <LinkTo to="/login">Log In</LinkTo>
+      </Text>
+    </Wrapper>
   );
 };
 
