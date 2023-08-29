@@ -23,7 +23,7 @@ export const App = () => {
     <>
       <TemporaryNavigation />
       <Routes>
-        <Route path="/" element={<CalendarPage />} />
+        <Route path="/" element={<MainPage />} />
         <Route
           path="/register"
           element={
