@@ -13,7 +13,6 @@ import { getCurrentUser } from 'redux/auth/operations';
 
 import Spiner from './Spiner/Spiner';
 import MainLayout from './MainLayout/MainLayout';
-import TemporaryNavigation from '../TemporaryNavigation';
 
 import MainPage from 'pages/MainPage';
 import RegisterPage from 'pages/RegisterPage';
@@ -37,13 +36,13 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
+    console.log(dispatch(getCurrentUser()));
   }, [dispatch]);
 
   return isRefreshing ? (
     <Spiner />
   ) : (
     <>
-      <TemporaryNavigation />
       <Routes>
         <Route path="/" element={<MainPage />} />
 
