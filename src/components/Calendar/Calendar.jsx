@@ -74,7 +74,6 @@ export const Calendar = () => {
   //     isEqual(date, firstDayCurrentMonth)
   // );
 
-  // Доробити
   function previousMonth() {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
     setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
