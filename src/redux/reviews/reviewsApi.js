@@ -1,6 +1,7 @@
+import axios from 'axios';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const token = '';
+const token = axios.defaults.headers.common.Authorization;
 
 export const reviewsApi = createApi({
   reducerPath: 'reviews',
@@ -21,31 +22,31 @@ export const reviewsApi = createApi({
       query: () => ({
         url: '/reviews/own',
         async onQueryStarted(request) {
-          request.headers.set('Authorization', `Bearer ${token}`);
+          request.headers.set('Authorization', token);
         },
       }),
       providesTags: ['Reviews'],
     }),
 
     createReview: builder.mutation({
-      query: ({ rating, message }) => ({
+      query: data => ({
         url: '/reviews/own',
         method: 'POST',
-        body: { rating, message },
+        body: data,
         async onQueryStarted(request) {
-          request.headers.set('Authorization', `Bearer ${token}`);
+          request.headers.set('Authorization', token);
         },
       }),
       providesTags: ['Reviews'],
     }),
 
     editReview: builder.mutation({
-      query: ({ rating, message }) => ({
+      query: data => ({
         url: '/reviews/own',
         method: 'PATCH',
-        body: { rating, message },
+        body: data,
         async onQueryStarted(request) {
-          request.headers.set('Authorization', `Bearer ${token}`);
+          request.headers.set('Authorization', token);
         },
       }),
       providesTags: ['Reviews'],
@@ -56,7 +57,7 @@ export const reviewsApi = createApi({
         url: '/reviews/own',
         method: 'DELETE',
         async onQueryStarted(request) {
-          request.headers.set('Authorization', `Bearer ${token}`);
+          request.headers.set('Authorization', token);
         },
       }),
       providesTags: ['Reviews'],
