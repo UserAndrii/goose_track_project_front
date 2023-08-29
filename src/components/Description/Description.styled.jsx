@@ -7,20 +7,18 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 100px;
+    height: auto;
 
     @media screen and (max-width: 767px) {
-        min-width: 375px;
-        height: auto;
+        max-width: 375px;
     }
 
     @media screen and (min-width: 768px) and (max-width: 1439px) {
         min-width: 768px;
-        height: auto;
     }
 
     @media screen and (min-width: 1440px) {
         width: 1440px;
-        height: auto;
     }
 `;
 
@@ -60,15 +58,11 @@ export const Item = styled.li`
 export const ItemSpan = styled.div`
     
     @media screen and (min-width: 768px) and (max-width: 1439px) {
-        width: 275px;
+        min-width: 275px;
 
         &.reverse {
             margin-left: auto;
         }
-        // &:nth-child(even) {
-        //     justify-content: flex-end;
-        // }
-
     }
 
     @media screen and (min-width: 1440px) {
@@ -122,7 +116,7 @@ export const SubTitle = styled.div`
 
 export const TextSpan = styled.div`
     display: inline-block;
-    width: 335px;
+    // width: 335px;
     color: rgba(17, 17, 17, 0.90);
     font-size: 14px;
     font-weight: 500;
@@ -139,13 +133,13 @@ export const ImageWrapper = styled.div`
     background: #E3F3FF;
 
     @media screen and (max-width: 767px) {
-        min-width: 335px;
-        min-height: 457px;
+        max-width: 335px;
+        max-height: 457px;
     }
 
     @media screen and (min-width: 768px) {
-        min-width: 704px;
-        min-height: 700px;
+        max-width: 704px;
+        max-height: 700px;
         border-radius: 100px;
     }
 

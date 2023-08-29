@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Container,
-  ImageWrapper,
-  Image,
-  Text,
-  TextSpan,
-  List,
-  Button,
-  ButtonText,
-  ItemIcon,
-  AuthLink,
+    Container,
+    ImageWrapper,
+    Image,
+    Text,
+    TextSpan,
+    List,
+    Button,
+    ButtonText,
+    ItemIcon,
+    AuthLink,
 } from './AuthSection.styled';
 
 const AuthSection = () => {

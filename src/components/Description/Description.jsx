@@ -10,7 +10,7 @@ import {
     TextSpan,
     ImageWrapper,
     Image,
-  } from './Description.styled';
+} from './Description.styled';
 
 const Description = () => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);

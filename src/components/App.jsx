@@ -22,6 +22,7 @@ import AccountPage from 'pages/AccountPage';
 import CalendarPage from 'pages/CalendarPage';
 import StatisticsPage from 'pages/StatisticsPage';
 import NotFoundPage from 'pages/NotFoundPage';
+import TeamPage from 'pages/TeamPage';
 
 // const MainPage = lazy(() => import('pages/MainPage'));
 // const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -30,6 +31,7 @@ import NotFoundPage from 'pages/NotFoundPage';
 // const CalendarPage = lazy(() => import('pages/CalendarPage'));
 // const StatisticsPage = lazy(() => import('pages/StatisticsPage'));
 // const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
+// const TeamPage = lazy(() => import('pages/TeamPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +50,13 @@ export const App = () => {
         <Route path="/" element={<MainPage />} />
 
         <Route path="/404" element={<NotFoundPage />} />
+
+        <Route
+          path="/team"
+          element={
+            <RestrictedRoute component={<TeamPage />} navigateTo="/" />
+          }
+        />
 
         <Route
           path="/register"
