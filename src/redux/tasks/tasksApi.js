@@ -1,6 +1,7 @@
+import axios from 'axios';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const token = '';
+const token = axios.defaults.headers.common.Authorization;
 
 export const tasksApi = createApi({
   reducerPath: 'tasks',
@@ -8,7 +9,7 @@ export const tasksApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://goose-track-project-back.onrender.com/',
     prepareHeaders(headers) {
-      headers.set('Authorization', `Bearer ${token}`);
+      headers.set('Authorization', token);
       return headers;
     },
   }),
@@ -17,21 +18,25 @@ export const tasksApi = createApi({
 
   endpoints: builder => ({
     getMonthlyTasks: builder.query({
-      query: () => '/tasks',
+      query: date => ({
+        url: '/tasks',
+        method: 'GET',
+        body: date,
+      }),
       providesTags: ['Tasks'],
     }),
 
     createTasks: builder.mutation({
-      query: ({ data }) => ({
+      query: data => ({
         url: '/tasks',
         method: 'POST',
-        body: { data },
+        body: data,
       }),
       providesTags: ['Tasks'],
     }),
 
     editTasks: builder.mutation({
-      query: ({ id, data }) => ({
+      query: ({ id, ...data }) => ({
         url: `/tasks/${id}`,
         method: 'PATCH',
         body: { data },
@@ -52,6 +57,6 @@ export const tasksApi = createApi({
 export const {
   useGetMonthlyTasksQuery,
   useCreateTasksMutation,
-  useEditReviewMutation,
+  useEditTasksMutation,
   useDeleteTasksMutation,
 } = tasksApi;

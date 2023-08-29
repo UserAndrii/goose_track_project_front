@@ -35,6 +35,7 @@ export const store = configureStore({
       },
     }),
     reviewsApi.middleware,
+    tasksApi.middleware,
   ],
 });
 
