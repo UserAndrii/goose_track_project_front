@@ -13,13 +13,17 @@ export const Button = styled.button`
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   padding: 8px 20px;
-  margin-right: 18px;
+  margin-right: auto;
   border: none;
   border-radius: 10px;
 
   :hover {
     background: #2b78ef;
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
+
+  @media screen and (min-width: 375px) {
+    margin-right: 18px;
   }
 
   @media screen and (min-width: 768px) {

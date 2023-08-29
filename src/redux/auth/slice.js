@@ -17,8 +17,6 @@ const initialState = {
     phone: null,
     skype: null,
     birthDay: null,
-    createdAt: null,
-    updatedAt: null,
   },
   token: null,
   isLoggedIn: false,

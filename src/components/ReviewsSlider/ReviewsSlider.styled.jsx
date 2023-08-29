@@ -40,7 +40,6 @@ export const ReviewsHeader = styled.h2`
   text-align: center;
   color: #3e85f3;
   font-size: 28px;
-  font-family: Inter;
   font-weight: 700;
   line-height: 32px;
   text-transform: uppercase;
@@ -89,7 +88,6 @@ export const UserName = styled.p`
   margin-bottom: 13px;
   color: #343434;
   font-size: 18px;
-  font-family: Inter;
   font-weight: 700;
   line-height: 18px;
 `;
@@ -98,7 +96,6 @@ export const UserReviews = styled.p`
   margin-top: 24px;
   color: rgba(17, 17, 17, 0.7);
   font-size: 14px;
-  font-family: Inter;
   font-weight: 500;
   line-height: 18px;
 

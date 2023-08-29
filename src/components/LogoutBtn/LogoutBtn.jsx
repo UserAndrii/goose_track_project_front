@@ -4,6 +4,7 @@ import { logOut } from '../../redux/auth/operations';
 
 const LogoutBtn = () => {
   const dispatch = useDispatch();
+
   return (
     <Button type="button" onClick={() => dispatch(logOut())}>
       Log out

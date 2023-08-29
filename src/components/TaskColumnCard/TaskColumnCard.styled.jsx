@@ -33,11 +33,11 @@ export const AvatarImage = styled.img`
 `;
 const getPriorityColor = (priority) => {
   switch (priority) {
-    case 'high':
+    case 'High':
       return '#EA3D65';
-    case 'medium':
+    case 'Medium':
       return '#F3B249';
-    case 'low':
+    case 'Low':
       return '#72C2F8';
     default:
       return 'gray';
