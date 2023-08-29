@@ -20,7 +20,7 @@ import Slider from 'react-slick';
 import Spiner from '../Spiner/Spiner';
 
 export default function ReviewsSlider() {
-    const {data: reviews, error, isFetching } = useFetchReviewsQuery();
+    const { data: reviews } = useFetchReviewsQuery();
   
    
     const handlePrevious = () => {
