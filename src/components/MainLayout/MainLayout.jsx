@@ -13,7 +13,7 @@ import SideBar from '../SideBar';
 const MainLayout = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector(selectUser());
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     if (!user) {
