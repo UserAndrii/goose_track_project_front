@@ -1,6 +1,7 @@
 import AddFeedbackBtn from 'components/AddFeedbackBtn/AddFeedbackBtn';
 import { useState, useEffect } from 'react';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
+import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 
 const CalendarPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -33,8 +34,9 @@ const CalendarPage = () => {
 
   return (
     <div>
+      <TasksColumnsList/>
       <AddFeedbackBtn onClick={handleOpenModal}>Add Task</AddFeedbackBtn>
-      <h1>This is CalendarPage</h1>
+      {/* <h1>This is CalendarPage</h1> */}
       {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
     </div>
   );

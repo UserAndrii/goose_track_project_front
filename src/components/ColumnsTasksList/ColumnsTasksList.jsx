@@ -8,8 +8,8 @@ const ColumnsTasksList = ({tasks}) => {
             {tasks.map((item) => (
                 <TasksColumnCard
                 key={item.id}
-                task={item.task}
-                priority={item.priority} />
+                task={item.Title}
+                priority={item.Priority} />
             ) )}
        
         </Container>
