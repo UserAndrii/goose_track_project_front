@@ -1,24 +1,36 @@
 {
   "files": {
     "main.css": "/goose_track_project_front/static/css/main.f39183e3.css",
-    "main.js": "/goose_track_project_front/static/js/main.7837c8a4.js",
+    "main.js": "/goose_track_project_front/static/js/main.1e842bc4.js",
+    "static/media/Iron_Man_OD.jpg": "/goose_track_project_front/static/media/Iron_Man_OD.8b5d926b4e883466ca93.jpg",
     "static/media/InterTight-BoldItalic.ttf": "/goose_track_project_front/static/media/InterTight-BoldItalic.3f0a005db82c9b368c07.ttf",
     "static/media/InterTight-Bold.ttf": "/goose_track_project_front/static/media/InterTight-Bold.d219d228cc7dca6752e3.ttf",
     "static/media/InterTight-SemiBold.ttf": "/goose_track_project_front/static/media/InterTight-SemiBold.709c6ccbc8b81ae7bf76.ttf",
     "static/media/InterTight-Medium.ttf": "/goose_track_project_front/static/media/InterTight-Medium.a046b2b6656b8304f5df.ttf",
     "static/media/InterTight-Regular.ttf": "/goose_track_project_front/static/media/InterTight-Regular.0b4f9817d731764e0a9c.ttf",
+    "static/media/Thanos_IS.jpg": "/goose_track_project_front/static/media/Thanos_IS.6e55269bc08daecd66af.jpg",
+    "static/media/Captain_Marvel_AT.jpg": "/goose_track_project_front/static/media/Captain_Marvel_AT.17c68f0d03eb98697105.jpg",
+    "static/media/Black_Panter_SS.jpg": "/goose_track_project_front/static/media/Black_Panter_SS.88ebc3348015b8c1d370.jpg",
+    "static/media/Spider_Man_VK.jpg": "/goose_track_project_front/static/media/Spider_Man_VK.7f05fd18eddec4bac4e9.jpg",
     "static/media/tablet-calendar@2x.jpg": "/goose_track_project_front/static/media/tablet-calendar@2x.3dfc7e52789efc24be04.jpg",
+    "static/media/America_YKlim.jpg": "/goose_track_project_front/static/media/America_YKlim.2788cd0738ea85517ad2.jpg",
+    "static/media/Fury_AG.jpg": "/goose_track_project_front/static/media/Fury_AG.1c20bb0a6d39c74b996a.jpg",
     "static/media/desktop-calendar@2x.jpg": "/goose_track_project_front/static/media/desktop-calendar@2x.957e8761b04e9c8b5b37.jpg",
+    "static/media/Ant-Man_YKag.jpg": "/goose_track_project_front/static/media/Ant-Man_YKag.0452ca553d0cbdf1d813.jpg",
     "static/media/tablet-all@2x.jpg": "/goose_track_project_front/static/media/tablet-all@2x.77b04dcbc316cf809a68.jpg",
     "static/media/desktop-all@2x.jpg": "/goose_track_project_front/static/media/desktop-all@2x.ad57c1894202a5dfb0e6.jpg",
     "static/media/signup-elements@2x.png": "/goose_track_project_front/static/media/signup-elements@2x.f173b0a7072d678cc081.png",
+    "static/media/Hulk_OV.jpg": "/goose_track_project_front/static/media/Hulk_OV.a030bf0284afbaa63bb7.jpg",
     "static/media/tablet-sidebar@2x.jpg": "/goose_track_project_front/static/media/tablet-sidebar@2x.05c094b0d6a9144fcee8.jpg",
+    "static/media/Red_Witch_GK.jpg": "/goose_track_project_front/static/media/Red_Witch_GK.364eb3eef7f036f34726.jpg",
+    "static/media/Doctor_Strange_AK.jpg": "/goose_track_project_front/static/media/Doctor_Strange_AK.bb659a6a2a293a11aa90.jpg",
     "static/media/desktop-sidebar@2x.jpg": "/goose_track_project_front/static/media/desktop-sidebar@2x.41135a241d66c7c8209a.jpg",
     "static/media/mobile-calendar@2x.jpg": "/goose_track_project_front/static/media/mobile-calendar@2x.5ec804e73a3476a2e89c.jpg",
     "static/media/notFound@2x-min.png": "/goose_track_project_front/static/media/notFound@2x-min.4ceb43d7a3e024763163.png",
     "static/media/notFound@2x-min-t.png": "/goose_track_project_front/static/media/notFound@2x-min-t.601e4252cbfb9965dc84.png",
     "static/media/mobile-all@2x.jpg": "/goose_track_project_front/static/media/mobile-all@2x.524cb8d227c3c2577bde.jpg",
     "static/media/tablet-calendar.jpg": "/goose_track_project_front/static/media/tablet-calendar.88b5d5c58c5e11ea9c3f.jpg",
+    "static/media/Thor_AH.jpg": "/goose_track_project_front/static/media/Thor_AH.db6b620493485863da80.jpg",
     "static/media/mobile-sidebar@2x.jpg": "/goose_track_project_front/static/media/mobile-sidebar@2x.3746be716ec0c2952884.jpg",
     "static/media/signup-elements.png": "/goose_track_project_front/static/media/signup-elements.e40a976403b2fc19c1dc.png",
     "static/media/tablet-all.jpg": "/goose_track_project_front/static/media/tablet-all.9bcc8298207a63ebe477.jpg",
@@ -50,10 +62,10 @@
     "static/media/reviews-arrow-right.svg": "/goose_track_project_front/static/media/reviews-arrow-right.a22cdf87a7132e781406da0f90b2321e.svg",
     "static/media/reviews-arrow-left.svg": "/goose_track_project_front/static/media/reviews-arrow-left.419843934514a4ec72e12d89da762d2a.svg",
     "main.f39183e3.css.map": "/goose_track_project_front/static/css/main.f39183e3.css.map",
-    "main.7837c8a4.js.map": "/goose_track_project_front/static/js/main.7837c8a4.js.map"
+    "main.1e842bc4.js.map": "/goose_track_project_front/static/js/main.1e842bc4.js.map"
   },
   "entrypoints": [
     "static/css/main.f39183e3.css",
-    "static/js/main.7837c8a4.js"
+    "static/js/main.1e842bc4.js"
   ]
 }
