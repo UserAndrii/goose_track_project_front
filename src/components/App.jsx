@@ -21,10 +21,10 @@ import StatisticsPage from 'pages/StatisticsPage';
 export const App = () => {
   return (
     <>
-      <TemporaryNavigation />
+      {/* <TemporaryNavigation /> */}
       <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route
+        <Route path="/" element={<CalendarPage />} />
+        {/* <Route
           path="/register"
           element={
             <RestrictedRoute
@@ -68,8 +68,8 @@ export const App = () => {
 
         <Route
           path="*"
-          element={<RestrictedRoute component={<MainPage />} navigateTo="/" />}
-        />
+          element={<RestrictedRoute component={<MainPage />} navigateTo="/" />} */}
+        {/* /> */}
       </Routes>
     </>
   );
