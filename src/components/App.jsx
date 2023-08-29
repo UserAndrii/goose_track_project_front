@@ -46,8 +46,6 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
 
-        <Route path="/404" element={<NotFoundPage />} />
-
         <Route
           path="/register"
           element={
@@ -92,7 +90,9 @@ export const App = () => {
 
         <Route
           path="*"
-          element={<RestrictedRoute component={<MainPage />} navigateTo="/" />}
+          element={
+            <RestrictedRoute component={<NotFoundPage />} navigateTo="/" />
+          }
         />
       </Routes>
       <ToastContainer />
