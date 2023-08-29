@@ -30,7 +30,7 @@ export const tasksApi = createApi({
       providesTags: ['Tasks'],
     }),
 
-    editReview: builder.mutation({
+    editTasks: builder.mutation({
       query: ({ id, data }) => ({
         url: `/tasks/${id}`,
         method: 'PATCH',

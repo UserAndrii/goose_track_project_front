@@ -13,7 +13,6 @@ import { getCurrentUser } from 'redux/auth/operations';
 
 import Spiner from './Spiner/Spiner';
 import MainLayout from './MainLayout/MainLayout';
-import TemporaryNavigation from '../TemporaryNavigation';
 
 import MainPage from 'pages/MainPage';
 import RegisterPage from 'pages/RegisterPage';
@@ -45,11 +44,8 @@ export const App = () => {
     <Spiner />
   ) : (
     <>
-      <TemporaryNavigation />
       <Routes>
         <Route path="/" element={<MainPage />} />
-
-        <Route path="/404" element={<NotFoundPage />} />
 
         <Route
           path="/team"
@@ -102,7 +98,9 @@ export const App = () => {
 
         <Route
           path="*"
-          element={<RestrictedRoute component={<MainPage />} navigateTo="/" />}
+          element={
+            <RestrictedRoute component={<NotFoundPage />} navigateTo="/" />
+          }
         />
       </Routes>
       <ToastContainer />
