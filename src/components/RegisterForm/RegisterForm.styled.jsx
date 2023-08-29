@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { FiLogIn } from 'react-icons/fi';
-import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { MdErrorOutline } from 'react-icons/md';
 import { IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
