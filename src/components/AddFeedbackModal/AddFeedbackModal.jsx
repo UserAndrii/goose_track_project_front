@@ -1,13 +1,12 @@
+import React from 'react';
 import Modal from '../Modal';
 import FeedbackForm from '../FeedbackForm';
 
-const AddFeedbackModal = () => {
+const AddFeedbackModal = ({ onClose }) => {
   return (
-    <>
-      <h4>This is AddFeedbackModal</h4>
-      <Modal />
-      <FeedbackForm />
-    </>
+    <Modal onClose={onClose}>
+      <FeedbackForm onClose={onClose}/>
+    </Modal>
   );
 };
 

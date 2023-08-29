@@ -1,5 +1,7 @@
-const AddFeedbackBtn = () => {
-  return <h4>This is AddFeedbackBtn</h4>;
+import { Button } from './AddFeedbackBtn.styled';
+
+const AddFeedbackBtn = ({ onClick }) => {
+  return <Button onClick={onClick}>Feedback</Button>;
 };
 
 export default AddFeedbackBtn;

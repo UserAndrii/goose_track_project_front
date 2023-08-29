@@ -1,8 +1,18 @@
-import { lazy } from 'react';
+// import { lazy } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
+import {
+  selectIsFetchingCurrentUser,
+  selectIsLoggedIn,
+} from 'redux/auth/selectors';
+import { getCurrentUser } from 'redux/auth/operations';
+
+import Spiner from './Spiner/Spiner';
 import MainLayout from './MainLayout/MainLayout';
-import TemporaryNavigation from '../TemporaryNavigation';
 
 import MainPage from 'pages/MainPage';
 import RegisterPage from 'pages/RegisterPage';
@@ -10,6 +20,8 @@ import LoginPage from 'pages/LoginPage';
 import AccountPage from 'pages/AccountPage';
 import CalendarPage from 'pages/CalendarPage';
 import StatisticsPage from 'pages/StatisticsPage';
+import NotFoundPage from 'pages/NotFoundPage';
+import TeamPage from 'pages/TeamPage';
 
 // const MainPage = lazy(() => import('pages/MainPage'));
 // const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -17,11 +29,21 @@ import StatisticsPage from 'pages/StatisticsPage';
 // const AccountPage = lazy(() => import('pages/AccountPage'));
 // const CalendarPage = lazy(() => import('pages/CalendarPage'));
 // const StatisticsPage = lazy(() => import('pages/StatisticsPage'));
+// const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
+// const TeamPage = lazy(() => import('pages/TeamPage'));
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsFetchingCurrentUser);
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <Spiner />
+  ) : (
     <>
-      <TemporaryNavigation />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route
@@ -68,19 +90,25 @@ export const App = () => {
 
         <Route
           path="*"
-          element={<RestrictedRoute component={<MainPage />} navigateTo="/" />}
+          element={
+            <RestrictedRoute component={<NotFoundPage />} navigateTo="/" />
+          }
         />
       </Routes>
+      <ToastContainer />
     </>
   );
 };
 
 function RestrictedRoute({ component, navigateTo = '/' }) {
-  const isLogged = false;
+  const isLogged = useSelector(selectIsLoggedIn);
+
   return isLogged ? <Navigate to={navigateTo} /> : component;
 }
 
 function PrivateRoute({ component, navigateTo = '/' }) {
-  const isLogged = true;
-  return !isLogged ? <Navigate to={navigateTo} /> : component;
+  const isLogged = useSelector(selectIsLoggedIn);
+  const isFetching = useSelector(selectIsFetchingCurrentUser);
+
+  return !isLogged && !isFetching ? <Navigate to={navigateTo} /> : component;
 }
