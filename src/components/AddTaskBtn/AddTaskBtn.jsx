@@ -1,8 +1,8 @@
 import { Button, PlusIcon } from './AddTaskBtn.styled';
 
-const AddTaskBtn = ({ id }) => {
+const AddTaskBtn = ({ onClick }) => {
     return (
-    <Button>
+    <Button onClick={onClick}>
       <PlusIcon />
       Add task
     </Button>

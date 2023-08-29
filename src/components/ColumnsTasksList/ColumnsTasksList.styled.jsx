@@ -16,7 +16,7 @@ export const Container = styled.div`
         background-color: #f1f1f1; /* колір треку */
         border-radius: 4px;    /* закруглені кути */
     }
-height:344px; 
+height:55vh; 
 overflow-y: auto; 
 align-items: center;
 margin-bottom:32px;
