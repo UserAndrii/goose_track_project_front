@@ -161,6 +161,19 @@ export const Label = styled.label`
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
+  &.valid-input {
+    color: #3cbc81;
+  }
+
+  &.invalid-input {
+    color: #ff0000;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #111111;
+  }
 `;
 
 export const Input = styled.input`
