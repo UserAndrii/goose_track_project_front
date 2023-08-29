@@ -13,18 +13,16 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import React from 'react';
-import { useSelector } from 'react-redux';
-import {selectReviews} from '../../FakeBackend/selectors'
 
-// import { useFetchReviewsQuery } from '../../redux/reviews/reviewsApi'
+
+import { useFetchReviewsQuery } from '../../redux/reviews/reviewsApi'
 import Slider from 'react-slick';
 import Spiner from '../Spiner/Spiner';
 
 export default function ReviewsSlider() {
-    // const { data: reviews } = useFetchReviewsQuery();
+    const {data: reviews, error, isFetching } = useFetchReviewsQuery();
   
-   const reviews = useSelector(selectReviews);
-
+   
     const handlePrevious = () => {
       slider?.slickPrev();
     };
@@ -68,7 +66,7 @@ export default function ReviewsSlider() {
 
                 return (
                   <ReviewsBox
-                    key={item.id}
+                    key={item._id}
                     avatarUrl={avatarUrl}
                     name={item.userName}
                     rating={item.rating}
