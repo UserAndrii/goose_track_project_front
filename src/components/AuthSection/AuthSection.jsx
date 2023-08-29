@@ -10,7 +10,7 @@ import {
     ButtonText,
     ItemIcon,
     AuthLink,
-  } from './AuthSection.styled';
+} from './AuthSection.styled';
 
 const AuthSection = () => {
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);

@@ -10,8 +10,8 @@ export const Container = styled.div`
     align-items: center;
 
     @media screen and (max-width: 767px) {
-        min-width: 375px;
-        max-height: 812px;
+        max-width: 375px;
+        height: 812px;
     }
 
     @media screen and (min-width: 768px) and (max-width: 1439px) {
