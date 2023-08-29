@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { FiLogIn } from 'react-icons/fi';
-import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { MdErrorOutline } from 'react-icons/md';
+import { IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
 
 export const Container = styled.div`
   display: flex;
@@ -20,6 +20,7 @@ export const StyledForm = styled.form`
   justify-content: center;
   align-items: center;
 `;
+
 export const FormName = styled.h1`
   color: #3e85f3;
   text-shadow: 0px 9.4px 57px rgba(0, 0, 0, 0.04),
@@ -42,7 +43,6 @@ export const InputGroupe = styled.div`
   padding: 40px 24px;
   border-radius: 8px;
   background: #fff;
-  width: 100%;
 
   @media screen and (min-width: 375px) and (max-width: 767px) {
     width: 287px;
@@ -132,7 +132,7 @@ export const ItemIcon = styled(FiLogIn)`
 
 export const ShowHideButton = styled.button`
   position: absolute;
-  right: 10px;
+  right: 30px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
@@ -158,27 +158,25 @@ export const Label = styled.label`
   font-weight: 600;
   color: #111111;
 
-  ${props =>
-    props.hasError &&
-    css`
-      color: #ff0000;
-    `}
-
-  ${props =>
-    props.isSuccess &&
-    css`
-      color: #3cbc81;
-    `}
-
   @media screen and (min-width: 768px) {
     font-size: 14px;
+  }
+  &.valid-input {
+    color: #3cbc81;
+  }
+
+  &.invalid-input {
+    color: #ff0000;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #111111;
   }
 `;
 
 export const Input = styled.input`
-  width: 259px;
-  height: 18px;
-
   border-radius: 8px;
   padding: 14px;
   border: 1px solid rgba(220, 227, 229, 0.6);
@@ -186,22 +184,24 @@ export const Input = styled.input`
     props.isPassword || props.isEmail ? '#FFFFFF' : 'none'};
   outline: none;
 
-  ${props =>
-    props.hasError &&
-    css`
-      border: 1px solid #ff0000;
-    `}
+  &.valid-input {
+    border: 1px solid #3cbc81;
+  }
 
-  ${props =>
-    props.isSuccess &&
-    css`
-      border-color: #3cbc81;
-    `}
+  &.invalid-input {
+    border: 1px solid #ff0000;
+  }
 
   &:hover,
   &:focus,
   &:active {
     border: 1px solid #111111;
+  }
+
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+    width: 259px;
+    height: 18px;
+    padding: 14px;
   }
 
   @media screen and (min-width: 768px) {
@@ -212,18 +212,19 @@ export const Input = styled.input`
 `;
 
 export const Error = styled.div`
-  color: #ff0000;
   font-size: 12px;
   font-weight: 400;
   line-height: 14px;
   margin-top: 8px;
   margin-left: 18px;
 
-  ${props =>
-    props.isSuccess &&
-    css`
-      color: #3cbc81;
-    `}
+  &.valid {
+    color: #3cbc81;
+  }
+
+  &.invalid {
+    color: #ff0000;
+  }
 `;
 
 export const LinkTo = styled(Link)`
@@ -234,6 +235,19 @@ export const LinkTo = styled(Link)`
   cursor: pointer;
   &:hover {
     text-decoration: underline;
+  }
+`;
+
+export const SuccessIcon = styled(IoCheckmarkDoneCircleOutline)`
+  position: absolute;
+  right: 12px;
+  bottom: 24px;
+  width: 18px;
+  height: 18px;
+  color: #3cbc81;
+
+  @media screen and (min-width: 768px) {
+    bottom: 41px;
   }
 `;
 
