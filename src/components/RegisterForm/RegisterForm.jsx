@@ -90,7 +90,18 @@ const RegisterForm = () => {
           <FormName>Sign Up</FormName>
           <InputList>
             <InputWrapper>
-              <Label htmlFor="userName">Name</Label>
+              <Label
+                htmlFor="userName"
+                className={
+                  formik.touched.name
+                    ? formik.errors.name
+                      ? 'invalid-input'
+                      : 'valid-input'
+                    : ''
+                }
+              >
+                Name
+              </Label>
               <Input
                 type="text"
                 id="name"
@@ -124,7 +135,15 @@ const RegisterForm = () => {
               ) : null}
             </InputWrapper>
             <InputWrapper isEmail={'email'}>
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email"
+              className={
+                formik.touched.email
+                  ? formik.errors.email
+                    ? 'invalid-input'
+                    : 'valid-input'
+                  : ''
+              }
+              >Email</Label>
               <Input
                 type="text"
                 id="email"
@@ -157,7 +176,15 @@ const RegisterForm = () => {
               ) : null}
             </InputWrapper>
             <InputWrapper isPassword={'password'}>
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password"
+              className={
+                formik.touched.password
+                  ? formik.errors.password
+                    ? 'invalid-input'
+                    : 'valid-input'
+                  : ''
+              }
+              >Password</Label>
               <InputWrapperWithIcon>
                 <Input
                   type={showPassword ? 'text' : 'password'}
@@ -205,12 +232,7 @@ const RegisterForm = () => {
           </Button>
         </InputGroupe>
         <LinksContainer>
-          <AuthNavigate
-            forgotPasswordText="Forgot password?"
-            alreadyRegisteredText="Already registered?"
-            forgotPasswordLink="/"
-            alreadyRegisteredLink="/login"
-          />
+          <AuthNavigate forgotPasswordLink="/" alreadyRegisteredLink="/login" />
         </LinksContainer>
       </StyledForm>
       <PictureWrapper>
