@@ -62,6 +62,7 @@ export const Text = styled.h1`
     font-size: 44px;
     font-weight: 700;
     line-height: 1.09;
+    padding: 0 58px;
 `;
 
 export const TextSpan = styled.span`
