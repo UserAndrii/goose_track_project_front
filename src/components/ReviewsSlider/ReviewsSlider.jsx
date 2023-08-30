@@ -1,4 +1,3 @@
-
 import ArrowLeft from '../../images/reviews-arrow-left.svg';
 import ArrowRight from '../../images/reviews-arrow-right.svg';
 import {
@@ -14,22 +13,20 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import React from 'react';
 
-import { useFetchReviewsQuery } from '../../redux/reviews/reviewsApi'
+import { useFetchReviewsQuery } from '../../redux/reviews/reviewsApi';
 import Slider from 'react-slick';
 import Spiner from '../Spiner/Spiner';
 
 export default function ReviewsSlider() {
-   
-    const {  data: reviews, isFetching } = useFetchReviewsQuery();
-  
-   
-    const handlePrevious = () => {
-      slider?.slickPrev();
-    };
+  const { data: reviews, isFetching } = useFetchReviewsQuery();
 
-    const handleNext = () => {
-      slider?.slickNext();
-    };
+  const handlePrevious = () => {
+    slider?.slickPrev();
+  };
+
+  const handleNext = () => {
+    slider?.slickNext();
+  };
 
   const sliderSettings = {
     infinite: true,
@@ -51,7 +48,7 @@ export default function ReviewsSlider() {
     ],
   };
   let slider = null;
-  
+
   return (
     <ReviewsWrapper>
       <ReviewsHeader>Reviews</ReviewsHeader>
@@ -61,7 +58,7 @@ export default function ReviewsSlider() {
         <>
           <UserReviewsBlock>
             <Slider {...sliderSettings} ref={c => (slider = c)}>
-              {reviews.data.map(item => {
+              {reviews?.data.map(item => {
                 const avatarUrl = item.avatarURL || null;
 
                 return (
@@ -85,8 +82,7 @@ export default function ReviewsSlider() {
             </ButtonArrow>
           </ButtonList>
         </>
-      ) 
-      }
+      )}
     </ReviewsWrapper>
   );
 }
