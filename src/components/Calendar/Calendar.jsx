@@ -1,7 +1,7 @@
 import css from './Caledar.module.css';
 import { useState } from 'react';
 import TasksColumnsList from '../TasksColumnsList/TasksColumnsList';
-import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
+// import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 
 import {
   format,
@@ -145,7 +145,7 @@ export const Calendar = () => {
   //   'firstDayCurrentMonth',
   //   format(firstDayCurrentMonth, 'yyyy-MM')
   // );
-  const date = { date: format(firstDayCurrentMonth, 'yyyy-MM') };
+  // const date = { date: format(firstDayCurrentMonth, 'yyyy-MM') };
   // const tasks = '';
 
   // const {
