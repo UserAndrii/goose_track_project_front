@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const token = axios.defaults.headers.common.Authorization;
+const token = '';
 
 export const tasksApi = createApi({
   reducerPath: 'tasks',
@@ -9,7 +8,7 @@ export const tasksApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://goose-track-project-back.onrender.com/',
     prepareHeaders(headers) {
-      headers.set('Authorization', token);
+      headers.set('Authorization', `Bearer ${token}`);
       return headers;
     },
   }),
@@ -19,9 +18,8 @@ export const tasksApi = createApi({
   endpoints: builder => ({
     getMonthlyTasks: builder.query({
       query: date => ({
-        url: '/tasks',
+        url: `/tasks?date=${date}`,
         method: 'GET',
-        body: date,
       }),
       providesTags: ['Tasks'],
     }),

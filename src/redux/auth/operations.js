@@ -91,7 +91,7 @@ export const getCurrentUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const response = await axios.get('/current');
-      return response.data;
+      return response.data.user;
     } catch (error) {
       if (error.response) {
         const { status } = error.response;

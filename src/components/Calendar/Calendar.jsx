@@ -1,10 +1,12 @@
 import css from './Caledar.module.css';
 import { useState } from 'react';
+
 import { Outlet, useParams } from 'react-router-dom';
 import { Suspense } from 'react';
 
-import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
+// import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 import axios from 'axios';
+
 
 import {
   format,
@@ -109,9 +111,6 @@ export const CalendarToolBar = () => {
   const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const abbreviatedDayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
-  // const date = { date: format(firstDayCurrentMonth, 'yyyy-MM') };
-  // const tasks = '';
-
   // const {
   //   data: { data: tasks },
   // } = useGetMonthlyTasksQuery({ date: date }, { skip: date === '' });
@@ -135,6 +134,7 @@ export const CalendarToolBar = () => {
     }
   };
   // getTasks();
+
 
   return (
     <div className={css.calendar}>

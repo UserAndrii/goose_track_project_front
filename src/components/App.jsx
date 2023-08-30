@@ -47,11 +47,18 @@ export const App = () => {
   ) : (
     <>
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route
+          path="/"
+          element={
+            <RestrictedRoute component={<MainPage />} navigateTo="/calendar" />
+          }
+        />
 
         <Route
           path="/team"
-          element={<RestrictedRoute component={<TeamPage />} navigateTo="/" />}
+          element={
+            <RestrictedRoute component={<TeamPage />} navigateTo="/calendar" />
+          }
         />
 
         <Route
