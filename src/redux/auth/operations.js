@@ -95,9 +95,9 @@ export const getCurrentUser = createAsyncThunk(
     } catch (error) {
       if (error.response) {
         const { status } = error.response;
-        if (status === 401) {
-          showErrorToast('Not authorized.');
-        }
+        // if (status === 401) {
+        //   showErrorToast('Not authorized.');
+        // }
         if (status === 500) {
           showErrorToast('Server error.');
         }
