@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 
 export const Container = styled.div`
     background-color: #3E85F3;
@@ -46,10 +48,8 @@ export const Button = styled(Link)`
     color: #3E85F3;
     display: flex;
     border: none;
-    border-radius: 16px;
-    // margin-left: auto;
-    // margin-right: 20px;
-    padding: 8px 15px;
+    border-radius: 14px;
+    padding: 2px 10px;
     font-size: 18px;
     font-weight: 500;
     line-height: 1.29;
@@ -59,30 +59,43 @@ export const Button = styled(Link)`
     }
 
     @media screen and (min-width: 768px) {
-        // margin-right: 40px;
-        padding: 10px 20px;
+        padding: 5px 15px;
         margin-bottom: 0;
         font-size: 20px;
     }
 `;
 
 export const List = styled.ul`
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 40px;
+    // display: flex;
+    // flex-direction: column;
+    // margin-bottom: 40px;
+
+    // @media screen and (min-width: 768px) and (max-width: 1439px) {
+    //     flex-wrap: wrap;
+    //     flex-direction: row;
+    //     gap: 20px;
+    //     justify-content: flex-start;
+    //     align-items: flex-start;
+    // }
+
+    // @media screen and (min-width: 1440px) {
+    //     flex-wrap: wrap;
+    //     justify-content: flex-start;
+    //     gap: 30px;
+    // }
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 15px;
+    margin: 40px auto 0;
+    width: 100%;
 
     @media screen and (min-width: 768px) and (max-width: 1439px) {
-        flex-wrap: wrap;
-        flex-direction: row;
-        gap: 20px;
-        justify-content: flex-start;
-        align-items: flex-start;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     @media screen and (min-width: 1440px) {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 30px;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 `;
@@ -104,9 +117,21 @@ export const Item = styled.li`
     }
 
     @media screen and (min-width: 1440px) {
-        display: flex;
-        gap: 150px; 
-        flex-direction: row;
+        // display: grid;
+        // grid-template-columns: repeat(3, 1fr);
+        // grid-gap: 15px;
+
+        // display: flex;
+        // gap: 150px; 
+        // flex-direction: row;
+
+        // width: calc(33.33% - 20px);
+        // justify-content: space-between;
+        // align-items: center;
+        // margin-top: 0;
+        // padding: 0;
+        // flex-wrap: wrap;
+        // gap: 40px;
     }
 `;
 
@@ -132,19 +157,21 @@ export const Image = styled.img`
 `;
 
 export const ItemSpan = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
 `;
 
 export const TextSpan = styled.a`
-    width: 335px;
+    display: flex;
+    flex-direction: row;
     color: #FFFFFF;
     font-size: 16px;
     font-weight: 500;
     line-height: 1.29;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
 
     &:hover {
@@ -153,5 +180,35 @@ export const TextSpan = styled.a`
 
     @media screen and (min-width: 768px) {
         font-size: 20px;
+    }
+
+    @media screen and (min-width: 1440px) {
+        width: auto;
+    }
+`;
+
+export const ItemIconLinkedin = styled(FaLinkedinIn)`
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: #FFFFFF;
+    margin-left: 5px;
+
+    @media screen and (min-width: 768px) {
+        width: 20px;
+        height: 20px;
+    }
+`;
+
+export const ItemIconGithub = styled(FaGithub)`
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: #FFFFFF;
+    margin-left: 5px;
+
+    @media screen and (min-width: 768px) {
+        width: 20px;
+        height: 20px;
     }
 `;
