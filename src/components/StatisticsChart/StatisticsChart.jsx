@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 import { Container } from './StatisticsChart.styled';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
+import { format, startOfToday } from 'date-fns';
 
 const data = [
   {
@@ -88,15 +89,15 @@ const renderCustomizedLabel = props => {
   );
 };
 export default function StatisticsChart() {
+  const today = startOfToday();
   const [chartWidth, setChartWidth] = useState(860);
   const [chartHeight, setChartHeight] = useState(440);
   const [sizeBar, setSizeBar] = useState(27);
   const [padChart, setPadChart] = useState(40);
   const [padTopChart, setPadTopChart] = useState(40);
   const [padBottomChart, setPadBottomChart] = useState(40);
-
-  const date = '2023-12';
-  const { data: tasks } = useGetMonthlyTasksQuery(date);
+  const [currentDay, setCurrentDay] = useState(format(today, 'yyyy-MM-dd'));
+  const { data: tasks } = useGetMonthlyTasksQuery(currentDay);
   console.log(tasks);
 
   useEffect(() => {
