@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/goose_track_project_front/static/css/main.f39183e3.css",
-    "main.js": "/goose_track_project_front/static/js/main.98f4d6db.js",
+    "main.js": "/goose_track_project_front/static/js/main.4545e893.js",
     "static/media/Iron_Man_OD.jpg": "/goose_track_project_front/static/media/Iron_Man_OD.8b5d926b4e883466ca93.jpg",
     "static/media/InterTight-BoldItalic.ttf": "/goose_track_project_front/static/media/InterTight-BoldItalic.3f0a005db82c9b368c07.ttf",
     "static/media/InterTight-Bold.ttf": "/goose_track_project_front/static/media/InterTight-Bold.d219d228cc7dca6752e3.ttf",
@@ -64,10 +64,10 @@
     "static/media/reviews-arrow-right.svg": "/goose_track_project_front/static/media/reviews-arrow-right.a22cdf87a7132e781406da0f90b2321e.svg",
     "static/media/reviews-arrow-left.svg": "/goose_track_project_front/static/media/reviews-arrow-left.419843934514a4ec72e12d89da762d2a.svg",
     "main.f39183e3.css.map": "/goose_track_project_front/static/css/main.f39183e3.css.map",
-    "main.98f4d6db.js.map": "/goose_track_project_front/static/js/main.98f4d6db.js.map"
+    "main.4545e893.js.map": "/goose_track_project_front/static/js/main.4545e893.js.map"
   },
   "entrypoints": [
     "static/css/main.f39183e3.css",
-    "static/js/main.98f4d6db.js"
+    "static/js/main.4545e893.js"
   ]
 }
