@@ -20,3 +20,22 @@ export const IconButton = styled.button`
     color: #3E85F3;
   }
 `;
+export const Text = styled.p`
+font-size: 12px;
+line-height: calc(14/12);
+color: #343434;
+font-weight: 500;
+@media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: calc(18/14);
+    font-weight: 500;
+  }
+`;
+export const Wrapper = styled.div`
+display:flex;
+justify-content: space-between;
+width: 87px;
+@media screen and (min-width: 768px) {
+   width 99px; 
+  }
+`
