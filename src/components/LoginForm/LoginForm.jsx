@@ -28,8 +28,8 @@ import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import { useNavigate } from 'react-router-dom';
 
-import registerElements from 'images/signup-elements.png';
-import registerElementsRetina from 'images/signup-elements@2x.png';
+import loginElements from 'images/login-elements.png';
+import loginElementsRetina from 'images/login-elements@2x.png';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 
 const LoginForm = () => {
@@ -127,18 +127,21 @@ const LoginForm = () => {
     <Container>
       <StyledForm onSubmit={formik.handleSubmit}>
         <InputGroupe>
-          <FormName>Sign Up</FormName>
+          <FormName>Log In</FormName>
           <InputList>
-          <InputWrapper isEmail={'email'}>
-              <Label htmlFor="email"
-              className={
-                formik.touched.email
-                  ? formik.errors.email
-                    ? 'invalid-input'
-                    : 'valid-input'
-                  : ''
-              }
-              >Email</Label>
+            <InputWrapper isEmail={'email'}>
+              <Label
+                htmlFor="email"
+                className={
+                  formik.touched.email
+                    ? formik.errors.email
+                      ? 'invalid-input'
+                      : 'valid-input'
+                    : ''
+                }
+              >
+                Email
+              </Label>
               <Input
                 type="text"
                 id="email"
@@ -171,15 +174,18 @@ const LoginForm = () => {
               ) : null}
             </InputWrapper>
             <InputWrapper isPassword={'password'}>
-              <Label htmlFor="password"
-              className={
-                formik.touched.password
-                  ? formik.errors.password
-                    ? 'invalid-input'
-                    : 'valid-input'
-                  : ''
-              }
-              >Password</Label>
+              <Label
+                htmlFor="password"
+                className={
+                  formik.touched.password
+                    ? formik.errors.password
+                      ? 'invalid-input'
+                      : 'valid-input'
+                    : ''
+                }
+              >
+                Password
+              </Label>
               <InputWrapperWithIcon>
                 <Input
                   type={showPassword ? 'text' : 'password'}
@@ -240,13 +246,13 @@ const LoginForm = () => {
           <source
             type="image/png"
             media="(min-width: 1440px)"
-            srcSet={`${registerElements} 1x, ${registerElementsRetina} 2x`}
+            srcSet={`${loginElements} 1x, ${loginElementsRetina} 2x`}
           />
           <img
-            src={`${registerElements}`}
+            src={`${loginElements}`}
             alt="Let go of the past and focus on the present"
-            width={400}
-            height={416}
+            width={368}
+            height={521}
           />
         </picture>
       </PictureWrapper>

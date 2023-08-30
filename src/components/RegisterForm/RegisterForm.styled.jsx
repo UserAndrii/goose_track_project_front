@@ -40,16 +40,18 @@ export const InputGroupe = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 32px;
+
   padding: 40px 24px;
   border-radius: 8px;
   background: #fff;
 
-  @media screen and (min-width: 375px) and (max-width: 767px) {
-    width: 287px;
+  @media screen and (max-width: 375px) {
+    max-width: 335px;
   }
 
   @media screen and (min-width: 768px) {
-    width: 400px;
+    width: 480px;
+    padding: 40px;
   }
 `;
 
@@ -94,19 +96,24 @@ export const InputWrapperWithIcon = styled.div`
 
 export const Button = styled.button`
   display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
   justify-content: center;
-  flex-grow: 1;
-  margin: auto;
-  width: 287px;
-  padding: 14px 103px;
+  align-items: center;
+
+  width: 100%;
+  padding-top: 14px;
+  padding-bottom: 14px;
   gap: 10px;
+
   border-radius: 16px;
   background: #3e85f3;
   border: none;
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   cursor: pointer;
+
+  @media screen and (min-width: 375px) {
+    width: 287px;
+    padding: 14px 103px;
+  }
 
   @media screen and (min-width: 768px) {
     width: 400px;
@@ -123,6 +130,7 @@ export const ButtonText = styled.span`
   line-height: 1.29;
   letter-spacing: -0.28px;
 `;
+
 export const ItemIcon = styled(FiLogIn)`
   width: 18px;
   height: 18px;
@@ -177,6 +185,11 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  display: block;
+  width: 100%;
+  height: 46px;
+  padding: 14px;
+
   border-radius: 8px;
   padding: 14px;
   border: 1px solid rgba(220, 227, 229, 0.6);
@@ -198,15 +211,13 @@ export const Input = styled.input`
     border: 1px solid #111111;
   }
 
-  @media screen and (min-width: 375px) and (max-width: 767px) {
-    width: 259px;
-    height: 18px;
-    padding: 14px;
+  @media screen and (min-width: 375px) {
+    width: 287px;
   }
 
   @media screen and (min-width: 768px) {
-    width: 364px;
-    height: 18px;
+    width: 400px;
+    height: 54px;
     padding: 18px;
   }
 `;
@@ -241,13 +252,13 @@ export const LinkTo = styled(Link)`
 export const SuccessIcon = styled(IoCheckmarkDoneCircleOutline)`
   position: absolute;
   right: 12px;
-  bottom: 24px;
+  bottom: 22px;
   width: 18px;
   height: 18px;
   color: #3cbc81;
 
   @media screen and (min-width: 768px) {
-    bottom: 41px;
+    bottom: 27px;
   }
 `;
 
