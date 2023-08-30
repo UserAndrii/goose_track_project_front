@@ -148,9 +148,9 @@ export const Calendar = () => {
   const date = { date: format(firstDayCurrentMonth, 'yyyy-MM') };
   // const tasks = '';
 
-  const {
-    data: { data: tasks },
-  } = useGetMonthlyTasksQuery({ date: date }, { skip: date === '' });
+  // const {
+  //   data: { data: tasks },
+  // } = useGetMonthlyTasksQuery({ date: date }, { skip: date === '' });
 
   return (
     <div className={css.container}>
