@@ -228,7 +228,7 @@ const LoginForm = () => {
             </InputWrapper>
           </InputList>
           <Button type="submit">
-            <ButtonText>Sign Up</ButtonText>
+            <ButtonText>Log in</ButtonText>
             <ItemIcon />
           </Button>
         </InputGroupe>
