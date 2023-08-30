@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import 'styles/customToggle.css';
 
-const CustomToggle = () => {
-  const [isPressed, setIsPressed] = useState(false);
+const CustomToggle = ({ isLightTheme, handleClick }) => {
+  const [isPressed, setIsPressed] = useState(!isLightTheme);
   const [syncChecked, setSyncChecked] = useState(false);
 
   const toggleButton = () => {
+    handleClick();
     const updatedIsPressed = !isPressed;
     setIsPressed(updatedIsPressed);
 

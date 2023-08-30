@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: #f7f6f9;
   position: relative;
-  overflow: hidden;
-  height: 100vh;
 
   @media screen and (min-width: 375px) {
     width: 375px;
@@ -33,5 +33,14 @@ export const Overlay = styled.div`
 `;
 
 export const Main = styled.main`
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  flex-wrap: nowrap;
+`;
+
+export const WrapperMain = styled.div`
   flex: 1;
 `;
