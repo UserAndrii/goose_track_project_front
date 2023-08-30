@@ -34,7 +34,7 @@ const CalendarPage = () => {
 
   return (
     <div>
-      <TasksColumnsList/>
+      <TasksColumnsList />
       <AddFeedbackBtn onClick={handleOpenModal}>Add Task</AddFeedbackBtn>
       {/* <h1>This is CalendarPage</h1> */}
       {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
