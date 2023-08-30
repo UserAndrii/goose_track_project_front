@@ -1,6 +1,6 @@
 import css from './Caledar.module.css';
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { Suspense } from 'react';
 
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
@@ -46,16 +46,11 @@ export const CalendarToolBar = () => {
   const Week = eachDayOfInterval(currentWeek);
 
   // Current Day
-  const [currentDay, setCurrentDay] = useState(format(today, 'd-MMM-yyyy'));
-  const firstDayCurrentDay = parse(currentDay, 'd-MMM-yyyy', new Date());
+  const [currentDay, setCurrentDay] = useState(format(today, 'yyyy-MM-dd'));
+  const firstDayCurrentDay = parse(currentDay, 'yyyy-MM-dd', new Date());
 
   const [isMonthPage, setIsMonthPage] = useState(true);
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
-
-  // Is
-  // const isDayInWeek = Week.some(day => {
-  //   return isSameDay(day, firstDayCurrentDay);
-  // });
 
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
@@ -114,11 +109,6 @@ export const CalendarToolBar = () => {
   const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const abbreviatedDayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
-  //   const a = format(firstDayCurrentDay, 'yyyy-MM-dd');
-  //   console.log('a', a);
-
-  // console.log('firstDayCurrentMonth', format(firstDayCurrentMonth, 'yyyy-MM'));
-
   // const date = { date: format(firstDayCurrentMonth, 'yyyy-MM') };
   // const tasks = '';
 
@@ -157,39 +147,11 @@ export const CalendarToolBar = () => {
         />
 
         <PeriodPaginatorType
+          currentDay={currentDay}
           isMonthPage={isMonthPage}
           changeType={changeType}
         />
       </div>
-
-      {/* <div className={css.calendarRange}>
-        <button
-          className={`${css.calendarRange__buttons} ${css.calendarRange__monthButton}`}
-          style={{
-            backgroundColor: isMonthPage
-              ? 'rgba(62, 133, 243, 0.2)'
-              : 'rgba(227, 243, 255, 1)',
-          }}
-          onClick={() => {
-            setIsMonthPage(!isMonthPage);
-          }}
-        >
-          Month
-        </button>
-        <button
-          className={`${css.calendarRange__buttons} ${css.calendarRange__dayButton}`}
-          style={{
-            backgroundColor: !isMonthPage
-              ? 'rgba(62, 133, 243, 0.2)'
-              : 'rgba(227, 243, 255, 1)',
-          }}
-          onClick={() => {
-            setIsMonthPage(!isMonthPage);
-          }}
-        >
-          Day
-        </button>
-      </div> */}
 
       <div className={css.mainBlock__dayList}>
         {isMonthPage ? (

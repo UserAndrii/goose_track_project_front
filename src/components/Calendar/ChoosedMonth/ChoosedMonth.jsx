@@ -6,6 +6,7 @@ export const ChoosedMonth = ({ currentDay, days }) => {
     <div className={`${css.mainBlock__data}`}>
       {days.map(day => {
         const dayOfWeek = day.getDay();
+        // index 0
         const colStart = dayOfWeek;
 
         return (
@@ -30,7 +31,8 @@ export const ChoosedMonth = ({ currentDay, days }) => {
                 }`}
                 dateTime={format(day, 'yyyy-MM-dd')}
                 style={{
-                  display: isSameMonth(currentDay, day) ? 'block' : 'none',
+                  // display: isSameMonth(currentDay, day) ? 'block' : 'none',
+                  display: 'block',
                 }}
               >
                 {format(day, 'd')}

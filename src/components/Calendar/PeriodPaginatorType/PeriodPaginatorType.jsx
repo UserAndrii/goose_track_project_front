@@ -1,6 +1,12 @@
+import { useNavigate } from 'react-router';
 import css from '../Caledar.module.css';
 
-export const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
+export const PeriodPaginatorType = ({
+  isMonthPage,
+  changeType,
+  currentDay,
+}) => {
+  const navigate = useNavigate();
   return (
     <div className={css.toolbar__calendarRange}>
       <button
@@ -11,6 +17,7 @@ export const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
             : 'rgba(227, 243, 255, 1)',
         }}
         onClick={() => {
+          navigate(`month/${currentDay}`);
           changeType(true);
         }}
       >
@@ -24,6 +31,7 @@ export const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
             : 'rgba(227, 243, 255, 1)',
         }}
         onClick={() => {
+          navigate(`day/${currentDay}`);
           changeType(false);
         }}
       >

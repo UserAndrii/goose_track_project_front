@@ -79,13 +79,13 @@ export const App = () => {
           />
 
           <Route
-            path="calendar"
+            path="calendar/"
             element={
               <PrivateRoute component={<CalendarPage />} navigateTo="/login" />
             }
           >
             <Route
-              path="calendar/month"
+              path="month/:currentDate"
               element={
                 <PrivateRoute
                   component={<ChoosedMonth />}
@@ -94,7 +94,7 @@ export const App = () => {
               }
             />
             <Route
-              path="calendar/day"
+              path="day/:currentDate"
               element={
                 <PrivateRoute component={<ChoosedDay />} navigateTo="/login" />
               }
