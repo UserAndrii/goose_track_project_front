@@ -18,7 +18,7 @@ import {
 const FeedbackForm = ({ onClose }) => {
   const { data: userReviewData } = useGetUserReviewQuery();
   const [rating, setRating] = useState(userReviewData?.rating || '');
-  const [message, setMessage] = useState(userReviewData?.message || '');
+  const [review, setReview] = useState(userReviewData?.message || '');
 
   const [createReview] = useCreateReviewMutation();
   const [editReview] = useEditReviewMutation();
@@ -26,15 +26,14 @@ const FeedbackForm = ({ onClose }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-
     if (userReviewData) {
-      editReview({ rating, message })
+      editReview({ review, rating })
         .unwrap()
         .then(() => {
           onClose();
         });
     } else {
-      createReview({ rating, message })
+      createReview({ review, rating })
         .unwrap()
         .then(() => {
           onClose();
@@ -53,28 +52,30 @@ const FeedbackForm = ({ onClose }) => {
   useEffect(() => {
     if (userReviewData) {
       setRating(userReviewData.rating);
-      setMessage(userReviewData.message);
+      setReview(userReviewData.message);
     }
   }, [userReviewData]);
 
   return (
     <Form onSubmit={handleSubmit}>
       <RatingWrapper>
-        <RatingWrapper>
-          <label>Rating</label>
-          <Rating
-            onClick={value => setRating(value)}
-            fillColor="gold"
-            emptyColor="lightgrey"
-            size={32}
-            ratingValue={rating}
-            style={{ marginLeft: '-4px', marginTop: '2px' }}
-          />
-        </RatingWrapper>
+        <label>Rating</label>
+        <Rating
+          onClick={value => setRating(value)}
+          fillColor="gold"
+          emptyColor="lightgrey"
+          size={32}
+          ratingValue={rating}
+          style={{ marginLeft: '-4px', marginTop: '2px' }}
+        />
       </RatingWrapper>
       <TextAreaLabel>
         Review:
-        <TextArea value={message} placeholder='Enter Text' onChange={e => setMessage(e.target.value)} />
+        <TextArea
+          value={review}
+          placeholder="Enter Text"
+          onChange={e => setReview(e.target.value)}
+        />
       </TextAreaLabel>
       <BtnWrapper>
         <Btn type="submit">Submit</Btn>
