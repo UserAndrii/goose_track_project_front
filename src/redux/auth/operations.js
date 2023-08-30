@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { showErrorToast } from '../../components/ErrorFunction/showErrorToast';
 
-axios.defaults.baseURL = 'https://goose-track-project-back.onrender.com/';
+axios.defaults.baseURL = 'https://goose-track-project-back.onrender.com/auth';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -91,13 +91,13 @@ export const getCurrentUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const response = await axios.get('/current');
-      return response.data;
+      return response.data.user;
     } catch (error) {
       if (error.response) {
         const { status } = error.response;
-        if (status === 401) {
-          showErrorToast('Not authorized.');
-        }
+        // if (status === 401) {
+        //   showErrorToast('Not authorized.');
+        // }
         if (status === 500) {
           showErrorToast('Server error.');
         }

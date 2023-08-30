@@ -1,5 +1,7 @@
+import UserForm from 'components/UserForm/UserForm';
+
 const AccountPage = () => {
-  return <h1>This is AccountPage</h1>;
+  return <UserForm />;
 };
 
 export default AccountPage;

@@ -1,13 +1,19 @@
-import axios from 'axios';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-const token = axios.defaults.headers.common.Authorization;
 
 export const reviewsApi = createApi({
   reducerPath: 'reviews',
 
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://goose-track-project-back.onrender.com/',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+
+      return headers;
+    },
   }),
 
   tagTypes: ['Reviews'],
@@ -21,9 +27,6 @@ export const reviewsApi = createApi({
     getUserReview: builder.query({
       query: () => ({
         url: '/reviews/own',
-        async onQueryStarted(request) {
-          request.headers.set('Authorization', token);
-        },
       }),
       providesTags: ['Reviews'],
     }),
@@ -33,9 +36,6 @@ export const reviewsApi = createApi({
         url: '/reviews/own',
         method: 'POST',
         body: data,
-        async onQueryStarted(request) {
-          request.headers.set('Authorization', token);
-        },
       }),
       providesTags: ['Reviews'],
     }),
@@ -45,9 +45,6 @@ export const reviewsApi = createApi({
         url: '/reviews/own',
         method: 'PATCH',
         body: data,
-        async onQueryStarted(request) {
-          request.headers.set('Authorization', token);
-        },
       }),
       providesTags: ['Reviews'],
     }),
@@ -56,9 +53,6 @@ export const reviewsApi = createApi({
       query: () => ({
         url: '/reviews/own',
         method: 'DELETE',
-        async onQueryStarted(request) {
-          request.headers.set('Authorization', token);
-        },
       }),
       providesTags: ['Reviews'],
     }),
