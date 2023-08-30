@@ -10,7 +10,7 @@ import {
   Label,
 } from 'recharts';
 import { Container } from './StatisticsChart.styled';
-// import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
+import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 
 const data = [
   {
@@ -94,8 +94,11 @@ export default function StatisticsChart() {
   const [padChart, setPadChart] = useState(40);
   const [padTopChart, setPadTopChart] = useState(40);
   const [padBottomChart, setPadBottomChart] = useState(40);
-  //   const { data: tasks } = useGetMonthlyTasksQuery();
-  //   console.log('allMonthtodo :>> ', tasks);
+
+  const date = '2023-12';
+  const { data: tasks } = useGetMonthlyTasksQuery(date);
+  console.log(tasks);
+
   useEffect(() => {
     function handleResize() {
       const screenWidth = window.innerWidth;

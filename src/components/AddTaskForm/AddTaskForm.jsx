@@ -1,6 +1,6 @@
 import { TimePicker } from '@progress/kendo-react-dateinputs';
 import '@progress/kendo-theme-default/dist/all.css';
-import  toast  from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useState } from 'react';
 import {
   Button,
@@ -37,7 +37,6 @@ const AddTaskForm = ({ onClose }) => {
     console.log('Priority:', priority);
     onClose();
   };
-  
 
   const handlePriorityChange = event => {
     setPriority(event.target.value);
