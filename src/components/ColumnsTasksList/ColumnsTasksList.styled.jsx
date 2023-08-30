@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
+export const Container = styled.ul`
 &::-webkit-scrollbar {
         width: 8px; /* ширина треку */
     }

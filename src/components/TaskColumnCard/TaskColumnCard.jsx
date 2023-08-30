@@ -1,21 +1,38 @@
-import {Container,Text, AvatarImage, Board, PriorityBtn,ButtonsContainer} from './TaskColumnCard.styled';
+import {Container,Text, Avatar, Board, PriorityBtn,ButtonsContainer,Letter} from './TaskColumnCard.styled';
 import TaskToolbar from '../TaskToolbar';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/selectors';
 
-const TaskColumnCard = ({ task, priority }) => {
+const TaskColumnCard = ({ task}) => {
+    const { userName, avatarURL } = useSelector(selectUser);
+    const firstLetter= '';
+     if (userName) {
+      const firstName = userName.split(' ')[0];
+    firstLetter = firstName[0]?.toUpperCase();
+  
+  }
+//   const firstName = userName.split(' ')[0];
+//   const firstLetter = firstName[0]?.toUpperCase();
     
     return (
         <Container>
-            <Text>{task}</Text>
+            <Text>{task.Title}</Text>
             <Board>
                 <ButtonsContainer>
-                <AvatarImage src='https://images.pexels.com/photos/57416/cat-sweet-kitty-animals-57416.jpeg?w=640' alt="Avatar" />
+                    <Avatar>
+                       {avatarURL ? (
+          <img src={avatarURL} alt={userName} />
+        ) : (
+             <Letter>{firstLetter}</Letter>
+                        )}
+                </Avatar>
                 <PriorityBtn
-                    priority={priority}
+                    priority={task.Priority}
                     type="button">
-                    {priority}
+                    {task.Priority}
                     </PriorityBtn>
                 </ButtonsContainer>
-                 <TaskToolbar />
+                 <TaskToolbar task={task} />
                 </Board>
             
         </Container>

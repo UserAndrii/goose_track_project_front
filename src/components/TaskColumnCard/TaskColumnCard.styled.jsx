@@ -25,11 +25,21 @@ display: flex;
 align-items: flex-end;
 justify-content: space-between;
 `
-export const AvatarImage = styled.img`
+export const Avatar = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 32px;
   height: 32px;
   border: 1.8px solid #3E85F3;
   border-radius: 32px;
+  overflow: hidden;
+   `;
+export const Letter = styled.p`
+  color: #3e85f3;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.28;
 `;
 const getPriorityColor = (priority) => {
   switch (priority) {
@@ -65,4 +75,4 @@ font-weight:600;
 export const ButtonsContainer = styled.div`
 display:flex;
 align-items: flex-end;
-`
+`;

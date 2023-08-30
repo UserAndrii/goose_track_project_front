@@ -6,10 +6,11 @@ const ColumnsTasksList = ({tasks}) => {
     return (
         <Container>
             {tasks.map((item) => (
+                <li key={item.id}>
                 <TasksColumnCard
-                key={item.id}
-                task={item.Title}
-                priority={item.Priority} />
+                   task={item}
+                />
+                    </li>  
             ) )}
        
         </Container>
