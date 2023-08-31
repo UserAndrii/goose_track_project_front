@@ -14,7 +14,9 @@ import AndriyH from '../../images/Thor_AH.jpg';
 import {
   Container,
   Title,
+  TitleSpan,
   Button,
+  Icon,
   List,
   Item,
   ItemSpan,
@@ -28,8 +30,12 @@ import {
 const Team = () => {
   return (
     <Container>
-      <Title>Our Team</Title>
-      <Button to={'/'}>Back</Button>
+      <Title>
+        <TitleSpan>O</TitleSpan>ur TEAM
+      </Title>
+      <Button to={'/'}>
+        Back <Icon />
+      </Button>
       <List>
         <Item key={1}>
           <ImageWrapper>

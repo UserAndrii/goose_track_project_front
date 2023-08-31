@@ -55,7 +55,7 @@ export const Text = styled.h1`
     line-height: 1.3;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1440px) {
     font-size: 120px;
     line-height: 1.25;
   }
@@ -73,7 +73,7 @@ export const TextSpan = styled.span`
     line-height: 1.3;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1440px) {
     font-size: 120px;
     line-height: 1.25;
   }

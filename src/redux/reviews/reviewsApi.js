@@ -37,7 +37,7 @@ export const reviewsApi = createApi({
         method: 'POST',
         body: data,
       }),
-      providesTags: ['Reviews'],
+      invalidatesTags: ['Reviews'],
     }),
 
     editReview: builder.mutation({
@@ -46,7 +46,7 @@ export const reviewsApi = createApi({
         method: 'PATCH',
         body: data,
       }),
-      providesTags: ['Reviews'],
+      invalidatesTags: ['Reviews'],
     }),
 
     deleteReview: builder.mutation({
@@ -54,7 +54,7 @@ export const reviewsApi = createApi({
         url: '/reviews/own',
         method: 'DELETE',
       }),
-      providesTags: ['Reviews'],
+      invalidatesTags: ['Reviews'],
     }),
   }),
 });
