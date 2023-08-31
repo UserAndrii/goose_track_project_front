@@ -1,11 +1,9 @@
-import { TimePicker } from '@progress/kendo-react-dateinputs';
+// import { TimePicker } from '@progress/kendo-react-dateinputs';
 import '@progress/kendo-theme-default/dist/all.css';
 import toast from 'react-hot-toast';
-
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import toast from 'react-hot-toast';
 import { useCreateTasksMutation } from '../../redux/tasks/tasksApi';
 import {
   Button,
