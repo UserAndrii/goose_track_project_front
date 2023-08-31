@@ -1,5 +1,6 @@
 import css from './Caledar.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 
 // import { Outlet, useParams } from 'react-router-dom';
 // import { Suspense } from 'react';
@@ -7,7 +8,6 @@ import { useState } from 'react';
 // import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 
 // import axios from 'axios';
-
 
 import {
   format,
@@ -30,16 +30,19 @@ import {
 } from 'date-fns';
 
 import { useMediaQuery } from 'react-responsive';
-import { ChoosedMonth } from './ChoosedMonth/ChoosedMonth';
-import { ChoosedDay } from './ChoosedDay/ChoosedDay';
+
 import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
 import { PeriodPaginatorType } from './PeriodPaginatorType/PeriodPaginatorType';
+import { useNavigate } from 'react-router-dom';
 
-export const CalendarToolBar = () => {
-  const today = startOfToday();
-
-  const [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'));
-  const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date());
+export const CalendarToolBar = ({
+  isMonthPage,
+  setIsMonthPage,
+  currentDay,
+  firstDayCurrentMonth,
+  setCurrentMonth,
+}) => {
+  const today = currentDay;
 
   // Current Week
   const [currentWeek] = useState({
@@ -48,17 +51,7 @@ export const CalendarToolBar = () => {
   });
   const Week = eachDayOfInterval(currentWeek);
 
-  // Current Day
-  const [currentDay] = useState(format(today, 'yyyy-MM-dd'));
-  // const firstDayCurrentDay = parse(currentDay, 'yyyy-MM-dd', new Date());
-
-  const [isMonthPage, setIsMonthPage] = useState(true);
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
-
-  let days = eachDayOfInterval({
-    start: firstDayCurrentMonth,
-    end: endOfMonth(firstDayCurrentMonth),
-  });
 
   // Months
   const previousMonth = () => {
@@ -70,6 +63,12 @@ export const CalendarToolBar = () => {
     let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
     setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(`month/${currentDay}`);
+  }, []);
 
   // Weeks
   // const nextWeek = () => {
@@ -112,29 +111,16 @@ export const CalendarToolBar = () => {
   const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const abbreviatedDayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
-  // const {
-  //   data: { data: tasks },
-  // } = useGetMonthlyTasksQuery({ date: date }, { skip: date === '' });
+  // const { data: allTasks, refetch } = useGetMonthlyTasksQuery(currentDay);
 
-  // const date = '2023-08';
-  // const { data: tasks, isLoading, isError } = useGetMonthlyTasksQuery(date);
+  // refetch();
+  // if (allTasks) {
+  //   const tasks = [...allTasks.data];
+  //   console.log('tasks', tasks);
 
-  // const getTasks = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       'https://goose-track-project-back.onrender.com/tasks',
-  //       {
-  //         date: format(firstDayCurrentMonth, 'yyyy-MM'),
-  //         // 2023-08
-  //       }
-  //     );
-  //     console.log('response', response);
-  //   } catch (error) {
-  //     console.log('Error:', error.message);
-  //     throw error;
-  //   }
-  // };
-  // getTasks();
+  //   // if (tasks && tasks.length > 0) {
+  //   // }
+  // }
 
   return (
     <div className={css.calendar}>
@@ -196,16 +182,6 @@ export const CalendarToolBar = () => {
           </>
         )}
       </div>
-
-      {/* <Suspense fallback={null}>
-        <Outlet />
-      </Suspense> */}
-
-      {isMonthPage ? (
-        <ChoosedMonth currentDay={firstDayCurrentMonth} days={days} />
-      ) : (
-        <ChoosedDay Week={days} />
-      )}
     </div>
   );
 };
