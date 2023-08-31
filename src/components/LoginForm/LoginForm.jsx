@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -31,10 +31,22 @@ import { useNavigate } from 'react-router-dom';
 import loginElements from 'images/login-elements.png';
 import loginElementsRetina from 'images/login-elements@2x.png';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
+import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    if (showAnimation) {
+      const timer = setTimeout(() => {
+        setShowAnimation(false);
+      }, 3000); // 3 секунди
+
+      return () => clearTimeout(timer);
+    }
+  }, [showAnimation]);
 
   // const [isSuccess, setIsSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -106,6 +118,12 @@ const LoginForm = () => {
 
     onSubmit: async values => {
       try {
+
+        setShowAnimation(true); // Встановити стан для відображення анімації
+          setTimeout(() => {
+            setShowAnimation(false); // Приховати анімацію після 3 секунд
+          }, 3000);
+
         const formData = {
           email: values.email,
           password: values.password,
@@ -114,7 +132,11 @@ const LoginForm = () => {
         if (response.payload.message === 'success') {
           // setIsSuccess(true);
           formik.resetForm();
-          navigate('/calendar');
+
+          
+
+         
+            navigate('/calendar')
         }
         return response;
       } catch (error) {
@@ -124,77 +146,59 @@ const LoginForm = () => {
   });
 
   return (
-    <Container>
-      <StyledForm onSubmit={formik.handleSubmit}>
-        <InputGroupe>
-          <FormName>Log In</FormName>
-          <InputList>
-            <InputWrapper isEmail={'email'}>
-              <Label
-                htmlFor="email"
-                className={
-                  formik.touched.email
-                    ? formik.errors.email
-                      ? 'invalid-input'
-                      : 'valid-input'
-                    : ''
-                }
-              >
-                Email
-              </Label>
-              <Input
-                type="text"
-                id="email"
-                name="email"
-                autoComplete="true"
-                value={formik.values.email}
-                placeholder="Enter email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={
-                  formik.touched.email
-                    ? formik.errors.email
-                      ? 'invalid-input'
-                      : 'valid-input'
-                    : ''
-                }
-              />
-              {formik.touched.email ? (
-                formik.errors.email ? (
-                  <ContainerErrorIcon>
-                    <Error className="invalid">{formik.errors.email}</Error>
-                    <ErrorIcon />
-                  </ContainerErrorIcon>
-                ) : (
-                  <ContainerErrorIcon>
-                    <Error className="valid">{formik.errors.email}</Error>
-                    <SuccessIcon />
-                  </ContainerErrorIcon>
-                )
-              ) : null}
-            </InputWrapper>
-            <InputWrapper isPassword={'password'}>
-              <Label
-                htmlFor="password"
-                className={
-                  formik.touched.password
-                    ? formik.errors.password
-                      ? 'invalid-input'
-                      : 'valid-input'
-                    : ''
-                }
-              >
-                Password
-              </Label>
-              <InputWrapperWithIcon>
+    <div>
+      <Container style={{ display: showAnimation ? 'none' : 'block' }}>
+        <StyledForm onSubmit={formik.handleSubmit}>
+          <InputGroupe>
+            <FormName>Log In</FormName>
+            <InputList>
+              <InputWrapper isEmail={'email'}>
+                <Label
+                  htmlFor="email"
+                  className={
+                    formik.touched.email
+                      ? formik.errors.email
+                        ? 'invalid-input'
+                        : 'valid-input'
+                      : ''
+                  }
+                >
+                  Email
+                </Label>
                 <Input
-                  type={showPassword ? 'text' : 'password'}
-                  id="password"
-                  name="password"
-                  value={formik.values.password}
-                  placeholder="Enter password"
+                  type="text"
+                  id="email"
+                  name="email"
+                  autoComplete="true"
+                  value={formik.values.email}
+                  placeholder="Enter email"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
+                  className={
+                    formik.touched.email
+                      ? formik.errors.email
+                        ? 'invalid-input'
+                        : 'valid-input'
+                      : ''
+                  }
+                />
+                {formik.touched.email ? (
+                  formik.errors.email ? (
+                    <ContainerErrorIcon>
+                      <Error className="invalid">{formik.errors.email}</Error>
+                      <ErrorIcon />
+                    </ContainerErrorIcon>
+                  ) : (
+                    <ContainerErrorIcon>
+                      <Error className="valid">{formik.errors.email}</Error>
+                      <SuccessIcon />
+                    </ContainerErrorIcon>
+                  )
+                ) : null}
+              </InputWrapper>
+              <InputWrapper isPassword={'password'}>
+                <Label
+                  htmlFor="password"
                   className={
                     formik.touched.password
                       ? formik.errors.password
@@ -202,61 +206,87 @@ const LoginForm = () => {
                         : 'valid-input'
                       : ''
                   }
-                />
-                {!formik.errors.password && (
-                  <ShowHideButton
-                    type="button"
-                    onClick={() => setShowPassword(show => !show)}
-                  >
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
-                  </ShowHideButton>
-                )}
-              </InputWrapperWithIcon>
-              {formik.touched.password ? (
-                formik.errors.password ? (
-                  <ContainerErrorIcon>
-                    <Error className="invalid">{formik.errors.password}</Error>
-                    <ErrorIcon />
-                  </ContainerErrorIcon>
-                ) : (
-                  <ContainerErrorIcon>
-                    <Error className="valid">{formik.errors.password}</Error>
-                    <SuccessIcon />
-                  </ContainerErrorIcon>
-                )
-              ) : null}
-            </InputWrapper>
-          </InputList>
-          <Button type="submit">
-            <ButtonText>Log in</ButtonText>
-            <ItemIcon />
-          </Button>
-        </InputGroupe>
-        <LinksContainer>
-          <AuthNavigate
-            forgotPasswordText="Recover password"
-            alreadyRegisteredText="New user?"
-            forgotPasswordLink="/recover"
-            alreadyRegisteredLink="/register"
-          />
-        </LinksContainer>
-      </StyledForm>
-      <PictureWrapper>
-        <picture>
-          <source
-            type="image/png"
-            media="(min-width: 1440px)"
-            srcSet={`${loginElements} 1x, ${loginElementsRetina} 2x`}
-          />
-          <img
-            src={`${loginElements}`}
-            alt="Let go of the past and focus on the present"
-            width={368}
-            height={521}
-          />
-        </picture>
-      </PictureWrapper>
-    </Container>
+                >
+                  Password
+                </Label>
+                <InputWrapperWithIcon>
+                  <Input
+                    type={showPassword ? 'text' : 'password'}
+                    id="password"
+                    name="password"
+                    value={formik.values.password}
+                    placeholder="Enter password"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={
+                      formik.touched.password
+                        ? formik.errors.password
+                          ? 'invalid-input'
+                          : 'valid-input'
+                        : ''
+                    }
+                  />
+                  {!formik.errors.password && (
+                    <ShowHideButton
+                      type="button"
+                      onClick={() => setShowPassword(show => !show)}
+                    >
+                      {showPassword ? <FiEyeOff /> : <FiEye />}
+                    </ShowHideButton>
+                  )}
+                </InputWrapperWithIcon>
+                {formik.touched.password ? (
+                  formik.errors.password ? (
+                    <ContainerErrorIcon>
+                      <Error className="invalid">{formik.errors.password}</Error>
+                      <ErrorIcon />
+                    </ContainerErrorIcon>
+                  ) : (
+                    <ContainerErrorIcon>
+                      <Error className="valid">{formik.errors.password}</Error>
+                      <SuccessIcon />
+                    </ContainerErrorIcon>
+                  )
+                ) : null}
+              </InputWrapper>
+            </InputList>
+            <Button type="submit">
+              <ButtonText>Log in</ButtonText>
+              <ItemIcon />
+            </Button>
+          </InputGroupe>
+          <LinksContainer>
+            <AuthNavigate
+              forgotPasswordText="Recover password"
+              alreadyRegisteredText="New user?"
+              forgotPasswordLink="/recover"
+              alreadyRegisteredLink="/register"
+            />
+          </LinksContainer>
+      
+        </StyledForm>
+        <PictureWrapper>
+          <picture>
+            <source
+              type="image/png"
+              media="(min-width: 1440px)"
+              srcSet={`${loginElements} 1x, ${loginElementsRetina} 2x`}
+            />
+            <img
+              src={`${loginElements}`}
+              alt="Let go of the past and focus on the present"
+              width={368}
+              height={521}
+            />
+          </picture>
+        </PictureWrapper>
+      </Container>
+      {showAnimation && <ImageAnimation style={{
+        position: 'absolute',
+        width: '10px',
+        height: '10px'
+      }} />} Відображення анімації
+    </div>
   );
 };
 
