@@ -96,9 +96,10 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
   const [padBottomChart, setPadBottomChart] = useState(40);
 
   const [dataChart, setDataChart] = useState(data);
-  const { data: allTasks } = useGetMonthlyTasksQuery(currentMonth);
+  const { data: allTasks, refetch } = useGetMonthlyTasksQuery(currentMonth);
   if (allTasks) console.log('allTasks.data :>> ', allTasks.data);
   useEffect(() => {
+    refetch();
     if (allTasks) {
       const tasks = [...allTasks.data];
       if (tasks && tasks.length > 0) {
@@ -175,7 +176,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         setDataChart(data);
       }
     }
-  }, [allTasks, currentDay]);
+  }, [allTasks, currentDay, refetch]);
   useEffect(() => {
     function handleResize() {
       const screenWidth = window.innerWidth;
