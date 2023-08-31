@@ -1,16 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const token = '';
-
 export const tasksApi = createApi({
   reducerPath: 'tasks',
 
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://goose-track-project-back.onrender.com/',
-    prepareHeaders(headers) {
-      headers.set('Authorization', `Bearer ${token}`);
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+
       return headers;
     },
+    keepUnusedDataFor: 10,
   }),
 
   tagTypes: ['Tasks'],
@@ -18,7 +22,7 @@ export const tasksApi = createApi({
   endpoints: builder => ({
     getMonthlyTasks: builder.query({
       query: date => ({
-        url: `/tasks?date=${date}`,
+        url: `/tasks?month=${date}`,
         method: 'GET',
       }),
       providesTags: ['Tasks'],

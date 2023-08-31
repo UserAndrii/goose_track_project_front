@@ -48,7 +48,7 @@ export const TextArea = styled.textarea`
 export const BtnWrapper = styled.div`
   display: flex;
   gap: 8px;
-  @media (max-width: 767px) { /* Телефоны */
+  @media (max-width: 767px)
   display: flex;
   flex-direction: column;
 }

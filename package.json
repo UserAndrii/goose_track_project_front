@@ -4,8 +4,6 @@
   "private": true,
   "homepage": "https://UserAndrii.github.io/goose_track_project_front/",
   "dependencies": {
-    "@canvasjs/charts": "^3.7.17",
-    "@canvasjs/react-charts": "^1.0.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/lab": "^5.0.0-alpha.141",
@@ -14,7 +12,6 @@
     "@progress/kendo-licensing": "^1.3.1",
     "@progress/kendo-react-dateinputs": "^5.16.1",
     "@progress/kendo-react-intl": "^5.16.1",
-    "@progress/kendo-react-progressbars": "^5.16.1",
     "@progress/kendo-svg-icons": "^1.9.0",
     "@progress/kendo-theme-default": "^6.7.0",
     "@reduxjs/toolkit": "^1.9.5",
@@ -29,6 +26,7 @@
     "npm": "^9.8.1",
     "proptypes": "^1.1.0",
     "react": "^18.1.0",
+    "react-datepicker": "^4.16.0",
     "react-dom": "^18.1.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
@@ -43,7 +41,6 @@
     "recharts": "^2.8.0",
     "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
-    "victory": "^36.6.11",
     "web-vitals": "^2.1.3",
     "yup": "^1.2.0"
   },

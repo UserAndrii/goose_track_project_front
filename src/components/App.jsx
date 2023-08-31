@@ -22,6 +22,8 @@ import CalendarPage from 'pages/CalendarPage';
 import StatisticsPage from 'pages/StatisticsPage';
 import NotFoundPage from 'pages/NotFoundPage';
 import TeamPage from 'pages/TeamPage';
+import { ChoosedMonth } from './Calendar/ChoosedMonth/ChoosedMonth';
+import { ChoosedDay } from './Calendar/ChoosedDay/ChoosedDay';
 
 // const MainPage = lazy(() => import('pages/MainPage'));
 // const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -84,11 +86,27 @@ export const App = () => {
           />
 
           <Route
-            path="calendar"
+            path="calendar/"
             element={
               <PrivateRoute component={<CalendarPage />} navigateTo="/login" />
             }
-          />
+          >
+            <Route
+              path="month/:currentDate"
+              element={
+                <PrivateRoute
+                  component={<ChoosedMonth />}
+                  navigateTo="/login"
+                />
+              }
+            />
+            <Route
+              path="day/:currentDate"
+              element={
+                <PrivateRoute component={<ChoosedDay />} navigateTo="/login" />
+              }
+            />
+          </Route>
 
           <Route
             path="statistics"
