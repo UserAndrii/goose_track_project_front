@@ -11,24 +11,8 @@ import {
 } from 'recharts';
 import { Container } from './StatisticsChart.styled';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
+import { format, startOfToday } from 'date-fns';
 
-const data = [
-  {
-    name: 'To Do',
-    uv: 35,
-    pv: 30,
-  },
-  {
-    name: 'In Progress',
-    uv: 20,
-    pv: 30,
-  },
-  {
-    name: 'Done',
-    uv: 45,
-    pv: 40,
-  },
-];
 function CustomBar(props) {
   const { fill, x, y, width, height, borderRadius } = props;
 
@@ -77,7 +61,6 @@ const renderCustomizedLabel = props => {
         fill="#000"
         textAnchor="middle"
         dominantBaseline="middle"
-        fontFamily="Poppins"
         fontSize={16}
         fontStyle={'normal'}
         fontWeight={500}
@@ -87,7 +70,24 @@ const renderCustomizedLabel = props => {
     </g>
   );
 };
-export default function StatisticsChart() {
+const data = [
+  {
+    name: 'To Do',
+    uv: 5,
+    pv: 10,
+  },
+  {
+    name: 'In Progress',
+    uv: 0,
+    pv: 0,
+  },
+  {
+    name: 'Done',
+    uv: 0,
+    pv: 0,
+  },
+];
+export default function StatisticsChart({ currentDay, currentMonth }) {
   const [chartWidth, setChartWidth] = useState(860);
   const [chartHeight, setChartHeight] = useState(440);
   const [sizeBar, setSizeBar] = useState(27);
@@ -95,10 +95,87 @@ export default function StatisticsChart() {
   const [padTopChart, setPadTopChart] = useState(40);
   const [padBottomChart, setPadBottomChart] = useState(40);
 
-  const date = '2023-12';
-  const { data: tasks } = useGetMonthlyTasksQuery(date);
-  console.log(tasks);
-
+  const [dataChart, setDataChart] = useState(data);
+  const { data: allTasks } = useGetMonthlyTasksQuery(currentMonth);
+  if (allTasks) console.log('allTasks.data :>> ', allTasks.data);
+  useEffect(() => {
+    if (allTasks) {
+      const tasks = [...allTasks.data];
+      if (tasks && tasks.length > 0) {
+        const data = [
+          {
+            name: 'To Do',
+            uv:
+              tasks.length === 0
+                ? 0
+                : Math.ceil(
+                    (tasks.filter(task => task.category === 'TODO').length /
+                      tasks.length) *
+                      100
+                  ),
+            pv:
+              tasks.filter(task => task.date === currentDay).length === 0
+                ? 0
+                : Math.ceil(
+                    (tasks.filter(
+                      task =>
+                        task.category === 'TODO' && task.date === currentDay
+                    ).length /
+                      tasks.filter(task => task.date === currentDay).length) *
+                      100
+                  ),
+          },
+          {
+            name: 'In Progress',
+            uv:
+              tasks.length === 0
+                ? 0
+                : Math.ceil(
+                    (tasks.filter(task => task.category === 'INPROGRES')
+                      .length /
+                      tasks.length) *
+                      100
+                  ),
+            pv:
+              tasks.filter(task => task.date === currentDay).length === 0
+                ? 0
+                : Math.ceil(
+                    (tasks.filter(
+                      task =>
+                        task.category === 'INPROGRES' &&
+                        task.date === currentDay
+                    ).length /
+                      tasks.filter(task => task.date === currentDay).length) *
+                      100
+                  ),
+          },
+          {
+            name: 'Done',
+            uv:
+              tasks.length === 0
+                ? 0
+                : Math.ceil(
+                    (tasks.filter(task => task.category === 'DONE').length /
+                      tasks.length) *
+                      100
+                  ),
+            pv:
+              tasks.filter(task => task.date === currentDay).length === 0
+                ? 0
+                : Math.ceil(
+                    (tasks.filter(
+                      task =>
+                        task.category === 'DONE' && task.date === currentDay
+                    ).length /
+                      tasks.filter(task => task.date === currentDay).length) *
+                      100
+                  ),
+          },
+        ];
+        setDataChart(data);
+      }
+    }
+  }, [allTasks, currentDay]);
   useEffect(() => {
     function handleResize() {
       const screenWidth = window.innerWidth;
@@ -142,104 +219,102 @@ export default function StatisticsChart() {
     };
   }, []);
   return (
-    <Container>
-      <ResponsiveContainer width={chartWidth} height={chartHeight}>
-        <BarChart
-          data={data}
-          margin={{
-            top: padTopChart,
-            right: padChart,
-            left: padChart,
-            bottom: padBottomChart,
+    <ResponsiveContainer width={chartWidth} height={chartHeight}>
+      <BarChart
+        data={dataChart}
+        margin={{
+          top: padTopChart,
+          right: padChart,
+          left: padChart,
+          bottom: padBottomChart,
+        }}
+        style={{
+          border: '0.8px solid #E3F3FF',
+          borderRadius: 16,
+        }}
+      >
+        <CartesianGrid
+          strokeDasharray="0 0"
+          vertical={false}
+          stroke={'#E3F3FF'}
+          horizontal={{
+            strokeWidth: 1,
           }}
+        />
+
+        <XAxis
+          dataKey="name"
+          axisLine={false}
+          tickLine={false}
+          tick={{ dy: 19 }}
           style={{
-            border: '0.8px solid #E3F3FF',
-            borderRadius: 16,
+            color: '#343434',
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '150%',
+          }}
+        />
+        <YAxis
+          axisLine={false}
+          tickLine={false}
+          domain={[0, 100]}
+          tick={{
+            dx: -padChart,
+            color: '#343434',
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '150%',
           }}
         >
-          <CartesianGrid
-            strokeDasharray="0 0"
-            vertical={false}
-            stroke={'#E3F3FF'}
-            horizontal={{
-              strokeWidth: 1,
-            }}
-          />
-
-          <XAxis
-            dataKey="name"
-            axisLine={false}
-            tickLine={false}
-            tick={{ dy: 19 }}
+          <Label
+            value="Tasks"
+            position="top"
+            dx={-5}
+            dy={-24}
             style={{
               color: '#343434',
               fontFamily: 'Inter',
               fontSize: '14px',
               fontStyle: 'normal',
-              fontWeight: 400,
+              fontWeight: 600,
               lineHeight: '150%',
             }}
           />
-          <YAxis
-            axisLine={false}
-            tickLine={false}
-            domain={[0, 100]}
-            tick={{
-              dx: -padChart,
-              color: '#343434',
-              fontFamily: 'Inter',
-              fontSize: '14px',
-              fontStyle: 'normal',
-              fontWeight: 400,
-              lineHeight: '150%',
-            }}
-          >
-            <Label
-              value="Tasks"
-              position="top"
-              dx={-5}
-              dy={-24}
-              style={{
-                color: '#343434',
-                fontFamily: 'Inter',
-                fontSize: '14px',
-                fontStyle: 'normal',
-                fontWeight: 600,
-                lineHeight: '150%',
-              }}
-            />
-          </YAxis>
+        </YAxis>
 
-          <Bar
-            dataKey="pv"
-            fill="none"
-            shape={<CustomBar borderRadius={10} />}
-            barSize={sizeBar}
-            style={{ zIndex: 2 }}
-          >
-            <LabelList dataKey="pv" content={renderCustomizedLabel} />
-          </Bar>
-          <Bar
-            dataKey="uv"
-            barSize={sizeBar}
-            fill="none"
-            style={{ zIndex: 2 }}
-            shape={<CustomBar1 borderRadius={10} />}
-          >
-            <LabelList dataKey="uv" content={renderCustomizedLabel} />
-          </Bar>
-          <defs>
-            <linearGradient id="pvGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="rgba(255, 210, 221, 0)" />
-              <stop offset="100%" stopColor="#FFD2DD" />
-            </linearGradient>
-            <linearGradient id="uvGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="rgba(62, 133, 243, 0)" />
-              <stop offset="100%" stopColor="#3E85F3" />
-            </linearGradient>
-          </defs>
-        </BarChart>
-      </ResponsiveContainer>
-    </Container>
+        <Bar
+          dataKey="pv"
+          fill="none"
+          shape={<CustomBar borderRadius={10} />}
+          barSize={sizeBar}
+          style={{ zIndex: 2 }}
+        >
+          <LabelList dataKey="pv" content={renderCustomizedLabel} />
+        </Bar>
+        <Bar
+          dataKey="uv"
+          barSize={sizeBar}
+          fill="none"
+          style={{ zIndex: 2 }}
+          shape={<CustomBar1 borderRadius={10} />}
+        >
+          <LabelList dataKey="uv" content={renderCustomizedLabel} />
+        </Bar>
+        <defs>
+          <linearGradient id="pvGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="rgba(255, 210, 221, 0)" />
+            <stop offset="100%" stopColor="#FFD2DD" />
+          </linearGradient>
+          <linearGradient id="uvGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="rgba(62, 133, 243, 0)" />
+            <stop offset="100%" stopColor="#3E85F3" />
+          </linearGradient>
+        </defs>
+      </BarChart>
+    </ResponsiveContainer>
   );
 }
