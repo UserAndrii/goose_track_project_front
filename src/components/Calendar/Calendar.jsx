@@ -1,12 +1,11 @@
 import css from './Caledar.module.css';
 import { useState } from 'react';
 
-import { Outlet, useParams } from 'react-router-dom';
-import { Suspense } from 'react';
+// import { Outlet, useParams } from 'react-router-dom';
+// import { Suspense } from 'react';
 
 // import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-import axios from 'axios';
-
+// import axios from 'axios';
 
 import {
   format,
@@ -14,15 +13,15 @@ import {
   endOfWeek,
   endOfMonth,
   addDays,
-  isSameMonth,
-  isSameDay,
+  // isSameMonth,
+  // isSameDay,
   isToday,
   eachDayOfInterval,
   startOfToday,
   parse,
   add,
-  addWeeks,
-  subWeeks,
+  // addWeeks,
+  // subWeeks,
   // isBefore,
   // isEqual,
   // startOfMonth,
@@ -41,15 +40,15 @@ export const CalendarToolBar = () => {
   const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date());
 
   // Current Week
-  const [currentWeek, setCurrentWeek] = useState({
+  const [currentWeek] = useState({
     start: startOfWeek(today, { weekStartsOn: 1 }),
     end: addDays(endOfWeek(today, { weekStartsOn: 0 }), 1),
   });
   const Week = eachDayOfInterval(currentWeek);
 
   // Current Day
-  const [currentDay, setCurrentDay] = useState(format(today, 'yyyy-MM-dd'));
-  const firstDayCurrentDay = parse(currentDay, 'yyyy-MM-dd', new Date());
+  const [currentDay] = useState(format(today, 'yyyy-MM-dd'));
+  // const firstDayCurrentDay = parse(currentDay, 'yyyy-MM-dd', new Date());
 
   const [isMonthPage, setIsMonthPage] = useState(true);
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
@@ -71,38 +70,38 @@ export const CalendarToolBar = () => {
   };
 
   // Weeks
-  const nextWeek = () => {
-    const nextWeekStart = addWeeks(currentWeek.start, 1);
-    const nextWeekEnd = addDays(
-      endOfWeek(nextWeekStart, { weekStartsOn: 0 }),
-      1
-    );
-    setCurrentWeek({ start: addWeeks(currentWeek.start, 1), end: nextWeekEnd });
-  };
+  // const nextWeek = () => {
+  //   const nextWeekStart = addWeeks(currentWeek.start, 1);
+  //   const nextWeekEnd = addDays(
+  //     endOfWeek(nextWeekStart, { weekStartsOn: 0 }),
+  //     1
+  //   );
+  //   setCurrentWeek({ start: addWeeks(currentWeek.start, 1), end: nextWeekEnd });
+  // };
 
-  const prevWeek = () => {
-    const prevWeekStart = subWeeks(currentWeek.start, 1);
-    const prevWeekEnd = addDays(
-      endOfWeek(prevWeekStart, { weekStartsOn: 0 }),
-      1
-    );
-    setCurrentWeek({ start: prevWeekStart, end: prevWeekEnd });
-  };
+  // const prevWeek = () => {
+  //   const prevWeekStart = subWeeks(currentWeek.start, 1);
+  //   const prevWeekEnd = addDays(
+  //     endOfWeek(prevWeekStart, { weekStartsOn: 0 }),
+  //     1
+  //   );
+  //   setCurrentWeek({ start: prevWeekStart, end: prevWeekEnd });
+  // };
 
   // Days
-  const nextDay = () => {
-    // if (isDayInWeek) {
-    const dayAfter = add(firstDayCurrentDay, { days: 1 });
-    setCurrentDay(format(dayAfter, 'd-MMM-yyyy'));
-    // } else {
-    //   nextWeek();
-    // }
-  };
+  // const nextDay = () => {
+  //   // if (isDayInWeek) {
+  //   const dayAfter = add(firstDayCurrentDay, { days: 1 });
+  //   setCurrentDay(format(dayAfter, 'd-MMM-yyyy'));
+  //   // } else {
+  //   //   nextWeek();
+  //   // }
+  // };
 
-  const previousDay = () => {
-    const prevDay = add(firstDayCurrentDay, { days: -1 });
-    setCurrentDay(format(prevDay, 'd-MMM-yyyy'));
-  };
+  // const previousDay = () => {
+  //   const prevDay = add(firstDayCurrentDay, { days: -1 });
+  //   setCurrentDay(format(prevDay, 'd-MMM-yyyy'));
+  // };
 
   const changeType = state => {
     setIsMonthPage(state);
@@ -118,23 +117,22 @@ export const CalendarToolBar = () => {
   // const date = '2023-08';
   // const { data: tasks, isLoading, isError } = useGetMonthlyTasksQuery(date);
 
-  const getTasks = async () => {
-    try {
-      const response = await axios.get(
-        'https://goose-track-project-back.onrender.com/tasks',
-        {
-          date: format(firstDayCurrentMonth, 'yyyy-MM'),
-          // 2023-08
-        }
-      );
-      console.log('response', response);
-    } catch (error) {
-      console.log('Error:', error.message);
-      throw error;
-    }
-  };
+  // const getTasks = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       'https://goose-track-project-back.onrender.com/tasks',
+  //       {
+  //         date: format(firstDayCurrentMonth, 'yyyy-MM'),
+  //         // 2023-08
+  //       }
+  //     );
+  //     console.log('response', response);
+  //   } catch (error) {
+  //     console.log('Error:', error.message);
+  //     throw error;
+  //   }
+  // };
   // getTasks();
-
 
   return (
     <div className={css.calendar}>
