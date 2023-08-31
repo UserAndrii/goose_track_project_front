@@ -175,7 +175,7 @@ export const Forma = styled.form`
     outline: none;
 
     &::placeholder {
-      color: #242725;
+      color: #343434;
       font-size: 14px;
       line-height: 18px;
       font-weight: 400;
@@ -230,5 +230,33 @@ export const Button = styled.button`
 
   @media screen and (min-width: 1440px) {
     margin-top: auto;
+  }
+`;
+
+export const CustomInput = styled.input`
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #343434;
+  outline: none;
+
+  &::placeholder {
+    color: #343434;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+  }
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+    width: 271px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
   }
 `;
