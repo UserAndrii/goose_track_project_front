@@ -16,9 +16,11 @@ const TaskToolbar = ({ task }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
+
   const [deleteTask, { isLoading, isError }] =
     tasksApi.useDeleteTasksMutation();
   console.log('isError :>> ', isError);
+
   const categories = ['To do', 'In progress', 'Done'].filter(
     item => task.Category !== item
   );
