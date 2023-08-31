@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { showErrorToast } from '../../components/ErrorFunction/showErrorToast';
+import { clearCache } from '@reduxjs/toolkit';
+import { reviewsApi } from 'redux/reviews/reviewsApi';
+import { tasksApi } from 'redux/tasks/tasksApi';
 
 axios.defaults.baseURL = 'https://goose-track-project-back.onrender.com/auth';
 
@@ -66,6 +69,8 @@ export const logOut = createAsyncThunk('/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/logout');
     clearAuthHeader();
+    // clearCache(reviewsApi.endpoints.fetchReviews);
+    // clearCache(tasksApi.endpoints.getMonthlyTasks);
   } catch (error) {
     if (error.response) {
       const { status } = error.response;

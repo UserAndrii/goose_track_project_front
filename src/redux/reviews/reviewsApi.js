@@ -14,6 +14,7 @@ export const reviewsApi = createApi({
 
       return headers;
     },
+    keepUnusedDataFor: 10,
   }),
 
   tagTypes: ['Reviews'],

@@ -14,6 +14,7 @@ export const tasksApi = createApi({
 
       return headers;
     },
+    keepUnusedDataFor: 10,
   }),
 
   tagTypes: ['Tasks'],
