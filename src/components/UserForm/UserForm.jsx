@@ -29,40 +29,44 @@ const UserForm = () => {
           ) : (
             <Letter>{firstLetter}</Letter>
           )}
+          <IconContainer />
         </ImageContainer>
-        <IconContainer />
 
         <UserName>{user.userName}</UserName>
         <Text>User</Text>
         <Forma>
-          <label>
-            <p>User Name</p>
-            <input type="text" name="username" placeholder={user.userName} />
-          </label>
-          <label>
-            <p>Birthday</p>
-            <input type="text" name="birthday" placeholder={user.birthDay} />
-          </label>
-          <label>
-            <p>Email</p>
-            <input type="text" name="email" placeholder={user.email} />
-          </label>
-          <label>
-            <p>Phone</p>
-            <input
-              type="text"
-              name="phone"
-              placeholder={user.phone ? user.phone : '38 (000) 000 00 00'}
-            />
-          </label>
-          <label>
-            <p>Skype</p>
-            <input
-              type="text"
-              name="skype"
-              placeholder={user.skype ? user.skype : 'Add a skype number'}
-            />
-          </label>
+          <div>
+            <label>
+              <p>User Name</p>
+              <input type="text" name="username" placeholder={user.userName} />
+            </label>
+            <label>
+              <p>Birthday</p>
+              <input type="text" name="birthday" placeholder={user.birthDay} />
+            </label>
+            <label>
+              <p>Email</p>
+              <input type="text" name="email" placeholder={user.email} />
+            </label>
+          </div>
+          <div>
+            <label>
+              <p>Phone</p>
+              <input
+                type="text"
+                name="phone"
+                placeholder={user.phone ? user.phone : '38 (000) 000 00 00'}
+              />
+            </label>
+            <label>
+              <p>Skype</p>
+              <input
+                type="text"
+                name="skype"
+                placeholder={user.skype ? user.skype : 'Add a skype number'}
+              />
+            </label>
+          </div>
         </Forma>
         <Button type="submit">Save changes</Button>
       </Container>
