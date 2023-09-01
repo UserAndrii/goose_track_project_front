@@ -117,25 +117,22 @@ const LoginForm = () => {
     validationSchema: validationSchema,
 
     onSubmit: async values => {
-      try {
+      try { 
+         const formData = {
+        email: values.email,
+        password: values.password,
+      };
+
 
         setShowAnimation(true); // Встановити стан для відображення анімації
           setTimeout(() => {
             setShowAnimation(false); // Приховати анімацію після 3 секунд
-          }, 3000);
+          }, 6000);
 
-        const formData = {
-          email: values.email,
-          password: values.password,
-        };
         const response = await dispatch(logIn(formData));
         if (response.payload.message === 'success') {
           // setIsSuccess(true);
           formik.resetForm();
-
-          
-
-         
             navigate('/calendar')
         }
         return response;
@@ -147,7 +144,9 @@ const LoginForm = () => {
 
   return (
     <div>
-      <Container style={{ display: showAnimation ? 'none' : 'block' }}>
+      <Container 
+      style={{ display: showAnimation ? 'none' : 'flex' }}
+      >
         <StyledForm onSubmit={formik.handleSubmit}>
           <InputGroupe>
             <FormName>Log In</FormName>
@@ -283,9 +282,12 @@ const LoginForm = () => {
       </Container>
       {showAnimation && <ImageAnimation style={{
         position: 'absolute',
-        width: '10px',
-        height: '10px'
-      }} />} Відображення анімації
+        width: '100px',
+        height: '100px',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)', 
+      }} />}
     </div>
   );
 };
