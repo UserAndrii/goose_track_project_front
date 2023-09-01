@@ -6,7 +6,13 @@ const LogoutBtn = () => {
   const dispatch = useDispatch();
 
   return (
-    <Button type="button" onClick={() => dispatch(logOut())}>
+    <Button
+      type="button"
+      onClick={() => {
+        dispatch(logOut());
+        document.body.style.overflow = 'auto';
+      }}
+    >
       Log out
       <Icon />
     </Button>

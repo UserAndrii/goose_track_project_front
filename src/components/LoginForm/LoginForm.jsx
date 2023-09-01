@@ -31,12 +31,13 @@ import { useNavigate } from 'react-router-dom';
 import loginElements from 'images/login-elements.png';
 import loginElementsRetina from 'images/login-elements@2x.png';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
+import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showAnimation, setShowAnimation] = useState(false);
 
-  // const [isSuccess, setIsSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const emailRegexp =
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -52,51 +53,6 @@ const LoginForm = () => {
       .required('This field is required'),
   });
 
-  // const handleChange = event => {
-  //   event.preventDefault();
-  //   const { name, value } = event.currentTarget;
-
-  //   switch (name) {
-  //     case 'email':
-  //       formik.setFieldValue('email', value);
-  //       break;
-
-  //     case 'password':
-  //       formik.setFieldValue('password', value);
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // };
-
-  // const handleBlur = event => {
-  //   event.preventDefault();
-  //   const { name, value } = event.currentTarget;
-
-  //   switch (name) {
-  //     case 'name':
-  //       try {
-  //         validationSchema.fields.name.validateSync(value);
-  //         //поставити рамку зелену
-  //       } catch (error) {
-  //         //поставити рамку червону
-  //       }
-  //       break;
-
-  //     case 'email':
-  //       formik.validateField('email');
-  //       break;
-
-  //     case 'password':
-  //       formik.validateField('password');
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // };
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -110,9 +66,17 @@ const LoginForm = () => {
           email: values.email,
           password: values.password,
         };
+
+        setShowAnimation(true);
+
+        setTimeout(() => {
+          setShowAnimation(false);
+        }, 3000);
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
         const response = await dispatch(logIn(formData));
         if (response.payload.message === 'success') {
-          // setIsSuccess(true);
           formik.resetForm();
           navigate('/calendar');
         }
@@ -124,78 +88,59 @@ const LoginForm = () => {
   });
 
   return (
-    <Container>
-      <StyledForm onSubmit={formik.handleSubmit}>
-        <InputGroupe>
-          <FormName>Log In</FormName>
-          <InputList>
-            <InputWrapper isEmail={'email'}>
-              <Label
-                htmlFor="email"
-                className={
-                  formik.touched.email
-                    ? formik.errors.email
-                      ? 'invalid-input'
-                      : 'valid-input'
-                    : ''
-                }
-              >
-                Email
-              </Label>
-              <Input
-                type="text"
-                name="email"
-                id="email"
-                autoComplete="true"
-                value={formik.values.email}
-                placeholder="Enter email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                className={
-                  formik.touched.email
-                    ? formik.errors.email
-                      ? 'invalid-input'
-                      : 'valid-input'
-                    : ''
-                }
-              />
-              {formik.touched.email ? (
-                formik.errors.email ? (
-                  <ContainerErrorIcon>
-                    <Error className="invalid">{formik.errors.email}</Error>
-                    <ErrorIcon />
-                  </ContainerErrorIcon>
-                ) : (
-                  <ContainerErrorIcon>
-                    <Error className="valid">{formik.errors.email}</Error>
-                    <SuccessIcon />
-                  </ContainerErrorIcon>
-                )
-              ) : null}
-            </InputWrapper>
-            <InputWrapper isPassword={'password'}>
-              <Label
-                htmlFor="password"
-                className={
-                  formik.touched.password
-                    ? formik.errors.password
-                      ? 'invalid-input'
-                      : 'valid-input'
-                    : ''
-                }
-              >
-                Password
-              </Label>
-              <InputWrapperWithIcon>
+    <>
+      <Container style={{ display: showAnimation ? 'none' : 'flex' }}>
+        <StyledForm onSubmit={formik.handleSubmit}>
+          <InputGroupe>
+            <FormName>Log In</FormName>
+            <InputList>
+              <InputWrapper isEmail={'email'}>
+                <Label
+                  htmlFor="email"
+                  className={
+                    formik.touched.email
+                      ? formik.errors.email
+                        ? 'invalid-input'
+                        : 'valid-input'
+                      : ''
+                  }
+                >
+                  Email
+                </Label>
                 <Input
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  id="password"
-                  autocomplete="current-password"
-                  value={formik.values.password}
-                  placeholder="Enter password"
+                  type="text"
+                  id="email"
+                  name="email"
+                  autoComplete="true"
+                  value={formik.values.email}
+                  placeholder="Enter email"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
+                  className={
+                    formik.touched.email
+                      ? formik.errors.email
+                        ? 'invalid-input'
+                        : 'valid-input'
+                      : ''
+                  }
+                />
+                {formik.touched.email ? (
+                  formik.errors.email ? (
+                    <ContainerErrorIcon>
+                      <Error className="invalid">{formik.errors.email}</Error>
+                      <ErrorIcon />
+                    </ContainerErrorIcon>
+                  ) : (
+                    <ContainerErrorIcon>
+                      <Error className="valid">{formik.errors.email}</Error>
+                      <SuccessIcon />
+                    </ContainerErrorIcon>
+                  )
+                ) : null}
+              </InputWrapper>
+              <InputWrapper isPassword={'password'}>
+                <Label
+                  htmlFor="password"
                   className={
                     formik.touched.password
                       ? formik.errors.password
@@ -203,61 +148,97 @@ const LoginForm = () => {
                         : 'valid-input'
                       : ''
                   }
-                />
-                {!formik.errors.password && (
-                  <ShowHideButton
-                    type="button"
-                    onClick={() => setShowPassword(show => !show)}
-                  >
-                    {showPassword ? <FiEyeOff /> : <FiEye />}
-                  </ShowHideButton>
-                )}
-              </InputWrapperWithIcon>
-              {formik.touched.password ? (
-                formik.errors.password ? (
-                  <ContainerErrorIcon>
-                    <Error className="invalid">{formik.errors.password}</Error>
-                    <ErrorIcon />
-                  </ContainerErrorIcon>
-                ) : (
-                  <ContainerErrorIcon>
-                    <Error className="valid">{formik.errors.password}</Error>
-                    <SuccessIcon />
-                  </ContainerErrorIcon>
-                )
-              ) : null}
-            </InputWrapper>
-          </InputList>
-          <Button type="submit">
-            <ButtonText>Log in</ButtonText>
-            <ItemIcon />
-          </Button>
-        </InputGroupe>
-        <LinksContainer>
-          <AuthNavigate
-            forgotPasswordText="Recover password"
-            alreadyRegisteredText="New user?"
-            forgotPasswordLink="/recover"
-            alreadyRegisteredLink="/register"
+                >
+                  Password
+                </Label>
+                <InputWrapperWithIcon>
+                  <Input
+                    type={showPassword ? 'text' : 'password'}
+                    id="password"
+                    name="password"
+                    value={formik.values.password}
+                    placeholder="Enter password"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={
+                      formik.touched.password
+                        ? formik.errors.password
+                          ? 'invalid-input'
+                          : 'valid-input'
+                        : ''
+                    }
+                  />
+                  {!formik.errors.password && (
+                    <ShowHideButton
+                      type="button"
+                      onClick={() => setShowPassword(show => !show)}
+                    >
+                      {showPassword ? <FiEyeOff /> : <FiEye />}
+                    </ShowHideButton>
+                  )}
+                </InputWrapperWithIcon>
+                {formik.touched.password ? (
+                  formik.errors.password ? (
+                    <ContainerErrorIcon>
+                      <Error className="invalid">
+                        {formik.errors.password}
+                      </Error>
+                      <ErrorIcon />
+                    </ContainerErrorIcon>
+                  ) : (
+                    <ContainerErrorIcon>
+                      <Error className="valid">{formik.errors.password}</Error>
+                      <SuccessIcon />
+                    </ContainerErrorIcon>
+                  )
+                ) : null}
+              </InputWrapper>
+            </InputList>
+            <Button type="submit">
+              <ButtonText>Log in</ButtonText>
+              <ItemIcon />
+            </Button>
+          </InputGroupe>
+          <LinksContainer>
+            <AuthNavigate
+              forgotPasswordText="Recover password"
+              alreadyRegisteredText="New user?"
+              forgotPasswordLink="/recover"
+              alreadyRegisteredLink="/register"
+            />
+          </LinksContainer>
+        </StyledForm>
+        <PictureWrapper>
+          <picture>
+            <source
+              type="image/png"
+              media="(min-width: 1440px)"
+              srcSet={`${loginElements} 1x, ${loginElementsRetina} 2x`}
+            />
+            <img
+              src={`${loginElements}`}
+              alt="Let go of the past and focus on the present"
+              width={368}
+              height={521}
+            />
+          </picture>
+        </PictureWrapper>
+      </Container>
+      {showAnimation && (
+        <Container>
+          <ImageAnimation
+            style={{
+              position: 'absolute',
+              width: '100px',
+              height: '100px',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
           />
-        </LinksContainer>
-      </StyledForm>
-      <PictureWrapper>
-        <picture>
-          <source
-            type="image/png"
-            media="(min-width: 1440px)"
-            srcSet={`${loginElements} 1x, ${loginElementsRetina} 2x`}
-          />
-          <img
-            src={`${loginElements}`}
-            alt="Let go of the past and focus on the present"
-            width={368}
-            height={521}
-          />
-        </picture>
-      </PictureWrapper>
-    </Container>
+        </Container>
+      )}
+    </>
   );
 };
 
