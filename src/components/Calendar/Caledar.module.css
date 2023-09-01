@@ -289,7 +289,7 @@
 }
 
 .row__currentDate {
-  position: absolute;
+  /* position: absolute; */
   top: 8px;
   right: 4px;
 

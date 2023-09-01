@@ -1,13 +1,23 @@
+import { useEffect } from 'react';
 import css from '../Caledar.module.css';
 import { format, isSameMonth, isToday } from 'date-fns';
 
-export const ChoosedMonth = ({ currentDay, days }) => {
+export const ChoosedMonth = ({ currentDay, days, allTasks }) => {
+  // useEffect(() => {
+  //   console.log('allTasks', allTasks);
+  //   if (!allTasks) {
+  //     return;
+  //   }
+  // }, [allTasks]);
+
   return (
     <div className={`${css.mainBlock__data}`}>
       {days.map(day => {
         const dayOfWeek = day.getDay();
-        // index 0
-        const colStart = dayOfWeek;
+
+        const colStart = dayOfWeek + 1;
+
+        const formattedDay = format(day, 'yyyy-MM-dd');
 
         return (
           <div
@@ -31,12 +41,34 @@ export const ChoosedMonth = ({ currentDay, days }) => {
                 }`}
                 dateTime={format(day, 'yyyy-MM-dd')}
                 style={{
-                  // display: isSameMonth(currentDay, day) ? 'block' : 'none',
-                  display: 'block',
+                  display: isSameMonth(currentDay, day) ? 'block' : 'none',
                 }}
               >
                 {format(day, 'd')}
               </time>
+              <ul style={{ overflow: 'y' }}>
+                {allTasks ? (
+                  allTasks.data
+                    .filter(task => task.date === formattedDay)
+                    .map(({ title, _id }) => {
+                      return (
+                        <li key={_id}>
+                          <div
+                            style={{
+                              backgroundColor: 'red',
+                              width: 10,
+                              height: 10,
+                            }}
+                          >
+                            <p>{title}</p>
+                          </div>
+                        </li>
+                      );
+                    })
+                ) : (
+                  <></>
+                )}
+              </ul>
             </div>
           </div>
         );

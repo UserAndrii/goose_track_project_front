@@ -1,13 +1,5 @@
 import css from './Caledar.module.css';
-import { useEffect, useState } from 'react';
-import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-
-// import { Outlet, useParams } from 'react-router-dom';
-// import { Suspense } from 'react';
-
-// import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-
-// import axios from 'axios';
+import { useState } from 'react';
 
 import {
   format,
@@ -33,7 +25,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
 import { PeriodPaginatorType } from './PeriodPaginatorType/PeriodPaginatorType';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 export const CalendarToolBar = ({
   isMonthPage,
@@ -41,8 +33,9 @@ export const CalendarToolBar = ({
   currentDay,
   firstDayCurrentMonth,
   setCurrentMonth,
+  setCurrentDay,
 }) => {
-  const today = currentDay;
+  const today = startOfToday();
 
   // Current Week
   const [currentWeek] = useState({
@@ -53,22 +46,30 @@ export const CalendarToolBar = ({
 
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
 
-  // Months
-  const previousMonth = () => {
-    let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
-    setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
+  const prevPeriod = () => {
+    if (isMonthPage) {
+      let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
+      setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
+    } else {
+      const dayAfter = add(currentDay, { days: 1 });
+      setCurrentDay(dayAfter);
+    }
   };
 
-  const nextMonth = () => {
-    let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
-    setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
+  const [currentDate, setCurrentDate] = useSearchParams();
+  console.log('currentDate', currentDate);
+
+  const nextPeriod = () => {
+    if (isMonthPage) {
+      let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
+      setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
+      // window.location.href = `/month/${newDate}`;
+      // navigate()
+    } else {
+      const prevDay = add(currentDay, { days: -1 });
+      setCurrentDay(prevDay);
+    }
   };
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate(`month/${currentDay}`);
-  }, []);
 
   // Weeks
   // const nextWeek = () => {
@@ -89,21 +90,6 @@ export const CalendarToolBar = ({
   //   setCurrentWeek({ start: prevWeekStart, end: prevWeekEnd });
   // };
 
-  // Days
-  // const nextDay = () => {
-  //   // if (isDayInWeek) {
-  //   const dayAfter = add(firstDayCurrentDay, { days: 1 });
-  //   setCurrentDay(format(dayAfter, 'd-MMM-yyyy'));
-  //   // } else {
-  //   //   nextWeek();
-  //   // }
-  // };
-
-  // const previousDay = () => {
-  //   const prevDay = add(firstDayCurrentDay, { days: -1 });
-  //   setCurrentDay(format(prevDay, 'd-MMM-yyyy'));
-  // };
-
   const changeType = state => {
     setIsMonthPage(state);
   };
@@ -111,25 +97,14 @@ export const CalendarToolBar = ({
   const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const abbreviatedDayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
-  // const { data: allTasks, refetch } = useGetMonthlyTasksQuery(currentDay);
-
-  // refetch();
-  // if (allTasks) {
-  //   const tasks = [...allTasks.data];
-  //   console.log('tasks', tasks);
-
-  //   // if (tasks && tasks.length > 0) {
-  //   // }
-  // }
-
   return (
     <div className={css.calendar}>
       <div className={css.toolbar}>
         <PeriodPaginator
           currentMonth={firstDayCurrentMonth}
           isMonthPage={isMonthPage}
-          nextMonth={nextMonth}
-          previousMonth={previousMonth}
+          prevPeriod={prevPeriod}
+          nextPeriod={nextPeriod}
         />
 
         <PeriodPaginatorType
