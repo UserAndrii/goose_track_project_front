@@ -11,11 +11,12 @@ import {
 } from 'redux/auth/selectors';
 import { getCurrentUser } from 'redux/auth/operations';
 
-import Spiner from './Spiner/Spiner';
+// import Spiner from './Spiner/Spiner';
 import MainLayout from './MainLayout/MainLayout';
 
 import { ChoosedMonth } from './Calendar/ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './Calendar/ChoosedDay/ChoosedDay';
+import ImageAnimation from './Bandero-goose/ImageAnimation';
 
 // import MainPage from 'pages/MainPage';
 // import RegisterPage from 'pages/RegisterPage';
@@ -37,14 +38,16 @@ const TeamPage = lazy(() => import('pages/TeamPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsFetchingCurrentUser);
+  const isRefreshing = useSelector(selectIsFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
-  return (
-    <Suspense fallback={<Spiner />}>
+  return isRefreshing ? (
+    <ImageAnimation />
+  ) : (
+    <Suspense fallback={<ImageAnimation />}>
       <Routes>
         <Route
           path="/"
