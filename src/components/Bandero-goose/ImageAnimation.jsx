@@ -26,9 +26,10 @@ const ImageAnimation = () => {
     <div className={css.animation}>
       <img
         style={{
+          // backgroundColor: "#dcebf7",
           position: 'absolute',
           width: '150px',
-          height: '150px',
+          height: 'auto',
           left: '50%',
           top: '50%',
           transform: 'translate(-50%, -50%)',

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -38,17 +38,6 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [showAnimation, setShowAnimation] = useState(false);
 
-  useEffect(() => {
-    if (showAnimation) {
-      const timer = setTimeout(() => {
-        setShowAnimation(false);
-      }, 3000); // 3 секунди
-
-      return () => clearTimeout(timer);
-    }
-  }, [showAnimation]);
-
-  // const [isSuccess, setIsSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const emailRegexp =
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -64,50 +53,6 @@ const LoginForm = () => {
       .required('This field is required'),
   });
 
-  // const handleChange = event => {
-  //   event.preventDefault();
-  //   const { name, value } = event.currentTarget;
-
-  //   switch (name) {
-  //     case 'email':
-  //       formik.setFieldValue('email', value);
-  //       break;
-
-  //     case 'password':
-  //       formik.setFieldValue('password', value);
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // };
-
-  // const handleBlur = event => {
-  //   event.preventDefault();
-  //   const { name, value } = event.currentTarget;
-
-  //   switch (name) {
-  //     case 'name':
-  //       try {
-  //         validationSchema.fields.name.validateSync(value);
-  //         //поставити рамку зелену
-  //       } catch (error) {
-  //         //поставити рамку червону
-  //       }
-  //       break;
-
-  //     case 'email':
-  //       formik.validateField('email');
-  //       break;
-
-  //     case 'password':
-  //       formik.validateField('password');
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // };
 
   const formik = useFormik({
     initialValues: {
@@ -124,14 +69,16 @@ const LoginForm = () => {
       };
 
 
-        setShowAnimation(true); // Встановити стан для відображення анімації
+        setShowAnimation(true);
+
           setTimeout(() => {
-            setShowAnimation(false); // Приховати анімацію після 3 секунд
-          }, 6000);
+            setShowAnimation(false);
+          }, 3000);
+
+          await new Promise(resolve => setTimeout(resolve, 1000));
 
         const response = await dispatch(logIn(formData));
         if (response.payload.message === 'success') {
-          // setIsSuccess(true);
           formik.resetForm();
             navigate('/calendar')
         }
@@ -143,7 +90,7 @@ const LoginForm = () => {
   });
 
   return (
-    <div>
+    < >
       <Container 
       style={{ display: showAnimation ? 'none' : 'flex' }}
       >
@@ -280,6 +227,7 @@ const LoginForm = () => {
           </picture>
         </PictureWrapper>
       </Container>
+      <Container>
       {showAnimation && <ImageAnimation style={{
         position: 'absolute',
         width: '100px',
@@ -288,7 +236,9 @@ const LoginForm = () => {
         top: '50%',
         transform: 'translate(-50%, -50%)', 
       }} />}
-    </div>
+      </Container>
+      
+    </>
   );
 };
 
