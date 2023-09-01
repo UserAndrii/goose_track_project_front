@@ -9,6 +9,7 @@ export default function CircularIndeterminate() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        height: 200,
       }}
     >
       <CircularProgress />

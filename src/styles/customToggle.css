@@ -272,12 +272,13 @@
 }
 
 .astrobear {
+  --bear-speed: 35s;
   width: 12%;
   position: absolute;
   top: 100%;
   left: 0%;
   transition: translate
-    calc(var(--speed) + (var(--dark, 0) * (var(--bear-speed) - var(--speed))))
+    /* calc(var(--speed) + (var(--dark, 0) * (var(--bear-speed) - var(--speed)))) */
     calc(var(--bear-speed) * (0.4 * var(--dark, 0))) linear;
   translate: calc(var(--dark, 0) * 400%) calc(var(--dark, 0) * -350%);
 }
@@ -315,16 +316,16 @@
 }
 
 .pilot-bear {
-  --bear-speed: 25s;
+  --bear-speed: 45s;
   width: 18%;
   position: absolute;
-  top: 70%;
+  top: 90%;
   left: 100%;
   transition: translate
-    calc(
+    /* calc(
       var(--speed) +
         ((1 - var(--dark, 0)) * ((var(--bear-speed) * 0.5) - var(--speed)))
-    )
+    ) */
     calc((var(--bear-speed) * 0.5) * ((1 - var(--dark, 0)) * 0.4)) linear;
   translate: calc((0 - (1 - var(--dark, 0))) * (var(--width) + 100%))
     calc((0 - (1 - var(--dark, 0))) * (200%));

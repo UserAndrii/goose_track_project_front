@@ -1,4 +1,4 @@
-// import { lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
@@ -14,38 +14,37 @@ import { getCurrentUser } from 'redux/auth/operations';
 import Spiner from './Spiner/Spiner';
 import MainLayout from './MainLayout/MainLayout';
 
-import MainPage from 'pages/MainPage';
-import RegisterPage from 'pages/RegisterPage';
-import LoginPage from 'pages/LoginPage';
-import AccountPage from 'pages/AccountPage';
-import CalendarPage from 'pages/CalendarPage';
-import StatisticsPage from 'pages/StatisticsPage';
-import NotFoundPage from 'pages/NotFoundPage';
-import TeamPage from 'pages/TeamPage';
 import { ChoosedMonth } from './Calendar/ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './Calendar/ChoosedDay/ChoosedDay';
 
-// const MainPage = lazy(() => import('pages/MainPage'));
-// const RegisterPage = lazy(() => import('pages/RegisterPage'));
-// const LoginPage = lazy(() => import('pages/LoginPage'));
-// const AccountPage = lazy(() => import('pages/AccountPage'));
-// const CalendarPage = lazy(() => import('pages/CalendarPage'));
-// const StatisticsPage = lazy(() => import('pages/StatisticsPage'));
-// const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
-// const TeamPage = lazy(() => import('pages/TeamPage'));
+// import MainPage from 'pages/MainPage';
+// import RegisterPage from 'pages/RegisterPage';
+// import LoginPage from 'pages/LoginPage';
+// import AccountPage from 'pages/AccountPage';
+// import CalendarPage from 'pages/CalendarPage';
+// import StatisticsPage from 'pages/StatisticsPage';
+// import NotFoundPage from 'pages/NotFoundPage';
+// import TeamPage from 'pages/TeamPage';
+
+const MainPage = lazy(() => import('pages/MainPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
+const AccountPage = lazy(() => import('pages/AccountPage'));
+const CalendarPage = lazy(() => import('pages/CalendarPage'));
+const StatisticsPage = lazy(() => import('pages/StatisticsPage'));
+const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
+const TeamPage = lazy(() => import('pages/TeamPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsFetchingCurrentUser);
+  // const isRefreshing = useSelector(selectIsFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <Spiner />
-  ) : (
-    <>
+  return (
+    <Suspense fallback={<Spiner />}>
       <Routes>
         <Route
           path="/"
@@ -81,29 +80,26 @@ export const App = () => {
           <Route
             path="account"
             element={
-              <PrivateRoute component={<AccountPage />} navigateTo="/login" />
+              <PrivateRoute component={<AccountPage />} navigateTo="/" />
             }
           />
 
           <Route
             path="calendar/"
             element={
-              <PrivateRoute component={<CalendarPage />} navigateTo="/login" />
+              <PrivateRoute component={<CalendarPage />} navigateTo="/" />
             }
           >
             <Route
               path="month/:currentDate"
               element={
-                <PrivateRoute
-                  component={<ChoosedMonth />}
-                  navigateTo="/login"
-                />
+                <PrivateRoute component={<ChoosedMonth />} navigateTo="/" />
               }
             />
             <Route
               path="day/:currentDate"
               element={
-                <PrivateRoute component={<ChoosedDay />} navigateTo="/login" />
+                <PrivateRoute component={<ChoosedDay />} navigateTo="/" />
               }
             />
           </Route>
@@ -111,10 +107,7 @@ export const App = () => {
           <Route
             path="statistics"
             element={
-              <PrivateRoute
-                component={<StatisticsPage />}
-                navigateTo="/login"
-              />
+              <PrivateRoute component={<StatisticsPage />} navigateTo="/" />
             }
           />
         </Route>
@@ -127,7 +120,7 @@ export const App = () => {
         />
       </Routes>
       <ToastContainer />
-    </>
+    </Suspense>
   );
 };
 

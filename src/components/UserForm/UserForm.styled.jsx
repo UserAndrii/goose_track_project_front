@@ -138,9 +138,15 @@ export const Forma = styled.form`
   }
 
   @media screen and (min-width: 1440px) {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     align-items: start;
-    gap: 50px;
+    justify-items: center;
+
+    flex: 1;
+
+    grid-column-gap: 50px;
+    /* grid-row-gap: auto; */
   }
 
   & > div {
@@ -175,7 +181,7 @@ export const Forma = styled.form`
     outline: none;
 
     &::placeholder {
-      color: #242725;
+      color: #343434;
       font-size: 14px;
       line-height: 18px;
       font-weight: 400;
@@ -212,10 +218,12 @@ export const Button = styled.button`
   cursor: pointer;
   outline: none;
   margin-top: 40px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    background-color: #3cbc81;
+    background-color: #2b78ef;
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   }
   &:disabled {
     background-color: #e0e0e0;
@@ -230,5 +238,34 @@ export const Button = styled.button`
 
   @media screen and (min-width: 1440px) {
     margin-top: auto;
+    grid-column: span 2;
+  }
+`;
+
+export const CustomInput = styled.input`
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #343434;
+  outline: none;
+
+  &::placeholder {
+    color: #343434;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+  }
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+    width: 271px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
   }
 `;
