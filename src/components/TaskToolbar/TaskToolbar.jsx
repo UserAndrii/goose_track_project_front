@@ -13,15 +13,19 @@ import './ContextMenu.css';
 const TaskToolbar = ({ task }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [deleteTask] =    tasksApi.useDeleteTasksMutation();
-  
-  const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();
+  const [deleteTask] = tasksApi.useDeleteTasksMutation();
+
+  const [editTask, { isFetching }] = tasksApi.useEditTasksMutation();
 
   const categories = ['To do', 'In Progress', 'Done'].filter(
-    item => task.category.replace(/\s+/g, '').toLowerCase() !== item.replace(/\s+/g, '').toLowerCase()
+    item =>
+      task.category.replace(/\s+/g, '').toLowerCase() !==
+      item.replace(/\s+/g, '').toLowerCase()
   );
   const categoriesDB = ['TODO', 'INPROGRESS', 'DONE'].filter(
-    item => task.category.replace(/\s+/g, '').toLowerCase() !== item.replace(/\s+/g, '').toLowerCase()
+    item =>
+      task.category.replace(/\s+/g, '').toLowerCase() !==
+      item.replace(/\s+/g, '').toLowerCase()
   );
   const handleClickContextMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -56,33 +60,30 @@ const TaskToolbar = ({ task }) => {
     };
   }, [isModalOpen]);
 
-  const handleDelete =  () => {
+  const handleDelete = () => {
     try {
-      const result =  deleteTask(task._id);
-           showSuccessToast('Task deleted');
-          } catch (error) {
-      showErrorToast('Something went wrong...');
-      
-    }
-  };
-  async function  handleChangePriority(newCategory)  {
-    const { _id, ...newTask } = task;
-    const editedTask = { ...newTask, category: newCategory };
-    
-try {
-  const result = await editTask({ id: task._id, ...editedTask })
-     if (!isLoading)
-          handleCloseContextMenu();
-     
+      deleteTask(task._id);
+      showSuccessToast('Task deleted');
     } catch (error) {
       showErrorToast('Something went wrong...');
     }
   };
-  
+  async function handleChangePriority(newCategory) {
+    const { _id, ...newTask } = task;
+    const editedTask = { ...newTask, category: newCategory };
+
+    try {
+      await editTask({ id: task._id, ...editedTask });
+      if (!isFetching) handleCloseContextMenu();
+    } catch (error) {
+      showErrorToast('Something went wrong...');
+    }
+  }
+
   return (
     <Container>
-      {isLoading && <Spinner />}
-           <IconButton onClick={handleClickContextMenu}>
+      {isFetching && <Spinner />}
+      <IconButton onClick={handleClickContextMenu}>
         <AiOutlineLogin />
       </IconButton>
       <IconButton onClick={handleOpenModal}>
@@ -97,8 +98,8 @@ try {
         onClick={handleCloseContextMenu}
         classes={{ paper: 'custom-menu' }}
       >
-          <MenuItem
-          onClick={()=>handleChangePriority(categoriesDB[0])}
+        <MenuItem
+          onClick={() => handleChangePriority(categoriesDB[0])}
           style={{ height: 14, marginBottom: 14, padding: 0 }}
         >
           <Wrapper>
@@ -107,7 +108,7 @@ try {
           </Wrapper>
         </MenuItem>
         <MenuItem
-          onClick={()=>handleChangePriority(categoriesDB[1])}
+          onClick={() => handleChangePriority(categoriesDB[1])}
           style={{ height: 14, padding: 0 }}
         >
           <Wrapper>
