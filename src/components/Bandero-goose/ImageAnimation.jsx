@@ -4,7 +4,6 @@ import image2 from './images/1-2.png';
 import image3 from './images/1-3.png';
 import image4 from './images/1-4.png';
 import image5 from './images/1-5.png';
-import css from './index.css';
 
 const ImageAnimation = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -23,7 +22,7 @@ const ImageAnimation = () => {
   });
 
   return (
-    <div className={css.animation}>
+    <>
       <img
         style={{
           // backgroundColor: "#dcebf7",
@@ -38,7 +37,7 @@ const ImageAnimation = () => {
         src={imageSources[currentImageIndex]}
         alt="Змінюючеся зображення"
       />
-    </div>
+    </>
   );
 };
 
