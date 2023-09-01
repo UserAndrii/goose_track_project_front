@@ -138,9 +138,14 @@ export const Forma = styled.form`
   }
 
   @media screen and (min-width: 1440px) {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     align-items: start;
-    gap: 50px;
+    justify-items: start;
+    flex: 1;
+
+    grid-column-gap: 50px;
+    grid-row-gap: auto;
   }
 
   & > div {
@@ -230,6 +235,7 @@ export const Button = styled.button`
 
   @media screen and (min-width: 1440px) {
     margin-top: auto;
+    grid-column: span 2;
   }
 `;
 

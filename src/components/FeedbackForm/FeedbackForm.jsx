@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Rating } from 'react-simple-star-rating';
+import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 
 import {
   reviewsApi,
@@ -22,7 +23,7 @@ import {
 } from './FeedbackForm.styled';
 
 const FeedbackForm = ({ onClose }) => {
-  const { data: userReviewData, refetch } = useGetUserReviewQuery();
+  const { data: userReviewData } = useGetUserReviewQuery();
 
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
@@ -44,14 +45,16 @@ const FeedbackForm = ({ onClose }) => {
       setRating(0);
       setReview('');
     }
-  }, [userReviewData, refetch]);
+  }, [userReviewData]);
 
   const handleEditReview = () => {
     setIsEditMode(true);
+    setIsDeleteMode(false);
   };
 
   const handleDeleteReview = () => {
     setIsDeleteMode(true);
+    setIsEditMode(false);
   };
 
   const handleSubmit = async event => {
@@ -59,17 +62,25 @@ const FeedbackForm = ({ onClose }) => {
     if (isEditMode) {
       try {
         await editReview({ review, rating }).unwrap();
+        showSuccessToast('You have successfully edited your comment!');
         setIsEditMode(false);
         onClose();
       } catch (error) {
-        console.error('Error editing review:', error);
+        showErrorToast(
+          'Error editing review: the Rating and Review fields must be filled'
+        );
       }
     } else {
       try {
         await createReview({ review, rating }).unwrap();
+        showSuccessToast(
+          'Thank you for your feedback! It will be published soon.'
+        );
         onClose();
       } catch (error) {
-        console.error('Error creating review:', error);
+        showErrorToast(
+          'Error creating review: the Rating and Review fields must be filled'
+        );
       }
     }
   };
@@ -77,11 +88,14 @@ const FeedbackForm = ({ onClose }) => {
   const handleDelete = async () => {
     try {
       await deleteReview();
+      showSuccessToast(
+        "Your review has been deleted. We hope we didn't upset you?"
+      );
       setIsDeleteMode(false);
       dispatch(reviewsApi.util.resetApiState());
       onClose();
     } catch (error) {
-      console.error('Error deleting review:', error);
+      showErrorToast('Error deleting review: try again please');
     }
   };
 
