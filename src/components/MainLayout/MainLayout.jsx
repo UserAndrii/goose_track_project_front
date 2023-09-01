@@ -9,6 +9,7 @@ import { Container, Overlay, Main, WrapperMain } from './MainLayout.styled';
 
 import Header from '../Header';
 import SideBar from '../SideBar';
+import Spinner from '../Spiner';
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -39,11 +40,8 @@ const MainLayout = () => {
       <Main>
         <SideBar closeSidebar={closeSidebar} sidebarVisible={sidebarVisible} />
         <WrapperMain>
-          <Header
-            openSidebar={openSidebar}
-            // user={user}
-          />
-          <Suspense fallback={'Loading...'}>
+          <Header openSidebar={openSidebar} />
+          <Suspense fallback={<Spinner />}>
             <Outlet />
           </Suspense>
         </WrapperMain>

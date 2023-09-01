@@ -32,7 +32,11 @@ const UserForm = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  const firstName = user.userName.split(' ')[0];
+  if (!user.userName) {
+    return;
+  }
+
+  const firstName = user?.userName?.split(' ')[0];
   const firstLetter = firstName[0]?.toUpperCase();
 
   const handleSubmit = event => {
@@ -108,7 +112,7 @@ const UserForm = () => {
               <input
                 type="text"
                 name="phone"
-                placeholder={user.phone ? user.phone : '38 (000) 000 00 00'}
+                placeholder={user.phone ? user.phone : '(000) 000-0000'}
                 value={newPhone}
                 onChange={e => setNewPhone(e.target.value)}
               />
