@@ -7,17 +7,12 @@ import { CgTrashEmpty } from 'react-icons/cg';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 import { tasksApi } from 'redux/tasks/tasksApi';
 import Spinner from '../Spiner/Spiner';
-import {
-  showErrorToast,
-  showSuccessToast,
-} from '../ErrorFunction/showErrorToast';
+import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 import './ContextMenu.css';
 
 const TaskToolbar = ({ task }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-
-
   const [deleteTask] =    tasksApi.useDeleteTasksMutation();
   
   const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();

@@ -144,8 +144,8 @@ const LoginForm = () => {
               </Label>
               <Input
                 type="text"
-                id="email"
                 name="email"
+                id="email"
                 autoComplete="true"
                 value={formik.values.email}
                 placeholder="Enter email"
@@ -189,8 +189,9 @@ const LoginForm = () => {
               <InputWrapperWithIcon>
                 <Input
                   type={showPassword ? 'text' : 'password'}
-                  id="password"
                   name="password"
+                  id="password"
+                  autocomplete="current-password"
                   value={formik.values.password}
                   placeholder="Enter password"
                   onChange={formik.handleChange}

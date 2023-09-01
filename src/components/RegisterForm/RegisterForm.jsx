@@ -104,8 +104,8 @@ const RegisterForm = () => {
               </Label>
               <Input
                 type="text"
-                id="name"
                 name="name"
+                id="userName"
                 autoComplete="true"
                 value={formik.values.name}
                 placeholder="Enter your name"
@@ -135,19 +135,22 @@ const RegisterForm = () => {
               ) : null}
             </InputWrapper>
             <InputWrapper isEmail={'email'}>
-              <Label htmlFor="email"
-              className={
-                formik.touched.email
-                  ? formik.errors.email
-                    ? 'invalid-input'
-                    : 'valid-input'
-                  : ''
-              }
-              >Email</Label>
+              <Label
+                htmlFor="email"
+                className={
+                  formik.touched.email
+                    ? formik.errors.email
+                      ? 'invalid-input'
+                      : 'valid-input'
+                    : ''
+                }
+              >
+                Email
+              </Label>
               <Input
                 type="text"
-                id="email"
                 name="email"
+                id="email"
                 autoComplete="true"
                 value={formik.values.email}
                 placeholder="Enter email"
@@ -176,20 +179,23 @@ const RegisterForm = () => {
               ) : null}
             </InputWrapper>
             <InputWrapper isPassword={'password'}>
-              <Label htmlFor="password"
-              className={
-                formik.touched.password
-                  ? formik.errors.password
-                    ? 'invalid-input'
-                    : 'valid-input'
-                  : ''
-              }
-              >Password</Label>
+              <Label
+                htmlFor="password"
+                className={
+                  formik.touched.password
+                    ? formik.errors.password
+                      ? 'invalid-input'
+                      : 'valid-input'
+                    : ''
+                }
+              >
+                Password
+              </Label>
               <InputWrapperWithIcon>
                 <Input
                   type={showPassword ? 'text' : 'password'}
-                  id="password"
                   name="password"
+                  id="password"
                   value={formik.values.password}
                   placeholder="Enter password"
                   onChange={formik.handleChange}

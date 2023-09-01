@@ -14,7 +14,6 @@ export const tasksApi = createApi({
 
       return headers;
     },
-    keepUnusedDataFor: 10,
   }),
 
   tagTypes: ['Tasks'],
@@ -34,16 +33,16 @@ export const tasksApi = createApi({
         method: 'POST',
         body: data,
       }),
-      providesTags: ['Tasks'],
+      invalidatesTags: ['Tasks'],
     }),
 
     editTasks: builder.mutation({
       query: ({ id, ...data }) => ({
         url: `/tasks/${id}`,
         method: 'PATCH',
-        body: { data },
+        body: data,
       }),
-      providesTags: ['Tasks'],
+      invalidatesTags: ['Tasks'],
     }),
 
     deleteTasks: builder.mutation({

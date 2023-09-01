@@ -5,20 +5,19 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  ResponsiveContainer,
   LabelList,
   Label,
 } from 'recharts';
 // import { Container } from './StatisticsChart.styled';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
+
 // import { format, startOfToday } from 'date-fns';
 
 function CustomBar(props) {
-  const { fill, x, y, width, height, borderRadius } = props;
+  const { x, y, width, height, borderRadius } = props;
 
   return (
     <g>
-      <rect x={x} y={y} width={width} height={height} fill={fill} />
       <rect
         x={x}
         y={y}
@@ -31,12 +30,12 @@ function CustomBar(props) {
     </g>
   );
 }
+
 function CustomBar1(props) {
-  const { fill, x, y, width, height, borderRadius } = props;
+  const { x, y, width, height, borderRadius } = props;
 
   return (
     <g>
-      <rect x={x} y={y} width={width} height={height} fill={fill} />
       <rect
         x={x}
         y={y}
@@ -50,7 +49,7 @@ function CustomBar1(props) {
   );
 }
 const renderCustomizedLabel = props => {
-  const { x, y, width, value } = props;
+  const { x, y, width, value, lineHeight, fontSize } = props;
   const radius = 10;
 
   return (
@@ -58,12 +57,14 @@ const renderCustomizedLabel = props => {
       <text
         x={x + width / 2}
         y={y - radius}
-        fill="#000"
+        fill="#343434"
         textAnchor="middle"
         dominantBaseline="middle"
-        fontSize={16}
+        fontSize={fontSize}
         fontStyle={'normal'}
         fontWeight={500}
+        fontFamily="Poppins"
+        lineheight={lineHeight}
       >
         {value}%
       </text>
@@ -73,8 +74,8 @@ const renderCustomizedLabel = props => {
 const data = [
   {
     name: 'To Do',
-    uv: 5,
-    pv: 10,
+    uv: 0,
+    pv: 0,
   },
   {
     name: 'In Progress',
@@ -94,11 +95,15 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
   const [padChart, setPadChart] = useState(40);
   const [padTopChart, setPadTopChart] = useState(40);
   const [padBottomChart, setPadBottomChart] = useState(40);
-
+  const [fontSize, setFontSize] = useState(16);
+  const [lineHeight, setLineHeight] = useState(18);
+  const [fontSizeL, setFontSizeL] = useState(14);
+  const [lineHeightL, setLineHeightL] = useState(21);
   const [dataChart, setDataChart] = useState(data);
-  const { data: allTasks } = useGetMonthlyTasksQuery(currentMonth);
-  if (allTasks) console.log('allTasks.data :>> ', allTasks.data);
+  const { data: allTasks, refetch } = useGetMonthlyTasksQuery(currentMonth);
+
   useEffect(() => {
+    refetch();
     if (allTasks) {
       const tasks = [...allTasks.data];
       if (tasks && tasks.length > 0) {
@@ -173,33 +178,45 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
           },
         ];
         setDataChart(data);
-      }
+      } else setDataChart(data);
     }
-  }, [allTasks, currentDay]);
+  }, [allTasks, currentDay, refetch]);
   useEffect(() => {
     function handleResize() {
       const screenWidth = window.innerWidth;
       if (screenWidth <= 375) {
-        setChartWidth(320);
-        setChartHeight(400);
+        setChartWidth(307);
+        setChartHeight(418);
         setSizeBar(22);
         setPadChart(14);
         setPadTopChart(80);
         setPadBottomChart(40);
+        setFontSize('12px');
+        setLineHeight('16px');
+        setFontSizeL('12px');
+        setLineHeightL('16px');
       } else if (screenWidth <= 768) {
-        setChartWidth(335);
-        setChartHeight(684);
+        setChartWidth(307);
+        setChartHeight(418);
         setSizeBar(22);
         setPadChart(14);
         setPadTopChart(80);
         setPadBottomChart(40);
+        setFontSize('12px');
+        setLineHeight('16px');
+        setFontSizeL('12px');
+        setLineHeightL('16px');
       } else if (screenWidth < 1440) {
-        setChartWidth(600);
+        setChartWidth(640);
         setChartHeight(424);
         setSizeBar(27);
         setPadChart(32);
         setPadTopChart(64);
         setPadBottomChart(32);
+        setFontSize('16px');
+        setLineHeight('18px');
+        setFontSizeL('14px');
+        setLineHeightL('21px');
       } else {
         setChartWidth(860);
         setChartHeight(440);
@@ -207,6 +224,10 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         setPadChart(40);
         setPadTopChart(80);
         setPadBottomChart(40);
+        setFontSize('16px');
+        setLineHeight('18px');
+        setFontSizeL('14px');
+        setLineHeightL('21px');
       }
     }
 
@@ -219,102 +240,112 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
     };
   }, []);
   return (
-    <ResponsiveContainer width={chartWidth} height={chartHeight}>
-      <BarChart
-        data={dataChart}
-        margin={{
-          top: padTopChart,
-          right: padChart,
-          left: padChart,
-          bottom: padBottomChart,
+    <BarChart
+      width={chartWidth}
+      height={chartHeight}
+      data={dataChart}
+      margin={{
+        top: padTopChart,
+        right: padChart,
+        left: padChart,
+        bottom: padBottomChart,
+      }}
+      style={{
+        border: '0.8px solid #E3F3FF',
+        borderRadius: 16,
+      }}
+    >
+      <CartesianGrid
+        strokeDasharray="0 0"
+        vertical={false}
+        stroke={'#E3F3FF'}
+        horizontal={{
+          strokeWidth: 1,
         }}
+      />
+
+      <XAxis
+        dataKey="name"
+        axisLine={false}
+        tickLine={false}
+        tick={{ dy: 19 }}
         style={{
-          border: '0.8px solid #E3F3FF',
-          borderRadius: 16,
+          color: '#343434',
+          fontFamily: 'Inter',
+          fontSize: '14px',
+          fontStyle: 'normal',
+          fontWeight: 400,
+          lineHeight: '21px',
+        }}
+      />
+      <YAxis
+        axisLine={false}
+        tickLine={false}
+        domain={[0, 100]}
+        tick={{
+          dx: -padChart,
+          color: '#343434',
+          fontFamily: 'Inter',
+          fontSize: '14px',
+          fontStyle: 'normal',
+          fontWeight: 400,
+          lineHeight: '150%',
         }}
       >
-        <CartesianGrid
-          strokeDasharray="0 0"
-          vertical={false}
-          stroke={'#E3F3FF'}
-          horizontal={{
-            strokeWidth: 1,
-          }}
-        />
-
-        <XAxis
-          dataKey="name"
-          axisLine={false}
-          tickLine={false}
-          tick={{ dy: 19 }}
+        <Label
+          value="Tasks"
+          position="top"
+          dx={-25}
+          dy={-24}
           style={{
             color: '#343434',
             fontFamily: 'Inter',
-            fontSize: '14px',
+            fontSize: fontSizeL,
             fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: '150%',
+            fontWeight: 600,
+            lineHeight: lineHeightL,
           }}
         />
-        <YAxis
-          axisLine={false}
-          tickLine={false}
-          domain={[0, 100]}
-          tick={{
-            dx: -padChart,
-            color: '#343434',
-            fontFamily: 'Inter',
-            fontSize: '14px',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: '150%',
-          }}
-        >
-          <Label
-            value="Tasks"
-            position="top"
-            dx={-5}
-            dy={-24}
-            style={{
-              color: '#343434',
-              fontFamily: 'Inter',
-              fontSize: '14px',
-              fontStyle: 'normal',
-              fontWeight: 600,
-              lineHeight: '150%',
-            }}
-          />
-        </YAxis>
+      </YAxis>
 
-        <Bar
+      <Bar
+        dataKey="pv"
+        fill="none"
+        shape={<CustomBar borderRadius={8} />}
+        barSize={sizeBar}
+        style={{ zIndex: 2 }}
+      >
+        <LabelList
           dataKey="pv"
-          fill="none"
-          shape={<CustomBar borderRadius={10} />}
-          barSize={sizeBar}
-          style={{ zIndex: 2 }}
-        >
-          <LabelList dataKey="pv" content={renderCustomizedLabel} />
-        </Bar>
-        <Bar
+          content={renderCustomizedLabel}
+          lineheight={lineHeight}
+          fontSize={fontSize}
+        />
+      </Bar>
+      <Bar
+        dataKey="uv"
+        barSize={sizeBar}
+        fill="none"
+        style={{ zIndex: 2, borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
+        shape={<CustomBar1 borderRadius={8} />}
+      >
+        <LabelList
           dataKey="uv"
-          barSize={sizeBar}
-          fill="none"
-          style={{ zIndex: 2 }}
-          shape={<CustomBar1 borderRadius={10} />}
-        >
-          <LabelList dataKey="uv" content={renderCustomizedLabel} />
-        </Bar>
-        <defs>
-          <linearGradient id="pvGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="rgba(255, 210, 221, 0)" />
-            <stop offset="100%" stopColor="#FFD2DD" />
-          </linearGradient>
-          <linearGradient id="uvGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="rgba(62, 133, 243, 0)" />
-            <stop offset="100%" stopColor="#3E85F3" />
-          </linearGradient>
-        </defs>
-      </BarChart>
-    </ResponsiveContainer>
+          content={renderCustomizedLabel}
+          lineheight={lineHeight}
+          fontSize={fontSize}
+        />
+      </Bar>
+      <defs>
+        <linearGradient id="pvGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="rgba(255, 210, 221, 0)" />
+          <stop offset="100%" stopColor="#FFD2DD" />
+        </linearGradient>
+        <linearGradient id="uvGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="rgba(62, 133, 243, 0)" />
+          <stop offset="100%" stopColor="#3E85F3" />
+        </linearGradient>
+      </defs>
+    </BarChart>
   );
 }

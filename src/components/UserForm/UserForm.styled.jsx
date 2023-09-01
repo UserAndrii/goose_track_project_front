@@ -2,37 +2,25 @@ import styled from '@emotion/styled';
 import { AiFillPlusCircle } from 'react-icons/ai';
 
 export const ContainerWrapper = styled.div`
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media screen and (min-width: 1440px) {
-    justify-content: space-between;
-  }
+  padding: 0 32px 32px 32px;
 `;
 
 export const Container = styled.div`
-  padding: 59px 18px 40px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 60px 0;
   background-color: #ffffff;
   border-radius: 16px;
   text-align: center;
   position: relative;
-  margin: 0 auto;
-  margin-bottom: 40px;
-
-  @media screen and (min-width: 375px) and (max-width: 767px) {
-    width: 299px;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 704px;
-    padding: 40px 175px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 1087px;
-    padding: 60px 165px;
-  }
 `;
 
 export const UserName = styled.h1`
@@ -61,36 +49,37 @@ export const Image = styled.img`
 `;
 
 export const ImageContainer = styled.div`
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  position: absolute;
-  top: -31px;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 18px;
-  border: 1px solid rgb(47, 103, 228);
-  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  @media screen and (min-width: 768px) {
-    width: 124px;
-    height: 124px;
-    position: relative;
-    margin-top: 40px;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 18px;
+
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 1px solid rgb(47, 103, 228);
+
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    top: -31px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  @media screen and (min-width: 1440px) {
-    margin-top: 60px;
+  @media screen and (min-width: 768px) {
+    position: relative;
+    width: 124px;
+    height: 124px;
+    margin-bottom: 20px;
   }
 `;
 
 export const IconContainer = styled(AiFillPlusCircle)`
   position: absolute;
-  right: 80px;
-  top: 20px;
+  bottom: -3px;
+  right: 12px;
   background-color: #ffffff;
   border-radius: 100%;
   width: 14px;
@@ -102,20 +91,12 @@ export const IconContainer = styled(AiFillPlusCircle)`
   border: none;
   cursor: pointer;
   @media screen and (min-width: 375px) and (max-width: 767px) {
-    right: 115px;
-    top: 20px;
   }
 
   @media screen and (min-width: 768px) {
-    right: 310px;
-    top: 155px;
+    right: 23px;
     width: 18px;
     height: 18px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    right: 495px;
-    top: 190px;
   }
 `;
 
@@ -148,23 +129,48 @@ export const Forma = styled.form`
   align-items: center;
   justify-content: center;
 
-  & > label {
+  @media screen and (max-width: 768px) {
+    gap: 18px;
+  }
+
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    justify-items: center;
+
+    flex: 1;
+
+    grid-column-gap: 50px;
+    /* grid-row-gap: auto; */
+  }
+
+  & > div {
     display: flex;
     flex-direction: column;
-    align-items: baseline;
-    margin-bottom: 18px;
-    &:last-of-type {
-      margin-bottom: 40px;
+
+    @media screen and (max-width: 768px) {
+      gap: 18px;
     }
 
     @media screen and (min-width: 768px) {
-      margin-bottom: 24px;
+      gap: 24px;
     }
   }
 
-  & > label > input {
+  & > div > label {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  & > div > label > input {
     width: 100%;
-    height: 40px;
+    height: 42px;
     border-radius: 8px;
     border: 1px solid #e0e0e0;
     padding: 12px 14px;
@@ -175,7 +181,7 @@ export const Forma = styled.form`
     outline: none;
 
     &::placeholder {
-      color: #242725;
+      color: #343434;
       font-size: 14px;
       line-height: 18px;
       font-weight: 400;
@@ -186,10 +192,11 @@ export const Forma = styled.form`
 
     @media screen and (min-width: 768px) {
       width: 354px;
+      height: 46px;
     }
   }
 
-  & > label > p {
+  & > div > label > p {
     color: #111111;
     font-size: 12px;
     line-height: 14px;
@@ -210,10 +217,13 @@ export const Button = styled.button`
   line-height: 17px;
   cursor: pointer;
   outline: none;
+  margin-top: 40px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    background-color: #3cbc81;
+    background-color: #2b78ef;
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   }
   &:disabled {
     background-color: #e0e0e0;
@@ -224,5 +234,38 @@ export const Button = styled.button`
     width: 262px;
     height: 48px;
     padding: 10px 20px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-top: auto;
+    grid-column: span 2;
+  }
+`;
+
+export const CustomInput = styled.input`
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #343434;
+  outline: none;
+
+  &::placeholder {
+    color: #343434;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+  }
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+    width: 271px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
   }
 `;
