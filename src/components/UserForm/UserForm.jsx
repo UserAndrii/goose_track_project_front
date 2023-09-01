@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   ContainerWrapper,
   Container,
@@ -20,17 +20,32 @@ import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'redux/auth/operations';
+import { format, parse } from 'date-fns';
 
 const UserForm = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [newUserName, setNewUserName] = useState('');
-  const [newBirthday, setNewBirthday] = useState(new Date());
-  const [newEmail, setNewEmail] = useState('');
-  const [newPhone, setNewPhone] = useState('');
-  const [newSkype, setNewSkype] = useState('');
-
   const user = useSelector(selectUser);
+
+  const [startDate, setStartDate] = useState(
+    parse(user.birthDay, 'dd/MM/yyyy', new Date()) ?? new Date()
+  );
+
+  const [newUserName, setNewUserName] = useState(user.userName ?? '');
+  const [newEmail, setNewEmail] = useState(user.email ?? '');
+  const [newPhone, setNewPhone] = useState(user.phone ?? '');
+  const [newSkype, setNewSkype] = useState(user.skype ?? '');
+  const [avatarURL, setAvatar] = useState(user.avatarURL ?? '');
+  const [avatarPreviewUrl, setAvatarPreviewUrl] = useState('');
+
   const dispatch = useDispatch();
+  const avatarInputRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (avatarPreviewUrl) {
+        URL.revokeObjectURL(avatarPreviewUrl);
+      }
+    };
+  }, [avatarPreviewUrl]);
 
   if (!user.userName) {
     return;
@@ -39,42 +54,66 @@ const UserForm = () => {
   const firstName = user?.userName?.split(' ')[0];
   const firstLetter = firstName[0]?.toUpperCase();
 
-  const handleSubmit = event => {
+  const handleIconContainerClick = () => {
+    if (avatarInputRef.current) {
+      avatarInputRef.current.click();
+    }
+  };
+
+  const handleIconOnClick = e => {
+    const file = e.target.files[0];
+    setAvatar(file);
+
+    if (file) {
+      const previewUrl = URL.createObjectURL(file);
+      setAvatarPreviewUrl(previewUrl);
+    } else {
+      setAvatarPreviewUrl(user.avatarURL);
+    }
+  };
+
+  const handleSubmit = async event => {
     event.preventDefault();
 
-    const updatedUser = {
-      userName: newUserName || user.userName,
-      birthDay: newBirthday,
-      email: newEmail || user.email,
-      phone: newPhone || user.phone,
-      skype: newSkype || user.skype,
-    };
+    const formData = new FormData(event.target);
+    formData.append('birthDay', format(startDate, 'dd/MM/yyyy'));
+    console.log(avatarURL);
 
-    dispatch(updateUser(updatedUser));
+    dispatch(updateUser(formData));
   };
 
   return (
     <ContainerWrapper>
       <Container>
-        <ImageContainer>
-          {user.avatarURL ? (
-            <Image src={user.avatarURL} alt={user.userName} />
-          ) : (
-            <Letter>{firstLetter}</Letter>
-          )}
-          <IconContainer />
-        </ImageContainer>
-
-        <UserName>{user.userName}</UserName>
-        <Text>User</Text>
         <Forma onSubmit={handleSubmit}>
+          <ImageContainer>
+            {avatarPreviewUrl ? (
+              <Image src={avatarPreviewUrl} alt={user.userName} />
+            ) : user.avatarURL ? (
+              <Image src={user.avatarURL} alt={user.userName} />
+            ) : (
+              <Letter>{firstLetter}</Letter>
+            )}
+            <IconContainer onClick={handleIconContainerClick} />
+            <input
+              type="file"
+              accept="image/*"
+              ref={avatarInputRef}
+              onChange={handleIconOnClick}
+              style={{ display: 'none' }}
+              name="avatar"
+            />
+          </ImageContainer>
+
+          <UserName>{user.userName}</UserName>
+          <Text>User</Text>
           <div>
             <label>
               <p>User Name</p>
               <input
                 type="text"
-                name="username"
-                placeholder={user.userName}
+                name="userName"
+                placeholder="Add a username"
                 value={newUserName}
                 onChange={e => setNewUserName(e.target.value)}
               />
@@ -87,20 +126,25 @@ const UserForm = () => {
                 customInput={
                   <CustomInput
                     type="text"
-                    name="birthday"
-                    placeholder={user.birthDay}
-                    value={newBirthday}
-                    onChange={e => setNewBirthday(e.target.value)}
+                    name="birthDay"
+                    placeholder="Add a birthday"
+                    value={startDate.toString()}
+                    // onChange={e => setStartDate(e.target.value)}
                   />
                 }
               />
+              {/* <DatePicker
+                selected={startDate}
+                onChange={event => setStartDate(event)}
+                customInput={<input type="text" placeholder="aaaa" />}
+              /> */}
             </label>
             <label>
               <p>Email</p>
               <input
                 type="text"
                 name="email"
-                placeholder={user.email}
+                placeholder="Add an email"
                 value={newEmail}
                 onChange={e => setNewEmail(e.target.value)}
               />
@@ -112,7 +156,7 @@ const UserForm = () => {
               <input
                 type="text"
                 name="phone"
-                placeholder={user.phone ? user.phone : '(000) 000-0000'}
+                placeholder="Add a phone number"
                 value={newPhone}
                 onChange={e => setNewPhone(e.target.value)}
               />
@@ -122,7 +166,7 @@ const UserForm = () => {
               <input
                 type="text"
                 name="skype"
-                placeholder={user.skype ? user.skype : 'Add a skype number'}
+                placeholder="Add a skype number"
                 value={newSkype}
                 onChange={e => setNewSkype(e.target.value)}
               />
