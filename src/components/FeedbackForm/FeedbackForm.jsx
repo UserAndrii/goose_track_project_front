@@ -102,8 +102,10 @@ const FeedbackForm = ({ onClose }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <RatingWrapper>
-        <label>Rating</label>
+        <p>Rating</p>
         <Rating
+          name="rating"
+          id="rating"
           onClick={value => setRating(value)}
           fillColor="gold"
           readonly={!isEditMode && userReviewData}
@@ -115,7 +117,7 @@ const FeedbackForm = ({ onClose }) => {
           style={{ marginLeft: '-4px', marginTop: '2px' }}
         />
       </RatingWrapper>
-      <TextAreaLabel>
+      <TextAreaLabel htmlFor="review">
         Review:
         {userReviewData && (
           <IconContainer>
@@ -125,6 +127,8 @@ const FeedbackForm = ({ onClose }) => {
         )}
       </TextAreaLabel>
       <TextArea
+        name="review"
+        id="review"
         value={review}
         placeholder="Enter Text"
         onChange={e => setReview(e.target.value)}

@@ -64,7 +64,7 @@ const renderCustomizedLabel = props => {
         fontStyle={'normal'}
         fontWeight={500}
         fontFamily="Poppins"
-        lineHeight={lineHeight}
+        lineheight={lineHeight}
       >
         {value}%
       </text>
@@ -318,7 +318,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         <LabelList
           dataKey="pv"
           content={renderCustomizedLabel}
-          lineHeight={lineHeight}
+          lineheight={lineHeight}
           fontSize={fontSize}
         />
       </Bar>
@@ -332,7 +332,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         <LabelList
           dataKey="uv"
           content={renderCustomizedLabel}
-          lineHeight={lineHeight}
+          lineheight={lineHeight}
           fontSize={fontSize}
         />
       </Bar>

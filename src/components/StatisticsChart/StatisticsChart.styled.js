@@ -80,32 +80,28 @@ export const WrapLabels = styled.div`
 `;
 
 export const WrapLabel = styled.div`
-width: 90px;
-  display: flex; 
+  width: 90px;
+  display: flex;
   align-items: center;
-  marginRight: 20px;
-
+  marginright: 20px;
 
   // justify-content: center;
   // align-items: center;
   // margin: 0 auto;
 
   @media (max-width: 375px) {
-   marginRight: 14px;
+    marginright: 14px;
   }
 
   @media screen and (min-width: 376px) and (max-width: 767px) {
-    marginRight: 14px;
+    marginright: 14px;
   }
-
-  }`;
+`;
 
 export const Circle = styled.div`
   width: 8px;
   height: 8px;
   border-radius: 50%;
-
-  / }
 `;
 export const Label = styled.p`
   color: #343434;
