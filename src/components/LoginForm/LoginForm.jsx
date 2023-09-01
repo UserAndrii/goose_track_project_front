@@ -189,8 +189,9 @@ const LoginForm = () => {
               <InputWrapperWithIcon>
                 <Input
                   type={showPassword ? 'text' : 'password'}
-                  id="password"
+                  id="password1"
                   name="password"
+                  autocomplete="current-password"
                   value={formik.values.password}
                   placeholder="Enter password"
                   onChange={formik.handleChange}
