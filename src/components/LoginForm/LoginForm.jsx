@@ -53,7 +53,6 @@ const LoginForm = () => {
       .required('This field is required'),
   });
 
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -62,25 +61,24 @@ const LoginForm = () => {
     validationSchema: validationSchema,
 
     onSubmit: async values => {
-      try { 
-         const formData = {
-        email: values.email,
-        password: values.password,
-      };
-
+      try {
+        const formData = {
+          email: values.email,
+          password: values.password,
+        };
 
         setShowAnimation(true);
 
-          setTimeout(() => {
-            setShowAnimation(false);
-          }, 3000);
+        setTimeout(() => {
+          setShowAnimation(false);
+        }, 3000);
 
-          await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         const response = await dispatch(logIn(formData));
         if (response.payload.message === 'success') {
           formik.resetForm();
-            navigate('/calendar')
+          navigate('/calendar');
         }
         return response;
       } catch (error) {
@@ -90,10 +88,8 @@ const LoginForm = () => {
   });
 
   return (
-    < >
-      <Container 
-      style={{ display: showAnimation ? 'none' : 'flex' }}
-      >
+    <>
+      <Container style={{ display: showAnimation ? 'none' : 'flex' }}>
         <StyledForm onSubmit={formik.handleSubmit}>
           <InputGroupe>
             <FormName>Log In</FormName>
@@ -184,7 +180,9 @@ const LoginForm = () => {
                 {formik.touched.password ? (
                   formik.errors.password ? (
                     <ContainerErrorIcon>
-                      <Error className="invalid">{formik.errors.password}</Error>
+                      <Error className="invalid">
+                        {formik.errors.password}
+                      </Error>
                       <ErrorIcon />
                     </ContainerErrorIcon>
                   ) : (
@@ -209,7 +207,6 @@ const LoginForm = () => {
               alreadyRegisteredLink="/register"
             />
           </LinksContainer>
-      
         </StyledForm>
         <PictureWrapper>
           <picture>
@@ -227,17 +224,20 @@ const LoginForm = () => {
           </picture>
         </PictureWrapper>
       </Container>
-      <Container>
-      {showAnimation && <ImageAnimation style={{
-        position: 'absolute',
-        width: '100px',
-        height: '100px',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)', 
-      }} />}
-      </Container>
-      
+      {showAnimation && (
+        <Container>
+          <ImageAnimation
+            style={{
+              position: 'absolute',
+              width: '100px',
+              height: '100px',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          />
+        </Container>
+      )}
     </>
   );
 };

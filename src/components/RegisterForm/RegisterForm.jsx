@@ -74,14 +74,13 @@ const RegisterForm = () => {
           password: values.password,
         };
 
-
         setShowAnimation(true);
 
-          setTimeout(() => {
-            setShowAnimation(false);
-          }, 3000);
+        setTimeout(() => {
+          setShowAnimation(false);
+        }, 3000);
 
-          await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
         const response = await dispatch(register(formData));
         if (response.payload.message === 'success') {
@@ -147,15 +146,18 @@ const RegisterForm = () => {
                 ) : null}
               </InputWrapper>
               <InputWrapper isEmail={'email'}>
-                <Label htmlFor="email"
-                className={
-                  formik.touched.email
-                    ? formik.errors.email
-                      ? 'invalid-input'
-                      : 'valid-input'
-                    : ''
-                }
-                >Email</Label>
+                <Label
+                  htmlFor="email"
+                  className={
+                    formik.touched.email
+                      ? formik.errors.email
+                        ? 'invalid-input'
+                        : 'valid-input'
+                      : ''
+                  }
+                >
+                  Email
+                </Label>
                 <Input
                   type="text"
                   id="email"
@@ -188,15 +190,18 @@ const RegisterForm = () => {
                 ) : null}
               </InputWrapper>
               <InputWrapper isPassword={'password'}>
-                <Label htmlFor="password"
-                className={
-                  formik.touched.password
-                    ? formik.errors.password
-                      ? 'invalid-input'
-                      : 'valid-input'
-                    : ''
-                }
-                >Password</Label>
+                <Label
+                  htmlFor="password"
+                  className={
+                    formik.touched.password
+                      ? formik.errors.password
+                        ? 'invalid-input'
+                        : 'valid-input'
+                      : ''
+                  }
+                >
+                  Password
+                </Label>
                 <InputWrapperWithIcon>
                   <Input
                     type={showPassword ? 'text' : 'password'}
@@ -226,7 +231,9 @@ const RegisterForm = () => {
                 {formik.touched.password ? (
                   formik.errors.password ? (
                     <ContainerErrorIcon>
-                      <Error className="invalid">{formik.errors.password}</Error>
+                      <Error className="invalid">
+                        {formik.errors.password}
+                      </Error>
                       <ErrorIcon />
                     </ContainerErrorIcon>
                   ) : (
@@ -244,7 +251,10 @@ const RegisterForm = () => {
             </Button>
           </InputGroupe>
           <LinksContainer>
-            <AuthNavigate forgotPasswordLink="/" alreadyRegisteredLink="/login" />
+            <AuthNavigate
+              forgotPasswordLink="/"
+              alreadyRegisteredLink="/login"
+            />
           </LinksContainer>
         </StyledForm>
         <PictureWrapper>
@@ -263,19 +273,23 @@ const RegisterForm = () => {
           </picture>
         </PictureWrapper>
       </Container>
-      <Container>
-      {showAnimation && <ImageAnimation style={{
-        position: 'absolute',
-        width: '100px',
-        height: '100px',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-      }} />}
-      </Container>
+
+      {showAnimation && (
+        <Container>
+          <ImageAnimation
+            style={{
+              position: 'absolute',
+              width: '100px',
+              height: '100px',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          />
+        </Container>
+      )}
     </>
   );
 };
 
 export default RegisterForm;
-
