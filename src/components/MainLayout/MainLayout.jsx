@@ -9,7 +9,8 @@ import { Container, Overlay, Main, WrapperMain } from './MainLayout.styled';
 
 import Header from '../Header';
 import SideBar from '../SideBar';
-import Spinner from '../Spiner';
+// import Spinner from '../Spiner';
+import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const MainLayout = () => {
         <SideBar closeSidebar={closeSidebar} sidebarVisible={sidebarVisible} />
         <WrapperMain>
           <Header openSidebar={openSidebar} />
-          <Suspense fallback={<Spinner />}>
+          <Suspense fallback={<ImageAnimation />}>
             <Outlet />
           </Suspense>
         </WrapperMain>

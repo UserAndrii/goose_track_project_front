@@ -42,6 +42,7 @@ export const Main = styled.main`
 `;
 
 export const WrapperMain = styled.div`
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
