@@ -11,20 +11,11 @@ import {
 } from 'redux/auth/selectors';
 import { getCurrentUser } from 'redux/auth/operations';
 
-import Spiner from './Spiner/Spiner';
 import MainLayout from './MainLayout/MainLayout';
 
 import { ChoosedMonth } from './Calendar/ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './Calendar/ChoosedDay/ChoosedDay';
-
-// import MainPage from 'pages/MainPage';
-// import RegisterPage from 'pages/RegisterPage';
-// import LoginPage from 'pages/LoginPage';
-// import AccountPage from 'pages/AccountPage';
-// import CalendarPage from 'pages/CalendarPage';
-// import StatisticsPage from 'pages/StatisticsPage';
-// import NotFoundPage from 'pages/NotFoundPage';
-// import TeamPage from 'pages/TeamPage';
+import ImageAnimation from './Bandero-goose/ImageAnimation';
 
 const MainPage = lazy(() => import('pages/MainPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -37,14 +28,16 @@ const TeamPage = lazy(() => import('pages/TeamPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsFetchingCurrentUser);
+  const isRefreshing = useSelector(selectIsFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
-  return (
-    <Suspense fallback={<Spiner />}>
+  return isRefreshing ? (
+    <ImageAnimation />
+  ) : (
+    <Suspense fallback={<ImageAnimation />}>
       <Routes>
         <Route
           path="/"

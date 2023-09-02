@@ -6,7 +6,15 @@ export const ContainerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 32px 32px 32px;
+  padding: 0 20px 40px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 32px 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 0 32px 32px;
+  }
 `;
 
 export const Container = styled.div`
@@ -15,15 +23,23 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  padding: 60px 0;
+  padding: 60px 0 40px;
   background-color: #ffffff;
   border-radius: 16px;
   text-align: center;
   position: relative;
+
+  @media screen and (min-width: 768px) {
+    padding: 40px 0;
+  }
+
+  @media screen and (min-width: 1440px) {
+    height: 100%;
+    padding: 60px 0;
+  }
 `;
 
-export const UserName = styled.h1`
+export const UserName = styled.h2`
   color: #343434;
   font-size: 14px;
   font-style: normal;
@@ -100,6 +116,18 @@ export const IconContainer = styled(AiFillPlusCircle)`
   }
 `;
 
+export const InputWrapper = styled.div`
+  @media screen and (min-width: 1440px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    justify-items: center;
+    flex: 1;
+
+    grid-column-gap: 50px;
+  }
+`;
+
 export const Text = styled.p`
   color: #343434;
   font-size: 12px;
@@ -128,28 +156,9 @@ export const Forma = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
 
-  @media screen and (max-width: 768px) {
-    gap: 18px;
-  }
-
-  @media screen and (min-width: 768px) {
-    gap: 24px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: start;
-    justify-items: center;
-
-    flex: 1;
-
-    grid-column-gap: 50px;
-    /* grid-row-gap: auto; */
-  }
-
-  & > div {
+  & > div > div {
     display: flex;
     flex-direction: column;
 
@@ -162,13 +171,21 @@ export const Forma = styled.form`
     }
   }
 
-  & > div > label {
+  & > div > div:nth-of-type(1) {
+    margin-bottom: 18px;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  & > div > div > label {
     display: flex;
     flex-direction: column;
     align-items: baseline;
   }
 
-  & > div > label > input {
+  & > div > div > label > input {
     width: 100%;
     height: 42px;
     border-radius: 8px;
@@ -186,8 +203,9 @@ export const Forma = styled.form`
       line-height: 18px;
       font-weight: 400;
     }
+
     @media screen and (min-width: 375px) and (max-width: 767px) {
-      width: 271px;
+      width: 299px;
     }
 
     @media screen and (min-width: 768px) {
@@ -196,7 +214,7 @@ export const Forma = styled.form`
     }
   }
 
-  & > div > label > p {
+  & > div > div > label > p {
     color: #111111;
     font-size: 12px;
     line-height: 14px;
@@ -261,7 +279,7 @@ export const CustomInput = styled.input`
     font-weight: 400;
   }
   @media screen and (min-width: 375px) and (max-width: 767px) {
-    width: 271px;
+    width: 299px;
   }
 
   @media screen and (min-width: 768px) {

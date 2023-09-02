@@ -1,138 +1,203 @@
-// import { useState } from 'react';
-// import {
-//   ContainerWrapper,
-//   Container,
-//   UserName,
-//   Image,
-//   ImageContainer,
-//   IconContainer,
-//   Text,
-//   Forma,
-//   Letter,
-//   Button,
-//   CustomInput,
-// } from './UserForm.styled';
+import { useState, useEffect, useRef } from 'react';
+import {
+  ContainerWrapper,
+  Container,
+  InputWrapper,
+  UserName,
+  Image,
+  ImageContainer,
+  IconContainer,
+  Text,
+  Forma,
+  Letter,
+  Button,
+  CustomInput,
+} from './UserForm.styled';
 
-// import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css';
+import uk from 'date-fns/locale/uk';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import './CustomDatePicker.css';
 
-// import { useSelector } from 'react-redux';
-// import { selectUser } from 'redux/auth/selectors';
-// import { useDispatch } from 'react-redux';
-// import { updateUser } from 'redux/auth/operations';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser } from 'redux/auth/selectors';
+import { updateUser } from 'redux/auth/operations';
+import { format, parse } from 'date-fns';
 
-// const UserForm = () => {
-//   const [startDate, setStartDate] = useState(new Date());
-//   const [newUserName, setNewUserName] = useState('');
-//   const [newBirthday, setNewBirthday] = useState(new Date());
-//   const [newEmail, setNewEmail] = useState('');
-//   const [newPhone, setNewPhone] = useState('');
-//   const [newSkype, setNewSkype] = useState('');
+const UserForm = () => {
+  const { userName, email, phone, skype, birthDay, avatarURL } =
+    useSelector(selectUser);
 
-//   const user = useSelector(selectUser);
-//   const dispatch = useDispatch();
+  const [startDate, setStartDate] = useState(
+    birthDay === '' ? new Date() : parse(birthDay, 'dd/MM/yyyy', new Date())
+  );
+  const [newUserName, setNewUserName] = useState(userName ?? '');
+  const [newEmail, setNewEmail] = useState(email ?? '');
+  const [newPhone, setNewPhone] = useState(phone ?? '');
+  const [newSkype, setNewSkype] = useState(skype ?? '');
+  const [newAvatar, setAvatar] = useState(avatarURL ?? '');
+  const [avatarPreviewUrl, setAvatarPreviewUrl] = useState('');
 
-//   if (!user.userName) {
-//     return;
-//   }
+  const dispatch = useDispatch();
+  const avatarInputRef = useRef(null);
 
-//   const firstName = user?.userName?.split(' ')[0];
-//   const firstLetter = firstName[0]?.toUpperCase();
+  let someChanges =
+    userName !== newUserName ||
+    email !== newEmail ||
+    phone !== newPhone ||
+    skype !== newSkype ||
+    birthDay !== format(startDate, 'dd/MM/yyyy') ||
+    avatarPreviewUrl !== '';
 
-//   const handleSubmit = event => {
-//     event.preventDefault();
+  useEffect(() => {
+    return () => {
+      if (avatarPreviewUrl) {
+        URL.revokeObjectURL(avatarPreviewUrl);
+      }
+    };
+  }, [avatarPreviewUrl]);
 
-//     const updatedUser = {
-//       userName: newUserName || user.userName,
-//       birthDay: newBirthday,
-//       email: newEmail || user.email,
-//       phone: newPhone || user.phone,
-//       skype: newSkype || user.skype,
-//     };
+  const firstName = userName?.split(' ')[0];
+  const firstLetter = firstName[0]?.toUpperCase();
 
-//     dispatch(updateUser(updatedUser));
-//   };
+  const handleIconContainerClick = () => {
+    if (avatarInputRef.current) {
+      avatarInputRef.current.click();
+    }
+  };
 
-//   return (
-//     <ContainerWrapper>
-//       <Container>
-//         <ImageContainer>
-//           {user.avatarURL ? (
-//             <Image src={user.avatarURL} alt={user.userName} />
-//           ) : (
-//             <Letter>{firstLetter}</Letter>
-//           )}
-//           <IconContainer />
-//         </ImageContainer>
+  const handleIconOnClick = e => {
+    const file = e.target.files[0];
+    setAvatar(file);
 
-//         <UserName>{user.userName}</UserName>
-//         <Text>User</Text>
-//         <Forma onSubmit={handleSubmit}>
-//           <div>
-//             <label>
-//               <p>User Name</p>
-//               <input
-//                 type="text"
-//                 name="username"
-//                 placeholder={user.userName}
-//                 value={newUserName}
-//                 onChange={e => setNewUserName(e.target.value)}
-//               />
-//             </label>
-//             <label>
-//               <p>Birthday</p>
-//               <DatePicker
-//                 selected={startDate}
-//                 onChange={date => setStartDate(date)}
-//                 customInput={
-//                   <CustomInput
-//                     type="text"
-//                     name="birthday"
-//                     placeholder={user.birthDay}
-//                     value={newBirthday}
-//                     onChange={e => setNewBirthday(e.target.value)}
-//                   />
-//                 }
-//               />
-//             </label>
-//             <label>
-//               <p>Email</p>
-//               <input
-//                 type="text"
-//                 name="email"
-//                 placeholder={user.email}
-//                 value={newEmail}
-//                 onChange={e => setNewEmail(e.target.value)}
-//               />
-//             </label>
-//           </div>
-//           <div>
-//             <label>
-//               <p>Phone</p>
-//               <input
-//                 type="text"
-//                 name="phone"
-//                 placeholder={user.phone ? user.phone : '(000) 000-0000'}
-//                 value={newPhone}
-//                 onChange={e => setNewPhone(e.target.value)}
-//               />
-//             </label>
-//             <label>
-//               <p>Skype</p>
-//               <input
-//                 type="text"
-//                 name="skype"
-//                 placeholder={user.skype ? user.skype : 'Add a skype number'}
-//                 value={newSkype}
-//                 onChange={e => setNewSkype(e.target.value)}
-//               />
-//             </label>
-//           </div>
-//           <Button type="submit">Save changes</Button>
-//         </Forma>
-//       </Container>
-//     </ContainerWrapper>
-//   );
-// };
+    if (file) {
+      const previewUrl = URL.createObjectURL(file);
+      setAvatarPreviewUrl(previewUrl);
+    } else {
+      setAvatarPreviewUrl(avatarURL);
+    }
+  };
 
-// export default UserForm;
+  const handleSubmit = async event => {
+    event.preventDefault();
+    if (!someChanges) return;
+    const formData = new FormData();
+    if (userName !== newUserName) {
+      formData.append('userName', newUserName);
+    }
+    if (email !== newEmail) {
+      formData.append('email', newEmail);
+    }
+    if (phone !== newPhone) {
+      formData.append('phone', newPhone);
+    }
+    if (skype !== newSkype) {
+      formData.append('skype', newSkype);
+    }
+    if (birthDay !== format(startDate, 'dd/MM/yyyy')) {
+      formData.append('birthDay', format(startDate, 'dd/MM/yyyy'));
+    }
+    if (avatarPreviewUrl !== '') {
+      formData.append('avatar', newAvatar);
+    }
+    dispatch(updateUser(formData));
+  };
+
+  return (
+    <ContainerWrapper>
+      <Container>
+        <Forma onSubmit={handleSubmit}>
+          <ImageContainer>
+            {avatarPreviewUrl ? (
+              <Image src={avatarPreviewUrl} alt={userName} />
+            ) : avatarURL ? (
+              <Image src={avatarURL} alt={userName} />
+            ) : (
+              <Letter>{firstLetter}</Letter>
+            )}
+            <IconContainer onClick={handleIconContainerClick} />
+            <input
+              type="file"
+              accept="image/*"
+              ref={avatarInputRef}
+              onChange={handleIconOnClick}
+              style={{ display: 'none' }}
+              name="avatar"
+            />
+          </ImageContainer>
+          <UserName>{userName}</UserName>
+          <Text>User</Text>
+          <InputWrapper>
+            <div>
+              <label>
+                <p>User Name</p>
+                <input
+                  type="text"
+                  name="userName"
+                  placeholder="Add a username"
+                  value={newUserName}
+                  onChange={e => setNewUserName(e.target.value)}
+                />
+              </label>
+              <label>
+                <p>Birthday</p>
+                <DatePicker
+                  dateFormat="dd/MM/yyyy"
+                  calendarStartDay={1}
+                  selected={startDate}
+                  dateFormat="dd/MM/yyyy"
+                  onChange={date => setStartDate(date)}
+                  customInput={
+                    <CustomInput
+                      type="text"
+                      name="birthDay"
+                      placeholder="Add a birthday"
+                      value={startDate.toString()}
+                    />
+                  }
+                />
+              </label>
+              <label>
+                <p>Email</p>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Add an email"
+                  value={newEmail}
+                  onChange={e => setNewEmail(e.target.value)}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <p>Phone</p>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Add a phone number"
+                  value={newPhone}
+                  onChange={e => setNewPhone(e.target.value)}
+                />
+              </label>
+              <label>
+                <p>Skype</p>
+                <input
+                  type="text"
+                  name="skype"
+                  placeholder="Add a skype number"
+                  value={newSkype}
+                  onChange={e => setNewSkype(e.target.value)}
+                />
+              </label>
+            </div>
+            <Button type="submit" disabled={!someChanges}>
+              Save changes
+            </Button>
+          </InputWrapper>
+        </Forma>
+      </Container>
+    </ContainerWrapper>
+  );
+};
+
+export default UserForm;

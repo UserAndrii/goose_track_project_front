@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { CgClose } from 'react-icons/cg';
 
-export const Container = styled.div`
+export const Container = styled.aside`
   position: absolute;
   display: flex;
 
