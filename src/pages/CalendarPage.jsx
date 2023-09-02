@@ -36,7 +36,9 @@ const CalendarPage = () => {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMonthPage, setIsMonthPage] = useState(true);
+  /* eslint-disable */
   const [tasks, setTasks] = useState(null);
+  /* eslint-enable */
   // day
   const [currentDay, setCurrentDay] = useState(startOfToday());
   // month
@@ -98,7 +100,7 @@ const CalendarPage = () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen]);
-
+  /* eslint-disable */
   useEffect(() => {
     if (allTasks) {
       const Tasks = [...allTasks.data];
@@ -111,7 +113,7 @@ const CalendarPage = () => {
   useEffect(() => {
     navigate(`month/${format(currentDay, 'yyyy-MM-dd')}`);
   }, []);
-
+  /* eslint-enable */
   return (
     <div className={css.calendar}>
       <CalendarToolBar
