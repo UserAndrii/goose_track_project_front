@@ -14,7 +14,6 @@ import {
   CustomInput,
 } from './UserForm.styled';
 
-import uk from 'date-fns/locale/uk';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './CustomDatePicker.css';
@@ -145,7 +144,6 @@ const UserForm = () => {
                   dateFormat="dd/MM/yyyy"
                   calendarStartDay={1}
                   selected={startDate}
-                  dateFormat="dd/MM/yyyy"
                   onChange={date => setStartDate(date)}
                   customInput={
                     <CustomInput
