@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 import { FiMenu } from 'react-icons/fi';
 
-export const Container = styled.div`
+export const Container = styled.header`
   display: flex;
   align-items: center;
-  padding: 24px 20px 95px;
+  padding: 24px 20px 64px;
 
   @media screen and (min-width: 768px) {
     padding: 24px 32px 64px;
   }
 
   @media screen and (min-width: 1440px) {
-    padding: 41px 32px 33px;
+    padding: 40px 32px 32px;
   }
 `;
 

@@ -43,11 +43,11 @@ export const Letter = styled.p`
 `;
 const getPriorityColor = (priority) => {
   switch (priority) {
-    case 'High':
+    case 'high':
       return '#EA3D65';
-    case 'Medium':
+    case 'medium':
       return '#F3B249';
-    case 'Low':
+    case 'low':
       return '#72C2F8';
     default:
       return 'gray';
@@ -58,14 +58,14 @@ export const PriorityBtn = styled.button`
 cursor: pointer;
 height: 20px;
 border: none;
-font-family: inherit;
+${'' /* font-family: inherit; */}
 padding-left: 12px;
 padding-right: 12px;
 margin-left: 8px;
 border-radius:4px;
 color: #F7F6F9;
-background-color: ${({ priority }) => getPriorityColor(priority)};
-font-size: 10px;
+background-color: ${({ priority }) => getPriorityColor(priority.trim().toLowerCase())};
+text-transform: lowercase;
 line-height:calc(12/10);
 font-weight:600;
 ::first-letter {

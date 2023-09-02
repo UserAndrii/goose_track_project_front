@@ -6,25 +6,27 @@ import { HiOutlinePencil } from 'react-icons/hi';
 import { CgTrashEmpty } from 'react-icons/cg';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 import { tasksApi } from 'redux/tasks/tasksApi';
-import {
-  showErrorToast,
-  showSuccessToast,
-} from '../ErrorFunction/showErrorToast';
+import Spinner from '../Spiner/Spiner';
+import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 import './ContextMenu.css';
 
 const TaskToolbar = ({ task }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [deleteTask] = tasksApi.useDeleteTasksMutation();
 
+  const [editTask, { isFetching }] = tasksApi.useEditTasksMutation();
 
-  const [deleteTask, { isLoading, isError }] =
-    tasksApi.useDeleteTasksMutation();
-  console.log('isError :>> ', isError);
-
-  const categories = ['To do', 'In progress', 'Done'].filter(
-    item => task.Category !== item
+  const categories = ['To do', 'In Progress', 'Done'].filter(
+    item =>
+      task.category.replace(/\s+/g, '').toLowerCase() !==
+      item.replace(/\s+/g, '').toLowerCase()
   );
-
+  const categoriesDB = ['TODO', 'INPROGRESS', 'DONE'].filter(
+    item =>
+      task.category.replace(/\s+/g, '').toLowerCase() !==
+      item.replace(/\s+/g, '').toLowerCase()
+  );
   const handleClickContextMenu = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -58,23 +60,29 @@ const TaskToolbar = ({ task }) => {
     };
   }, [isModalOpen]);
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     try {
-      const result = await deleteTask(task.id);
-      console.log(isLoading);
-      if (result.status === 404) {
-        throw new Error();
-      }
+      deleteTask(task._id);
       showSuccessToast('Task deleted');
-      console.log();
-      //   console.log(result);
     } catch (error) {
       showErrorToast('Something went wrong...');
-      console.error('Error deleting task:', error);
     }
   };
+  async function handleChangePriority(newCategory) {
+    const { _id, ...newTask } = task;
+    const editedTask = { ...newTask, category: newCategory };
+
+    try {
+      await editTask({ id: task._id, ...editedTask });
+      if (!isFetching) handleCloseContextMenu();
+    } catch (error) {
+      showErrorToast('Something went wrong...');
+    }
+  }
+
   return (
     <Container>
+      {isFetching && <Spinner />}
       <IconButton onClick={handleClickContextMenu}>
         <AiOutlineLogin />
       </IconButton>
@@ -87,11 +95,11 @@ const TaskToolbar = ({ task }) => {
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
-        onClose={handleCloseContextMenu}
+        onClick={handleCloseContextMenu}
         classes={{ paper: 'custom-menu' }}
       >
         <MenuItem
-          onClick={handleCloseContextMenu}
+          onClick={() => handleChangePriority(categoriesDB[0])}
           style={{ height: 14, marginBottom: 14, padding: 0 }}
         >
           <Wrapper>
@@ -100,7 +108,7 @@ const TaskToolbar = ({ task }) => {
           </Wrapper>
         </MenuItem>
         <MenuItem
-          onClick={handleCloseContextMenu}
+          onClick={() => handleChangePriority(categoriesDB[1])}
           style={{ height: 14, padding: 0 }}
         >
           <Wrapper>
