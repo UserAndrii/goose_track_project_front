@@ -141,6 +141,7 @@ const UserForm = () => {
                 <p>Birthday</p>
                 <DatePicker
                   selected={startDate}
+                  dateFormat="dd/MM/yyyy"
                   onChange={date => setStartDate(date)}
                   customInput={
                     <CustomInput
