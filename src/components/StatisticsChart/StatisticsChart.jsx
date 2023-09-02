@@ -8,10 +8,8 @@ import {
   LabelList,
   Label,
 } from 'recharts';
-// import { Container } from './StatisticsChart.styled';
-import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 
-// import { format, startOfToday } from 'date-fns';
+import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 
 function CustomBar(props) {
   const { x, y, width, height, borderRadius } = props;
