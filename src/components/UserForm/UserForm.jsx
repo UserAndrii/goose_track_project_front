@@ -55,10 +55,6 @@ const UserForm = () => {
     };
   }, [avatarPreviewUrl]);
 
-  // if (!userName) {
-  //   return;
-  // }
-
   const firstName = userName?.split(' ')[0];
   const firstLetter = firstName[0]?.toUpperCase();
 
@@ -127,7 +123,6 @@ const UserForm = () => {
               name="avatar"
             />
           </ImageContainer>
-
           <UserName>{userName}</UserName>
           <Text>User</Text>
           <InputWrapper>
@@ -153,15 +148,9 @@ const UserForm = () => {
                       name="birthDay"
                       placeholder="Add a birthday"
                       value={startDate.toString()}
-                      // onChange={e => setStartDate(e.target.value)}
                     />
                   }
                 />
-                {/* <DatePicker
-                selected={startDate}
-                onChange={event => setStartDate(event)}
-                customInput={<input type="text" placeholder="aaaa" />}
-              /> */}
               </label>
               <label>
                 <p>Email</p>
@@ -196,7 +185,7 @@ const UserForm = () => {
                 />
               </label>
             </div>
-            <Button type="submit" disabled={someChanges ? false : true}>
+            <Button type="submit" disabled={!someChanges}>
               Save changes
             </Button>
           </InputWrapper>
