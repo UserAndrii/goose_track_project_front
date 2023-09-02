@@ -1,17 +1,15 @@
 import './index.css';
-import 'styles/vars.css'
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { Provider } from 'react-redux';
+import { persistor, store } from 'redux/store';
 import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import { App } from 'components/App';
-import { persistor, store } from 'redux/store';
-import { PersistGate } from 'redux-persist/integration/react';
-import GlobalStyles from "components/GlogalStyles"
-
+import GlobalStyles from 'styles/GlogalStyles';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -105,7 +105,7 @@ export const Circle = styled.div`
 `;
 export const Label = styled.p`
   color: #343434;
-  font-family: Poppins;
+  font-family: Poppins, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

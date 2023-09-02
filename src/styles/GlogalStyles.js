@@ -57,6 +57,24 @@ const globalStyles = css`
     font-display: swap;
   }
 
+  @font-face {
+    font-family: 'Poppins';
+    src: local('Poppins'), local('Poppins-Regular'),
+      url('../fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    src: local('Poppins'), local('Poppins-Medium'),
+      url('../fonts/Poppins-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
   body {
     font-family: 'Inter Tight', sans-serif;
 
