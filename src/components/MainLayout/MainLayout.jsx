@@ -5,7 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import { getCurrentUser } from 'redux/auth/operations';
 
-import { Container, Overlay, Main, WrapperMain } from './MainLayout.styled';
+import {
+  Container,
+  Overlay,
+  Main,
+  Wrapper,
+  PageWrapper,
+} from './MainLayout.styled';
 
 import Header from '../Header';
 import SideBar from '../SideBar';
@@ -38,15 +44,17 @@ const MainLayout = () => {
     <Container>
       {sidebarVisible && <Overlay onClick={closeSidebar} />}
 
-      <Main>
+      <Wrapper>
         <SideBar closeSidebar={closeSidebar} sidebarVisible={sidebarVisible} />
-        <WrapperMain>
+        <PageWrapper>
           <Header openSidebar={openSidebar} />
-          <Suspense fallback={<ImageAnimation />}>
-            <Outlet />
-          </Suspense>
-        </WrapperMain>
-      </Main>
+          <Main>
+            <Suspense fallback={<ImageAnimation />}>
+              <Outlet />
+            </Suspense>
+          </Main>
+        </PageWrapper>
+      </Wrapper>
     </Container>
   );
 };
