@@ -3,13 +3,18 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   display: flex;
-  width: 68px;
+  width: 62px;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   background-color: #f5f5f5;
+  @media screen and (min-width: 768px) {
+   width: 68px;
+  }
 `;
 
 export const IconButton = styled.button`
+  display: flex;
+  align-items: flex-end;
   background: none;
   border: none;
   cursor: pointer;
@@ -18,6 +23,9 @@ export const IconButton = styled.button`
   transition: color 0.2s;
    &:hover {
     color: #3E85F3;
+  }
+  @media screen and (min-width: 768px) {
+   font-size: 16px;
   }
 `;
 export const Text = styled.p`

@@ -3,7 +3,7 @@ import TasksColumnCard from 'components/TaskColumnCard';
 
 const ColumnsTasksList = ({tasks}) => {
     if (!tasks) {
-        return;
+        return ;
 }
     return (
         <Container>

@@ -20,31 +20,31 @@ const TasksColumnsList = () => {
   //   );
 
   const { data } = useGetMonthlyTasksQuery('2023-08');
-  const tasks = data?.data;
-
-  // if (tasks) {
-  const todoData = tasks.filter(
+  // const tasks = data?.data;
+  let todoData = [];
+  let inprogressData = [];
+  let doneData = [];
+  if (data) {
+    let tasks = data?.data;
+    // console.log('tasks', tasks);
+    tasks = tasks.filter(item => item.date === '2023-08-10')
+    console.log('tasks', tasks);
+   todoData = tasks.filter(
     task => task.category.replace(/\s+/g, '').toLowerCase() === 'todo'
   );
-  const inprogressData = tasks.filter(
+  inprogressData = tasks.filter(
     task => task.category.replace(/\s+/g, '').toLowerCase() === 'inprogress'
   );
-  const doneData = tasks.filter(
+  doneData = tasks.filter(
     task => task.category.replace(/\s+/g, '').toLowerCase() === 'done'
   );
-  // }
+  }
 
   return (
     <Container>
-      {todoData.length > 0 && (
         <TasksColumn key={1} category={'To do'} tasks={todoData} />
-      )}
-      {inprogressData.length > 0 && (
         <TasksColumn key={2} category={'In progress'} tasks={inprogressData} />
-      )}
-      {doneData.length > 0 && (
         <TasksColumn key={3} category={'Done'} tasks={doneData} />
-      )}
     </Container>
   );
 };

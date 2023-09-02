@@ -35,13 +35,9 @@ const TasksColumn = ({ category, tasks }) => {
     };
   }, [isModalOpen]);
     return (
-      <Container>
-         <ColumnHeadBar
-          category={category}
-          
-          />
-        <ColumnsTasksList
-          tasks={tasks} />
+      <Container tasksLength={tasks.length}>
+         <ColumnHeadBar category={category}/>
+        {tasks.length>0 && <ColumnsTasksList tasks={tasks} />}
         <AddTaskBtn onClick={handleOpenModal} />
          {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
     </Container>
