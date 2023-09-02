@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import CustomToggle from '../CustomToggle';
 import { saveLocal, loadLocal } from './localStorage';
@@ -14,9 +14,18 @@ const ThemeToggler = () => {
     setIsLightTheme(prev => {
       const newTheme = !prev;
       saveLocal('isLightTheme', newTheme);
+
       return newTheme;
     });
   };
+
+  useEffect(() => {
+    if (isLightTheme) {
+      document.body.removeAttribute('dark');
+    } else {
+      document.body.setAttribute('dark', '');
+    }
+  }, [isLightTheme]);
 
   return (
     <CustomToggle
