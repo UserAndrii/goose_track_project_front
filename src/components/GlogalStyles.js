@@ -1,102 +1,101 @@
-// import { Global, css } from '@emotion/react';
+import { Global, css } from '@emotion/react';
 
-// const globalStyles = css`
-//   :root {
-//     --white-color: #ffffff;
-//     --button-bgd-color: #3e85f3;
-//     --color-task-low-priority: #3e85f3;
-//     --bgc-task-low-priority: #ceeefd;
-//     --color-task-medium-priority: #f3b249;
-//     --bgc-task-medium-priority: #fcf0d4;
-//     --color-task-high-priority: #ea3d65;
-//     --bgc-task-high-priority: #ffd2dd;
-//   }
+const globalStyles = css`
+  :root {
+    --white-color: #ffffff;
+    --button-bgd-color: #3e85f3;
+    --color-task-low-priority: #3e85f3;
+    --bgc-task-low-priority: #ceeefd;
+    --color-task-medium-priority: #f3b249;
+    --bgc-task-medium-priority: #fcf0d4;
+    --color-task-high-priority: #ea3d65;
+    --bgc-task-high-priority: #ffd2dd;
+  }
 
-//   @font-face {
-//     font-family: 'Inter';
-//     font-style: normal;
-//     font-weight: 500;
-//     src: local('Inter Medium'), local('Inter-Medium'),
-//       url('fonts/Inter-Medium.ttf') format('ttf');
-//     font-display: swap;
-//   }
-//   @font-face {
-//     font-family: 'Inter';
-//     font-style: normal;
-//     font-weight: 600;
-//     src: local('Inter SemiBold'), local('Inter-SemiBold'),
-//       url('fonts/Inter-SemiBold.ttf') format('ttf');
-//     font-display: swap;
-//   }
-//   @font-face {
-//     font-family: 'Inter';
-//     font-style: normal;
-//     font-weight: 700;
-//     src: local('Inter Bold'), local('Inter-Bold'),
-//       url('fonts/Inter-Bold.ttf') format('ttf');
-//     font-display: swap;
-//   }
+  @font-face {
+    font-family: 'InterTight';
+    src: local('InterTight'), local('InterTight-Regular'),
+      url('../fonts/InterTight-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
 
-//   @font-face {
-//     font-family: 'Coolvetica';
-//     font-style: italic;
-//     font-weight: 400;
-//     src: local('Coolvetica Regular'), local('Coolvetica-Regular'),
-//       url('fonts/Coolvetica-Regular.ttf') format('ttf');
-//     font-display: swap;
-//   }
+  @font-face {
+    font-family: 'InterTight';
+    src: local('InterTight'), local('InterTight-Medium'),
+      url('../fonts/InterTight-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
 
-//   body {
-//     margin: 0;
-//     -webkit-font-smoothing: antialiased;
-//     -moz-osx-font-smoothing: grayscale;
-//     background-color: var(--outlet-background-color);
-//   }
+  @font-face {
+    font-family: 'InterTight';
+    src: local('InterTight'), local('InterTight-SemiBold'),
+      url('../fonts/InterTight-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
 
-//   code {
-//     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-//       monospace;
-//   }
+  @font-face {
+    font-family: 'InterTight';
+    src: local('InterTight'), local('InterTight-Bold'),
+      url('../fonts/InterTight-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
 
-//   ul {
-//     list-style: none;
-//     padding: 0;
-//     margin: 0;
-//   }
+  @font-face {
+    font-family: 'InterTight';
+    src: local('InterTight'), local('InterTight-BoldItalic'),
+      url('../fonts/InterTight-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
 
-//   li {
-//     list-style: none;
-//     margin: 0;
-//     padding: 0;
-//     text-decoration: none;
-//   }
+  body {
+    font-family: 'Inter Tight', sans-serif;
 
-//   h1,
-//   h2,
-//   h3,
-//   h4,
-//   h5,
-//   h6,
-//   p {
-//     margin: 0;
-//     padding: 0;
-//   }
+    background-color: var(--main-background-color);
+    color: #171820;
 
-//   svg {
-//     margin: 0;
-//     padding: 0;
-//   }
-//   ul {
-//     list-style: none;
-//     margin: 0;
-//     padding: 0;
-//   }
-//   p {
-//     margin: 0;
-//     padding: 0;
-//   }
-// `;
+    margin: 0;
+    padding: 0;
+  }
 
-// const GlobalStyles = () => <Global styles={globalStyles} />;
+  ul,
+  ol,
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  h1,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+  }
 
-// export default GlobalStyles;
+  a {
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+`;
+
+const GlobalStyles = () => <Global styles={globalStyles} />;
+
+export default GlobalStyles;
