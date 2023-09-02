@@ -3,10 +3,14 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
 ${'' /* height: 112px; */}
 padding: 14px;
+${'' /* padding-bottom: 18px; */}
 background-color: #F7F6F9;
 border-radius: 8px;
 border: 1px solid #DCE3E5CC;
-margin-bottom: 18px;
+margin-bottom: 14px;
+@media screen and (min-width: 768px) {
+   margin-bottom: 18px;
+}
 `;
 export const Text = styled.div`
 font-size: 14px;
@@ -59,6 +63,7 @@ cursor: pointer;
 height: 20px;
 border: none;
 ${'' /* font-family: inherit; */}
+font-size: 10px;
 padding-left: 12px;
 padding-right: 12px;
 margin-left: 8px;
