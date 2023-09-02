@@ -1,6 +1,11 @@
+import React, { useEffect } from 'react';
 import Team from '../components/Team/Team';
 
 const TeamPage = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div style={{
             display: 'flex',
