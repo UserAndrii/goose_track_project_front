@@ -101,7 +101,7 @@ export const CalendarTable = ({
                               onClick={() => {
                                 setCurrentDay(day);
                                 setIsMonthPage(false);
-                                navigate(`day/${formattedDay}`, {});
+                                navigate(`day/${formattedDay}`);
                               }}
                             >
                               <p className={css.tasks__title}>...</p>
