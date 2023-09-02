@@ -2,13 +2,13 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   width: 1057px;
-  height: 752px;
+  height: 100%;
   box-sizing: border-box;
   background-color: #fff;
   border-radius: 16px;
-  padding: 114px;
+  padding: 0 114px;
   padding-top: 134px;
-  padding-bottom: 104px;
+  padding-bottom: auto;
 
   justify-content: center;
   align-items: center;
@@ -16,27 +16,27 @@ export const Container = styled.div`
 
   @media (max-width: 375px) {
     max-width: 335px;
-    height: auto;
+    height: 100%;
     margin: 0 auto;
     padding: 0 14px;
     padding-top: 28px;
-    padding-bottom: 135px;
+    padding-bottom: auto;
   }
 
   @media screen and (min-width: 376px) and (max-width: 767px) {
     width: 335px;
-    height: 684px;
+    height: 100%;
     padding: 0 14px;
     padding-top: 28px;
-    padding-bottom: 135px;
+    padding-bottom: auto;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     width: 704px;
-    height: 854px;
+    height: 100%;
     padding: 0 32px;
     padding-top: 140px;
-    padding-bottom: 224px;
+    padding-bottom: auto;
   }
 `;
 

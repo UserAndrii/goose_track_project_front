@@ -136,7 +136,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
               tasks.length === 0
                 ? 0
                 : Math.ceil(
-                    (tasks.filter(task => task.category === 'INPROGRES')
+                    (tasks.filter(task => task.category === 'INPROGRESS')
                       .length /
                       tasks.length) *
                       100
@@ -147,7 +147,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
                 : Math.ceil(
                     (tasks.filter(
                       task =>
-                        task.category === 'INPROGRES' &&
+                        task.category === 'INPROGRESS' &&
                         task.date === currentDay
                     ).length /
                       tasks.filter(task => task.date === currentDay).length) *
