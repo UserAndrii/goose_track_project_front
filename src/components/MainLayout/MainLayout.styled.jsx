@@ -32,7 +32,7 @@ export const Overlay = styled.div`
   backdrop-filter: blur(4px);
 `;
 
-export const Main = styled.main`
+export const Wrapper = styled.div`
   flex: 1;
   position: relative;
   overflow: hidden;
@@ -41,10 +41,16 @@ export const Main = styled.main`
   flex-wrap: nowrap;
 `;
 
-export const WrapperMain = styled.div`
-  position: relative;
-  flex: 1;
+export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
+`;
+
+export const Main = styled.main`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `;

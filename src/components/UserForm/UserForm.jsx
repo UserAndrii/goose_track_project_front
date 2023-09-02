@@ -7,6 +7,7 @@ import {
   ImageContainer,
   IconContainer,
   Text,
+  InputWrapper,
   Forma,
   Letter,
   Button,
@@ -107,72 +108,74 @@ const UserForm = () => {
 
           <UserName>{user.userName}</UserName>
           <Text>User</Text>
-          <div>
-            <label>
-              <p>User Name</p>
-              <input
-                type="text"
-                name="userName"
-                placeholder="Add a username"
-                value={newUserName}
-                onChange={e => setNewUserName(e.target.value)}
-              />
-            </label>
-            <label>
-              <p>Birthday</p>
-              <DatePicker
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                customInput={
-                  <CustomInput
-                    type="text"
-                    name="birthDay"
-                    placeholder="Add a birthday"
-                    value={startDate.toString()}
-                    // onChange={e => setStartDate(e.target.value)}
-                  />
-                }
-              />
-              {/* <DatePicker
-                selected={startDate}
-                onChange={event => setStartDate(event)}
-                customInput={<input type="text" placeholder="aaaa" />}
-              /> */}
-            </label>
-            <label>
-              <p>Email</p>
-              <input
-                type="text"
-                name="email"
-                placeholder="Add an email"
-                value={newEmail}
-                onChange={e => setNewEmail(e.target.value)}
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              <p>Phone</p>
-              <input
-                type="text"
-                name="phone"
-                placeholder="Add a phone number"
-                value={newPhone}
-                onChange={e => setNewPhone(e.target.value)}
-              />
-            </label>
-            <label>
-              <p>Skype</p>
-              <input
-                type="text"
-                name="skype"
-                placeholder="Add a skype number"
-                value={newSkype}
-                onChange={e => setNewSkype(e.target.value)}
-              />
-            </label>
-          </div>
-          <Button type="submit">Save changes</Button>
+          <InputWrapper>
+            <div>
+              <label>
+                <p>User Name</p>
+                <input
+                  type="text"
+                  name="userName"
+                  placeholder="Add a username"
+                  value={newUserName}
+                  onChange={e => setNewUserName(e.target.value)}
+                />
+              </label>
+              <label>
+                <p>Birthday</p>
+                <DatePicker
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                  customInput={
+                    <CustomInput
+                      type="text"
+                      name="birthDay"
+                      placeholder="Add a birthday"
+                      value={startDate.toString()}
+                      onChange={e => setStartDate(e.target.value)}
+                    />
+                  }
+                />
+                <DatePicker
+                  selected={startDate}
+                  onChange={event => setStartDate(event)}
+                  customInput={<input type="text" placeholder="aaaa" />}
+                />
+              </label>
+              <label>
+                <p>Email</p>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Add an email"
+                  value={newEmail}
+                  onChange={e => setNewEmail(e.target.value)}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <p>Phone</p>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Add a phone number"
+                  value={newPhone}
+                  onChange={e => setNewPhone(e.target.value)}
+                />
+              </label>
+              <label>
+                <p>Skype</p>
+                <input
+                  type="text"
+                  name="skype"
+                  placeholder="Add a skype number"
+                  value={newSkype}
+                  onChange={e => setNewSkype(e.target.value)}
+                />
+              </label>
+            </div>
+            <Button type="submit">Save changes</Button>
+          </InputWrapper>
         </Forma>
       </Container>
     </ContainerWrapper>
