@@ -16,28 +16,35 @@ import {
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
-import { useDispatch } from 'react-redux';
 import { updateUser } from 'redux/auth/operations';
 import { format, parse } from 'date-fns';
 
 const UserForm = () => {
-  const user = useSelector(selectUser);
+  const { userName, email, phone, skype, birthDay, avatarURL } =
+    useSelector(selectUser);
 
   const [startDate, setStartDate] = useState(
-    parse(user.birthDay, 'dd/MM/yyyy', new Date()) ?? new Date()
+    birthDay === '' ? new Date() : parse(birthDay, 'dd/MM/yyyy', new Date())
   );
-
-  const [newUserName, setNewUserName] = useState(user.userName ?? '');
-  const [newEmail, setNewEmail] = useState(user.email ?? '');
-  const [newPhone, setNewPhone] = useState(user.phone ?? '');
-  const [newSkype, setNewSkype] = useState(user.skype ?? '');
-  const [avatarURL, setAvatar] = useState(user.avatarURL ?? '');
+  const [newUserName, setNewUserName] = useState(userName ?? '');
+  const [newEmail, setNewEmail] = useState(email ?? '');
+  const [newPhone, setNewPhone] = useState(phone ?? '');
+  const [newSkype, setNewSkype] = useState(skype ?? '');
+  const [newAvatar, setAvatar] = useState(avatarURL ?? '');
   const [avatarPreviewUrl, setAvatarPreviewUrl] = useState('');
 
   const dispatch = useDispatch();
   const avatarInputRef = useRef(null);
+
+  let someChanges =
+    userName !== newUserName ||
+    email !== newEmail ||
+    phone !== newPhone ||
+    skype !== newSkype ||
+    birthDay !== format(startDate, 'dd/MM/yyyy') ||
+    avatarPreviewUrl !== '';
 
   useEffect(() => {
     return () => {
@@ -47,11 +54,11 @@ const UserForm = () => {
     };
   }, [avatarPreviewUrl]);
 
-  if (!user.userName) {
-    return;
-  }
+  // if (!userName) {
+  //   return;
+  // }
 
-  const firstName = user?.userName?.split(' ')[0];
+  const firstName = userName?.split(' ')[0];
   const firstLetter = firstName[0]?.toUpperCase();
 
   const handleIconContainerClick = () => {
@@ -68,17 +75,32 @@ const UserForm = () => {
       const previewUrl = URL.createObjectURL(file);
       setAvatarPreviewUrl(previewUrl);
     } else {
-      setAvatarPreviewUrl(user.avatarURL);
+      setAvatarPreviewUrl(avatarURL);
     }
   };
 
   const handleSubmit = async event => {
     event.preventDefault();
-
-    const formData = new FormData(event.target);
-    formData.append('birthDay', format(startDate, 'dd/MM/yyyy'));
-    console.log(avatarURL);
-
+    if (!someChanges) return;
+    const formData = new FormData();
+    if (userName !== newUserName) {
+      formData.append('userName', newUserName);
+    }
+    if (email !== newEmail) {
+      formData.append('email', newEmail);
+    }
+    if (phone !== newPhone) {
+      formData.append('phone', newPhone);
+    }
+    if (skype !== newSkype) {
+      formData.append('skype', newSkype);
+    }
+    if (birthDay !== format(startDate, 'dd/MM/yyyy')) {
+      formData.append('birthDay', format(startDate, 'dd/MM/yyyy'));
+    }
+    if (avatarPreviewUrl !== '') {
+      formData.append('avatar', newAvatar);
+    }
     dispatch(updateUser(formData));
   };
 
@@ -88,9 +110,9 @@ const UserForm = () => {
         <Forma onSubmit={handleSubmit}>
           <ImageContainer>
             {avatarPreviewUrl ? (
-              <Image src={avatarPreviewUrl} alt={user.userName} />
-            ) : user.avatarURL ? (
-              <Image src={user.avatarURL} alt={user.userName} />
+              <Image src={avatarPreviewUrl} alt={userName} />
+            ) : avatarURL ? (
+              <Image src={avatarURL} alt={userName} />
             ) : (
               <Letter>{firstLetter}</Letter>
             )}
@@ -105,7 +127,7 @@ const UserForm = () => {
             />
           </ImageContainer>
 
-          <UserName>{user.userName}</UserName>
+          <UserName>{userName}</UserName>
           <Text>User</Text>
           <div>
             <label>
@@ -172,7 +194,9 @@ const UserForm = () => {
               />
             </label>
           </div>
-          <Button type="submit">Save changes</Button>
+          <Button type="submit" disabled={someChanges ? false : true}>
+            Save changes
+          </Button>
         </Forma>
       </Container>
     </ContainerWrapper>
