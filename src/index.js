@@ -1,4 +1,5 @@
 import './index.css';
+import './utils/multilang';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

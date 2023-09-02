@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation, Trans } from 'react-i18next';
+
 import {
-    Container,
-    ImageWrapper,
-    Image,
-    Text,
-    TextSpan,
-    List,
-    Button,
-    ButtonText,
-    ItemIcon,
-    AuthLink,
+  Container,
+  ImageWrapper,
+  Image,
+  Text,
+  TextSpan,
+  List,
+  Button,
+  ButtonText,
+  ItemIcon,
+  AuthLink,
 } from './AuthSection.styled';
 
+import LangSwitcher from 'components/LangSwitcher/LangSwitcher';
+
 const AuthSection = () => {
+  const { t } = useTranslation();
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [pixelRatio, setPixelRatio] = useState(window.devicePixelRatio || 1);
   const isRetina = pixelRatio > 1;
@@ -56,18 +62,21 @@ const AuthSection = () => {
 
   return (
     <Container>
+      <LangSwitcher/>
       <ImageWrapper>
         <Image src={selectedImagePath} alt="Goose" />
       </ImageWrapper>
       <Text>
-        G<TextSpan>oo</TextSpan>seTrack
+        <Trans i18nKey="authSection.g">G</Trans>
+        <TextSpan>{t('authSection.oo')}</TextSpan>
+        {t('authSection.setrack')}
       </Text>
       <List>
         <Button to="login">
-          <ButtonText>Log in</ButtonText>
+          <ButtonText>{t('authSection.login')}</ButtonText>
           <ItemIcon />
         </Button>
-        <AuthLink to="register">Sign up</AuthLink>
+        <AuthLink to="register">{t('authSection.signup')}</AuthLink>
       </List>
     </Container>
   );
