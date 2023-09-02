@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa';
+import { LuLogOut } from 'react-icons/lu';
 
 export const Container = styled.div`
   background-color: #3e85f3;
@@ -10,6 +11,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: auto;
+  padding: 40px 0;
 
   @media screen and (max-width: 767px) {
     min-width: 375px;
@@ -25,43 +27,92 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  margin-top: 14px;
-  margin-bottom: 10px;
   color: #ffffff;
+  text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
+    0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 28px;
-  font-weight: 500;
-  line-height: 1.25;
-  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.09;
+  margin-bottom: 30px;
 
   @media screen and (min-width: 768px) {
-    font-size: 40px;
-    margin-bottom: 15px;
+    font-size: 60px;
+    line-height: 1.3;
+    margin-bottom: 40px;
   }
 
   @media screen and (min-width: 1440px) {
-    margin-bottom: 20px;
+    font-size: 100px;
+    line-height: 1.25;
+    margin-bottom: 50px;
+  }
+`;
+
+export const TitleSpan = styled.span`
+  color: #ffffff;
+  font-size: 28px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.09;
+
+  @media screen and (min-width: 768px) {
+    font-size: 60px;
+    line-height: 1.3;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 100px;
+    line-height: 1.25;
   }
 `;
 
 export const Button = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.28px;
+  cursor: pointer;
+
   background: #ffffff;
   color: #3e85f3;
-  display: flex;
-  border: none;
-  border-radius: 14px;
-  padding: 2px 10px;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.29;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  &:hover {
-    text-decoration: underline;
+  width: 131px;
+  padding: 14px 28px;
+  margin-top: auto;
+  border: none;
+  border-radius: 16px;
+
+  :hover {
+    color: #2b78ef;
+    box-shadow: 4px 2px 16px 0px rgba(255, 255, 255, 0.48);
   }
 
   @media screen and (min-width: 768px) {
-    padding: 5px 15px;
-    margin-bottom: 0;
-    font-size: 20px;
+    width: 141px;
+    padding: 16px 23px;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.36px;
+  }
+`;
+
+export const Icon = styled(LuLogOut)`
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  color: inherit;
+  margin-left: 6px;
+
+  @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+    margin-left: 11px;
   }
 `;
 
@@ -69,7 +120,7 @@ export const List = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   margin-top: 35px;
-  margin-bottom: 60px;
+  /* margin-bottom: 60px; */
   gap: 30px;
   width: 100%;
 

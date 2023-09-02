@@ -1,6 +1,13 @@
 import { PeriodPaginator } from 'components/Calendar/PeriodPaginator/PeriodPaginator';
 import StatisticsChart from 'components/StatisticsChart/StatisticsChart';
-import { Container } from 'components/StatisticsChart/StatisticsChart.styled';
+import {
+  Circle,
+  Container,
+  Label,
+  WrapLabel,
+  WrapLabels,
+  WrapPeriod,
+} from 'components/StatisticsChart/StatisticsChart.styled';
 import {
   addDays,
   addMonths,
@@ -16,7 +23,6 @@ import { useState } from 'react';
 const StatisticsPage = () => {
   const [currentDay, setCurrentDay] = useState(startOfToday());
   const [currentMonth, setCurrentMonth] = useState(currentDay);
-  //format(startOfToday(), 'yyyy-MM')
   const next = () => {
     const nextDay = addDays(currentDay, 1);
     if (nextDay.getDate() === 1) {
@@ -36,12 +42,35 @@ const StatisticsPage = () => {
   };
   return (
     <Container>
-      <PeriodPaginator
-        currentMonth={currentDay}
-        isMonthPage={false}
-        nextMonth={next}
-        previousMonth={previous}
-      />
+      <WrapPeriod>
+        <PeriodPaginator
+          currentMonth={currentDay}
+          isMonthPage={false}
+          nextMonth={next}
+          previousMonth={previous}
+        />
+
+        <WrapLabels>
+          <WrapLabel>
+            <Circle
+              style={{
+                backgroundColor: '#FFD2DD',
+                marginRight: '8px',
+              }}
+            />
+            <Label>By Day</Label>
+          </WrapLabel>
+          <WrapLabel>
+            <Circle
+              style={{
+                backgroundColor: '#3E85F3',
+                marginRight: '8px',
+              }}
+            />
+            <Label>By Month</Label>
+          </WrapLabel>
+        </WrapLabels>
+      </WrapPeriod>
       <StatisticsChart
         currentDay={format(currentDay, 'yyyy-MM-dd')}
         currentMonth={format(currentMonth, 'yyyy-MM')}

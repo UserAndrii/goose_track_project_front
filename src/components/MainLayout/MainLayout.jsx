@@ -5,10 +5,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import { getCurrentUser } from 'redux/auth/operations';
 
-import { Container, Overlay, Main, WrapperMain } from './MainLayout.styled';
+import {
+  Container,
+  Overlay,
+  Main,
+  Wrapper,
+  PageWrapper,
+} from './MainLayout.styled';
 
 import Header from '../Header';
 import SideBar from '../SideBar';
+// import Spinner from '../Spiner';
+import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 const MainLayout = () => {
   const dispatch = useDispatch();
@@ -36,18 +44,17 @@ const MainLayout = () => {
     <Container>
       {sidebarVisible && <Overlay onClick={closeSidebar} />}
 
-      <Main>
+      <Wrapper>
         <SideBar closeSidebar={closeSidebar} sidebarVisible={sidebarVisible} />
-        <WrapperMain>
-          <Header
-            openSidebar={openSidebar}
-            // user={user}
-          />
-          <Suspense fallback={'Loading...'}>
-            <Outlet />
-          </Suspense>
-        </WrapperMain>
-      </Main>
+        <PageWrapper>
+          <Header openSidebar={openSidebar} />
+          <Main>
+            <Suspense fallback={<ImageAnimation />}>
+              <Outlet />
+            </Suspense>
+          </Main>
+        </PageWrapper>
+      </Wrapper>
     </Container>
   );
 };

@@ -6,7 +6,15 @@ export const ContainerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 32px 32px 32px;
+  padding: 0 20px 40px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 32px 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 0 32px 32px;
+  }
 `;
 
 export const Container = styled.div`
@@ -15,15 +23,23 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  padding: 60px 0;
+  padding: 60px 0 40px;
   background-color: #ffffff;
   border-radius: 16px;
   text-align: center;
   position: relative;
+
+  @media screen and (min-width: 768px) {
+    padding: 40px 0;
+  }
+
+  @media screen and (min-width: 1440px) {
+    height: 100%;
+    padding: 60px 0;
+  }
 `;
 
-export const UserName = styled.h1`
+export const UserName = styled.h2`
   color: #343434;
   font-size: 14px;
   font-style: normal;
@@ -100,6 +116,18 @@ export const IconContainer = styled(AiFillPlusCircle)`
   }
 `;
 
+export const InputWrapper = styled.div`
+  @media screen and (min-width: 1440px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
+    justify-items: center;
+    flex: 1;
+
+    grid-column-gap: 50px;
+  }
+`;
+
 export const Text = styled.p`
   color: #343434;
   font-size: 12px;
@@ -128,22 +156,9 @@ export const Forma = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
 
-  @media screen and (max-width: 768px) {
-    gap: 18px;
-  }
-
-  @media screen and (min-width: 768px) {
-    gap: 24px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    flex-direction: row;
-    align-items: start;
-    gap: 50px;
-  }
-
-  & > div {
+  & > div > div {
     display: flex;
     flex-direction: column;
 
@@ -156,13 +171,21 @@ export const Forma = styled.form`
     }
   }
 
-  & > div > label {
+  & > div > div:nth-of-type(1) {
+    margin-bottom: 18px;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  & > div > div > label {
     display: flex;
     flex-direction: column;
     align-items: baseline;
   }
 
-  & > div > label > input {
+  & > div > div > label > input {
     width: 100%;
     height: 42px;
     border-radius: 8px;
@@ -175,13 +198,14 @@ export const Forma = styled.form`
     outline: none;
 
     &::placeholder {
-      color: #242725;
+      color: #343434;
       font-size: 14px;
       line-height: 18px;
       font-weight: 400;
     }
+
     @media screen and (min-width: 375px) and (max-width: 767px) {
-      width: 271px;
+      width: 299px;
     }
 
     @media screen and (min-width: 768px) {
@@ -190,7 +214,7 @@ export const Forma = styled.form`
     }
   }
 
-  & > div > label > p {
+  & > div > div > label > p {
     color: #111111;
     font-size: 12px;
     line-height: 14px;
@@ -212,10 +236,12 @@ export const Button = styled.button`
   cursor: pointer;
   outline: none;
   margin-top: 40px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    background-color: #3cbc81;
+    background-color: #2b78ef;
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   }
   &:disabled {
     background-color: #e0e0e0;
@@ -230,5 +256,34 @@ export const Button = styled.button`
 
   @media screen and (min-width: 1440px) {
     margin-top: auto;
+    grid-column: span 2;
+  }
+`;
+
+export const CustomInput = styled.input`
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #343434;
+  outline: none;
+
+  &::placeholder {
+    color: #343434;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+  }
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+    width: 299px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 46px;
   }
 `;

@@ -74,11 +74,11 @@ const AddTaskForm = ({ onClose }) => {
 
   return (
     <Form onSubmit={handleAddTask}>
-      <Label htmlFor="title">
+      <Label>
         Title
         <Input
           type="text"
-          id="title"
+          name="title"
           placeholder="Enter text"
           value={title}
           onChange={e => setTitle(e.target.value)}

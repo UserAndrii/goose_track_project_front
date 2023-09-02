@@ -28,7 +28,7 @@ font-weight: 500;
 @media screen and (min-width: 768px) {
     font-size: 14px;
     line-height: calc(18/14);
-    font-weight: 500;
+   
   }
 `;
 export const Wrapper = styled.div`

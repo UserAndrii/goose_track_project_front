@@ -13,17 +13,12 @@ import { selectUser } from 'redux/auth/selectors';
 
 const TaskColumnCard = ({ task }) => {
   const { userName, avatarURL } = useSelector(selectUser);
-  const firstLetter = '';
-  if (userName) {
-    // const firstName = userName.split(' ')[0];
-    // firstLetter = firstName[0]?.toUpperCase();
-  }
-  //   const firstName = userName.split(' ')[0];
-  //   const firstLetter = firstName[0]?.toUpperCase();
+    const firstName = userName.split(' ')[0];
+    const firstLetter = firstName[0]?.toUpperCase();
 
   return (
     <Container>
-      <Text>{task.Title}</Text>
+      <Text>{task.title}</Text>
       <Board>
         <ButtonsContainer>
           <Avatar>
@@ -33,8 +28,8 @@ const TaskColumnCard = ({ task }) => {
               <Letter>{firstLetter}</Letter>
             )}
           </Avatar>
-          <PriorityBtn priority={task.Priority} type="button">
-            {task.Priority}
+          <PriorityBtn priority={task.priority} type="button">
+            {task.priority}
           </PriorityBtn>
         </ButtonsContainer>
         <TaskToolbar task={task} />

@@ -24,12 +24,12 @@ export const NotFound = () => {
           />
           <source
             type="image/webp"
-            media="(max-width: 1279px)"
+            media="(max-width: 1439px)"
             srcSet={`${tablet.notFoundTabletwebp} 1x, ${tablet.notFoundTabletwebp2x} 2x`}
           />
           <source
             type="image/webp"
-            media="(min-width: 1280px)"
+            media="(min-width: 1440px)"
             srcSet={`${desktop.notFoundDesktopwebp} 1x, ${desktop.notFoundDesktopwebp2x} 2x`}
           />
           <source
@@ -39,12 +39,12 @@ export const NotFound = () => {
           />
           <source
             type="image/png"
-            media="(max-width: 1279px)"
+            media="(max-width: 1439pxpx)"
             srcSet={`${tablet.notFoundTabletpng} 1x, ${tablet.notFoundTabletpng2x} 2x`}
           />
           <source
             type="image/png"
-            media="(min-width: 1280px)"
+            media="(min-width: 1440px)"
             srcSet={`${desktop.notFoundDesktoppng} 1x, ${desktop.notFoundDesktoppng2x} 2x`}
           />
           <img

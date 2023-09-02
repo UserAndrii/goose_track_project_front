@@ -37,8 +37,9 @@ const TasksColumn = ({ category, tasks }) => {
     return (
       <Container>
          <ColumnHeadBar
-                category={category}
-            />
+          category={category}
+          
+          />
         <ColumnsTasksList
           tasks={tasks} />
         <AddTaskBtn onClick={handleOpenModal} />
