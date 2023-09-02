@@ -1,25 +1,29 @@
-import css from '../Caledar.module.css';
-import { format, parseISO } from 'date-fns';
 import { useParams } from 'react-router-dom';
+import css from '../Caledar.module.css';
+import { format, parse } from 'date-fns';
 
 export const PeriodPaginator = ({
-  currentMonth,
   isMonthPage,
   nextPeriod,
   prevPeriod,
+  currentMonth,
+  currentDay,
 }) => {
   const { currentDate } = useParams();
-  console.log('currentDate', currentDate);
+  const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
 
-  // const parsedDate = parseISO(currentDate);
-  // console.log('parsedDate', parsedDate);
+  const formattedMonth =
+    currentDate === undefined ? currentMonth : parsedCurrentDate;
+
+  const formattedDay =
+    currentDate === undefined ? currentDay : parsedCurrentDate;
 
   return (
     <div className={css.toolbar__innerBlock}>
       <button className={css.toolbar__curerntDate}>
         {isMonthPage
-          ? format(currentMonth, 'MMMM yyyy')
-          : format(currentMonth, 'd MMMM yyyy')}
+          ? format(formattedMonth, 'MMMM yyyy')
+          : format(formattedDay, 'd MMMM yyyy')}
       </button>
       <div className={css.toggleButtons}>
         <button className={css.toggleButtons__previous} onClick={prevPeriod}>

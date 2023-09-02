@@ -8,6 +8,7 @@ import { ChoosedDay } from '../components/Calendar/ChoosedDay/ChoosedDay';
 import { useNavigate } from 'react-router-dom';
 
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
+import css from '../components/Calendar/Caledar.module.css';
 
 import {
   format,
@@ -15,13 +16,14 @@ import {
   endOfWeek,
   endOfMonth,
   addDays,
+  isWithinInterval,
   // isSameMonth,
   // isSameDay,
-  isToday,
+  // isToday,
   eachDayOfInterval,
   startOfToday,
   parse,
-  add,
+  // add,
   // addWeeks,
   // subWeeks,
   // isBefore,
@@ -30,13 +32,13 @@ import {
 } from 'date-fns';
 
 const CalendarPage = () => {
+  const navigate = useNavigate();
+
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMonthPage, setIsMonthPage] = useState(true);
   const [tasks, setTasks] = useState(null);
-
   // day
   const [currentDay, setCurrentDay] = useState(startOfToday());
-
   // month
   const [currentMonth, setCurrentMonth] = useState(
     format(startOfToday(), 'MMM-yyyy')
@@ -48,17 +50,34 @@ const CalendarPage = () => {
     end: endOfWeek(endOfMonth(firstDayCurrentMonth)),
   });
 
-  // const handleOpenModal = () => {
-  //   setModalOpen(true);
-  //   document.body.style.overflow = 'hidden';
-  // };
+  const today = startOfToday();
+
+  // Weeks
+  const [currentWeek, setCurrentWeek] = useState({
+    start: startOfWeek(today, { weekStartsOn: 1 }),
+    end: addDays(endOfWeek(today, { weekStartsOn: 0 }), 1),
+  });
+  const week = eachDayOfInterval(currentWeek);
+  const isInCurrentWeek = isWithinInterval(currentDay, currentWeek);
+
+  if (!isInCurrentWeek) {
+    const newStartOfWeek = startOfWeek(currentDay, {
+      weekStartsOn: 1,
+    });
+    const newEndOfWeek = addDays(endOfWeek(currentDay, { weekStartsOn: 0 }), 1);
+
+    const newCurrentWeek = {
+      start: newStartOfWeek,
+      end: newEndOfWeek,
+    };
+
+    setCurrentWeek(newCurrentWeek);
+  }
 
   const handleCloseModal = () => {
     setModalOpen(false);
     document.body.style.overflow = 'auto';
   };
-
-  const navigate = useNavigate();
 
   const { data: allTasks, refetch } = useGetMonthlyTasksQuery(
     format(currentDay, 'yyyy-MM')
@@ -81,14 +100,8 @@ const CalendarPage = () => {
   }, [isModalOpen]);
 
   useEffect(() => {
-    console.log('allTasks', allTasks);
-
     if (allTasks) {
       const Tasks = [...allTasks.data];
-      console.log('Tasks', Tasks);
-
-      // if (tasks && tasks.length > 0) {
-      // }
 
       refetch();
       setTasks(Tasks);
@@ -97,29 +110,31 @@ const CalendarPage = () => {
 
   useEffect(() => {
     navigate(`month/${format(currentDay, 'yyyy-MM-dd')}`);
-  }, [currentDay]);
+  }, []);
 
   return (
-    <div>
+    <div className={css.calendar}>
       <CalendarToolBar
+        currentDay={currentDay}
+        setCurrentDay={setCurrentDay}
+        currentMonth={firstDayCurrentMonth}
+        setCurrentMonth={setCurrentMonth}
         isMonthPage={isMonthPage}
         setIsMonthPage={setIsMonthPage}
-        currentDay={currentDay}
-        currentMonth={currentMonth}
-        firstDayCurrentMonth={firstDayCurrentMonth}
-        setCurrentMonth={setCurrentMonth}
-        setCurrentDay={setCurrentDay}
+        week={week}
       />
       {isMonthPage ? (
         <ChoosedMonth
           currentDay={firstDayCurrentMonth}
           days={days}
+          setCurrentDay={setCurrentDay}
+          week={week}
           allTasks={allTasks && allTasks}
+          setIsMonthPage={setIsMonthPage}
         />
       ) : (
-        <ChoosedDay Week={days} />
+        <ChoosedDay week={week} currentDay={currentDay} />
       )}
-      {/* <TasksColumnsList /> */}
       {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
     </div>
   );

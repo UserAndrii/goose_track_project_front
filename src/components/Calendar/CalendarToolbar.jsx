@@ -1,75 +1,31 @@
 import css from './Caledar.module.css';
-import { useState } from 'react';
-
-import {
-  format,
-  startOfWeek,
-  endOfWeek,
-  endOfMonth,
-  addDays,
-  // isSameMonth,
-  // isSameDay,
-  isToday,
-  eachDayOfInterval,
-  startOfToday,
-  parse,
-  add,
-  // addWeeks,
-  // subWeeks,
-  // isBefore,
-  // isEqual,
-  // startOfMonth,
-} from 'date-fns';
-
-import { useMediaQuery } from 'react-responsive';
 
 import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
 import { PeriodPaginatorType } from './PeriodPaginatorType/PeriodPaginatorType';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { format, parse, add } from 'date-fns';
 
 export const CalendarToolBar = ({
   isMonthPage,
   setIsMonthPage,
-  currentDay,
-  firstDayCurrentMonth,
+  currentMonth,
   setCurrentMonth,
+  currentDay,
   setCurrentDay,
 }) => {
-  const today = startOfToday();
+  const navigate = useNavigate();
+  const { currentDate } = useParams();
+  const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
+  const formattedDay =
+    currentDate === undefined ? currentDay : parsedCurrentDate;
 
   // Current Week
-  const [currentWeek] = useState({
-    start: startOfWeek(today, { weekStartsOn: 1 }),
-    end: addDays(endOfWeek(today, { weekStartsOn: 0 }), 1),
-  });
-  const Week = eachDayOfInterval(currentWeek);
-
-  const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
-
-  const prevPeriod = () => {
-    if (isMonthPage) {
-      let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
-      setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
-    } else {
-      const dayAfter = add(currentDay, { days: 1 });
-      setCurrentDay(dayAfter);
-    }
-  };
-
-  const [currentDate, setCurrentDate] = useSearchParams();
-  console.log('currentDate', currentDate);
-
-  const nextPeriod = () => {
-    if (isMonthPage) {
-      let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
-      setCurrentMonth(format(firstDayNextMonth, 'MMM-yyyy'));
-      // window.location.href = `/month/${newDate}`;
-      // navigate()
-    } else {
-      const prevDay = add(currentDay, { days: -1 });
-      setCurrentDay(prevDay);
-    }
-  };
+  // const [currentWeek, setCurrentWeek] = useState({
+  //   start: startOfWeek(today, { weekStartsOn: 1 }),
+  //   end: addDays(endOfWeek(today, { weekStartsOn: 0 }), 1),
+  // });
+  // const Week = eachDayOfInterval(currentWeek);
 
   // Weeks
   // const nextWeek = () => {
@@ -90,73 +46,87 @@ export const CalendarToolBar = ({
   //   setCurrentWeek({ start: prevWeekStart, end: prevWeekEnd });
   // };
 
+  const prevPeriod = () => {
+    const parsedDate = parse(currentDate, 'yyyy-MM-dd', new Date());
+    if (isMonthPage) {
+      const firstDayPrevMonth = add(parsedDate, { months: -1 });
+      setCurrentMonth(format(firstDayPrevMonth, 'MMM-yyyy'));
+      const newDate = format(firstDayPrevMonth, 'yyyy-MM-dd');
+      navigate(`month/${newDate}`);
+    } else {
+      const prevDay = add(parsedDate, { days: -1 });
+      setCurrentDay(prevDay);
+      const newDate = format(prevDay, 'yyyy-MM-dd');
+      navigate(`day/${newDate}`);
+    }
+  };
+
+  const nextPeriod = () => {
+    const parsedDate = parse(currentDate, 'yyyy-MM-dd', new Date());
+    if (isMonthPage) {
+      const firstDayPrevMonth = add(parsedDate, { months: 1 });
+      setCurrentMonth(format(firstDayPrevMonth, 'MMM-yyyy'));
+      const newDate = format(firstDayPrevMonth, 'yyyy-MM-dd');
+      navigate(`month/${newDate}`);
+    } else {
+      const nextDay = add(parsedDate, { days: 1 });
+      setCurrentDay(nextDay);
+      const newDate = format(nextDay, 'yyyy-MM-dd');
+      navigate(`day/${newDate}`);
+    }
+  };
+
   const changeType = state => {
     setIsMonthPage(state);
   };
 
-  const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const abbreviatedDayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-
   return (
-    <div className={css.calendar}>
+    <>
       <div className={css.toolbar}>
         <PeriodPaginator
-          currentMonth={firstDayCurrentMonth}
           isMonthPage={isMonthPage}
           prevPeriod={prevPeriod}
           nextPeriod={nextPeriod}
+          currentDay={currentDay}
+          currentMonth={currentMonth}
         />
 
         <PeriodPaginatorType
-          currentDay={currentDay}
           isMonthPage={isMonthPage}
           changeType={changeType}
         />
       </div>
 
-      <div className={css.mainBlock__dayList}>
-        {isMonthPage ? (
-          <>
-            {Week.map((day, index) => (
-              <span
-                key={day.toString()}
-                className={`${css.day} ${index >= 5 && css.weekend}`}
-              >
-                {isTabletOrMobile
-                  ? dayNames[index]
-                  : abbreviatedDayNames[index]}
-              </span>
-            ))}
-          </>
-        ) : (
-          <>
-            {Week.map((day, index) => (
-              <div className={css.daylist__wrapper} key={day.toString()}>
-                <span className={`${css.day} ${index >= 5 && css.weekend}`}>
-                  {isTabletOrMobile
-                    ? dayNames[index]
-                    : abbreviatedDayNames[index]}
-                </span>
-                <div
-                  className={`${css.row__currentDate} ${
-                    isToday(day) && css.row__currentDateActive
-                  }`}
-                  style={{ position: 'unset', marginTop: 6 }}
-                >
-                  <time
-                    className={`${css.row__number} ${
-                      isToday(day) && css.row__ActiveNumber
-                    }`}
-                    dateTime={format(day, 'yyyy-MM-dd')}
-                  >
-                    {format(day, 'd')}
-                  </time>
-                </div>
-              </div>
-            ))}
-          </>
-        )}
+      <div className={css.calendarRange}>
+        <button
+          className={`${css.calendarRange__buttons} ${css.calendarRange__monthButton}`}
+          style={{
+            backgroundColor: isMonthPage
+              ? 'rgba(62, 133, 243, 0.2)'
+              : 'rgba(227, 243, 255, 1)',
+          }}
+          onClick={() => {
+            navigate(`month/${format(formattedDay, 'yyyy-MM-dd')}`);
+            changeType(true);
+          }}
+        >
+          Month
+        </button>
+        <button
+          className={`${css.calendarRange__buttons} ${css.calendarRange__dayButton}`}
+          style={{
+            backgroundColor: !isMonthPage
+              ? 'rgba(62, 133, 243, 0.2)'
+              : 'rgba(227, 243, 255, 1)',
+          }}
+          onClick={() => {
+            navigate(`day/${format(formattedDay, 'yyyy-MM-dd')}`);
+            changeType(false);
+          }}
+        >
+          Day
+        </button>
       </div>
-    </div>
+    </>
   );
 };
