@@ -103,7 +103,7 @@ export const Circle = styled.div`
   height: 8px;
   border-radius: 50%;
 `;
-export const Label = styled.p`
+export const LabelT = styled.p`
   color: #343434;
   font-family: Poppins, sans-serif;
   font-size: 16px;

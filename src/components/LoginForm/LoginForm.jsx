@@ -32,6 +32,12 @@ import loginElements from 'images/login-elements.png';
 import loginElementsRetina from 'images/login-elements@2x.png';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
+const audio = new Audio(
+  'https://res.cloudinary.com/dnhobiphs/video/upload/v1693689881/%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82_qr2qe8.aac'
+);
+const audio1 = new Audio(
+  'https://res.cloudinary.com/dnhobiphs/video/upload/v1693691158/Goose_-_Sound_Effect_ProSounds_oiuuu1.m4a'
+);
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -68,16 +74,19 @@ const LoginForm = () => {
         };
 
         setShowAnimation(true);
-
+        audio1.play();
         setTimeout(() => {
+          audio1.pause();
           setShowAnimation(false);
         }, 3000);
 
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         const response = await dispatch(logIn(formData));
+
         if (response.payload.message === 'success') {
           formik.resetForm();
+          audio.play();
           navigate('/calendar');
         }
         return response;

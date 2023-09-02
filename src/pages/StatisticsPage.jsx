@@ -3,7 +3,7 @@ import StatisticsChart from 'components/StatisticsChart/StatisticsChart';
 import {
   Circle,
   Container,
-  Label,
+  LabelT,
   WrapLabel,
   WrapLabels,
   WrapPeriod,
@@ -44,10 +44,10 @@ const StatisticsPage = () => {
     <Container>
       <WrapPeriod>
         <PeriodPaginator
-          currentMonth={currentDay}
+          currentDay={currentDay}
           isMonthPage={false}
-          nextMonth={next}
-          previousMonth={previous}
+          nextPeriod={next}
+          prevPeriod={previous}
         />
 
         <WrapLabels>
@@ -58,7 +58,7 @@ const StatisticsPage = () => {
                 marginRight: '8px',
               }}
             />
-            <Label>By Day</Label>
+            <LabelT>By Day</LabelT>
           </WrapLabel>
           <WrapLabel>
             <Circle
@@ -67,7 +67,7 @@ const StatisticsPage = () => {
                 marginRight: '8px',
               }}
             />
-            <Label>By Month</Label>
+            <LabelT>By Month</LabelT>
           </WrapLabel>
         </WrapLabels>
       </WrapPeriod>
