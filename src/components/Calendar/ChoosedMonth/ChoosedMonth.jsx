@@ -8,6 +8,7 @@ export const ChoosedMonth = ({
   setIsMonthPage,
   week,
   setCurrentDay,
+  setTasks,
 }) => {
   return (
     <>
@@ -18,6 +19,7 @@ export const ChoosedMonth = ({
         currentDay={currentDay}
         setCurrentDay={setCurrentDay}
         allTasks={allTasks}
+        setTasks={setTasks}
       />
     </>
   );
