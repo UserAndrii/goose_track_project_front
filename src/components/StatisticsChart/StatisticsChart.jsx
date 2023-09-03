@@ -269,9 +269,9 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         tick={{ dy: 19 }}
         style={{
           color: '#343434',
-          fontFamily: 'Inter',
+
           fontSize: '14px',
-          fontStyle: 'normal',
+
           fontWeight: 400,
           lineHeight: '21px',
         }}
@@ -283,9 +283,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         tick={{
           dx: -padChart,
           color: '#343434',
-          fontFamily: 'Inter',
           fontSize: '14px',
-          fontStyle: 'normal',
           fontWeight: 400,
           lineHeight: '150%',
         }}
@@ -297,9 +295,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
           dy={-24}
           style={{
             color: '#343434',
-            fontFamily: 'Inter',
             fontSize: fontSizeL,
-            fontStyle: 'normal',
             fontWeight: 600,
             lineHeight: lineHeightL,
           }}

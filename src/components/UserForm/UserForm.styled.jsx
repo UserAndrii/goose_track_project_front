@@ -23,8 +23,10 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   padding: 60px 10px 40px;
-  background-color: #ffffff;
+  background-color: var(--main-background-color);
+
   border-radius: 16px;
   text-align: center;
   position: relative;
@@ -40,7 +42,7 @@ export const Container = styled.div`
 `;
 
 export const UserName = styled.h2`
-  color: #343434;
+  color: var(--calendar-date-color);
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -73,7 +75,7 @@ export const ImageContainer = styled.div`
   height: 72px;
   margin-bottom: 18px;
 
-  background-color: #ffffff;
+  background-color: var(--main-background-color);
   border-radius: 50%;
   border: 1px solid rgb(47, 103, 228);
 
@@ -96,7 +98,7 @@ export const IconContainer = styled(AiFillPlusCircle)`
   position: absolute;
   bottom: -3px;
   right: 12px;
-  background-color: #ffffff;
+  background-color: var(--main-background-color);
   border-radius: 100%;
   width: 14px;
   height: 14px;
@@ -129,7 +131,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Text = styled.p`
-  color: #343434;
+  color: var(--calendar-date-color);
   font-size: 12px;
   font-weight: 600;
   line-height: 14px;
@@ -141,7 +143,7 @@ export const Text = styled.p`
 `;
 
 export const Letter = styled.p`
-  color: #3e85f3;
+  color: var(--accent-color);
   font-weight: 700;
   font-size: 33px;
   line-height: 1.28;
@@ -215,7 +217,7 @@ export const Forma = styled.form`
   }
 
   & > div > div > label > p {
-    color: #111111;
+    color: var(--title-text-main-color);
     font-size: 12px;
     line-height: 14px;
     margin-bottom: 8px;
@@ -311,10 +313,10 @@ export const Button = styled.button`
   max-width: 195px;
   height: 46px;
   border-radius: 16px;
-  background: #3e85f3;
+  background: var(--accent-background-color);
   border: none;
   padding: 14px 50px;
-  color: #ffffff;
+  color: var(--btn-text-color);
   font-size: 14px;
   font-weight: 600;
   line-height: 17px;
@@ -325,11 +327,11 @@ export const Button = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #2b78ef;
+    background-color: var(--active-btn-color);
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   }
   &:disabled {
-    background-color: #e0e0e0;
+    background-color: var(--outlet-background-color);
     cursor: default;
   }
 
@@ -349,16 +351,16 @@ export const CustomInput = styled.input`
   width: 100%;
   height: 42px;
   border-radius: 8px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--outlet-background-color);
   padding: 12px 14px;
   font-size: 14px;
   line-height: 18px;
   font-weight: 600;
-  color: #343434;
+  color: var(--modal-input-lable-color);
   outline: none;
 
   &::placeholder {
-    color: #343434;
+    color: var(--modal-input-lable-color);
     font-size: 14px;
     line-height: 18px;
     font-weight: 400;

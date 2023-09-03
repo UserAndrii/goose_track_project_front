@@ -11,7 +11,7 @@ export const Container = styled.div`
 
   min-height: 100vh;
   min-width: 100%;
-  background: #dcebf7;
+  background: var(--auth-background-color);
 `;
 
 export const StyledForm = styled.form`
@@ -22,7 +22,7 @@ export const StyledForm = styled.form`
 `;
 
 export const FormName = styled.h1`
-  color: #3e85f3;
+  color: var(--accent-color);
   text-shadow: 0px 9.4px 57px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 18px;
@@ -60,7 +60,7 @@ export const InputList = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  background: #fff;
+  background: var(--main-background-color);
 `;
 
 export const InputWrapper = styled.li`
@@ -72,7 +72,7 @@ export const InputWrapper = styled.li`
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
-    background-color: #ffffff;
+    background-color: var(--main-background-color);
   }
   @media (min-width: 768px) {
     font-size: 16px;
@@ -90,7 +90,7 @@ export const InputWrapperWithIcon = styled.div`
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
-    background-color: #ffffff;
+    background-color: var(--main-background-color);
   }
 `;
 
@@ -105,7 +105,7 @@ export const Button = styled.button`
   gap: 10px;
 
   border-radius: 16px;
-  background: #3e85f3;
+  background: var(--accent-background-color);
   border: none;
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   cursor: pointer;
@@ -123,7 +123,7 @@ export const Button = styled.button`
 
 export const ButtonText = styled.span`
   white-space: nowrap;
-  color: #ffffff;
+  color: var(--btn-text-color);
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -135,7 +135,7 @@ export const ItemIcon = styled(FiLogIn)`
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: #ffffff;
+  color: var(--btn-text-color);
 `;
 
 export const ShowHideButton = styled.button`
@@ -164,7 +164,7 @@ export const Label = styled.label`
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
-  color: #111111;
+  color: var(--title-text-main-color);
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -180,7 +180,7 @@ export const Label = styled.label`
   &:hover,
   &:focus,
   &:active {
-    color: #111111;
+    color: var(--title-text-main-color);
   }
 `;
 
@@ -192,7 +192,7 @@ export const Input = styled.input`
 
   border-radius: 8px;
   padding: 14px;
-  border: 1px solid rgba(220, 227, 229, 0.6);
+  border: 1px solid var(--btn-border-color);
   background: ${props =>
     props.isPassword || props.isEmail ? '#FFFFFF' : 'none'};
   outline: none;
@@ -208,7 +208,7 @@ export const Input = styled.input`
   &:hover,
   &:focus,
   &:active {
-    border: 1px solid #111111;
+    border: 1px solid var(--title-text-main-color);
   }
 
   @media screen and (min-width: 375px) {
@@ -239,7 +239,7 @@ export const Error = styled.div`
 `;
 
 export const LinkTo = styled(Link)`
-  color: #3e85f3;
+  color: var(--accent-color);
   font-size: 16px;
   line-height: 14px;
   text-decoration: none;

@@ -20,7 +20,7 @@ export const Text = styled.p`
 `;
 
 export const LinkTo = styled(Link)`
-  color: #3e85f3;
+  color: var(--accent-background-color);
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 12px;

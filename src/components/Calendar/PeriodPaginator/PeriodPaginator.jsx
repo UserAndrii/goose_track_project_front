@@ -1,15 +1,14 @@
 import { useParams } from 'react-router-dom';
-import css from '../Caledar.module.css';
+import css from './PeriodPaginator.module.css';
 import { format, parse } from 'date-fns';
 
-export const PeriodPaginator = ({
+const PeriodPaginator = ({
   isMonthPage,
   nextPeriod,
   prevPeriod,
   currentMonth,
   currentDay,
 }) => {
-  console.log('currentDay :>> ', currentDay);
   const { currentDate } = useParams();
   const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
 
@@ -37,3 +36,5 @@ export const PeriodPaginator = ({
     </div>
   );
 };
+
+export default PeriodPaginator;

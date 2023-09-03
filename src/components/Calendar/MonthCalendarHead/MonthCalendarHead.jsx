@@ -1,4 +1,4 @@
-import css from '../Caledar.module.css';
+import css from './MonthCalendarHead.module.css';
 import { useMediaQuery } from 'react-responsive';
 
 export const MonthCalendarHead = ({ week }) => {

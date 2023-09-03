@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f7f6f9;
+  background-color: var(--outlet-background-color);
   position: relative;
 
   @media screen and (min-width: 375px) {

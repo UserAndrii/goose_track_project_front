@@ -7,7 +7,7 @@ import ColumnsTasksList from '../ColumnsTasksList';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 
 
-const TasksColumn = ({ category, tasks }) => {
+const TasksColumn = ({ category, tasks, columnId }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -37,7 +37,7 @@ const TasksColumn = ({ category, tasks }) => {
     return (
       <Container tasksLength={tasks.length}>
          <ColumnHeadBar category={category}/>
-        {tasks.length>0 && <ColumnsTasksList tasks={tasks} />}
+       <ColumnsTasksList tasks={tasks} columnId={columnId} />
         <AddTaskBtn onClick={handleOpenModal} />
          {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
     </Container>

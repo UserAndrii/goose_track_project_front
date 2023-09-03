@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  background-color: #dcebf7;
+  background-color: var(--auth-background-color);
   text-align: center;
 
   @media screen and (max-width: 767px) {
@@ -29,7 +29,7 @@ export const Text = styled.h3`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  color: #3e85f3;
+  color: var(--accent-color);
   font-size: 16px;
   font-weight: 700;
   line-height: 1.14;
@@ -50,7 +50,7 @@ export const Text = styled.h3`
 `;
 
 export const TextSpan = styled.span`
-  color: #3e85f3;
+  color: var(--accent-color);
   font-size: 16px;
   line-height: 1.14;
   margin-bottom: 5px;
@@ -71,7 +71,7 @@ export const TextSpan = styled.span`
 `;
 
 export const Button = styled(Link)`
-  color: #3e85f3;
+  color: var(--accent-color);
   display: flex;
   align-items: center;
   border: none;

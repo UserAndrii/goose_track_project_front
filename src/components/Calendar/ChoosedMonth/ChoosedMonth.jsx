@@ -1,5 +1,7 @@
+import { useLocation } from 'react-router';
 import { CalendarTable } from '../CalendarTable/CalendarTable';
 import { MonthCalendarHead } from '../MonthCalendarHead/MonthCalendarHead';
+import { parse, isSameDay } from 'date-fns';
 
 export const ChoosedMonth = ({
   currentDay,
@@ -10,6 +12,16 @@ export const ChoosedMonth = ({
   setCurrentDay,
   setTasks,
 }) => {
+  const location = useLocation();
+
+  /* eslint-disable */
+  const [_, __, monthOrDay, date] = location.pathname.split('/');
+  /* eslint-enable */
+  const parsedDate = parse(date, 'yyyy-MM-dd', new Date());
+
+  if (monthOrDay === 'day') {
+    setIsMonthPage(false);
+  }
   return (
     <>
       <MonthCalendarHead week={week} />
@@ -18,7 +30,7 @@ export const ChoosedMonth = ({
         setIsMonthPage={setIsMonthPage}
         currentDay={currentDay}
         setCurrentDay={setCurrentDay}
-        allTasks={allTasks}
+        allTasks={allTasks && allTasks}
         setTasks={setTasks}
       />
     </>
