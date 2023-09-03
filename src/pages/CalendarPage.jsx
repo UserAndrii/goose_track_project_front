@@ -1,4 +1,3 @@
-// import AddFeedbackBtn from 'components/AddFeedbackBtn/AddFeedbackBtn';
 import { useState, useEffect } from 'react';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 // import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
@@ -6,10 +5,8 @@ import { CalendarToolBar } from '../components/Calendar/CalendarToolbar';
 import { ChoosedMonth } from '../components/Calendar/ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from '../components/Calendar/ChoosedDay/ChoosedDay';
 import { useNavigate } from 'react-router-dom';
-
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 import css from '../components/Calendar/Caledar.module.css';
-
 import {
   format,
   startOfWeek,
@@ -17,28 +14,19 @@ import {
   endOfMonth,
   addDays,
   isWithinInterval,
-  // isSameMonth,
-  // isSameDay,
-  // isToday,
   eachDayOfInterval,
   startOfToday,
   parse,
-  // add,
-  // addWeeks,
-  // subWeeks,
-  // isBefore,
-  // isEqual,
-  // startOfMonth,
 } from 'date-fns';
 
 const CalendarPage = () => {
   const navigate = useNavigate();
+  let filteredTask;
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMonthPage, setIsMonthPage] = useState(true);
-  /* eslint-disable */
   const [tasks, setTasks] = useState(null);
-  /* eslint-enable */
+
   // day
   const [currentDay, setCurrentDay] = useState(startOfToday());
   // month
@@ -52,21 +40,22 @@ const CalendarPage = () => {
     end: endOfWeek(endOfMonth(firstDayCurrentMonth)),
   });
 
-  const today = startOfToday();
-
-  // Weeks
   const [currentWeek, setCurrentWeek] = useState({
-    start: startOfWeek(today, { weekStartsOn: 1 }),
-    end: addDays(endOfWeek(today, { weekStartsOn: 0 }), 1),
+    start: startOfWeek(currentDay, { weekStartsOn: 1 }),
+    end: addDays(startOfWeek(currentDay, { weekStartsOn: 1 }), 6),
   });
   const week = eachDayOfInterval(currentWeek);
+
   const isInCurrentWeek = isWithinInterval(currentDay, currentWeek);
 
   if (!isInCurrentWeek) {
     const newStartOfWeek = startOfWeek(currentDay, {
       weekStartsOn: 1,
     });
-    const newEndOfWeek = addDays(endOfWeek(currentDay, { weekStartsOn: 0 }), 1);
+    const newEndOfWeek = addDays(
+      startOfWeek(currentDay, { weekStartsOn: 1 }),
+      6
+    );
 
     const newCurrentWeek = {
       start: newStartOfWeek,
@@ -86,6 +75,21 @@ const CalendarPage = () => {
   );
 
   useEffect(() => {
+    if (allTasks) {
+      const Tasks = [...allTasks.data];
+
+      refetch();
+      setTasks(Tasks);
+    }
+  }, [allTasks, refetch]);
+
+  /* eslint-disable */
+  useEffect(() => {
+    navigate(`month/${format(currentDay, 'yyyy-MM-dd')}`);
+  }, []);
+  /* eslint-enable */
+
+  useEffect(() => {
     const handleKeyDown = event => {
       if (event.key === 'Escape') {
         handleCloseModal();
@@ -100,20 +104,12 @@ const CalendarPage = () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen]);
-  /* eslint-disable */
-  useEffect(() => {
-    if (allTasks) {
-      const Tasks = [...allTasks.data];
 
-      refetch();
-      setTasks(Tasks);
-    }
-  }, [allTasks]);
+  if (tasks) {
+    const formattedDay = format(currentDay, 'yyyy-MM-dd');
+    filteredTask = tasks.filter(task => task.date === formattedDay);
+  }
 
-  useEffect(() => {
-    navigate(`month/${format(currentDay, 'yyyy-MM-dd')}`);
-  }, []);
-  /* eslint-enable */
   return (
     <div className={css.calendar}>
       <CalendarToolBar
@@ -132,10 +128,16 @@ const CalendarPage = () => {
           setCurrentDay={setCurrentDay}
           week={week}
           allTasks={allTasks && allTasks}
+          setTasks={setTasks}
           setIsMonthPage={setIsMonthPage}
         />
       ) : (
-        <ChoosedDay week={week} currentDay={currentDay} />
+        <ChoosedDay
+          week={week}
+          currentDay={currentDay}
+          setCurrentDay={setCurrentDay}
+          filteredTask={filteredTask && filteredTask}
+        />
       )}
       {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
     </div>

@@ -99,12 +99,9 @@ export const CalendarToolBar = ({
 
       <div className={css.calendarRange}>
         <button
-          className={`${css.calendarRange__buttons} ${css.calendarRange__monthButton}`}
-          style={{
-            backgroundColor: isMonthPage
-              ? 'rgba(62, 133, 243, 0.2)'
-              : 'rgba(227, 243, 255, 1)',
-          }}
+          className={`${css.calendarRange__buttons} ${
+            css.calendarRange__monthButton
+          } ${isMonthPage ? css.calendarRange__ActiveButton : ''}`}
           onClick={() => {
             navigate(`month/${format(formattedDay, 'yyyy-MM-dd')}`);
             changeType(true);
@@ -113,12 +110,9 @@ export const CalendarToolBar = ({
           Month
         </button>
         <button
-          className={`${css.calendarRange__buttons} ${css.calendarRange__dayButton}`}
-          style={{
-            backgroundColor: !isMonthPage
-              ? 'rgba(62, 133, 243, 0.2)'
-              : 'rgba(227, 243, 255, 1)',
-          }}
+          className={`${css.calendarRange__buttons} ${
+            css.calendarRange__dayButton
+          } ${!isMonthPage ? css.calendarRange__ActiveButton : ''}`}
           onClick={() => {
             navigate(`day/${format(formattedDay, 'yyyy-MM-dd')}`);
             changeType(false);

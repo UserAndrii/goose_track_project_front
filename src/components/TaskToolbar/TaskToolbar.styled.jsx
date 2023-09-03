@@ -6,9 +6,9 @@ export const Container = styled.div`
   width: 62px;
   justify-content: space-between;
   align-items: flex-end;
-  background-color: #f5f5f5;
+  background-color: var(--outlet-background-color);
   @media screen and (min-width: 768px) {
-   width: 68px;
+    width: 68px;
   }
 `;
 
@@ -19,24 +19,23 @@ export const IconButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 14px;
-  color: #111111;
+  color: var(--title-text-main-color);
   transition: color 0.2s;
-   &:hover {
-    color: #3E85F3;
+  &:hover {
+    color: var(--accent-background-color);
   }
   @media screen and (min-width: 768px) {
-   font-size: 16px;
+    font-size: 16px;
   }
 `;
 export const Text = styled.p`
-font-size: 12px;
-line-height: calc(14/12);
-color: #343434;
-font-weight: 500;
-@media screen and (min-width: 768px) {
+  font-size: 12px;
+  line-height: calc(14 / 12);
+  color: var(--calendar-date-color);
+  font-weight: 500;
+  @media screen and (min-width: 768px) {
     font-size: 14px;
-    line-height: calc(18/14);
-   
+    line-height: calc(18 / 14);
   }
 `;
 export const Wrapper = styled.div`

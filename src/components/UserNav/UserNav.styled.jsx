@@ -16,7 +16,7 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.p`
-  color: rgba(52, 52, 52, 0.5);
+  color: var(--feedback-form-text);
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 24px;
@@ -34,7 +34,7 @@ export const LinkNav = styled(Link)`
   text-decoration: none;
   width: 100%;
   height: 100%;
-  color: rgba(52, 52, 52, 0.5);
+  color: var(--feedback-form-text);
   font-size: 14px;
   font-weight: 600;
 
@@ -106,18 +106,18 @@ export const ListItem = styled.li`
   }
 
   &:hover {
-    background-color: rgb(221, 240, 255);
+    background-color: var(--auth-background-color);
   }
   &:hover .icon,
   &:hover .text {
-    color: rgb(56, 114, 240);
+    color: var(--active-btn-color);
   }
   &.active {
-    background-color: rgb(221, 240, 255);
+    background-color: var(--auth-background-color);
   }
 
   &.active .icon,
   &.active .text {
-    color: rgb(56, 114, 240);
+    color: var(--active-btn-color);
   }
 `;

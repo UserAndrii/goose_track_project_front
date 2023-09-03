@@ -9,7 +9,7 @@ export const Container = styled.div`
   margin: 0 auto;
   width: 100%;
 
-  background-color: #f7f6f9;
+  background-color: var(--outlet-background-color);
   text-align: center;
   min-height: 100vh;
 `;
@@ -38,7 +38,7 @@ export const Picture = styled.picture`
 `;
 
 export const Number = styled.span`
-  color: #3e85f3;
+  color: var(--accent-color);
   font-size: 100px;
   font-weight: 700;
   line-height: 1.5;
@@ -51,7 +51,7 @@ export const Number = styled.span`
 
 export const Text = styled.p`
   margin: 0 auto;
-  color: #111111b2;
+  color: var(--label-text-color);
   font-size: 14px;
   line-height: 1.29;
   font-weight: 500;
@@ -63,8 +63,8 @@ export const Text = styled.p`
 `;
 
 export const StyledButton = styled(Link)`
-  background-color: #3e85f3;
-  color: #ffffff;
+  background-color: var(--accent-background-color);
+  color: var(--btn-text-color);
   padding: 14px 32px;
   border-radius: 16px;
   border: none;
@@ -79,7 +79,7 @@ export const StyledButton = styled(Link)`
 
   &:hover,
   &:focus {
-    background-color: #2b78ef;
+    background-color: var(--active-btn-color);
   }
 
   @media screen and (min-width: 768px) {

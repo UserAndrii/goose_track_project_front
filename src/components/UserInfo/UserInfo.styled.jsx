@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Name = styled.p`
-  color: #343434;
+  color: var(--feedback-form-text-input);
 
   font-weight: 700;
   font-size: 14px;
@@ -31,7 +31,7 @@ export const Avatar = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 32px;
-  border: 1.8px solid #3e85f3;
+  border: 1.8px solid var(--accent-color);
   overflow: hidden;
 
   @media screen and (min-width: 768px) {
@@ -42,7 +42,7 @@ export const Avatar = styled.div`
 `;
 
 export const Letter = styled.p`
-  color: #3e85f3;
+  color: var(--accent-color);
   font-weight: 700;
   font-size: 21px;
   line-height: 1.28;

@@ -5,7 +5,7 @@ import { FaGithub } from 'react-icons/fa';
 import { LuLogOut } from 'react-icons/lu';
 
 export const Container = styled.div`
-  background-color: #3e85f3;
+  background-color: var(--accent-background-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,7 +27,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: #ffffff;
+  color: var(--btn-text-color);
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 28px;
@@ -49,7 +49,7 @@ export const Title = styled.h2`
 `;
 
 export const TitleSpan = styled.span`
-  color: #ffffff;
+  color: var(--btn-text-color);
   font-size: 28px;
   font-style: italic;
   font-weight: 700;
@@ -78,8 +78,8 @@ export const Button = styled(Link)`
   letter-spacing: -0.28px;
   cursor: pointer;
 
-  background: #ffffff;
-  color: #3e85f3;
+  background: var(--main-background-color);
+  color: var(--accent-color);
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   width: 131px;
@@ -89,7 +89,7 @@ export const Button = styled(Link)`
   border-radius: 16px;
 
   :hover {
-    color: #2b78ef;
+    color: var(--active-btn-color);
     box-shadow: 4px 2px 16px 0px rgba(255, 255, 255, 0.48);
   }
 
@@ -148,7 +148,7 @@ export const ImageWrapper = styled.div`
   width: 150px;
   height: 150px;
   border-radius: 40px;
-  background: #e3f3ff;
+  background: var(--outlet-background-color);
   overflow: hidden;
 
   @media screen and (min-width: 768px) {
@@ -172,7 +172,7 @@ export const ItemSpan = styled.div`
 export const TextSpan = styled.a`
   display: flex;
   flex-direction: row;
-  color: #ffffff;
+  color: var(--btn-text-color);
   font-size: 16px;
   font-weight: 500;
   line-height: 1.29;
@@ -197,7 +197,7 @@ export const ItemIconLinkedin = styled(FaLinkedinIn)`
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: #ffffff;
+  color: var(--btn-text-color);
   margin-left: 5px;
 
   @media screen and (min-width: 768px) {
@@ -210,7 +210,7 @@ export const ItemIconGithub = styled(FaGithub)`
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: #ffffff;
+  color: var(--btn-text-color);
   margin-left: 5px;
 
   @media screen and (min-width: 768px) {

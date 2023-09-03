@@ -10,14 +10,21 @@ import {
 import TaskToolbar from '../TaskToolbar';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
+import { Draggable } from 'react-beautiful-dnd';
 
-const TaskColumnCard = ({ task }) => {
+const TaskColumnCard = ({ task, index }) => {
   const { userName, avatarURL } = useSelector(selectUser);
     const firstName = userName.split(' ')[0];
     const firstLetter = firstName[0]?.toUpperCase();
 
   return (
-    <Container>
+    <Draggable draggableId={task._id} index={index}>
+      {(provided) => (
+        <Container
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
       <Text>{task.title}</Text>
       <Board>
         <ButtonsContainer>
@@ -34,7 +41,8 @@ const TaskColumnCard = ({ task }) => {
         </ButtonsContainer>
         <TaskToolbar task={task} />
       </Board>
-    </Container>
+      </Container>)}
+      </Draggable>
   );
 };
 
