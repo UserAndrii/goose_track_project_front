@@ -12,6 +12,9 @@ import {
   Letter,
   Button,
   CustomInput,
+  VerifyWrapper,
+  VerifyText,
+  VerifyBtn,
 } from './UserForm.styled';
 
 import DatePicker from 'react-datepicker';
@@ -20,11 +23,11 @@ import './CustomDatePicker.css';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
-import { updateUser } from 'redux/auth/operations';
+import { updateUser, sendVerifyEmailUser } from 'redux/auth/operations';
 import { format, parse } from 'date-fns';
 
 const UserForm = () => {
-  const { userName, email, phone, skype, birthDay, avatarURL } =
+  const { userName, email, phone, skype, birthDay, avatarURL, verify } =
     useSelector(selectUser);
 
   const [startDate, setStartDate] = useState(
@@ -155,17 +158,35 @@ const UserForm = () => {
                   }
                 />
               </label>
-              <label>
-                <p>Email</p>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Add an email"
-                  value={newEmail}
-                  onChange={e => setNewEmail(e.target.value)}
-                />
-              </label>
+
+              <div>
+                <label>
+                  <p>Email</p>
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="Add an email"
+                    value={newEmail}
+                    onChange={e => setNewEmail(e.target.value)}
+                  />
+                </label>
+                {verify ? (
+                  <VerifyText verify={verify}>
+                    Your email has been successfully verified.
+                  </VerifyText>
+                ) : (
+                  <VerifyWrapper>
+                    <VerifyText verify={verify}>
+                      Your email has not been verified.
+                    </VerifyText>
+                    <VerifyBtn onClick={() => dispatch(sendVerifyEmailUser())}>
+                      Verify?
+                    </VerifyBtn>
+                  </VerifyWrapper>
+                )}
+              </div>
             </div>
+
             <div>
               <label>
                 <p>Phone</p>
