@@ -1,4 +1,5 @@
-import i18next from "i18next";
+import i18next from 'i18next';
+import { Button, Container } from './LangSwitcher.styled';
 
 const lngs = {
   en: { nativeName: 'EN' },
@@ -7,9 +8,9 @@ const lngs = {
 
 const LangSwitcher = () => {
   return (
-    <div>
+    <Container>
       {Object.keys(lngs).map(lng => (
-        <button
+        <Button
           key={lng}
           style={{
             fontWeight: i18next.resolvedLanguage === lng ? 'bold' : 'normal',
@@ -18,9 +19,9 @@ const LangSwitcher = () => {
           onClick={() => i18next.changeLanguage(lng)}
         >
           {lngs[lng].nativeName}
-        </button>
+        </Button>
       ))}
-    </div>
+    </Container>
   );
 };
 
