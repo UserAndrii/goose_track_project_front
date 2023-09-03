@@ -8,8 +8,8 @@ export const Button = styled.button`
   line-height: 1.33;
   cursor: pointer;
 
-  color: #ffffff;
-  background-color: #3e85f3;
+  color: var(--btn-text-color);
+  background-color: var(--accent-background-color);
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   padding: 8px 20px;
@@ -18,7 +18,7 @@ export const Button = styled.button`
   border-radius: 10px;
 
   :hover {
-    background: #2b78ef;
+    background:var(--active-btn-color);
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   }
 

@@ -3,7 +3,7 @@ import { FiLogIn } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  background-color: #3e85f3;
+  background-color: var(--accent-background-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,7 +43,7 @@ export const Image = styled.img`
 `;
 
 export const Text = styled.h1`
-  color: #ffffff;
+  color: var(--btn-text-color);
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 44px;
@@ -62,7 +62,7 @@ export const Text = styled.h1`
 `;
 
 export const TextSpan = styled.span`
-  color: #ffffff;
+  color: var(--btn-text-color);
   font-size: 44px;
   font-style: italic;
   font-weight: 700;
@@ -96,7 +96,7 @@ export const List = styled.div`
 `;
 
 export const Button = styled(Link)`
-  background: #ffffff;
+  background: var(--modal-background-color);
   display: flex;
   align-items: center;
   border: none;
@@ -114,7 +114,7 @@ export const Button = styled(Link)`
 `;
 
 export const ButtonText = styled.span`
-  color: #3e85f3;
+  color: var(--accent-color);
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -128,14 +128,14 @@ export const ItemIcon = styled(FiLogIn)`
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: #3e85f3;
+  color: var(--accent-color);
 `;
 
 export const AuthLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color: var(-btn-text-color);
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 12px;
