@@ -19,7 +19,7 @@ export const Container = styled.ul`
  margin-bottom: 32px;
   height: 55vh;
    ${props => props.tasksLength === 0 && `height: 0;`}
-   ${props => props.tasksLength === 0 && `margin-bottom: 10`}
+   ${props => props.tasksLength === 0 && `margin-bottom: 10px;`}
   overflow-y: auto;
   align-items: center;
   

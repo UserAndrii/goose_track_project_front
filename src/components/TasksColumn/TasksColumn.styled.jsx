@@ -8,9 +8,13 @@ export const Container = styled.div`
   border: 1px solid var(--outlet-background-color);
   border-radius: 8px;
   margin-left: 14px;
-
+  
   @media screen and (min-width: 768px) {
     width: 344px;
     padding: 18px 18px 28px 14px;
-  }
+    margin-left: 16px;
+  };
+  @media screen and (min-width: 1440px){
+   margin-left: 27px;
+ }
 `;
