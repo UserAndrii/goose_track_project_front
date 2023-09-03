@@ -1,4 +1,4 @@
-import { PeriodPaginator } from 'components/Calendar/PeriodPaginator/PeriodPaginator';
+import PeriodPaginator from 'components/Calendar/PeriodPaginator/PeriodPaginator';
 import StatisticsChart from 'components/StatisticsChart/StatisticsChart';
 import {
   Circle,

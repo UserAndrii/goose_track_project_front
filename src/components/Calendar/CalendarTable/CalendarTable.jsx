@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import css from '../Caledar.module.css';
+import css from './CalendarTable.module.css';
 import { format, isToday, isSameMonth } from 'date-fns';
 import { useMediaQuery } from 'react-responsive';
 
@@ -132,7 +132,7 @@ export const CalendarTable = ({
               </time>
             </div>
 
-            {allTasks ? (
+            {allTasks && isSameMonth(currentDay, day) ? (
               <div className={css.tasks}>
                 {isTabletScreen ? (
                   <ul>

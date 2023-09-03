@@ -1,4 +1,4 @@
-import css from '../Caledar.module.css';
+import css from './DayCalendarHead.module.css';
 import { useMediaQuery } from 'react-responsive';
 import { format, isSameDay } from 'date-fns';
 import { useNavigate } from 'react-router-dom';

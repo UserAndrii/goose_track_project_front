@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router';
-import css from '../Caledar.module.css';
+import css from './PeriodPaginatorType.module.css';
 import { format, parse } from 'date-fns';
 import { useParams } from 'react-router-dom';
 
-export const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
+const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
   const navigate = useNavigate();
 
   const { currentDate } = useParams();
@@ -36,3 +36,5 @@ export const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
     </div>
   );
 };
+
+export default PeriodPaginatorType;

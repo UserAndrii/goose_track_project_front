@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
-// import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
-import { CalendarToolBar } from '../components/Calendar/CalendarToolbar';
+import { CalendarToolBar } from '../components/Calendar/CalendarToolbar/CalendarToolbar';
 import { ChoosedMonth } from '../components/Calendar/ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from '../components/Calendar/ChoosedDay/ChoosedDay';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 import css from '../components/Calendar/Caledar.module.css';
 import {
@@ -14,7 +13,6 @@ import {
   endOfMonth,
   addDays,
   isWithinInterval,
-  subDays,
   eachDayOfInterval,
   startOfToday,
   parse,
@@ -22,15 +20,15 @@ import {
 
 const CalendarPage = () => {
   const navigate = useNavigate();
+
   let filteredTask;
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMonthPage, setIsMonthPage] = useState(true);
   const [tasks, setTasks] = useState(null);
 
-  // day
   const [currentDay, setCurrentDay] = useState(startOfToday());
-  // month
+
   const [currentMonth, setCurrentMonth] = useState(
     format(startOfToday(), 'MMM-yyyy')
   );
@@ -71,18 +69,24 @@ const CalendarPage = () => {
     document.body.style.overflow = 'auto';
   };
 
-  const { data: allTasks, refetch } = useGetMonthlyTasksQuery(
-    format(currentDay, 'yyyy-MM')
+  const { currentDate } = useParams();
+  const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
+  const formattedMonth =
+    currentDate === undefined ? firstDayCurrentMonth : parsedCurrentDate;
+  console.log('formattedMonth', formattedMonth);
+
+  const { data: allTasks } = useGetMonthlyTasksQuery(
+    format(formattedMonth, 'yyyy-MM'),
+    { skip: formattedMonth === undefined }
   );
 
   useEffect(() => {
+    // refetch();
     if (allTasks) {
       const Tasks = [...allTasks.data];
-
-      refetch();
       setTasks(Tasks);
     }
-  }, [allTasks, refetch]);
+  }, [allTasks]);
 
   /* eslint-disable */
   useEffect(() => {
