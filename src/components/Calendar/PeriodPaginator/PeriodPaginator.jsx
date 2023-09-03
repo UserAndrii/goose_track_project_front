@@ -9,6 +9,7 @@ export const PeriodPaginator = ({
   currentMonth,
   currentDay,
 }) => {
+  console.log('currentDay :>> ', currentDay);
   const { currentDate } = useParams();
   const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
 
