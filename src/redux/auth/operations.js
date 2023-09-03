@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { showErrorToast } from '../../utils/showToast';
+import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 
 axios.defaults.baseURL = 'https://goose-track-project-back.onrender.com/auth';
 
@@ -115,6 +115,36 @@ export const updateUser = createAsyncThunk(
       return response.data.user;
     } catch (error) {
       showErrorToast(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const sendVerifyEmailUser = createAsyncThunk(
+  '/sendVerifyEmail',
+  async (_, thunkAPI) => {
+    try {
+      await axios.get('/sendVerifyEmail');
+      showSuccessToast(
+        'A letter for email verification has been sent to your mail'
+      );
+
+      return;
+    } catch (error) {
+      showErrorToast(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getVerifyEmailUser = createAsyncThunk(
+  '/getVerifyEmail',
+  async (verifyToken, thunkAPI) => {
+    try {
+      await axios.get(`/verify/${verifyToken}`);
+
+      return;
+    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }

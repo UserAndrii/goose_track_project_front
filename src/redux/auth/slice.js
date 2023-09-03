@@ -6,6 +6,7 @@ import {
   logOut,
   getCurrentUser,
   updateUser,
+  getVerifyEmailUser,
 } from './operations';
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
     phone: null,
     skype: null,
     birthDay: null,
+    verify: null,
   },
   token: null,
   isLoggedIn: false,
@@ -57,6 +59,9 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
+      })
+      .addCase(getVerifyEmailUser.fulfilled, (state, action) => {
+        state.user.verify = action.payload.verify;
       });
   },
 });
