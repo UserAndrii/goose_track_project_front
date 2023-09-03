@@ -57,7 +57,7 @@ const UserForm = () => {
         URL.revokeObjectURL(avatarPreviewUrl);
       }
     };
-  }, [avatarPreviewUrl]);
+  }, [avatarPreviewUrl, verify]);
 
   const firstName = userName?.split(' ')[0];
   const firstLetter = firstName[0]?.toUpperCase();

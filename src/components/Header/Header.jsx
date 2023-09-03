@@ -27,6 +27,9 @@ const Header = ({ openSidebar }) => {
   const [tasksСompleted] = useState(false); // setTasksСompleted
   const [isModalOpen, setModalOpen] = useState(false);
 
+  const currentPath = location.pathname;
+  const currentPage = currentPath.split("/")[1]
+
   const handleOpenModal = () => {
     setModalOpen(true);
     document.body.style.overflow = 'hidden';
@@ -38,23 +41,21 @@ const Header = ({ openSidebar }) => {
   };
 
   useEffect(() => {
-    const currentPath = location.pathname;
-
-    switch (currentPath) {
-      case '/account':
+    switch (currentPage) {
+      case 'account':
         return setActivePage('User Profile');
 
-      case '/calendar':
+      case 'calendar':
         return setActivePage('Calendar');
 
-      case '/statistics':
+      case 'statistics':
         return setActivePage('Statistics');
 
       default:
         setActivePage('');
         return;
     }
-  }, [location]);
+  }, [currentPage]);
 
   useEffect(() => {
     const handleKeyDown = event => {

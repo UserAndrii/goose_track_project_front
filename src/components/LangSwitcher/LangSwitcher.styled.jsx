@@ -1,13 +1,20 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+
   @media screen and (max-width: 767px) {
-    > :nth-child(1) {
-        margin-right: 10px;
+    gap: 15px;
+    top: 32px;
+    right: 32px;
   }
 `;
 

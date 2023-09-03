@@ -124,11 +124,11 @@ export const sendVerifyEmailUser = createAsyncThunk(
   '/sendVerifyEmail',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/sendVerifyEmail');
+      await axios.get('/sendVerifyEmail');
       showSuccessToast(
         'A letter for email verification has been sent to your mail'
       );
-      console.log(response);
+
       return;
     } catch (error) {
       showErrorToast(error.response.data.message);
@@ -141,12 +141,10 @@ export const getVerifyEmailUser = createAsyncThunk(
   '/getVerifyEmail',
   async (verifyToken, thunkAPI) => {
     try {
-      const response = await axios.get(`/verify/${verifyToken}`);
-      showSuccessToast('ok');
-      console.log(response);
+      await axios.get(`/verify/${verifyToken}`);
+
       return;
     } catch (error) {
-      showErrorToast(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

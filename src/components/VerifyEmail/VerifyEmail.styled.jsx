@@ -6,8 +6,10 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   margin: 0 auto;
   width: 100%;
+  gap: 18px;
 
   background-color: #f7f6f9;
   text-align: center;
@@ -34,7 +36,7 @@ export const Image = styled.img`
 `;
 
 export const Text = styled.h1`
-  color: #ffffff;
+  color: #3e85f3;
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 44px;
@@ -53,7 +55,7 @@ export const Text = styled.h1`
 `;
 
 export const TextSpan = styled.span`
-  color: #ffffff;
+  color: #3e85f3;
   font-size: 44px;
   font-style: italic;
   font-weight: 700;
@@ -80,9 +82,9 @@ export const TextVerify = styled.p`
 
   @media screen and (min-width: 768px) {
     padding: 16px 48px;
-    font-size: 18px;
+    font-size: 28px;
     line-height: 1.333;
-    max-width: 387px;
+    max-width: 550px;
   }
 `;
 
