@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   min-width: 335px;
-  ${props => props.tasksLength === 0 && `height: 155px;`}
+  ${props => props.tasksLength === 0 && `height: 165px;`}
   background-color: var(--main-background-color);
-  padding: 18px 14px 10px 14px;
+  padding: 18px 14px 20px 14px;
   border: 1px solid var(--outlet-background-color);
   border-radius: 8px;
   margin-left: 14px;
