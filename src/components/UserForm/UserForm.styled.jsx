@@ -34,6 +34,7 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    /* padding: 60px 0; */
     height: 100%;
   }
 `;
@@ -277,6 +278,7 @@ export const VerifyText = styled.p`
   font-weight: 600;
   line-height: 1.2;
   color: ${props => (props.verify ? '#008000' : '#f94646')};
+  margin-top: ${props => (props.verify ? '10px' : '0')};
 `;
 
 export const VerifyBtn = styled.button`

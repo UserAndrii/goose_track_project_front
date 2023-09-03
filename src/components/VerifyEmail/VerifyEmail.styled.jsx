@@ -14,15 +14,74 @@ export const Container = styled.div`
   min-height: 100vh;
 `;
 
-export const Text = styled.p`
+export const ImageWrapper = styled.div`
+  display: block;
+
+  @media screen and (max-width: 767px) {
+    max-width: 142px;
+    max-height: 142px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 150px;
+    max-height: 150px;
+  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export const Text = styled.h1`
+  color: #ffffff;
+  text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
+    0px 47px 355px rgba(0, 0, 0, 0.07);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.09;
+
+  @media screen and (min-width: 768px) {
+    font-size: 100px;
+    line-height: 1.3;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 120px;
+    line-height: 1.25;
+  }
+`;
+
+export const TextSpan = styled.span`
+  color: #ffffff;
+  font-size: 44px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.09;
+
+  @media screen and (min-width: 768px) {
+    font-size: 100px;
+    line-height: 1.3;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 120px;
+    line-height: 1.25;
+  }
+`;
+
+export const TextVerify = styled.p`
   margin: 0 auto;
   color: #111111b2;
+  font-weight: 600;
   font-size: 14px;
-  line-height: 1.29;
-  font-weight: 500;
+  line-height: 1.286;
   max-width: 281px;
 
   @media screen and (min-width: 768px) {
+    padding: 16px 48px;
+    font-size: 18px;
+    line-height: 1.333;
     max-width: 387px;
   }
 `;
