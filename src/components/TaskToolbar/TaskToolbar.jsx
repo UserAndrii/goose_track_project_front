@@ -6,7 +6,7 @@ import { HiOutlinePencil } from 'react-icons/hi';
 import { CgTrashEmpty } from 'react-icons/cg';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 import { tasksApi } from 'redux/tasks/tasksApi';
-import Spiner from '../Spiner/Spiner';
+import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 import './ContextMenu.css';
 
@@ -74,7 +74,6 @@ const TaskToolbar = ({ task }) => {
 
     try {
       await editTask({ id: task._id, ...editedTask });
-      console.log('isFetching', isLoading);
       if (!isLoading) handleCloseContextMenu();
       if (isError) {
       throw new Error();
@@ -86,7 +85,7 @@ const TaskToolbar = ({ task }) => {
 
   return (
     <Container>
-      {isLoading && <Spiner />}
+      {isLoading && <ImageAnimation/>}
       <IconButton onClick={handleClickContextMenu}>
         <AiOutlineLogin />
       </IconButton>

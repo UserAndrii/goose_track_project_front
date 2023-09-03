@@ -1,4 +1,4 @@
-// import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
+import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 import { DayCalendarHead } from '../DayCalendarHead/DayCalendarHead';
 
 export const ChoosedDay = ({
@@ -15,7 +15,7 @@ export const ChoosedDay = ({
         currentDay={currentDay}
         setCurrentDay={setCurrentDay}
       />
-      {/* <TasksColumnsList currentDay={currentDay} filteredTask={filteredTask}/> */}
+      <TasksColumnsList currentDay={currentDay} filteredTask={filteredTask}/>
     </>
   );
 };
