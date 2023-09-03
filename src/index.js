@@ -13,7 +13,7 @@ import { App } from 'components/App';
 import GlobalStyles from 'styles/GlogalStyles';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+   <React.StrictMode>
      <GlobalStyles />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -22,5 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-   </React.StrictMode>
+ </React.StrictMode>
+
 );

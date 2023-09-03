@@ -8,20 +8,20 @@ import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 
 const TasksColumnsList = ({ filteredTask, currentDay }) => {
-  const [editTask, { isLoading, isError } ] = tasksApi.useEditTasksMutation();
+  const [editTask, { isFetching, isError }] = tasksApi.useEditTasksMutation();
   let todoData = [];
   let inprogressData = [];
   let doneData = [];
   if (filteredTask) {
     todoData = filteredTask.filter(
-    task => task.category.replace(/\s+/g, '').toLowerCase() === 'todo'
-  );
-  inprogressData = filteredTask.filter(
-    task => task.category.replace(/\s+/g, '').toLowerCase() === 'inprogress'
-  );
-  doneData = filteredTask.filter(
-    task => task.category.replace(/\s+/g, '').toLowerCase() === 'done'
-  );
+      task => task.category.replace(/\s+/g, '').toLowerCase() === 'todo'
+    );
+    inprogressData = filteredTask.filter(
+      task => task.category.replace(/\s+/g, '').toLowerCase() === 'inprogress'
+    );
+    doneData = filteredTask.filter(
+      task => task.category.replace(/\s+/g, '').toLowerCase() === 'done'
+    );
   }
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
@@ -35,13 +35,13 @@ const TasksColumnsList = ({ filteredTask, currentDay }) => {
     ) {
       return;
     }
-    const task =  filteredTask.find(item => (item._id === draggableId));
+    const task = filteredTask.find(item => (item._id === draggableId));
     const { _id, ...newTask } = task;
     const editedTask = { ...newTask, category: destination.droppableId };
     try {
       editTask({ id: task._id, ...editedTask });
       if (isError) {
-      throw new Error();
+        throw new Error();
       }
     } catch (error) {
       showErrorToast('Something went wrong...');
@@ -49,14 +49,18 @@ const TasksColumnsList = ({ filteredTask, currentDay }) => {
 
   }
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Container>
-          {isLoading && <ImageAnimation/>}
-        <TasksColumn columnId={"TODO"} category={'To do'} tasks={todoData} />
-        <TasksColumn columnId={"INPROGRESS"} category={'In progress'} tasks={inprogressData} />
-        <TasksColumn columnId={"DONE"} category={'Done'} tasks={doneData} />
-      </Container>
-      </DragDropContext>
+     isFetching ? <ImageAnimation/>:
+  <DragDropContext onDragEnd={onDragEnd}>
+    <Container>
+      <TasksColumn columnId={"TODO"}
+        category={'To do'}
+        tasks={todoData}
+      />
+      <TasksColumn columnId={"INPROGRESS"} category={'In progress'} tasks={inprogressData} />
+      <TasksColumn columnId={"DONE"} category={'Done'} tasks={doneData} />
+    </Container>
+  </DragDropContext>
+
   );
 };
 export default TasksColumnsList;

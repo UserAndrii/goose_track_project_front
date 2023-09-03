@@ -12,6 +12,7 @@ const ColumnsTasksList = ({tasks,columnId}) => {
                 <Container
                     ref={provided.innerRef}
                     {...provided.droppableProps}
+                    tasksLength={tasks.length}
                 >
                     {tasks.map((item, index) => (
                         <li key={item._id}>
