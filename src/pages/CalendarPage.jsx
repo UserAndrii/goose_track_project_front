@@ -136,6 +136,7 @@ const CalendarPage = () => {
         <ChoosedDay
           week={week}
           currentDay={currentDay}
+          setCurrentDay={setCurrentDay}
           filteredTask={filteredTask && filteredTask}
         />
       )}
