@@ -12,12 +12,9 @@ export const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
   return (
     <div className={css.toolbar__calendarRange}>
       <button
-        className={`${css.toolbar__buttons} ${css.toolbar__monthButton}`}
-        style={{
-          backgroundColor: isMonthPage
-            ? 'rgba(62, 133, 243, 0.2)'
-            : 'rgba(227, 243, 255, 1)',
-        }}
+        className={`${css.toolbar__buttons} ${css.toolbar__monthButton} ${
+          isMonthPage ? css.toolbar__ActiveButton : ''
+        }`}
         onClick={() => {
           navigate(`month/${format(parsedCurrentDate, 'yyyy-MM-dd')}`);
           changeType(true);
@@ -26,12 +23,9 @@ export const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
         Month
       </button>
       <button
-        className={`${css.toolbar__buttons} ${css.toolbar__dayButton}`}
-        style={{
-          backgroundColor: !isMonthPage
-            ? 'rgba(62, 133, 243, 0.2)'
-            : 'rgba(227, 243, 255, 1)',
-        }}
+        className={`${css.toolbar__buttons} ${css.toolbar__dayButton} ${
+          !isMonthPage ? css.toolbar__ActiveButton : ''
+        }`}
         onClick={() => {
           navigate(`day/${format(parsedCurrentDate, 'yyyy-MM-dd')}`);
           changeType(false);

@@ -7,7 +7,12 @@ export const DayCalendarHead = ({ week, currentDay }) => {
   const abbreviatedDayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
   return (
-    <div className={css.mainBlock__dayList}>
+    <div
+      className={css.mainBlock__dayList}
+      style={{
+        height: isTabletOrMobile ? 68 : 74,
+      }}
+    >
       {week.map((day, index) => {
         return (
           <div className={css.daylist__wrapper} key={day.toString()}>

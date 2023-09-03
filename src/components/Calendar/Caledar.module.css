@@ -73,16 +73,20 @@
   margin-top: 18px;
 
   color: #3e85f3;
-  background-color: rgba(62, 133, 243, 0.2);
+  background-color: #e3f3ff;
 
   border: 1px solid rgba(220, 227, 229, 0.5);
-
-  color: #3e85f3;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 18px;
+}
+
+.toolbar__buttons:hover {
+  background-color: rgba(11, 104, 234, 0.2);
 }
 
 @media screen and (min-width: 768px) {
@@ -94,7 +98,7 @@
 
 /* Active Button */
 .toolbar__ActiveButton {
-  background-color: rgba(227, 243, 255, 1);
+  background-color: #cae8ff;
 }
 
 .toolbar__monthButton {
@@ -153,7 +157,15 @@
   background-color: #fff;
   color: black;
 
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   border: 1px solid rgba(220, 227, 229, 0.5);
+  cursor: pointer;
+}
+
+.toggleButtons__previous:hover,
+.toggleButtons__next:hover {
+  background-color: rgba(136, 165, 191, 0.48);
 }
 
 @media screen and (min-width: 768) {
@@ -201,14 +213,19 @@
   margin-top: 18px;
 
   color: #3e85f3;
-  background-color: rgba(62, 133, 243, 0.2);
+  background-color: rgba(227, 243, 255, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   border: 1px solid rgba(220, 227, 229, 0.5);
 }
 
+.calendarRange__buttons:hover {
+  background-color: rgba(11, 104, 234, 0.2);
+}
+
 /* Active Button */
 .calendarRange__ActiveButton {
-  background-color: rgba(227, 243, 255, 1);
+  background-color: rgba(62, 133, 243, 0.2);
 }
 
 .calendarRange__monthButton {
@@ -245,6 +262,7 @@
 @media screen and (min-width: 768px) {
   .mainBlock__dayList {
     width: 704px;
+    height: 46px;
     margin-left: unset;
     margin-right: unset;
   }
@@ -254,6 +272,13 @@
   .mainBlock__dayList {
     width: 1078px;
   }
+}
+
+.daylist__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .day {
@@ -308,6 +333,11 @@
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(220, 227, 229, 0.5);
+  cursor: pointer;
+}
+
+.row__cell:hover {
+  background-color: aliceblue;
 }
 
 .row__currentDate {
@@ -318,6 +348,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  margin-left: auto;
+  margin-right: auto;
 
   border-radius: 8px;
   background-color: transparent;
@@ -331,6 +364,15 @@
   background-color: #3e85f3;
   color: #fff;
 }
+
+/* .row__currentDateSelected {
+  width: 20px;
+  height: 22px;
+
+  padding: 4px 6px;
+  background-color: #3e85f3;
+  color: #fff;
+} */
 
 @media screen and (min-width: 768px) {
   .row__currentDateActive {
@@ -361,7 +403,7 @@
 }
 
 .tasks {
-  margin-top: 38px;
+  margin-top: 33px;
 }
 
 @media screen and (min-width: 768px) {
@@ -387,10 +429,12 @@
 }
 
 .tasks__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 35px;
   height: 15px;
-
-  padding: 4px 12px;
 
   border-radius: 8px;
   background: #ceeefd;
@@ -404,7 +448,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .tasks__container {
     width: 139px;
     height: 26px;
@@ -436,8 +480,14 @@
   height: 10px;
   border-radius: 8px;
   background-color: hsl(212, 13%, 82%);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   color: 'black';
   cursor: pointer;
+}
+
+.tasks_threeDots:hover {
+  background-color: hsl(240, 2%, 61%);
+  color: #fff;
 }
 
 @media screen and (min-width: 768px) {
