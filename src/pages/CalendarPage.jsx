@@ -24,7 +24,9 @@ const CalendarPage = () => {
   let filteredTask;
 
   const [isModalOpen, setModalOpen] = useState(false);
+
   const [isMonthPage, setIsMonthPage] = useState(true);
+
   const [tasks, setTasks] = useState(null);
 
   const [currentDay, setCurrentDay] = useState(startOfToday());
@@ -73,12 +75,17 @@ const CalendarPage = () => {
   const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
   const formattedMonth =
     currentDate === undefined ? firstDayCurrentMonth : parsedCurrentDate;
-  console.log('formattedMonth', formattedMonth);
 
   const { data: allTasks } = useGetMonthlyTasksQuery(
     format(formattedMonth, 'yyyy-MM'),
     { skip: formattedMonth === undefined }
   );
+
+  /* eslint-disable */
+  useEffect(() => {
+    navigate(`month/${format(currentDay, 'yyyy-MM-dd')}`);
+  }, []);
+  /* eslint-enable */
 
   useEffect(() => {
     // refetch();
@@ -87,12 +94,6 @@ const CalendarPage = () => {
       setTasks(Tasks);
     }
   }, [allTasks]);
-
-  /* eslint-disable */
-  useEffect(() => {
-    navigate(`month/${format(currentDay, 'yyyy-MM-dd')}`);
-  }, []);
-  /* eslint-enable */
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -141,6 +142,7 @@ const CalendarPage = () => {
           week={week}
           currentDay={currentDay}
           setCurrentDay={setCurrentDay}
+          setIsMonthPage={setIsMonthPage}
           filteredTask={filteredTask && filteredTask}
         />
       )}

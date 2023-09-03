@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import css from './CalendarTable.module.css';
-import { format, isToday, isSameMonth } from 'date-fns';
+import { format, isToday, isSameMonth, getDay } from 'date-fns';
 import { useMediaQuery } from 'react-responsive';
 
 export const CalendarTable = ({
@@ -11,6 +11,14 @@ export const CalendarTable = ({
   setCurrentDay,
 }) => {
   const navigate = useNavigate();
+
+  // const { date } = useParams();
+  // const [one, two, Day] = date.split('-');
+  // console.log('currentDay', Day);
+
+  const data = new Date();
+  const a = data.getDate();
+
   const isTabletScreen = useMediaQuery({ query: '(min-width: 768px)' });
   const isDesktopScreen = useMediaQuery({ query: '(min-width: 1440px)' });
 
@@ -109,19 +117,15 @@ export const CalendarTable = ({
           >
             <div
               className={`${css.row__currentDate} ${
-                isToday(day) &&
-                isSameMonth(currentDay, day) &&
-                css.row__currentDateActive
+                a === day.getDate() && css.row__currentDateActive
               }`}
               style={{
-                top: isToday(day) && isSameMonth(currentDay, day) && 4,
+                top: a === day.getDate() && 4,
               }}
             >
               <time
                 className={`${css.row__number} ${
-                  isToday(day) &&
-                  isSameMonth(currentDay, day) &&
-                  css.row__ActiveNumber
+                  a === day.getDate() && css.row__ActiveNumber
                 }`}
                 dateTime={format(day, 'yyyy-MM-dd')}
                 style={{
