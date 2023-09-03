@@ -9,6 +9,7 @@ export const CalendarTable = ({
   currentDay,
   allTasks,
   setCurrentDay,
+  setTasks,
 }) => {
   const navigate = useNavigate();
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
@@ -98,8 +99,8 @@ export const CalendarTable = ({
                             <div
                               className={css.tasks_threeDots}
                               onClick={() => {
-                                setIsMonthPage(false);
                                 setCurrentDay(day);
+                                setIsMonthPage(false);
                                 navigate(`day/${formattedDay}`);
                               }}
                             >

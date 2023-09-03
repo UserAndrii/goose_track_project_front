@@ -1,4 +1,3 @@
-// import AddFeedbackBtn from 'components/AddFeedbackBtn/AddFeedbackBtn';
 import { useState, useEffect } from 'react';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 // import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
@@ -33,12 +32,12 @@ import {
 
 const CalendarPage = () => {
   const navigate = useNavigate();
+  let filteredTask;
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isMonthPage, setIsMonthPage] = useState(true);
-  /* eslint-disable */
   const [tasks, setTasks] = useState(null);
-  /* eslint-enable */
+
   // day
   const [currentDay, setCurrentDay] = useState(startOfToday());
   // month
@@ -86,6 +85,21 @@ const CalendarPage = () => {
   );
 
   useEffect(() => {
+    if (allTasks) {
+      const Tasks = [...allTasks.data];
+
+      refetch();
+      setTasks(Tasks);
+    }
+  }, [allTasks, refetch]);
+
+  /* eslint-disable */
+  useEffect(() => {
+    navigate(`month/${format(currentDay, 'yyyy-MM-dd')}`);
+  }, []);
+  /* eslint-enable */
+
+  useEffect(() => {
     const handleKeyDown = event => {
       if (event.key === 'Escape') {
         handleCloseModal();
@@ -100,20 +114,12 @@ const CalendarPage = () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen]);
-  /* eslint-disable */
-  useEffect(() => {
-    if (allTasks) {
-      const Tasks = [...allTasks.data];
 
-      refetch();
-      setTasks(Tasks);
-    }
-  }, [allTasks]);
+  if (tasks) {
+    const formattedDay = format(currentDay, 'yyyy-MM-dd');
+    filteredTask = tasks.filter(task => task.date === formattedDay);
+  }
 
-  useEffect(() => {
-    navigate(`month/${format(currentDay, 'yyyy-MM-dd')}`);
-  }, []);
-  /* eslint-enable */
   return (
     <div className={css.calendar}>
       <CalendarToolBar
@@ -132,10 +138,15 @@ const CalendarPage = () => {
           setCurrentDay={setCurrentDay}
           week={week}
           allTasks={allTasks && allTasks}
+          setTasks={setTasks}
           setIsMonthPage={setIsMonthPage}
         />
       ) : (
-        <ChoosedDay week={week} currentDay={currentDay} />
+        <ChoosedDay
+          week={week}
+          currentDay={currentDay}
+          filteredTask={filteredTask && filteredTask}
+        />
       )}
       {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
     </div>
