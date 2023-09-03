@@ -14,8 +14,8 @@ export const Button = styled.button`
   letter-spacing: -0.28px;
   cursor: pointer;
 
-  color: #ffffff;
-  background-color: #3e85f3;
+  color: var(--btn-text-color);
+  background-color: var(--accent-background-color);
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   width: 131px;
@@ -25,7 +25,7 @@ export const Button = styled.button`
   border-radius: 16px;
 
   :hover {
-    background: #2b78ef;
+    background: var(--active-btn-color);
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   }
 
@@ -42,7 +42,7 @@ export const Icon = styled(LuLogOut)`
   width: 18px;
   height: 18px;
   vertical-align: middle;
-  color: #ffffff;
+  color: var(--btn-text-color);
   margin-left: 6px;
 
   @media screen and (min-width: 768px) {

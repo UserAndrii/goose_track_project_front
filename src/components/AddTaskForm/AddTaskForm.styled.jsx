@@ -17,7 +17,7 @@ export const Input = styled.input`
   margin-top: 8px;
   border: none;
   border-radius: 8px;
-  background: #f6f6f6;
+  background: var(--outlet-background-color);
   padding: 14px 18px;
 `;
 export const TimeWrapper = styled.div`
@@ -43,7 +43,7 @@ export const RadioWrapper = styled.div`
 export const Span = styled.span`
   margin-left: 6px;
 
-  color: #343434;
+  color: var(--calendar-date-color);
   font-family: inherit;
   font-size: 14px;
   font-style: normal;
@@ -67,7 +67,7 @@ export const RadioInputBlue = styled.input`
     width: 10px;
     height: 10px;
     border: none;
-    background-color: #72c2f8;
+    background-color: var(--task-low-color);
   }
 
   &:before {
@@ -75,7 +75,7 @@ export const RadioInputBlue = styled.input`
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: #72c2f8;
+    background-color: var(--task-low-color);
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -101,7 +101,7 @@ export const RadioInputYellow = styled.input`
     width: 10px;
     height: 10px;
     border: none;
-    background-color: #f3b249;
+    background-color: var(--task-med-color);
   }
 
   &:before {
@@ -109,7 +109,7 @@ export const RadioInputYellow = styled.input`
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: #f3b249;
+    background-color: var(--task-med-color);
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -135,7 +135,7 @@ export const RadioInputRed = styled.input`
     width: 10px;
     height: 10px;
     border: none;
-    background-color: #ea3d65;
+    background-color: var(--task-high-color);
   }
 
   &:before {
@@ -143,7 +143,7 @@ export const RadioInputRed = styled.input`
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: #ea3d65;
+    background-color: var(--task-high-color);
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -176,18 +176,18 @@ export const Button = styled.button`
   width: 182px;
   border: none;
   border-radius: 8px;
-  background-color: #e5edfa;
+  background-color: var(--background-feedack-form-btn-action);
 
   cursor: pointer;
   &:hover {
     color: #fff;
-    background-color: #3e85f3;
+    background-color: var(--accent-background-color);
   }
 `;
 
 export const ExampleCustomInput = styled.input`
   border-radius: 8px;
-  background: #f6f6f6;
+  background: var(--task-field-color);
   padding: 14px 18px;
   border: none;
   width: 163px;

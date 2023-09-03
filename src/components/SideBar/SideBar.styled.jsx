@@ -9,7 +9,7 @@ export const Container = styled.aside`
   left: 0;
 
   height: 100vh;
-  background-color: #ffffff;
+  background-color: var(--main-background-color);
 
   @media screen and (max-width: 767px) {
     width: 225px;
@@ -62,7 +62,7 @@ export const CloseBtn = styled(CgClose)`
   right: 20px;
   width: 24px;
   height: 24px;
-  color: #000000;
+  color: var(--modal-close-icon);
   cursor: pointer;
   z-index: 100;
 
@@ -96,7 +96,7 @@ export const Image = styled.img`
 `;
 
 export const Text = styled.p`
-  color: #3e85f3;
+  color: var(--accent-color);
   text-shadow: 0px 9.3px 57px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 16px;
