@@ -1,0 +1,74 @@
+/* Calendar Toolbar */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 335px;
+}
+
+@media screen and (min-width: 768px) {
+  .toolbar {
+    width: 704px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .toolbar {
+    width: 1087px;
+  }
+}
+
+/* Calendar Range */
+.calendarRange {
+  display: flex;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 335px;
+}
+
+@media screen and (min-width: 768px) {
+  .calendarRange {
+    display: none;
+  }
+}
+
+.calendarRange__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 76px;
+  height: 34px;
+
+  padding: 8px 16px;
+  margin-top: 18px;
+
+  color: #3e85f3;
+  background-color: rgba(227, 243, 255, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  border: 1px solid rgba(220, 227, 229, 0.5);
+}
+
+.calendarRange__buttons:hover {
+  background-color: rgba(11, 104, 234, 0.2);
+}
+
+/* Active Button */
+.calendarRange__ActiveButton {
+  background-color: rgba(62, 133, 243, 0.2);
+}
+
+.calendarRange__monthButton {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-right: 1px solid rgba(62, 133, 243, 0.2);
+}
+
+.calendarRange__dayButton {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}

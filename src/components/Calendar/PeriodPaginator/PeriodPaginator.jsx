@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import css from '../Caledar.module.css';
+import css from './PeriodPaginator.module.css';
 import { format, parse } from 'date-fns';
 
-export const PeriodPaginator = ({
+const PeriodPaginator = ({
   isMonthPage,
   nextPeriod,
   prevPeriod,
@@ -36,3 +36,5 @@ export const PeriodPaginator = ({
     </div>
   );
 };
+
+export default PeriodPaginator;

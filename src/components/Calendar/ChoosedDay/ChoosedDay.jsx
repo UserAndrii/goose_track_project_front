@@ -1,13 +1,27 @@
 import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 import { DayCalendarHead } from '../DayCalendarHead/DayCalendarHead';
+import { useLocation } from 'react-router';
+import { parse, isSameDay } from 'date-fns';
 
 export const ChoosedDay = ({
   week,
   currentDay,
   filteredTask,
   setCurrentDay,
+  setIsMonthPage,
 }) => {
-  // console.log('filteredTask', filteredTask);
+  const location = useLocation();
+
+  /* eslint-disable */
+  const [_, __, monthOrDay, date] = location.pathname.split('/');
+  /* eslint-enable */
+  const parsedDate = parse(date, 'yyyy-MM-dd', new Date());
+
+  if (!isSameDay(parsedDate, currentDay)) setCurrentDay(parsedDate);
+
+  if (monthOrDay === 'month') {
+    setIsMonthPage(true);
+  }
   return (
     <>
       <DayCalendarHead
@@ -15,7 +29,7 @@ export const ChoosedDay = ({
         currentDay={currentDay}
         setCurrentDay={setCurrentDay}
       />
-      <TasksColumnsList currentDay={currentDay} filteredTask={filteredTask}/>
+      <TasksColumnsList currentDay={currentDay} filteredTask={filteredTask} />
     </>
   );
 };

@@ -1,7 +1,7 @@
-import css from './Caledar.module.css';
+import css from './CalendarToolbar.module.css';
 
-import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
-import { PeriodPaginatorType } from './PeriodPaginatorType/PeriodPaginatorType';
+import PeriodPaginator from '../PeriodPaginator';
+import PeriodPaginatorType from '../PeriodPaginatorType';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { format, parse, add } from 'date-fns';
@@ -19,32 +19,6 @@ export const CalendarToolBar = ({
   const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
   const formattedDay =
     currentDate === undefined ? currentDay : parsedCurrentDate;
-
-  // Current Week
-  // const [currentWeek, setCurrentWeek] = useState({
-  //   start: startOfWeek(today, { weekStartsOn: 1 }),
-  //   end: addDays(endOfWeek(today, { weekStartsOn: 0 }), 1),
-  // });
-  // const Week = eachDayOfInterval(currentWeek);
-
-  // Weeks
-  // const nextWeek = () => {
-  //   const nextWeekStart = addWeeks(currentWeek.start, 1);
-  //   const nextWeekEnd = addDays(
-  //     endOfWeek(nextWeekStart, { weekStartsOn: 0 }),
-  //     1
-  //   );
-  //   setCurrentWeek({ start: addWeeks(currentWeek.start, 1), end: nextWeekEnd });
-  // };
-
-  // const prevWeek = () => {
-  //   const prevWeekStart = subWeeks(currentWeek.start, 1);
-  //   const prevWeekEnd = addDays(
-  //     endOfWeek(prevWeekStart, { weekStartsOn: 0 }),
-  //     1
-  //   );
-  //   setCurrentWeek({ start: prevWeekStart, end: prevWeekEnd });
-  // };
 
   const prevPeriod = () => {
     const parsedDate = parse(currentDate, 'yyyy-MM-dd', new Date());

@@ -1,12 +1,12 @@
-import css from '../Caledar.module.css';
+import css from './DayCalendarHead.module.css';
 import { useMediaQuery } from 'react-responsive';
 import { format, isSameDay } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 export const DayCalendarHead = ({ week, currentDay, setCurrentDay }) => {
   const navigate = useNavigate();
-  const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
 
+  const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
   const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const abbreviatedDayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
