@@ -21,16 +21,16 @@ line-height: calc(24/20);
 }
 `;
 export const PlusBtn = styled(FiPlusCircle)`
- width: 22px;
+  width: 22px;
   height: 22px;
-  color: #111111;
+  color: var(--label-text-color);
   cursor: pointer;
   transition: color 0.2s;
-   &:hover {
-    color: #3E85F3;
+  &:hover {
+    color: var(--accent-color);
   }
-  @media screen and (min-width: 768px){
-  width: 24px;
-  height: 24px;
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
   }
-  `;
+`;

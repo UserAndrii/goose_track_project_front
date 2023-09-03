@@ -33,7 +33,7 @@ export const TextAreaLabel = styled.label`
 `;
 
 export const TextArea = styled.textarea`
-  color: #343434;
+  color: var(--feedback-form-text-input);
   padding: 12px 14px;
 
   font-family: inherit;
@@ -60,7 +60,7 @@ export const BtnWrapper = styled.div`
 `;
 
 export const Btn = styled.button`
-  color: #343434;
+  color: var(--feedback-form-text-input);
   text-align: center;
   font-family: inherit;
   font-size: 14px;
@@ -78,8 +78,8 @@ export const Btn = styled.button`
 
   cursor: pointer;
   &:hover {
-    color: #fff;
-    background-color: #3e85f3;
+    color: var(--btn-text-color);
+    background-color: var(--accent-background-color);
   }
 
   @media screen and (max-width: 374px) {
@@ -98,7 +98,7 @@ export const IconContainer = styled.div`
 `;
 
 export const StyledEditIcon = styled(VscEdit)`
-  fill: #ffffff;
+  fill: var(--modal-edit-icon-stroke);
   display: flex;
   width: 30px;
   height: 30px;
@@ -107,7 +107,7 @@ export const StyledEditIcon = styled(VscEdit)`
   justify-content: center;
   align-items: center;
   border-radius: 50px;
-  background: #3e85f3;
+  background: var(--accent-color);
   cursor: pointer;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover {
@@ -116,12 +116,12 @@ export const StyledEditIcon = styled(VscEdit)`
 `;
 
 export const StyledEditIconDel = styled(RiDeleteBin6Line)`
-  fill: #ea3d65;
+  fill: var(--task-high-color);
   display: flex;
   width: 30px;
   cursor: pointer;
   height: 30px;
-  background: rgba(234, 61, 101, 0.2);
+  background: var(--background-feedback-form-btn-delete);
   padding: 7px;
   flex-direction: column;
   justify-content: center;
