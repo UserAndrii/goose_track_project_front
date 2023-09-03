@@ -55,7 +55,7 @@ const TasksColumnsList = ({ filteredTask, currentDay }) => {
       <TasksColumn columnId={"TODO"}
         category={'To do'}
         tasks={todoData}
-        style={{ marginLeft: 0 }} />
+      />
       <TasksColumn columnId={"INPROGRESS"} category={'In progress'} tasks={inprogressData} />
       <TasksColumn columnId={"DONE"} category={'Done'} tasks={doneData} />
     </Container>
