@@ -16,7 +16,6 @@ import {
 
 export const CalendarTable = ({
   monthDays,
-  setIsMonthPage,
   currentDay,
   allTasks,
   setCurrentDay,
