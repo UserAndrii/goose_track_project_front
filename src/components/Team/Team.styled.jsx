@@ -82,7 +82,7 @@ export const Button = styled(Link)`
   color: var(--accent-color);
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  width: 131px;
+  width: auto;
   padding: 14px 28px;
   margin-top: auto;
   border: none;
@@ -94,7 +94,6 @@ export const Button = styled(Link)`
   }
 
   @media screen and (min-width: 768px) {
-    width: 141px;
     padding: 16px 23px;
     font-size: 18px;
     line-height: 1.33;
