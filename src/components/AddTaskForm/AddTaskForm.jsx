@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -25,6 +26,8 @@ import {
 } from './AddTaskForm.styled';
 
 const AddTaskForm = ({ onClose, task }) => {
+  const { t } = useTranslation();
+
   const initialEndTime = new Date();
   initialEndTime.setMinutes(initialEndTime.getMinutes() + 15);
 
@@ -52,12 +55,12 @@ const AddTaskForm = ({ onClose, task }) => {
   const handleAddTask = async event => {
     event.preventDefault();
     if (!title || !startTime || !endTime || !priority) {
-      showErrorToast('Please fill in all fields');
+      showErrorToast(t('addtask.err1'));
       return;
     }
 
     if (startTime > endTime) {
-      showErrorToast('Start time cannot be after end time');
+      showErrorToast(t('addtask.err2'));
       return;
     }
 
@@ -79,32 +82,32 @@ const AddTaskForm = ({ onClose, task }) => {
     try {
       if (task) {
         await editTask({ id: task._id, ...taskData });
-        showSuccessToast('Task edited:');
+        showSuccessToast(t('addtask.succ1'));
       } else {
         await createTask(taskData);
-        showSuccessToast('New task created:');
+        showSuccessToast(t('addtask.succ2'));
       }
       onClose();
     } catch (error) {
-      showErrorToast('Error creating/editing task');
+      showErrorToast(t('addtask.err3'));
     }
   };
 
   return (
     <Form onSubmit={handleAddTask}>
       <Label>
-        Title
+        {t('addtask.title')}
         <Input
           type="text"
           name="title"
-          placeholder="Enter text"
+          placeholder={t('addtask.titlehold')}
           value={title}
           onChange={e => setTitle(e.target.value)}
         />
       </Label>
       <TimeWrapper>
         <TimePickerLabel>
-          Start
+          {t('addtask.start')}
           <DatePicker
             selected={startTime}
             onChange={date => {
@@ -120,7 +123,7 @@ const AddTaskForm = ({ onClose, task }) => {
           />
         </TimePickerLabel>
         <TimePickerLabel>
-          End
+          {t('addtask.end')}
           <DatePicker
             selected={endTime}
             onChange={date => setEndTime(date)}
@@ -144,7 +147,7 @@ const AddTaskForm = ({ onClose, task }) => {
             checked={priority === 'LOW'}
             onChange={handlePriorityChange}
           />
-          <Span className="radio-label">Low</Span>
+          <Span className="radio-label"> {t('addtask.low')}</Span>
         </PriorityLabel>
 
         <PriorityLabel>
@@ -155,7 +158,7 @@ const AddTaskForm = ({ onClose, task }) => {
             checked={priority === 'MEDIUM'}
             onChange={handlePriorityChange}
           />
-          <Span className="radio-label">Medium</Span>
+          <Span className="radio-label"> {t('addtask.mid')}</Span>
         </PriorityLabel>
 
         <PriorityLabel>
@@ -166,13 +169,15 @@ const AddTaskForm = ({ onClose, task }) => {
             checked={priority === 'HIGH'}
             onChange={handlePriorityChange}
           />
-          <Span className="radio-label">High</Span>
+          <Span className="radio-label"> {t('addtask.high')}</Span>
         </PriorityLabel>
       </RadioWrapper>
       <ButtonWrapper>
-        <Button type="submit">{task ? 'Edit' : '+ Add'}</Button>
+        <Button type="submit">
+          {task ? t('addtask.edit') : t('addtask.add')}
+        </Button>
         <Button type="button" onClick={onClose}>
-          Cancel
+          {t('addtask.cancel')}
         </Button>
       </ButtonWrapper>
     </Form>

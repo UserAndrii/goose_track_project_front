@@ -6,7 +6,7 @@ i18next
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
+    debug: false,
     fallbackLng: 'en',
     resources: {
       en: {
@@ -117,6 +117,24 @@ i18next
             calendar: 'Calendar',
             stat: 'Statistics',
           },
+          addtask: {
+            addtaskbtn: 'Add task',
+            err1: 'Please fill in all fields',
+            err2: 'Start time cannot be after end time',
+            err3: 'Error creating/editing task',
+            succ1: 'Task edited:',
+            succ2: 'New task created:',
+            title: 'Title',
+            titlehold: 'Enter text',
+            start: 'Start',
+            end: 'End',
+            low: 'Low',
+            mid: 'Medium',
+            high: 'High',
+            edit: 'Edit',
+            add: 'Add',
+            cancel: 'Cancel',
+          },
         },
       },
       ua: {
@@ -226,6 +244,24 @@ i18next
             profile: 'Обліковий запис',
             calendar: 'Ваш календар',
             stat: 'Ваша статистика',
+          },
+          addtask: {
+            addtaskbtn: 'Додати задачу',
+            err1: 'Заповніть усі поля, будьласка',
+            err2: 'Початковий час повинен бути меншим за кінцевий',
+            err3: 'Помилка створення/редагування задачі',
+            succ1: 'Відредаговано',
+            succ2: 'Створено',
+            title: 'Опис:',
+            titlehold: 'Чого б Вам хотілося?',
+            start: 'Початок',
+            end: 'Кінець',
+            low: 'Не важлива',
+            mid: 'Така собі',
+            high: 'Важлива',
+            edit: 'Редагувати',
+            add: '+ Додати',
+            cancel: 'Скасувати',
           },
         },
       },
