@@ -31,7 +31,7 @@ const AuthNavigate = () => {
         {activePageQuestions}{' '}
         <LinkTo to="/register">{t('inout.signup')}</LinkTo>
       </Text>
-      <LinkTo to="/recover">{t('inout.forgot')}</LinkTo>
+      <LinkTo to="/password_recovery">{t('inout.forgot')}</LinkTo>
     </Wrapper>
   ) : (
     <Wrapper>

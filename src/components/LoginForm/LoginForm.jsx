@@ -214,12 +214,7 @@ const LoginForm = () => {
             </Button>
           </InputGroupe>
           <LinksContainer>
-            <AuthNavigate
-              forgotPasswordText="Recover password"
-              alreadyRegisteredText="New user?"
-              forgotPasswordLink="/recover"
-              alreadyRegisteredLink="/register"
-            />
+            <AuthNavigate />
           </LinksContainer>
         </StyledForm>
         <PictureWrapper>

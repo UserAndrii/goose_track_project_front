@@ -149,3 +149,19 @@ export const getVerifyEmailUser = createAsyncThunk(
     }
   }
 );
+
+export const sendRenewPass = createAsyncThunk(
+  '/sendRenewPass',
+  async (email, thunkAPI) => {
+    try {
+      await axios.post('/sendRenewPass', email);
+
+      showSuccessToast(
+        'The new password has been successfully sent to your email'
+      );
+      return;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

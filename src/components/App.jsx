@@ -26,6 +26,7 @@ const StatisticsPage = lazy(() => import('pages/StatisticsPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 const TeamPage = lazy(() => import('pages/TeamPage'));
 const VerifyEmail = lazy(() => import('pages/VerifyPage'));
+const PasswordRecoveryPage = lazy(() => import('pages/PasswordRecoveryPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -63,10 +64,21 @@ export const App = () => {
             />
           }
         />
+
         <Route
           path="/login"
           element={
             <RestrictedRoute component={<LoginPage />} navigateTo="/calendar" />
+          }
+        />
+
+        <Route
+          path="/password_recovery"
+          element={
+            <RestrictedRoute
+              component={<PasswordRecoveryPage />}
+              navigateTo="/calendar"
+            />
           }
         />
 
