@@ -8,7 +8,7 @@ import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 
 const TasksColumnsList = ({ filteredTask, currentDay }) => {
-  const [editTask, { isFetching, isError }] = tasksApi.useEditTasksMutation();
+  const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();
   let todoData = [];
   let inprogressData = [];
   let doneData = [];
@@ -23,7 +23,7 @@ const TasksColumnsList = ({ filteredTask, currentDay }) => {
       task => task.category.replace(/\s+/g, '').toLowerCase() === 'done'
     );
   }
-  const onDragEnd = (result) => {
+  const updateDrag = result => {
     const { destination, source, draggableId } = result;
 
     if (!destination) {
@@ -35,32 +35,27 @@ const TasksColumnsList = ({ filteredTask, currentDay }) => {
     ) {
       return;
     }
-    const task = filteredTask.find(item => (item._id === draggableId));
+    const task =  filteredTask.find(item => (item._id === draggableId));
     const { _id, ...newTask } = task;
     const editedTask = { ...newTask, category: destination.droppableId };
     try {
       editTask({ id: task._id, ...editedTask });
       if (isError) {
-        throw new Error();
+      throw new Error();
       }
     } catch (error) {
       showErrorToast('Something went wrong...');
     }
-
   }
   return (
-     isFetching ? <ImageAnimation/>:
-  <DragDropContext onDragEnd={onDragEnd}>
-    <Container>
-      <TasksColumn columnId={"TODO"}
-        category={'To do'}
-        tasks={todoData}
-      />
-      <TasksColumn columnId={"INPROGRESS"} category={'In progress'} tasks={inprogressData} />
-      <TasksColumn columnId={"DONE"} category={'Done'} tasks={doneData} />
-    </Container>
-  </DragDropContext>
-
+    <DragDropContext onDragUpdate={updateDrag}>
+      <Container>
+          {isLoading && <ImageAnimation/>}
+        <TasksColumn columnId={"TODO"} category={'To do'} tasks={todoData} />
+        <TasksColumn columnId={"INPROGRESS"} category={'In progress'} tasks={inprogressData} />
+        <TasksColumn columnId={"DONE"} category={'Done'} tasks={doneData} />
+      </Container>
+      </DragDropContext>
   );
 };
 export default TasksColumnsList;
