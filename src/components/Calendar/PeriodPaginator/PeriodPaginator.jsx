@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import css from './PeriodPaginator.module.css';
 import { format, parse } from 'date-fns';
+import { useState } from 'react';
 
 const PeriodPaginator = ({
   isMonthPage,
@@ -17,14 +18,24 @@ const PeriodPaginator = ({
 
   const formattedDay =
     currentDate === undefined ? currentDay : parsedCurrentDate;
+  const [DataDate, setDataDate] = useState();
 
   return (
     <div className={css.toolbar__innerBlock}>
-      <button className={css.toolbar__curerntDate}>
-        {isMonthPage
-          ? format(formattedMonth, 'MMMM yyyy')
-          : format(formattedDay, 'd MMMM yyyy')}
-      </button>
+      <DatePicker
+        dateFormat="dd/MM/yyyy"
+        calendarStartDay={1}
+        selected={startDate}
+        onChange={date => setStartDate(date)}
+        customInput={
+          <button className={css.toolbar__curerntDate}>
+            {isMonthPage
+              ? format(formattedMonth, 'MMMM yyyy')
+              : format(formattedDay, 'd MMMM yyyy')}
+          </button>
+        }
+      />
+
       <div className={css.toggleButtons}>
         <button className={css.toggleButtons__previous} onClick={prevPeriod}>
           {'<'}

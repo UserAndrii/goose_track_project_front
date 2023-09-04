@@ -29,9 +29,9 @@ const data = [
   },
 ];
 export default function StatisticsChart({ currentDay, currentMonth }) {
-  const activeBtnCalendarSwitchColor = getComputedStyle(
+  const borderStatistics = getComputedStyle(
     document.documentElement
-  ).getPropertyValue('--active-btn-calendar-switch');
+  ).getPropertyValue('--border-statistics');
   const titleTextColor = getComputedStyle(
     document.documentElement
   ).getPropertyValue('--title-text-main-color');
@@ -47,7 +47,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
   const btnTextColor = getComputedStyle(
     document.documentElement
   ).getPropertyValue('--btn-text-color');
-
+  console.log(':>> ', borderStatistics);
   // Решта вашого коду залишається незмінним
 
   const [chartWidth, setChartWidth] = useState(860);
