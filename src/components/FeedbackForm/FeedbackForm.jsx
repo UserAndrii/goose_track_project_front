@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Rating } from 'react-simple-star-rating';
@@ -23,6 +24,8 @@ import {
 } from './FeedbackForm.styled';
 
 const FeedbackForm = ({ onClose }) => {
+  const { t } = useTranslation();
+
   const { data: userReviewData } = useGetUserReviewQuery();
 
   const [rating, setRating] = useState(0);
@@ -31,7 +34,6 @@ const FeedbackForm = ({ onClose }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
 
-  
   const dispatch = useDispatch();
 
   const [createReview] = useCreateReviewMutation();
@@ -58,12 +60,12 @@ const FeedbackForm = ({ onClose }) => {
     setIsEditMode(false);
   };
 
-  const handleChangeReview = (e) => {
+  const handleChangeReview = e => {
     const text = e.target.value;
     if (text.length <= 180) {
       setReview(text);
-    }else{
-      showErrorToast('Your review should be less than 180 characters.');
+    } else {
+      showErrorToast(t('feedback.err1'));
     }
   };
 
@@ -72,25 +74,19 @@ const FeedbackForm = ({ onClose }) => {
     if (isEditMode) {
       try {
         await editReview({ review, rating }).unwrap();
-        showSuccessToast('You have successfully edited your comment!');
+        showSuccessToast(t('feedback.succ1'));
         setIsEditMode(false);
         onClose();
       } catch (error) {
-        showErrorToast(
-          'Error editing review: the Rating and Review fields must be filled'
-        );
+        showErrorToast(t('feedback.err2'));
       }
     } else {
       try {
         await createReview({ review, rating }).unwrap();
-        showSuccessToast(
-          'Thank you for your feedback! It will be published soon.'
-        );
+        showSuccessToast(t('feedback.succ2'));
         onClose();
       } catch (error) {
-        showErrorToast(
-          'Error creating review: the Rating and Review fields must be filled'
-        );
+        showErrorToast(t('feedback.err2'));
       }
     }
   };
@@ -98,21 +94,19 @@ const FeedbackForm = ({ onClose }) => {
   const handleDelete = async () => {
     try {
       await deleteReview();
-      showSuccessToast(
-        "Your review has been deleted. We hope we didn't upset you?"
-      );
+      showSuccessToast(t('feedback.succ3'));
       setIsDeleteMode(false);
       dispatch(reviewsApi.util.resetApiState());
       onClose();
     } catch (error) {
-      showErrorToast('Error deleting review: try again please');
+      showErrorToast(t('feedback.err3'));
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <RatingWrapper>
-        <p>Rating</p>
+        <p>{t('feedback.rating')}</p>
         <Rating
           name="rating"
           id="rating"
@@ -128,7 +122,7 @@ const FeedbackForm = ({ onClose }) => {
         />
       </RatingWrapper>
       <TextAreaLabel htmlFor="review">
-        Review:
+        {t('feedback.review')}
         {userReviewData && (
           <IconContainer>
             <StyledEditIcon onClick={handleEditReview} />

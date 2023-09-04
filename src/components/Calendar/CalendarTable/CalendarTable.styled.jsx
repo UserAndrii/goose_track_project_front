@@ -125,7 +125,7 @@ const TaskItem = styled.div`
   justify-content: center;
   align-items: center;
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-top: 5px;
   }
 `;

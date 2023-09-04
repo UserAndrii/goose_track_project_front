@@ -351,7 +351,7 @@ export const CustomInput = styled.input`
   width: 100%;
   height: 42px;
   border-radius: 8px;
-  border: 1px solid var(--outlet-background-color);
+  border: 1px solid #e0e0e0;
   padding: 12px 14px;
   font-size: 14px;
   line-height: 18px;
