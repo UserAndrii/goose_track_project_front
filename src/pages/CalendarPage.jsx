@@ -38,7 +38,7 @@ const CalendarPage = () => {
   const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date());
 
   const days = eachDayOfInterval({
-    start: startOfWeek(firstDayCurrentMonth),
+    start: startOfWeek(firstDayCurrentMonth, { weekStartsOn: 1 }),
     end: endOfWeek(endOfMonth(firstDayCurrentMonth)),
   });
 
