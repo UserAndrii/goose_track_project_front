@@ -1,8 +1,8 @@
 import { Container, Title, PlusBtn } from './ColumnHeadBar.styled';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 import { useState, useEffect } from 'react';
-const ColumnHeadBar = ({ category }) => {
-    const [isModalOpen, setModalOpen] = useState(false);
+const ColumnHeadBar = ({ category, columnId }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -29,12 +29,14 @@ const ColumnHeadBar = ({ category }) => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen]);
-    return (
-        <Container>
-                <Title>{category}</Title> 
-            <PlusBtn onClick={handleOpenModal} />
-            {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
-        </Container>
- )   
-}
+  return (
+    <Container>
+      <Title>{category}</Title>
+      <PlusBtn onClick={handleOpenModal} />
+      {isModalOpen && (
+        <AddTaskModal onClose={handleCloseModal} category={columnId} />
+      )}
+    </Container>
+  );
+};
 export default ColumnHeadBar;

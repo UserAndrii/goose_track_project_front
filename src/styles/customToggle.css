@@ -358,3 +358,8 @@
   accent-color: var(--color);
   transition: accent-color var(--speed) var(--easing);
 }
+.recharts-surface {
+  @media screen and (max-width: 767px) {
+    padding-right: 14px;
+  }
+}

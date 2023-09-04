@@ -5,7 +5,7 @@ export const Form = styled.form`
   @media (max-width: 767px) {
     display: flex;
     flex-direction: column;
-    justyfi-content:centre;
+    justyfi-content: centre;
     width: 85%;
     height: 70%;
   }
@@ -28,7 +28,7 @@ export const TimeWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 18px;
-  gap:14px;
+  gap: 14px;
   margin-bottom: 28px;
   @media (max-width: 767px) {
     flex-direction: column;
@@ -36,8 +36,8 @@ export const TimeWrapper = styled.div`
 `;
 
 export const TimePickerLabel = styled.label`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PriorityLabel = styled.label`
@@ -130,7 +130,6 @@ export const RadioInputYellow = styled.input`
 `;
 
 export const RadioInputRed = styled.input`
-
   appearance: none;
   width: 15px;
   height: 15px;
@@ -183,7 +182,7 @@ export const Button = styled.button`
   line-height: 128%;
 
   padding: 10px 20px;
-  width: 182px;
+  width: 100%;
   border: none;
   border-radius: 8px;
   background-color: var(--background-feedack-form-btn-action);

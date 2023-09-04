@@ -59,7 +59,7 @@
   --fill-icon: rgba(52, 52, 52, 0.5);
   --border-statistics: #e3f3ff;
   --calendartable-border-color: rgba(220, 227, 229, 0.8);
-  
+
   /* form */
   --input-bcg-color: #f7f7f7;
   --border-input: #ffffff2f;
@@ -77,17 +77,15 @@
   --background-button-day: #e3f3ff;
   --background-button-day-add: #e3f3ff;
 
-
   /* calendar */
-  --active-selection: #CAE8FF;
+  --active-selection: #cae8ff;
   --input-text-color: #616161;
   --user-name-color: #343434;
-  --calendar-bg-color: #E3F3FF;
+  --calendar-bg-color: #e3f3ff;
   --calendar-border-color: rgba(220, 227, 229, 0.5);
   --background-feedback-form-btn-edit: #e3f3ff;
   --background-feedback-form-btn-delete: rgba(234, 61, 101, 0.2);
   --background-feedack-form-btn-action: #e5edfa;
-
 }
 
 [dark] {
@@ -153,7 +151,7 @@
   /* calendar */
   --input-text-color: #ffffff;
   --user-name-color: #ffffff;
-  --calendar-bg-color: #21222C;
+  --calendar-bg-color: #21222c;
   --calendar-border-color: rgba(255, 255, 255, 0.15);
 
   --background-button-day: rgba(33, 34, 44, 1);

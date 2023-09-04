@@ -3,7 +3,7 @@ import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 import { CalendarToolBar } from '../components/Calendar/CalendarToolbar/CalendarToolbar';
 import { ChoosedMonth } from '../components/Calendar/ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from '../components/Calendar/ChoosedDay/ChoosedDay';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 // import css from '../components/Calendar/Caledar.module.css';
 import { Calendar } from '../components/Calendar/Calendar.styled';
@@ -21,6 +21,16 @@ import {
 
 const CalendarPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  /* eslint-disable */
+  const [_, __, monthOrDay, date] = location.pathname.split('/');
+
+  /* eslint-enable */
+
+  // const parsedDate = parse(date, 'yyyy-MM-dd', new Date());
+
+  // if (!isSameDay(parsedDate, currentDay)) setCurrentDay(parsedDate);
 
   let filteredTask;
 
@@ -89,6 +99,15 @@ const CalendarPage = () => {
   /* eslint-enable */
 
   useEffect(() => {
+    if (monthOrDay) {
+      if (monthOrDay === 'month') {
+        setIsMonthPage(true);
+      } else {
+        setIsMonthPage(false);
+      }
+    }
+  }, [monthOrDay]);
+  useEffect(() => {
     // refetch();
     if (allTasks) {
       const Tasks = [...allTasks.data];
@@ -125,7 +144,6 @@ const CalendarPage = () => {
         currentMonth={firstDayCurrentMonth}
         setCurrentMonth={setCurrentMonth}
         isMonthPage={isMonthPage}
-        setIsMonthPage={setIsMonthPage}
         week={week}
       />
       {isMonthPage ? (

@@ -10,6 +10,18 @@ const InnerBlock = styled.div`
     justify-content: start;
   }
 `;
+const CurrentDateWrapper = styled.div`
+  width: 190px;
+  height: 30px;
+
+  border: none;
+  border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    height: 34px;
+    margin-right: 8px;
+  }
+`;
 
 const CurrentDate = styled.button`
   display: flex;
@@ -30,7 +42,7 @@ const CurrentDate = styled.button`
 
   @media screen and (min-width: 768px) {
     height: 34px;
-    margin-right: 8px;
+    // margin-right: 8px;
     font-size: 16px;
   }
 `;
@@ -70,4 +82,10 @@ const ToggleButton = styled.button`
   }
 `;
 
-export { InnerBlock, CurrentDate, ToggleButtons, ToggleButton };
+export {
+  InnerBlock,
+  CurrentDate,
+  ToggleButtons,
+  ToggleButton,
+  CurrentDateWrapper,
+};

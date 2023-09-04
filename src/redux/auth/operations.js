@@ -141,9 +141,9 @@ export const getVerifyEmailUser = createAsyncThunk(
   '/getVerifyEmail',
   async (verifyToken, thunkAPI) => {
     try {
-      await axios.get(`/verify/${verifyToken}`);
+     const response=await axios.get(`/verify/${verifyToken}`);
 
-      return;
+      return response.data.verify;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

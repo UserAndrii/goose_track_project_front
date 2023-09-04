@@ -12,7 +12,6 @@ import { format, parse, add } from 'date-fns';
 
 export const CalendarToolBar = ({
   isMonthPage,
-  setIsMonthPage,
   currentMonth,
   setCurrentMonth,
   currentDay,
@@ -53,7 +52,16 @@ export const CalendarToolBar = ({
       navigate(`day/${newDate}`);
     }
   };
-
+  const handleCurrentDay = day => {
+    if (isMonthPage) {
+      setCurrentMonth(format(day, 'MMM-yyyy'));
+      setCurrentDay(day);
+      navigate(`month/${format(day, 'yyyy-MM-dd')}`);
+    } else {
+      setCurrentDay(day);
+      navigate(`day/${format(day, 'yyyy-MM-dd')}`);
+    }
+  };
   return (
     <>
       <ToolbarWrapper>
@@ -63,14 +71,10 @@ export const CalendarToolBar = ({
           nextPeriod={nextPeriod}
           currentDay={currentDay}
           currentMonth={currentMonth}
+          handleCurrentDay={handleCurrentDay}
         />
 
-        <PeriodPaginatorType
-          isMonthPage={isMonthPage}
-          changeType={() => {
-            setIsMonthPage(prev => !prev);
-          }}
-        />
+        <PeriodPaginatorType isMonthPage={isMonthPage} />
       </ToolbarWrapper>
 
       <CalendarRangeWrapper>
@@ -80,7 +84,6 @@ export const CalendarToolBar = ({
           }`}
           onClick={() => {
             navigate(`month/${format(formattedDay, 'yyyy-MM-dd')}`);
-            setIsMonthPage(prev => !prev);
           }}
         >
           Month
@@ -91,7 +94,6 @@ export const CalendarToolBar = ({
           }`}
           onClick={() => {
             navigate(`day/${format(formattedDay, 'yyyy-MM-dd')}`);
-            setIsMonthPage(prev => !prev);
           }}
         >
           Day

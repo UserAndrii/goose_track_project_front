@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router';
 import { CalendarTable } from '../CalendarTable/CalendarTable';
 import { MonthCalendarHead } from '../MonthCalendarHead/MonthCalendarHead';
 
@@ -11,15 +10,6 @@ export const ChoosedMonth = ({
   setCurrentDay,
   setTasks,
 }) => {
-  const location = useLocation();
-
-  /* eslint-disable */
-  const [_, __, monthOrDay] = location.pathname.split('/');
-  /* eslint-enable */
-
-  if (monthOrDay === 'day') {
-    setIsMonthPage(false);
-  }
   return (
     <>
       <MonthCalendarHead week={week} />

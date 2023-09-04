@@ -8,67 +8,9 @@ import {
   LabelList,
   Label,
 } from 'recharts';
-
+import PoppinsFontMedium from '../../fonts/Poppins-Medium.ttf';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-
-function CustomBar(props) {
-  const { x, y, width, height, borderRadius } = props;
-
-  return (
-    <g>
-      <rect
-        x={x}
-        y={y}
-        width={width}
-        height={height}
-        fill="url(#pvGradient)"
-        rx={borderRadius}
-        ry={borderRadius}
-      />
-    </g>
-  );
-}
-
-function CustomBar1(props) {
-  const { x, y, width, height, borderRadius } = props;
-
-  return (
-    <g>
-      <rect
-        x={x}
-        y={y}
-        width={width}
-        height={height}
-        fill="url(#uvGradient)"
-        rx={borderRadius}
-        ry={borderRadius}
-      />
-    </g>
-  );
-}
-const renderCustomizedLabel = props => {
-  const { x, y, width, value, lineHeight, fontSize } = props;
-  const radius = 10;
-
-  return (
-    <g>
-      <text
-        x={x + width / 2}
-        y={y - radius}
-        fill="#343434"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fontSize={fontSize}
-        fontStyle={'normal'}
-        fontWeight={500}
-        fontFamily="Poppins"
-        lineheight={lineHeight}
-      >
-        {value}%
-      </text>
-    </g>
-  );
-};
+// import '../../styles/vars.css';
 const data = [
   {
     name: 'To Do',
@@ -87,6 +29,27 @@ const data = [
   },
 ];
 export default function StatisticsChart({ currentDay, currentMonth }) {
+  // const borderStatistics = getComputedStyle(
+  //   document.documentElement
+  // ).getPropertyValue('dark[--border-statistics]');
+  // // const titleTextColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--title-text-main-color');
+  // // const secondaryTextColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--secondary-text-color');
+  // // const accentColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--accent-color');
+  // // const activeSelectionColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--active-selection');
+  // // const btnTextColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--btn-text-color');
+  // console.log(':>> ', borderStatistics);
+  // // Решта вашого коду залишається незмінним
+
   const [chartWidth, setChartWidth] = useState(860);
   const [chartHeight, setChartHeight] = useState(440);
   const [sizeBar, setSizeBar] = useState(27);
@@ -98,6 +61,8 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
   const [fontSizeL, setFontSizeL] = useState(14);
   const [lineHeightL, setLineHeightL] = useState(21);
   const [dataChart, setDataChart] = useState(data);
+  const [tasksPosition, setTasksPosition] = useState(-25);
+  const [marginBar, setMarginBar] = useState(14);
   const { data: allTasks, refetch } = useGetMonthlyTasksQuery(currentMonth);
 
   useEffect(() => {
@@ -193,7 +158,9 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         setLineHeight('16px');
         setFontSizeL('12px');
         setLineHeightL('16px');
-      } else if (screenWidth <= 768) {
+        setTasksPosition(0);
+        setMarginBar(4);
+      } else if (screenWidth <= 767) {
         setChartWidth(307);
         setChartHeight(418);
         setSizeBar(22);
@@ -204,6 +171,8 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         setLineHeight('16px');
         setFontSizeL('12px');
         setLineHeightL('16px');
+        setTasksPosition(0);
+        setMarginBar(4);
       } else if (screenWidth < 1440) {
         setChartWidth(640);
         setChartHeight(424);
@@ -215,6 +184,8 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         setLineHeight('18px');
         setFontSizeL('14px');
         setLineHeightL('21px');
+        setTasksPosition(-16);
+        setMarginBar(14);
       } else {
         setChartWidth(860);
         setChartHeight(440);
@@ -226,6 +197,8 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         setLineHeight('18px');
         setFontSizeL('14px');
         setLineHeightL('21px');
+        setTasksPosition(-25);
+        setMarginBar(14);
       }
     }
 
@@ -237,6 +210,87 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  function CustomBar(props) {
+    const { x, y, width, height, borderRadius } = props;
+
+    return (
+      <g>
+        <rect
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          fill="url(#pvGradient)"
+          rx={borderRadius}
+          ry={borderRadius}
+        />
+      </g>
+    );
+  }
+
+  function CustomBar1(props) {
+    const { x, y, width, height, borderRadius } = props;
+
+    return (
+      <g>
+        <rect
+          x={x + marginBar}
+          y={y}
+          width={width}
+          height={height}
+          fill="url(#uvGradient)"
+          rx={borderRadius}
+          ry={borderRadius}
+        />
+      </g>
+    );
+  }
+  const renderCustomizedLabel = props => {
+    const { x, y, width, value, lineHeight, fontSize } = props;
+    const radius = 10;
+
+    return (
+      <g>
+        <text
+          x={x + width / 2}
+          y={y - radius}
+          fill="#343434"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={fontSize}
+          fontStyle={'normal'}
+          fontWeight={500}
+          fontFamily={PoppinsFontMedium}
+          lineheight={lineHeight}
+        >
+          {value}%
+        </text>
+      </g>
+    );
+  };
+  const renderCustomizedLabel1 = props => {
+    const { x, y, width, value, lineHeight, fontSize } = props;
+    const radius = 10;
+
+    return (
+      <g>
+        <text
+          x={x + width / 2 + marginBar}
+          y={y - radius}
+          fill="#343434"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={fontSize}
+          fontStyle={'normal'}
+          fontWeight={500}
+          fontFamily={PoppinsFontMedium}
+          lineheight={lineHeight}
+        >
+          {value}%
+        </text>
+      </g>
+    );
+  };
   return (
     <BarChart
       width={chartWidth}
@@ -249,14 +303,15 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         bottom: padBottomChart,
       }}
       style={{
-        border: '0.8px solid #E3F3FF',
         borderRadius: 16,
+        border: '1px solid  rgba(227, 243, 255, 1)',
       }}
     >
       <CartesianGrid
         strokeDasharray="0 0"
         vertical={false}
         stroke={'#E3F3FF'}
+        dx={20}
         horizontal={{
           strokeWidth: 1,
         }}
@@ -269,9 +324,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         tick={{ dy: 19 }}
         style={{
           color: '#343434',
-
           fontSize: '14px',
-
           fontWeight: 400,
           lineHeight: '21px',
         }}
@@ -291,7 +344,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         <Label
           value="Tasks"
           position="top"
-          dx={-25}
+          dx={tasksPosition}
           dy={-24}
           style={{
             color: '#343434',
@@ -320,14 +373,20 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         dataKey="uv"
         barSize={sizeBar}
         fill="none"
-        style={{ zIndex: 2, borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
-        shape={<CustomBar1 borderRadius={8} />}
+        style={{
+          zIndex: 2,
+
+          borderTopLeftRadius: 0,
+          borderTopRightRadius: 0,
+        }}
+        shape={<CustomBar1 borderRadius={8} marginBar={marginBar} />}
       >
         <LabelList
           dataKey="uv"
-          content={renderCustomizedLabel}
+          content={renderCustomizedLabel1}
           lineheight={lineHeight}
           fontSize={fontSize}
+          marginBar={marginBar}
         />
       </Bar>
       <defs>

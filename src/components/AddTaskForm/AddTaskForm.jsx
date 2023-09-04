@@ -25,7 +25,7 @@ import {
   TimeWrapper,
 } from './AddTaskForm.styled';
 
-const AddTaskForm = ({ onClose, task }) => {
+const AddTaskForm = ({ onClose, task, category }) => {
   const { t } = useTranslation();
 
   const initialEndTime = new Date();
@@ -76,7 +76,7 @@ const AddTaskForm = ({ onClose, task }) => {
       end: formatTime(endTime),
       priority: priority,
       date: currentDate,
-      category: 'TODO',
+      category: category ? category : task.category,
     };
 
     try {
