@@ -9,19 +9,20 @@ import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 const TasksColumnsList = ({ filteredTask, currentDay }) => {
   const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();
+  const priorityOrder = ["LOW", "MEDIUM", "HIGH"];
   let todoData = [];
   let inprogressData = [];
   let doneData = [];
   if (filteredTask) {
     todoData = filteredTask.filter(
-      task => task.category.replace(/\s+/g, '').toLowerCase() === 'todo'
-    );
+    task => task.category.replace(/\s+/g, '').toLowerCase() === 'todo');
+    todoData.sort((a, b) => priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority));
     inprogressData = filteredTask.filter(
-      task => task.category.replace(/\s+/g, '').toLowerCase() === 'inprogress'
-    );
+    task => task.category.replace(/\s+/g, '').toLowerCase() === 'inprogress');
+    inprogressData.sort((a, b) => priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority));
     doneData = filteredTask.filter(
-      task => task.category.replace(/\s+/g, '').toLowerCase() === 'done'
-    );
+    task => task.category.replace(/\s+/g, '').toLowerCase() === 'done');
+    doneData.sort((a, b) => priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority));
   }
   const updateDrag = result => {
     const { destination, source, draggableId } = result;
