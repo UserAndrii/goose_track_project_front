@@ -1,6 +1,5 @@
-// import { TimePicker } from '@progress/kendo-react-dateinputs';
 import '@progress/kendo-theme-default/dist/all.css';
-import toast from 'react-hot-toast';
+import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -33,13 +32,12 @@ const AddTaskForm = ({ onClose }) => {
   const handleAddTask = async event => {
     event.preventDefault();
     if (!title || !startTime || !endTime || !priority) {
-      toast.error('Please fill in all fields');
+      showErrorToast('Please fill in all fields');
       return;
     }
 
     if (startTime > endTime) {
-      toast.error('Start time cannot be after end time');
-      console.log('Start time cannot be after end time');
+      showErrorToast('Start time cannot be after end time');
       return;
     }
 
@@ -59,12 +57,11 @@ const AddTaskForm = ({ onClose }) => {
     };
 
     try {
-      const result = await createTask(newTask);
-      console.log('New task created:', result);
+      await createTask(newTask);
+      showSuccessToast('New task created:');
       onClose();
     } catch (error) {
-      console.error('Error creating task:', error);
-      toast.error('Error creating task');
+      showErrorToast('Error creating task');
     }
   };
 
