@@ -6,7 +6,6 @@ import AddTaskBtn from '../AddTaskBtn';
 import ColumnsTasksList from '../ColumnsTasksList';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 
-
 const TasksColumn = ({ category, tasks, columnId }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -30,16 +29,18 @@ const TasksColumn = ({ category, tasks, columnId }) => {
     if (isModalOpen) {
       window.addEventListener('keydown', handleKeyDown);
     }
-  return () => {
+    return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen]);
-    return (
-      <Container tasksLength={tasks.length}>
-         <ColumnHeadBar category={category}/>
-       <ColumnsTasksList tasks={tasks} columnId={columnId} />
-        <AddTaskBtn onClick={handleOpenModal} />
-        {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
+  return (
+    <Container tasksLength={tasks.length}>
+      <ColumnHeadBar category={category} columnId={columnId} />
+      <ColumnsTasksList tasks={tasks} columnId={columnId} />
+      <AddTaskBtn onClick={handleOpenModal} />
+      {isModalOpen && (
+        <AddTaskModal onClose={handleCloseModal} category={columnId} />
+      )}
     </Container>
   );
 };

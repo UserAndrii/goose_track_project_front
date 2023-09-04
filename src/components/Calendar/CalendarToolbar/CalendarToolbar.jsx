@@ -53,7 +53,16 @@ export const CalendarToolBar = ({
       navigate(`day/${newDate}`);
     }
   };
-
+  const handleCurrentDay = day => {
+    if (isMonthPage) {
+      setCurrentMonth(format(day, 'MMM-yyyy'));
+      setCurrentDay(day);
+      navigate(`month/${format(day, 'yyyy-MM-dd')}`);
+    } else {
+      setCurrentDay(day);
+      navigate(`day/${format(day, 'yyyy-MM-dd')}`);
+    }
+  };
   return (
     <>
       <ToolbarWrapper>
@@ -63,6 +72,7 @@ export const CalendarToolBar = ({
           nextPeriod={nextPeriod}
           currentDay={currentDay}
           currentMonth={currentMonth}
+          handleCurrentDay={handleCurrentDay}
         />
 
         <PeriodPaginatorType

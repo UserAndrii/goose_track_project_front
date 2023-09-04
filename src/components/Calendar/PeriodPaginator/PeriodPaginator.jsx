@@ -4,6 +4,7 @@ import {
   CurrentDate,
   ToggleButtons,
   ToggleButton,
+  CurrentDateWrapper,
 } from './PeriodPaginator.styled';
 import { format, parse } from 'date-fns';
 
@@ -32,20 +33,21 @@ const PeriodPaginator = ({
 
   return (
     <InnerBlock>
-      <DatePicker
-        dateFormat="dd/MM/yyyy"
-        calendarStartDay={1}
-        selected={currentDay}
-        onChange={date => handleCurrentDay(date)}
-        customInput={
-          <CurrentDate>
-            {isMonthPage
-              ? format(formattedMonth, 'MMMM yyyy')
-              : format(formattedDay, 'd MMMM yyyy')}
-          </CurrentDate>
-        }
-      />
-
+      <CurrentDateWrapper>
+        <DatePicker
+          dateFormat="dd/MM/yyyy"
+          calendarStartDay={1}
+          selected={currentDay}
+          onChange={date => handleCurrentDay(date)}
+          customInput={
+            <CurrentDate>
+              {isMonthPage
+                ? format(formattedMonth, 'MMMM yyyy')
+                : format(formattedDay, 'd MMMM yyyy')}
+            </CurrentDate>
+          }
+        />
+      </CurrentDateWrapper>
       <ToggleButtons>
         <ToggleButton onClick={prevPeriod}>{'<'}</ToggleButton>
         <ToggleButton onClick={nextPeriod}>{'>'}</ToggleButton>

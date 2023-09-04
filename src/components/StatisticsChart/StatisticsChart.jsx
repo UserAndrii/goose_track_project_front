@@ -31,24 +31,24 @@ const data = [
 export default function StatisticsChart({ currentDay, currentMonth }) {
   const borderStatistics = getComputedStyle(
     document.documentElement
-  ).getPropertyValue('--border-statistics');
-  const titleTextColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue('--title-text-main-color');
-  const secondaryTextColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue('--secondary-text-color');
-  const accentColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue('--accent-color');
-  const activeSelectionColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue('--active-selection');
-  const btnTextColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue('--btn-text-color');
+  ).getPropertyValue('dark[--border-statistics]');
+  // const titleTextColor = getComputedStyle(
+  //   document.documentElement
+  // ).getPropertyValue('--title-text-main-color');
+  // const secondaryTextColor = getComputedStyle(
+  //   document.documentElement
+  // ).getPropertyValue('--secondary-text-color');
+  // const accentColor = getComputedStyle(
+  //   document.documentElement
+  // ).getPropertyValue('--accent-color');
+  // const activeSelectionColor = getComputedStyle(
+  //   document.documentElement
+  // ).getPropertyValue('--active-selection');
+  // const btnTextColor = getComputedStyle(
+  //   document.documentElement
+  // ).getPropertyValue('--btn-text-color');
   console.log(':>> ', borderStatistics);
-  // Решта вашого коду залишається незмінним
+  // // Решта вашого коду залишається незмінним
 
   const [chartWidth, setChartWidth] = useState(860);
   const [chartHeight, setChartHeight] = useState(440);
@@ -303,7 +303,6 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         bottom: padBottomChart,
       }}
       style={{
-        border: '0.8px solid #E3F3FF',
         borderRadius: 16,
       }}
     >

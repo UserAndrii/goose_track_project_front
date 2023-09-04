@@ -40,11 +40,16 @@ const StatisticsPage = () => {
     }
     setCurrentDay(previousDay);
   };
+  const handleCurrentDay = day => {
+    setCurrentDay(day);
+    setCurrentMonth(day);
+  };
   return (
     <Container>
       <WrapPeriod>
         <PeriodPaginator
           currentDay={currentDay}
+          handleCurrentDay={handleCurrentDay}
           isMonthPage={false}
           nextPeriod={next}
           prevPeriod={previous}
