@@ -143,3 +143,9 @@ export const AuthLink = styled(Link)`
   line-height: 1.17;
   text-decoration-line: underline;
 `;
+
+export const LangSwitcherWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+`;

@@ -68,7 +68,7 @@ const Header = ({ openSidebar }) => {
         setActivePage('');
         return;
     }
-  }, [currentPage]);
+  }, [currentPage, t]);
 
   useEffect(() => {
     const handleKeyDown = event => {

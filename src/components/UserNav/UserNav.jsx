@@ -11,7 +11,6 @@ import {
 } from './UserNav.styled';
 
 import { useLocation } from 'react-router-dom';
-import LangSwitcher from 'components/LangSwitcher/LangSwitcher';
 
 const UserNav = ({ closeSidebar }) => {
   const { t } = useTranslation();
@@ -78,7 +77,6 @@ const UserNav = ({ closeSidebar }) => {
           </ListItem>
         </List>
       </nav>
-      <LangSwitcher/>
     </Container>
   );
 };

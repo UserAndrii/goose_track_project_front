@@ -16,6 +16,7 @@ import {
   VerifyWrapper,
   VerifyText,
   VerifyBtn,
+  ChangePasswordBtn,
 } from './UserForm.styled';
 
 import DatePicker from 'react-datepicker';
@@ -26,6 +27,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import { updateUser, sendVerifyEmailUser } from 'redux/auth/operations';
 import { format, parse } from 'date-fns';
+import AddPasswordRecoveryModal from 'components/AddPasswordRecoveryModal/AddPasswordRecoveryModal';
 
 const UserForm = () => {
   const { t } = useTranslation();
@@ -42,6 +44,7 @@ const UserForm = () => {
   const [newSkype, setNewSkype] = useState(skype ?? '');
   const [newAvatar, setAvatar] = useState(avatarURL ?? '');
   const [avatarPreviewUrl, setAvatarPreviewUrl] = useState('');
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const dispatch = useDispatch();
   const avatarInputRef = useRef(null);
@@ -107,6 +110,32 @@ const UserForm = () => {
     }
     dispatch(updateUser(formData));
   };
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    document.body.style.overflow = 'auto';
+  };
+
+  useEffect(() => {
+    const handleKeyDown = event => {
+      if (event.key === 'Escape') {
+        handleCloseModal();
+      }
+    };
+
+    if (isModalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isModalOpen]);
 
   return (
     <ContainerWrapper>
@@ -213,6 +242,8 @@ const UserForm = () => {
                   onChange={e => setNewSkype(e.target.value)}
                 />
               </label>
+
+              <ChangePasswordBtn onClick={handleOpenModal}>Update password</ChangePasswordBtn>
             </div>
             <Button type="submit" disabled={!someChanges}>
               Save changes
@@ -220,6 +251,7 @@ const UserForm = () => {
           </InputWrapper>
         </Forma>
       </Container>
+      {isModalOpen && <AddPasswordRecoveryModal onClose={handleCloseModal} />}
     </ContainerWrapper>
   );
 };

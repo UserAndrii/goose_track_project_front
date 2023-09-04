@@ -37,14 +37,14 @@ export const Wrapper = styled.div`
   flex: 1;
 
   max-height: 100%;
-  padding: 55px 20px;
+  padding: 24px 20px;
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    padding: 55px 32px;
+    padding: 24px 32px;
   }
 
   @media screen and (min-width: 1440px) {
-    padding: 55px 24px 24px;
+    padding: 32px 24px 24px;
   }
 `;
 
@@ -56,6 +56,10 @@ export const Menu = styled.div`
   @media screen and (min-width: 1440px) {
     justify-content: flex-start;
   }
+`;
+
+export const LangSwitcherWrapper = styled.div`
+  margin-top: 20px;
 `;
 
 export const CloseBtn = styled(CgClose)`

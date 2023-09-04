@@ -375,3 +375,36 @@ export const CustomInput = styled.input`
     height: 46px;
   }
 `;
+
+export const ChangePasswordBtn = styled.button`
+  text-align: center;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+
+  color: #343434;
+  cursor: pointer;
+  padding: 12px 20px;
+
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background-color: inherit;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover {
+    color: var(--btn-text-color);
+    background: var(--active-btn-color);
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 13px;
+    font-size: 14px;
+    line-height: 1.28;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-top: 22px;
+  }
+`;
