@@ -1,10 +1,12 @@
-import '@progress/kendo-theme-default/dist/all.css';
-import { showErrorToast, showSuccessToast } from '../../utils/showToast';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
-import { useCreateTasksMutation } from '../../redux/tasks/tasksApi';
+import { useParams } from 'react-router-dom';
+import {
+  useCreateTasksMutation,
+  useEditTasksMutation,
+} from '../../redux/tasks/tasksApi';
+import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 import {
   Button,
   ButtonWrapper,
@@ -23,11 +25,29 @@ import {
 } from './AddTaskForm.styled';
 
 const AddTaskForm = ({ onClose, task }) => {
+  const initialEndTime = new Date();
+  initialEndTime.setMinutes(initialEndTime.getMinutes() + 15);
+
   const [title, setTitle] = useState('');
   const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
+  const [endTime, setEndTime] = useState(initialEndTime);
   const [priority, setPriority] = useState('');
+  const { currentDate } = useParams();
   const [createTask] = useCreateTasksMutation();
+  const [editTask] = useEditTasksMutation();
+
+  useEffect(() => {
+    if (task) {
+      setTitle(task.title);
+      setStartTime(new Date(`2000-01-01T${task.start}`));
+      setEndTime(new Date(`2000-01-01T${task.end}`));
+      setPriority(task.priority);
+    }
+  }, [task]);
+
+  const handlePriorityChange = event => {
+    setPriority(event.target.value);
+  };
 
   const handleAddTask = async event => {
     event.preventDefault();
@@ -47,26 +67,27 @@ const AddTaskForm = ({ onClose, task }) => {
       return `${hours}:${minutes}`;
     };
 
-    const newTask = {
+    const taskData = {
       title: title,
       start: formatTime(startTime),
       end: formatTime(endTime),
       priority: priority,
-      date: '2023-09-01', // Пример даты
+      date: currentDate,
       category: 'TODO',
     };
 
     try {
-      await createTask(newTask);
-      showSuccessToast('New task created:');
+      if (task) {
+        await editTask({ id: task._id, ...taskData });
+        showSuccessToast('Task edited:');
+      } else {
+        await createTask(taskData);
+        showSuccessToast('New task created:');
+      }
       onClose();
     } catch (error) {
-      showErrorToast('Error creating task');
+      showErrorToast('Error creating/editing task');
     }
-  };
-
-  const handlePriorityChange = event => {
-    setPriority(event.target.value);
   };
 
   return (
@@ -143,9 +164,7 @@ const AddTaskForm = ({ onClose, task }) => {
         </PriorityLabel>
       </RadioWrapper>
       <ButtonWrapper>
-        <Button type="submit" onClick={handleAddTask}>
-          + Add
-        </Button>
+        <Button type="submit">{task ? 'Edit' : '+ Add'}</Button>
         <Button type="button" onClick={onClose}>
           Cancel
         </Button>
