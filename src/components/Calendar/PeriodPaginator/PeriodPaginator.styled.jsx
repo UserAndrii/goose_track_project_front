@@ -59,7 +59,7 @@ const ToggleButton = styled.button`
     background-color: rgba(136, 165, 191, 0.48);
   }
 
-  &:first-child {
+  &:first-of-type {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
   }

@@ -23,7 +23,7 @@ const AuthNavigate = () => {
         setActivePageQuestions('');
         return;
     }
-  }, [pathname]);
+  }, [pathname, t]);
 
   return pathname === '/login' ? (
     <Wrapper>
