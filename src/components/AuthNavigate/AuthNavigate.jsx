@@ -25,7 +25,7 @@ const AuthNavigate = () => {
       <Text>
         {activePageQuestions} <LinkTo to="/register">Sign Up</LinkTo>
       </Text>
-      <LinkTo to="/recover">Forgot password?</LinkTo>
+      <LinkTo to="/password_recovery">Forgot password?</LinkTo>
     </Wrapper>
   ) : (
     <Wrapper>
