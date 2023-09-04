@@ -1,7 +1,6 @@
 import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 import { DayCalendarHead } from '../DayCalendarHead/DayCalendarHead';
 import { useLocation } from 'react-router';
-import { parse, isSameDay } from 'date-fns';
 
 export const ChoosedDay = ({
   week,

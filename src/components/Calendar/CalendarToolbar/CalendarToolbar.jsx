@@ -1,8 +1,12 @@
-import css from './CalendarToolbar.module.css';
-
 import PeriodPaginator from '../PeriodPaginator';
 import PeriodPaginatorType from '../PeriodPaginatorType';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import {
+  ToolbarWrapper,
+  CalendarRangeWrapper,
+  CalendarRangeButton,
+} from './CalendarToolbar.styled';
 
 import { format, parse, add } from 'date-fns';
 
@@ -50,13 +54,9 @@ export const CalendarToolBar = ({
     }
   };
 
-  const changeType = state => {
-    setIsMonthPage(state);
-  };
-
   return (
     <>
-      <div className={css.toolbar}>
+      <ToolbarWrapper>
         <PeriodPaginator
           isMonthPage={isMonthPage}
           prevPeriod={prevPeriod}
@@ -67,34 +67,36 @@ export const CalendarToolBar = ({
 
         <PeriodPaginatorType
           isMonthPage={isMonthPage}
-          changeType={changeType}
+          changeType={() => {
+            setIsMonthPage(prev => !prev);
+          }}
         />
-      </div>
+      </ToolbarWrapper>
 
-      <div className={css.calendarRange}>
-        <button
-          className={`${css.calendarRange__buttons} ${
-            css.calendarRange__monthButton
-          } ${isMonthPage ? css.calendarRange__ActiveButton : ''}`}
+      <CalendarRangeWrapper>
+        <CalendarRangeButton
+          className={`onMonth ${
+            isMonthPage ? 'isActive' : 'rgba(227, 243, 255, 1)'
+          }`}
           onClick={() => {
             navigate(`month/${format(formattedDay, 'yyyy-MM-dd')}`);
-            changeType(true);
+            setIsMonthPage(prev => !prev);
           }}
         >
           Month
-        </button>
-        <button
-          className={`${css.calendarRange__buttons} ${
-            css.calendarRange__dayButton
-          } ${!isMonthPage ? css.calendarRange__ActiveButton : ''}`}
+        </CalendarRangeButton>
+        <CalendarRangeButton
+          className={`onDay ${
+            !isMonthPage ? 'isActive' : 'rgba(227, 243, 255, 1)'
+          }`}
           onClick={() => {
             navigate(`day/${format(formattedDay, 'yyyy-MM-dd')}`);
-            changeType(false);
+            setIsMonthPage(prev => !prev);
           }}
         >
           Day
-        </button>
-      </div>
+        </CalendarRangeButton>
+      </CalendarRangeWrapper>
     </>
   );
 };

@@ -5,7 +5,8 @@ import { ChoosedMonth } from '../components/Calendar/ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from '../components/Calendar/ChoosedDay/ChoosedDay';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-import css from '../components/Calendar/Caledar.module.css';
+// import css from '../components/Calendar/Caledar.module.css';
+import { Calendar } from '../components/Calendar/Calendar.styled';
 import {
   format,
   startOfWeek,
@@ -117,7 +118,7 @@ const CalendarPage = () => {
   }
 
   return (
-    <div className={css.calendar}>
+    <Calendar>
       <CalendarToolBar
         currentDay={currentDay}
         setCurrentDay={setCurrentDay}
@@ -147,7 +148,7 @@ const CalendarPage = () => {
         />
       )}
       {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
-    </div>
+    </Calendar>
   );
 };
 
