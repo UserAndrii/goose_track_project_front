@@ -1,5 +1,10 @@
 import { useParams } from 'react-router-dom';
-import css from './PeriodPaginator.module.css';
+import {
+  InnerBlock,
+  CurrentDate,
+  ToggleButtons,
+  ToggleButton,
+} from './PeriodPaginator.styled';
 import { format, parse } from 'date-fns';
 
 const PeriodPaginator = ({
@@ -19,21 +24,17 @@ const PeriodPaginator = ({
     currentDate === undefined ? currentDay : parsedCurrentDate;
 
   return (
-    <div className={css.toolbar__innerBlock}>
-      <button className={css.toolbar__curerntDate}>
+    <InnerBlock>
+      <CurrentDate>
         {isMonthPage
           ? format(formattedMonth, 'MMMM yyyy')
           : format(formattedDay, 'd MMMM yyyy')}
-      </button>
-      <div className={css.toggleButtons}>
-        <button className={css.toggleButtons__previous} onClick={prevPeriod}>
-          {'<'}
-        </button>
-        <button className={css.toggleButtons__next} onClick={nextPeriod}>
-          {'>'}
-        </button>
-      </div>
-    </div>
+      </CurrentDate>
+      <ToggleButtons>
+        <ToggleButton onClick={prevPeriod}>{'<'}</ToggleButton>
+        <ToggleButton onClick={nextPeriod}>{'>'}</ToggleButton>
+      </ToggleButtons>
+    </InnerBlock>
   );
 };
 

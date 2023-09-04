@@ -1,7 +1,18 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import css from './CalendarTable.module.css';
-import { format, isToday, isSameMonth, getDay } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
+import { format, isSameMonth } from 'date-fns';
 import { useMediaQuery } from 'react-responsive';
+
+import {
+  DataGrid,
+  Cell,
+  CurrentDate,
+  RowNumber,
+  Tasks,
+  TaskItem,
+  TaskContainer,
+  TaskTitle,
+  ThreeDots,
+} from './CalendarTable.styled';
 
 export const CalendarTable = ({
   monthDays,
@@ -11,13 +22,7 @@ export const CalendarTable = ({
   setCurrentDay,
 }) => {
   const navigate = useNavigate();
-
-  // const { date } = useParams();
-  // const [one, two, Day] = date.split('-');
-  // console.log('currentDay', Day);
-
-  const data = new Date();
-  const a = data.getDate();
+  const today = new Date().getDate();
 
   const isTabletScreen = useMediaQuery({ query: '(min-width: 768px)' });
   const isDesktopScreen = useMediaQuery({ query: '(min-width: 1440px)' });
@@ -53,26 +58,29 @@ export const CalendarTable = ({
     return style;
   };
 
-  const howManyPriorities = priority => {
+  const calculateTaskQuantity = data => {
     let lowTaskCounter = 0;
     let mediumTaskCounter = 0;
     let highTaskCounter = 0;
 
-    switch (priority) {
-      case 'LOW':
-        lowTaskCounter += 1;
-        break;
-      case 'MEDIUM':
-        mediumTaskCounter += 1;
-        break;
-      case 'HIGH':
-        highTaskCounter += 1;
-        break;
-      default:
-        lowTaskCounter = 0;
-        mediumTaskCounter = 0;
-        highTaskCounter = 0;
-    }
+    data.forEach(task => {
+      switch (task.priority) {
+        case 'LOW':
+          lowTaskCounter++;
+          break;
+        case 'MEDIUM':
+          mediumTaskCounter++;
+          break;
+        case 'HIGH':
+          highTaskCounter++;
+          break;
+        default:
+          lowTaskCounter = 0;
+          mediumTaskCounter = 0;
+          highTaskCounter = 0;
+          break;
+      }
+    });
 
     const taskCounter = {
       lowTaskCounter,
@@ -84,7 +92,7 @@ export const CalendarTable = ({
   };
 
   return (
-    <div className={`${css.mainBlock__data}`}>
+    <DataGrid>
       {monthDays.map(day => {
         const dayOfWeek = day.getDay();
         const colStart = dayOfWeek + 1;
@@ -93,39 +101,30 @@ export const CalendarTable = ({
           ? allTasks.data.filter(task => task.date === formattedDay)
           : [];
 
-        const taskCounter = () => {
-          let calculatedTasks;
-          filteredTasksByDay.map(({ priority }) => {
-            calculatedTasks = howManyPriorities(priority);
-            return calculatedTasks;
-          });
-          return calculatedTasks;
-        };
-
         return (
-          <div
+          <Cell
             key={day.toString()}
-            className={`${css.row__cell} ${css.gridСol}`}
+            className={`gridСol`}
             style={{ '--col': colStart }}
             onClick={() => {
               if (isSameMonth(currentDay, day)) {
-                setIsMonthPage(false);
                 setCurrentDay(day);
                 navigate(`day/${formattedDay}`);
               }
             }}
           >
-            <div
-              className={`${css.row__currentDate} ${
-                a === day.getDate() && css.row__currentDateActive
+            <CurrentDate
+              className={`rowCurrentDate ${
+                today === day.getDate() &&
+                isSameMonth(currentDay, day) &&
+                'row__currentDateActive'
               }`}
-              style={{
-                top: a === day.getDate() && 4,
-              }}
             >
-              <time
-                className={`${css.row__number} ${
-                  a === day.getDate() && css.row__ActiveNumber
+              <RowNumber
+                className={`${
+                  today === day.getDate() &&
+                  isSameMonth(currentDay, day) &&
+                  'row__ActiveNumber'
                 }`}
                 dateTime={format(day, 'yyyy-MM-dd')}
                 style={{
@@ -133,45 +132,42 @@ export const CalendarTable = ({
                 }}
               >
                 {format(day, 'd')}
-              </time>
-            </div>
+              </RowNumber>
+            </CurrentDate>
 
             {allTasks && isSameMonth(currentDay, day) ? (
-              <div className={css.tasks}>
+              <Tasks>
                 {isTabletScreen ? (
                   <ul>
                     {filteredTasksByDay.map(
                       ({ title, _id, priority }, index) => {
                         if (index === 2) {
                           return (
-                            <li className={css.tasks__item} key={_id}>
-                              <div
-                                className={css.tasks_threeDots}
+                            <TaskItem className={`tasks__item`} key={_id}>
+                              <ThreeDots
                                 onClick={() => {
                                   setCurrentDay(day);
-                                  setIsMonthPage(false);
                                   navigate(`day/${formattedDay}`);
                                 }}
                               >
-                                <p className={css.tasks__title}>...</p>
-                              </div>
-                            </li>
+                                <TaskTitle>...</TaskTitle>
+                              </ThreeDots>
+                            </TaskItem>
                           );
                         }
                         if (index > 2) {
                           return null;
                         }
                         return (
-                          <li className={css.tasks__item} key={_id}>
-                            <div
-                              className={css.tasks__container}
+                          <TaskItem className={`tasks__item`} key={_id}>
+                            <TaskContainer
                               style={{
                                 backgroundColor:
                                   whichPriority(priority).bgColor,
                                 color: whichPriority(priority).color,
                               }}
                             >
-                              <p className={css.tasks__title}>
+                              <TaskTitle>
                                 {isDesktopScreen && isTabletScreen
                                   ? title.length >= 13
                                     ? title.slice(0, 13) + '...'
@@ -179,69 +175,81 @@ export const CalendarTable = ({
                                   : title.length >= 8
                                   ? title.slice(0, 8) + '...'
                                   : title}
-                              </p>
-                            </div>
-                          </li>
+                              </TaskTitle>
+                            </TaskContainer>
+                          </TaskItem>
                         );
                       }
                     )}
                   </ul>
                 ) : (
                   <ul>
-                    {taskCounter()?.lowTaskCounter > 0 && (
-                      <li className={css.tasks__item}>
-                        <div
-                          className={css.tasks__container}
+                    {calculateTaskQuantity(filteredTasksByDay).lowTaskCounter >
+                      0 && (
+                      <TaskItem className={`tasks__item`}>
+                        <TaskContainer
                           style={{
                             backgroundColor: 'rgba(206, 238, 253, 1)',
                             color: '#3E85F3',
                           }}
                         >
-                          <p className={css.tasks__title}>
-                            Tasks: {taskCounter()?.lowTaskCounter}
-                          </p>
-                        </div>
-                      </li>
+                          <TaskTitle>
+                            Tasks:{' '}
+                            {
+                              calculateTaskQuantity(filteredTasksByDay)
+                                .lowTaskCounter
+                            }
+                          </TaskTitle>
+                        </TaskContainer>
+                      </TaskItem>
                     )}
-                    {taskCounter()?.mediumTaskCounter > 0 && (
-                      <li className={css.tasks__item}>
-                        <div
-                          className={css.tasks__container}
+                    {calculateTaskQuantity(filteredTasksByDay)
+                      .mediumTaskCounter > 0 && (
+                      <TaskItem className={`tasks__item`}>
+                        <TaskContainer
                           style={{
                             backgroundColor: 'rgba(252, 240, 212, 1)',
                             color: '#F3B249',
                           }}
                         >
-                          <p className={css.tasks__title}>
-                            Tasks: {taskCounter()?.mediumTaskCounter}
-                          </p>
-                        </div>
-                      </li>
+                          <TaskTitle>
+                            Tasks:{' '}
+                            {
+                              calculateTaskQuantity(filteredTasksByDay)
+                                .mediumTaskCounter
+                            }
+                          </TaskTitle>
+                        </TaskContainer>
+                      </TaskItem>
                     )}
-                    {taskCounter()?.highTaskCounter > 0 && (
-                      <li className={css.tasks__item}>
-                        <div
-                          className={css.tasks__container}
+                    {calculateTaskQuantity(filteredTasksByDay).highTaskCounter >
+                      0 && (
+                      <TaskItem className={`tasks__item`}>
+                        <TaskContainer
                           style={{
                             backgroundColor: 'rgba(255, 210, 221, 1)',
                             color: '#EA3D65',
                           }}
                         >
-                          <p className={css.tasks__title}>
-                            Tasks: {taskCounter()?.highTaskCounter}
-                          </p>
-                        </div>
-                      </li>
+                          <TaskTitle>
+                            Tasks:{' '}
+                            {
+                              calculateTaskQuantity(filteredTasksByDay)
+                                .highTaskCounter
+                            }
+                          </TaskTitle>
+                        </TaskContainer>
+                      </TaskItem>
                     )}
                   </ul>
                 )}
-              </div>
+              </Tasks>
             ) : (
               <></>
             )}
-          </div>
+          </Cell>
         );
       })}
-    </div>
+    </DataGrid>
   );
 };
