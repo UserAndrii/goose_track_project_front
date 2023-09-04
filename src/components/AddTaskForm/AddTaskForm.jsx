@@ -1,4 +1,4 @@
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next'; // Trans ?
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
