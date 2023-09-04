@@ -37,14 +37,14 @@ export const Wrapper = styled.div`
   flex: 1;
 
   max-height: 100%;
-  padding: 24px 20px;
+  padding: 55px 20px;
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    padding: 24px 32px;
+    padding: 55px 32px;
   }
 
   @media screen and (min-width: 1440px) {
-    padding: 32px 24px 24px;
+    padding: 55px 24px 24px;
   }
 `;
 
