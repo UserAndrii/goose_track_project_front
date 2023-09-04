@@ -5,7 +5,6 @@ import { useMediaQuery } from 'react-responsive';
 import {
   DataGrid,
   Cell,
-  GridColumn,
   CurrentDate,
   RowNumber,
   Tasks,

@@ -26,10 +26,6 @@ const DataGrid = styled.div`
   }
 `;
 
-const GridColumn = styled.div`
-  grid-column-start: var(--col);
-`;
-
 const Cell = styled.div`
   position: relative;
   overflow: hidden;
@@ -189,7 +185,6 @@ const ThreeDots = styled.div`
 
 export {
   DataGrid,
-  GridColumn,
   Cell,
   CurrentDate,
   RowNumber,
