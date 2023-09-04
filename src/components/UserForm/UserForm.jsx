@@ -24,11 +24,7 @@ import './CustomDatePicker.css';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
-import {
-  updateUser,
-  sendVerifyEmailUser,
-  getCurrentUser,
-} from 'redux/auth/operations';
+import { updateUser, sendVerifyEmailUser } from 'redux/auth/operations';
 import { format, parse } from 'date-fns';
 
 const UserForm = () => {
