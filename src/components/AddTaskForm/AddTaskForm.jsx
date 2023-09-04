@@ -107,7 +107,11 @@ const AddTaskForm = ({ onClose, task }) => {
           Start
           <DatePicker
             selected={startTime}
-            onChange={date => setStartTime(date)}
+            onChange={date => {
+              setStartTime(date);
+              const newEndTime = new Date(date.getTime() + 15 * 60000);
+              setEndTime(newEndTime);
+            }}
             showTimeSelect
             showTimeSelectOnly
             timeIntervals={15}
@@ -125,6 +129,8 @@ const AddTaskForm = ({ onClose, task }) => {
             timeIntervals={15}
             customInput={<ExampleCustomInput />}
             dateFormat="h:mm aa"
+            minTime={new Date(startTime.getTime() + 15 * 60000)}
+            maxTime={new Date('2000-01-01T23:45')}
           />
         </TimePickerLabel>
       </TimeWrapper>
