@@ -80,7 +80,6 @@ const Description = () => {
 
   return (
     <Container>
-      {/* <LangSwitcher /> */}
       <List>
         <Item key={1}>
           <ItemSpan>

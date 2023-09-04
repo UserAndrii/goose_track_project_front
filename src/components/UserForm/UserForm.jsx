@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import { useState, useEffect, useRef } from 'react';
 import {
   ContainerWrapper,
@@ -27,6 +28,8 @@ import { updateUser, sendVerifyEmailUser } from 'redux/auth/operations';
 import { format, parse } from 'date-fns';
 
 const UserForm = () => {
+  const { t } = useTranslation();
+
   const { userName, email, phone, skype, birthDay, avatarURL, verify } =
     useSelector(selectUser);
 
@@ -128,21 +131,23 @@ const UserForm = () => {
             />
           </ImageContainer>
           <UserName>{userName}</UserName>
-          <Text>User</Text>
+          <Text>
+            <Trans i18nKey="userForm.user">User</Trans>
+          </Text>
           <InputWrapper>
             <div>
               <label>
-                <p>User Name</p>
+                <p>{t('userForm.name')}</p>
                 <input
                   type="text"
                   name="userName"
-                  placeholder="Add a username"
+                  placeholder={t('userForm.namehold')}
                   value={newUserName}
                   onChange={e => setNewUserName(e.target.value)}
                 />
               </label>
               <label>
-                <p>Birthday</p>
+                <p>{t('userForm.birth')}</p>
                 <DatePicker
                   dateFormat="dd/MM/yyyy"
                   calendarStartDay={1}
@@ -152,7 +157,7 @@ const UserForm = () => {
                     <CustomInput
                       type="text"
                       name="birthDay"
-                      placeholder="Add a birthday"
+                      placeholder={t('userForm.birthhold')}
                       value={startDate.toString()}
                     />
                   }
@@ -161,26 +166,26 @@ const UserForm = () => {
 
               <div>
                 <label>
-                  <p>Email</p>
+                  <p>{t('userForm.email')}</p>
                   <input
                     type="text"
                     name="email"
-                    placeholder="Add an email"
+                    placeholder={t('userForm.emailhold')}
                     value={newEmail}
                     onChange={e => setNewEmail(e.target.value)}
                   />
                 </label>
                 {verify ? (
                   <VerifyText verify={verify}>
-                    Your email has been successfully verified.
+                    {t('userForm.verify')}
                   </VerifyText>
                 ) : (
                   <VerifyWrapper>
                     <VerifyText verify={verify}>
-                      Your email has not been verified.
+                      {t('userForm.notverify')}
                     </VerifyText>
                     <VerifyBtn onClick={() => dispatch(sendVerifyEmailUser())}>
-                      Verify?
+                      {t('userForm.verifybtn')}
                     </VerifyBtn>
                   </VerifyWrapper>
                 )}
@@ -189,21 +194,21 @@ const UserForm = () => {
 
             <div>
               <label>
-                <p>Phone</p>
+                <p>{t('userForm.phone')}</p>
                 <input
                   type="text"
                   name="phone"
-                  placeholder="Add a phone number"
+                  placeholder={t('userForm.phonehold')}
                   value={newPhone}
                   onChange={e => setNewPhone(e.target.value)}
                 />
               </label>
               <label>
-                <p>Skype</p>
+                <p>{t('userForm.skype')}</p>
                 <input
                   type="text"
                   name="skype"
-                  placeholder="Add a skype number"
+                  placeholder={t('userForm.skypehold')}
                   value={newSkype}
                   onChange={e => setNewSkype(e.target.value)}
                 />
