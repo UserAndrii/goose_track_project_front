@@ -3,6 +3,9 @@ import styled from '@emotion/styled';
 export const Form = styled.form`
   padding: 20px 8px;
   @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justyfi-content:centre;
     width: 85%;
     height: 70%;
   }
@@ -17,6 +20,7 @@ export const Input = styled.input`
   margin-top: 8px;
   border: none;
   border-radius: 8px;
+  width: 100%;
   background: var(--outlet-background-color);
   padding: 14px 18px;
 `;
@@ -24,7 +28,11 @@ export const TimeWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 18px;
+  gap:14px;
   margin-bottom: 28px;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const TimePickerLabel = styled.label`
@@ -192,6 +200,6 @@ export const ExampleCustomInput = styled.input`
   background: var(--task-field-color);
   padding: 14px 18px;
   border: none;
-  width: 163px;
+  width: 100%;
   height: 46px;
 `;
