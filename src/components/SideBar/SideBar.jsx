@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import UserNav from '../UserNav';
 import LogoutBtn from '../LogoutBtn';
 import {
@@ -13,6 +14,8 @@ import {
 import { useEffect, useState } from 'react';
 
 const SideBar = ({ closeSidebar, sidebarVisible }) => {
+  const { t } = useTranslation();
+
   const screenWidth = window.innerWidth;
   const pixelRatio = window.devicePixelRatio || 1;
   const isRetina = pixelRatio > 1;
@@ -76,7 +79,9 @@ const SideBar = ({ closeSidebar, sidebarVisible }) => {
         <Menu>
           <Image src={selectedImagePath} alt="Goose Track" />
           <Text>
-            G<Span>oo</Span>seTrack
+            <Trans i18nKey="authSection.g">G</Trans>
+            <Span>{t('authSection.oo')}</Span>
+            {t('authSection.setrack')}
           </Text>
           <CloseBtn onClick={closeSidebar} />
         </Menu>

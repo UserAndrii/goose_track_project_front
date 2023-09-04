@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -40,6 +41,8 @@ const audio1 = new Audio(
 );
 
 const LoginForm = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showAnimation, setShowAnimation] = useState(false);
@@ -101,7 +104,9 @@ const LoginForm = () => {
       <Container style={{ display: showAnimation ? 'none' : 'flex' }}>
         <StyledForm onSubmit={formik.handleSubmit}>
           <InputGroupe>
-            <FormName>Log In</FormName>
+            <FormName>
+              <Trans i18nKey="inout.login">Log In</Trans>
+            </FormName>
             <InputList>
               <InputWrapper isEmail={'email'}>
                 <Label
@@ -114,7 +119,7 @@ const LoginForm = () => {
                       : ''
                   }
                 >
-                  Email
+                  {t('inout.email')}
                 </Label>
                 <Input
                   type="text"
@@ -158,7 +163,7 @@ const LoginForm = () => {
                       : ''
                   }
                 >
-                  Password
+                  {t('inout.pass')}
                 </Label>
                 <InputWrapperWithIcon>
                   <Input
@@ -204,7 +209,7 @@ const LoginForm = () => {
               </InputWrapper>
             </InputList>
             <Button type="submit">
-              <ButtonText>Log in</ButtonText>
+              <ButtonText> {t('inout.login')}</ButtonText>
               <ItemIcon />
             </Button>
           </InputGroupe>

@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import {
   Container,
   Text,
@@ -10,13 +11,18 @@ import {
 } from './UserNav.styled';
 
 import { useLocation } from 'react-router-dom';
+import LangSwitcher from 'components/LangSwitcher/LangSwitcher';
 
 const UserNav = ({ closeSidebar }) => {
+  const { t } = useTranslation();
+
   const location = useLocation();
 
   return (
     <Container>
-      <Text>User Panel</Text>
+      <Text>
+        <Trans i18nKey="userNav.panel">User Panel</Trans>
+      </Text>
       <nav>
         <List>
           <ListItem
@@ -33,7 +39,7 @@ const UserNav = ({ closeSidebar }) => {
                 isactive={location.pathname === '/account' ? 'active' : ''}
                 className="icon"
               />
-              My account
+              {t('userNav.acc')}
             </LinkNav>
           </ListItem>
           <ListItem
@@ -50,7 +56,7 @@ const UserNav = ({ closeSidebar }) => {
                 isactive={location.pathname === '/calendar' ? 'active' : ''}
                 className="icon"
               />
-              Calendar
+              {t('userNav.calendar')}
             </LinkNav>
           </ListItem>
           <ListItem
@@ -67,11 +73,12 @@ const UserNav = ({ closeSidebar }) => {
                 isactive={location.pathname === '/statistics' ? 'active' : ''}
                 className="icon"
               />
-              Statistics
+              {t('userNav.stat')}
             </LinkNav>
           </ListItem>
         </List>
       </nav>
+      <LangSwitcher/>
     </Container>
   );
 };
