@@ -72,6 +72,7 @@ export const MenuBtn = styled(FiMenu)`
   height: 24px;
   margin-right: auto;
   cursor: pointer;
+  color: var(--accent-color);
 
   @media screen and (min-width: 768px) {
     width: 34px;

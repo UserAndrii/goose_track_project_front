@@ -34,7 +34,7 @@ export const LinkNav = styled(Link)`
   text-decoration: none;
   width: 100%;
   height: 100%;
-  color: var(--feedback-form-text);
+  color: var(--feedback-form-text-input);
   font-size: 14px;
   font-weight: 600;
 
@@ -49,7 +49,7 @@ export const IconUser = styled(LuUserCheck)`
   font-size: 24px;
   margin-right: 8px;
   color: ${props =>
-    props.isactive ? 'rgb(56, 114, 240)' : 'rgba(52, 52, 52, 0.5)'};
+    props.isactive ? 'rgb(56, 114, 240)' : "var(--feedback-form-text)"};
 
   @media screen and (min-width: 768px) {
     width: 24px;
@@ -64,7 +64,7 @@ export const IconCalendar = styled(LuCalendarCheck2)`
   font-size: 24px;
   margin-right: 8px;
   color: ${props =>
-    props.isactive ? 'rgb(56, 114, 240)' : 'rgba(52, 52, 52, 0.5)'};
+    props.isactive ? 'rgb(56, 114, 240)' : 'var(--feedback-form-text)'};
 
   @media screen and (min-width: 768px) {
     width: 24px;
@@ -79,7 +79,7 @@ export const IconStatistics = styled(BsBarChart)`
   font-size: 24px;
   margin-right: 8px;
   color: ${props =>
-    props.isactive ? 'rgb(56, 114, 240)' : 'rgba(52, 52, 52, 0.5)'};
+    props.isactive ? 'rgb(56, 114, 240)' : "var(--feedback-form-text)"};
 
   @media screen and (min-width: 768px) {
     width: 24px;
