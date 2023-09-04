@@ -50,12 +50,16 @@ const TasksColumnsList = ({ filteredTask, currentDay }) => {
   return (
     <DragDropContext onDragUpdate={updateDrag}>
       <Container>
-          {isLoading && <ImageAnimation/>}
-        <TasksColumn columnId={"TODO"} category={'To do'} tasks={todoData} />
-        <TasksColumn columnId={"INPROGRESS"} category={'In progress'} tasks={inprogressData} />
-        <TasksColumn columnId={"DONE"} category={'Done'} tasks={doneData} />
+        {isLoading && <ImageAnimation />}
+        <TasksColumn columnId={'todo'} category={'To do'} tasks={todoData} />
+        <TasksColumn
+          columnId={'inprogress'}
+          category={'In progress'}
+          tasks={inprogressData}
+        />
+        <TasksColumn columnId={'done'} category={'Done'} tasks={doneData} />
       </Container>
-      </DragDropContext>
+    </DragDropContext>
   );
 };
 export default TasksColumnsList;
