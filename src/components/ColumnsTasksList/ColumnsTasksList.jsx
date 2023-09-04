@@ -7,7 +7,7 @@ const ColumnsTasksList = ({tasks,columnId}) => {
         return ;
 }
     return (
-         <Droppable droppableId={columnId}>
+         <Droppable key ={columnId} droppableId={columnId}>
             {(provided) => (
                 <Container
                     ref={provided.innerRef}

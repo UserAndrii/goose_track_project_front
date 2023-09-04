@@ -24,7 +24,7 @@ export const tasksApi = createApi({
         url: `/tasks?month=${date}`,
         method: 'GET',
       }),
-      invalidatesTags: ['Tasks'],
+      providesTags: ['Tasks'],
     }),
 
     createTasks: builder.mutation({

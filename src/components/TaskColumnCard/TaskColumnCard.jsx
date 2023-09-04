@@ -18,7 +18,7 @@ const TaskColumnCard = ({ task, index }) => {
     const firstLetter = firstName[0]?.toUpperCase();
 
   return (
-    <Draggable draggableId={task._id} index={index}>
+    <Draggable key={task.id} draggableId={task._id} index={index}>
       {(provided) => (
         <Container
           ref={provided.innerRef}
