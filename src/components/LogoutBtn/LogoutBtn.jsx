@@ -1,3 +1,4 @@
+import { Trans } from 'react-i18next';
 import { Button, Icon } from './LogoutBtn.styled.jsx';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
@@ -13,7 +14,7 @@ const LogoutBtn = () => {
         document.body.style.overflow = 'auto';
       }}
     >
-      Log out
+      <Trans i18nKey="authSection.logout">Log out</Trans>
       <Icon />
     </Button>
   );
