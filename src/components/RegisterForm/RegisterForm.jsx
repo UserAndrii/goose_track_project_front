@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -34,6 +35,8 @@ import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 const RegisterForm = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -99,7 +102,9 @@ const RegisterForm = () => {
       <Container style={{ display: showAnimation ? 'none' : 'flex' }}>
         <StyledForm onSubmit={formik.handleSubmit}>
           <InputGroupe>
-            <FormName>Sign Up</FormName>
+            <FormName>
+              <Trans i18nKey="inout.signup">Sign Up</Trans>
+            </FormName>
             <InputList>
               <InputWrapper>
                 <Label
@@ -112,7 +117,7 @@ const RegisterForm = () => {
                       : ''
                   }
                 >
-                  Name
+                  {t('inout.name')}
                 </Label>
                 <Input
                   type="text"
@@ -156,7 +161,7 @@ const RegisterForm = () => {
                       : ''
                   }
                 >
-                  Email
+                  {t('inout.email')}
                 </Label>
                 <Input
                   type="text"
@@ -200,7 +205,7 @@ const RegisterForm = () => {
                       : ''
                   }
                 >
-                  Password
+                  {t('inout.pass')}
                 </Label>
                 <InputWrapperWithIcon>
                   <Input
@@ -246,7 +251,7 @@ const RegisterForm = () => {
               </InputWrapper>
             </InputList>
             <Button type="submit">
-              <ButtonText>Sign Up</ButtonText>
+              <ButtonText> {t('inout.signup')}</ButtonText>
               <ItemIcon />
             </Button>
           </InputGroupe>
