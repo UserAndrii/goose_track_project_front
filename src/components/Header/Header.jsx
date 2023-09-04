@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -23,6 +24,8 @@ import AddFeedbackModal from '../AddFeedbackModal';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 
 const Header = ({ openSidebar }) => {
+  const { t } = useTranslation();
+
   const location = useLocation();
   const [activePage, setActivePage] = useState('');
   const [isModalOpen, setModalOpen] = useState(false);
@@ -53,13 +56,13 @@ const Header = ({ openSidebar }) => {
   useEffect(() => {
     switch (currentPage) {
       case 'account':
-        return setActivePage('User Profile');
+        return setActivePage(t('header.profile'));
 
       case 'calendar':
-        return setActivePage('Calendar');
+        return setActivePage(t('header.calendar'));
 
       case 'statistics':
-        return setActivePage('Statistics');
+        return setActivePage(t('header.stat'));
 
       default:
         setActivePage('');
@@ -103,7 +106,10 @@ const Header = ({ openSidebar }) => {
           <WrapperText>
             <PageHeader>{activePage}</PageHeader>
             <Text>
-              <Call>Let go</Call> of the past and focus on the present!
+              <Call>
+                <Trans i18nKey="header.letgo">Let go</Trans>
+              </Call>
+              {t('header.resttext')}
             </Text>
           </WrapperText>
         </Wrapper>
