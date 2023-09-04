@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import {
   Text,
   Number,
@@ -12,6 +13,8 @@ import images from './images';
 const { phone, tablet, desktop } = images;
 
 export const NotFound = () => {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <Wrapper>
@@ -55,10 +58,12 @@ export const NotFound = () => {
         <Number>4</Number>
       </Wrapper>
       <Text>
-        We’re sorry, the page you requested could not be found. Please go back
-        to the homepage.
+        <Trans i18nKey="notfound.text">
+          We’re sorry, the page you requested could not be found. Please go back
+          to the homepage.
+        </Trans>
       </Text>
-      <StyledButton to="/">Back to home</StyledButton>
+      <StyledButton to="/">{t('notfound.back')}</StyledButton>
     </Container>
   );
 };

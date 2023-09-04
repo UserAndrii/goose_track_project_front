@@ -25,6 +25,7 @@ const CalendarPage = lazy(() => import('pages/CalendarPage'));
 const StatisticsPage = lazy(() => import('pages/StatisticsPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 const TeamPage = lazy(() => import('pages/TeamPage'));
+const VerifyEmail = lazy(() => import('pages/VerifyPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -104,6 +105,8 @@ export const App = () => {
             }
           />
         </Route>
+
+        <Route path="/verify/:verifyToken" element={<VerifyEmail />} />
 
         <Route
           path="*"

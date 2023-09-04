@@ -7,11 +7,12 @@ const ColumnsTasksList = ({tasks,columnId}) => {
         return ;
 }
     return (
-         <Droppable droppableId={columnId}>
+         <Droppable key ={columnId} droppableId={columnId}>
             {(provided) => (
                 <Container
                     ref={provided.innerRef}
                     {...provided.droppableProps}
+                    tasksLength={tasks.length}
                 >
                     {tasks.map((item, index) => (
                         <li key={item._id}>

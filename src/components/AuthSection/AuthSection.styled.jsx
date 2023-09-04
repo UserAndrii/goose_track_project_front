@@ -135,7 +135,7 @@ export const AuthLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(-btn-text-color);
+  color: var(--btn-text-color);
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 12px;

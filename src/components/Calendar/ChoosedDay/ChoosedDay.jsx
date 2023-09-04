@@ -15,9 +15,9 @@ export const ChoosedDay = ({
   /* eslint-disable */
   const [_, __, monthOrDay, date] = location.pathname.split('/');
   /* eslint-enable */
-  const parsedDate = parse(date, 'yyyy-MM-dd', new Date());
+  // const parsedDate = parse(date, 'yyyy-MM-dd', new Date());
 
-  if (!isSameDay(parsedDate, currentDay)) setCurrentDay(parsedDate);
+  // if (!isSameDay(parsedDate, currentDay)) setCurrentDay(parsedDate);
 
   if (monthOrDay === 'month') {
     setIsMonthPage(true);

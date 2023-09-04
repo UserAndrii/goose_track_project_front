@@ -1,3 +1,5 @@
+import { useTranslation, Trans } from 'react-i18next';
+
 import YuriiKlim from '../../images/America_YKlim.jpg';
 import YuriiKag from '../../images/Ant-Man_YKag.jpg';
 import SergiyS from '../../images/Black_Panter_SS.jpg';
@@ -28,13 +30,18 @@ import {
 } from './Team.styled';
 
 const Team = () => {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <Title>
-        <TitleSpan>O</TitleSpan>ur TEAM
+        <TitleSpan>
+          <Trans i18nKey="team.o">CALENDAR </Trans>
+        </TitleSpan>
+        {t('team.urteam')}
       </Title>
       <Button to={'/'}>
-        Back <Icon />
+        {t('team.back')} <Icon />
       </Button>
       <List>
         <Item key={1}>
@@ -46,14 +53,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/andrii-hadar/"
               target="_blank"
             >
-              Aндрій Гадар
+              {t('team.hadar')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/andrii-hadar/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/UserAndrii" target="_blank">
-              Team lead (Front-end)
+              {t('team.teamlead')} ({t('team.front')})
               <ItemIconGithub
                 href="https://github.com/UserAndrii"
                 target="_blank"
@@ -70,14 +77,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/olexander-vainahii-849ba5280/"
               target="_blank"
             >
-              Олександр Вайнагій
+              {t('team.vaynagiy')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/olexander-vainahii-849ba5280/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/AlexVainahii" target="_blank">
-              Team lead (Back-end)
+              {t('team.teamlead')} ({t('team.back1')})
               <ItemIconGithub
                 href="https://github.com/AlexVainahii"
                 target="_blank"
@@ -94,14 +101,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/annatil1/"
               target="_blank"
             >
-              Анна Тілл
+              {t('team.till')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/annatil1/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/annatill" target="_blank">
-              Scrum master
+              {t('team.scrum')}
               <ItemIconGithub
                 href="https://github.com/annatill"
                 target="_blank"
@@ -118,14 +125,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/andrew-ketsko/"
               target="_blank"
             >
-              Андрій Кецко
+              {t('team.ketsko')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/andrew-ketsko/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/AndrewKetsko" target="_blank">
-              Developer (Back-end)
+              {t('team.dev')} ({t('team.back1')})
               <ItemIconGithub
                 href="https://github.com/AndrewKetsko"
                 target="_blank"
@@ -142,14 +149,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/andriy-hanzel/"
               target="_blank"
             >
-              Андрій Ганзел
+              {t('team.hanzel')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/andriy-hanzel/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/andriy-h80" target="_blank">
-              Developer (Front-end)
+              {t('team.dev')} ({t('team.front')})
               <ItemIconGithub
                 href="https://github.com/andriy-h80"
                 target="_blank"
@@ -166,7 +173,7 @@ const Team = () => {
               href="https://www.linkedin.com/in/siracenco-serghei/"
               target="_blank"
             >
-              Сергій Сіраченко
+              {t('team.siracenko')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/siracenco-serghei/"
                 target="_blank"
@@ -176,7 +183,7 @@ const Team = () => {
               href="https://github.com/SiracencoSerghei"
               target="_blank"
             >
-              Developer (Front-end)
+              {t('team.dev')} ({t('team.front')})
               <ItemIconGithub
                 href="https://github.com/SiracencoSerghei"
                 target="_blank"
@@ -193,14 +200,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/yurii-klymenko-a5a073280/"
               target="_blank"
             >
-              Юрій Клименко
+              {t('team.klymenko')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/yurii-klymenko-a5a073280/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/Klimch1k" target="_blank">
-              Developer (Front-end)
+              {t('team.dev')} ({t('team.front')})
               <ItemIconGithub
                 href="https://github.com/Klimch1k"
                 target="_blank"
@@ -217,14 +224,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/yurii-kahadii-79405a272/"
               target="_blank"
             >
-              Юрій Кагадій
+              {t('team.kagadiy')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/yurii-kahadii-79405a272/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/YurionStyle" target="_blank">
-              Developer (Front-end)
+              {t('team.dev')} ({t('team.front')})
               <ItemIconGithub
                 href="https://github.com/YurionStyle"
                 target="_blank"
@@ -241,14 +248,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/halyna-karpinskaya/"
               target="_blank"
             >
-              Галина Карпінська
+              {t('team.karpinska')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/halyna-karpinskaya/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/GalynkaK" target="_blank">
-              Developer (Front-end)
+              {t('team.dev')} ({t('team.front')})
               <ItemIconGithub
                 href="https://github.com/GalynkaK"
                 target="_blank"
@@ -265,14 +272,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/oleksandr-deren/"
               target="_blank"
             >
-              Олександр Дерен
+              {t('team.deren')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/oleksandr-deren/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/Oderen" target="_blank">
-              Developer (Front-end)
+              {t('team.dev')} ({t('team.front')})
               <ItemIconGithub
                 href="https://github.com/Oderen"
                 target="_blank"
@@ -289,14 +296,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/vkostenko/"
               target="_blank"
             >
-              Володимир Костенко
+              {t('team.kostenko')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/vkostenko/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="https://github.com/VolodymyrK2" target="_blank">
-              Developer (Front-end)
+              {t('team.dev')} ({t('team.front')})
               <ItemIconGithub
                 href="https://github.com/VolodymyrK2"
                 target="_blank"
@@ -313,14 +320,14 @@ const Team = () => {
               href="https://www.linkedin.com/in/ivettadashkova/"
               target="_blank"
             >
-              Іветта Дашкова
+              {t('team.daskova')}
               <ItemIconLinkedin
                 href="https://www.linkedin.com/in/ivettadashkova/"
                 target="_blank"
               />
             </TextSpan>
             <TextSpan href="" target="_blank">
-              Mentor
+              {t('team.mentor')}
               <ItemIconGithub href="" target="_blank" />
             </TextSpan>
           </ItemSpan>

@@ -1,11 +1,12 @@
-// import { TimePicker } from '@progress/kendo-react-dateinputs';
-import '@progress/kendo-theme-default/dist/all.css';
-import toast from 'react-hot-toast';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
-import { useCreateTasksMutation } from '../../redux/tasks/tasksApi';
+import { useParams } from 'react-router-dom';
+import {
+  useCreateTasksMutation,
+  useEditTasksMutation,
+} from '../../redux/tasks/tasksApi';
+import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 import {
   Button,
   ButtonWrapper,
@@ -23,23 +24,40 @@ import {
   TimeWrapper,
 } from './AddTaskForm.styled';
 
-const AddTaskForm = ({ onClose }) => {
+const AddTaskForm = ({ onClose, task }) => {
+  const initialEndTime = new Date();
+  initialEndTime.setMinutes(initialEndTime.getMinutes() + 15);
+
   const [title, setTitle] = useState('');
   const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
+  const [endTime, setEndTime] = useState(initialEndTime);
   const [priority, setPriority] = useState('');
+  const { currentDate } = useParams();
   const [createTask] = useCreateTasksMutation();
+  const [editTask] = useEditTasksMutation();
+
+  useEffect(() => {
+    if (task) {
+      setTitle(task.title);
+      setStartTime(new Date(`2000-01-01T${task.start}`));
+      setEndTime(new Date(`2000-01-01T${task.end}`));
+      setPriority(task.priority);
+    }
+  }, [task]);
+
+  const handlePriorityChange = event => {
+    setPriority(event.target.value);
+  };
 
   const handleAddTask = async event => {
     event.preventDefault();
     if (!title || !startTime || !endTime || !priority) {
-      toast.error('Please fill in all fields');
+      showErrorToast('Please fill in all fields');
       return;
     }
 
     if (startTime > endTime) {
-      toast.error('Start time cannot be after end time');
-      console.log('Start time cannot be after end time');
+      showErrorToast('Start time cannot be after end time');
       return;
     }
 
@@ -49,27 +67,27 @@ const AddTaskForm = ({ onClose }) => {
       return `${hours}:${minutes}`;
     };
 
-    const newTask = {
+    const taskData = {
       title: title,
       start: formatTime(startTime),
       end: formatTime(endTime),
       priority: priority,
-      date: '2023-09-01', // Пример даты
+      date: currentDate,
       category: 'TODO',
     };
 
     try {
-      const result = await createTask(newTask);
-      console.log('New task created:', result);
+      if (task) {
+        await editTask({ id: task._id, ...taskData });
+        showSuccessToast('Task edited:');
+      } else {
+        await createTask(taskData);
+        showSuccessToast('New task created:');
+      }
       onClose();
     } catch (error) {
-      console.error('Error creating task:', error);
-      toast.error('Error creating task');
+      showErrorToast('Error creating/editing task');
     }
-  };
-
-  const handlePriorityChange = event => {
-    setPriority(event.target.value);
   };
 
   return (
@@ -89,7 +107,11 @@ const AddTaskForm = ({ onClose }) => {
           Start
           <DatePicker
             selected={startTime}
-            onChange={date => setStartTime(date)}
+            onChange={date => {
+              setStartTime(date);
+              const newEndTime = new Date(date.getTime() + 15 * 60000);
+              setEndTime(newEndTime);
+            }}
             showTimeSelect
             showTimeSelectOnly
             timeIntervals={15}
@@ -107,6 +129,8 @@ const AddTaskForm = ({ onClose }) => {
             timeIntervals={15}
             customInput={<ExampleCustomInput />}
             dateFormat="h:mm aa"
+            minTime={new Date(startTime.getTime() + 15 * 60000)}
+            maxTime={new Date('2000-01-01T23:45')}
           />
         </TimePickerLabel>
       </TimeWrapper>
@@ -146,9 +170,7 @@ const AddTaskForm = ({ onClose }) => {
         </PriorityLabel>
       </RadioWrapper>
       <ButtonWrapper>
-        <Button type="submit" onClick={handleAddTask}>
-          + Add
-        </Button>
+        <Button type="submit">{task ? 'Edit' : '+ Add'}</Button>
         <Button type="button" onClick={onClose}>
           Cancel
         </Button>

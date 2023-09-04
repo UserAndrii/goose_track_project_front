@@ -6,24 +6,24 @@ import { tasksApi } from 'redux/tasks/tasksApi';
 import { showErrorToast } from '../../utils/showToast';
 import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
-
 const TasksColumnsList = ({ filteredTask, currentDay }) => {
-  const [editTask, { isLoading, isError } ] = tasksApi.useEditTasksMutation();
+  const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();
+  const priorityOrder = ["LOW", "MEDIUM", "HIGH"];
   let todoData = [];
   let inprogressData = [];
   let doneData = [];
   if (filteredTask) {
     todoData = filteredTask.filter(
-    task => task.category.replace(/\s+/g, '').toLowerCase() === 'todo'
-  );
-  inprogressData = filteredTask.filter(
-    task => task.category.replace(/\s+/g, '').toLowerCase() === 'inprogress'
-  );
-  doneData = filteredTask.filter(
-    task => task.category.replace(/\s+/g, '').toLowerCase() === 'done'
-  );
+    task => task.category.replace(/\s+/g, '').toLowerCase() === 'todo');
+    todoData.sort((a, b) => priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority));
+    inprogressData = filteredTask.filter(
+    task => task.category.replace(/\s+/g, '').toLowerCase() === 'inprogress');
+    inprogressData.sort((a, b) => priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority));
+    doneData = filteredTask.filter(
+    task => task.category.replace(/\s+/g, '').toLowerCase() === 'done');
+    doneData.sort((a, b) => priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority));
   }
-  const onDragEnd = (result) => {
+  const updateDrag = result => {
     const { destination, source, draggableId } = result;
 
     if (!destination) {
@@ -35,28 +35,34 @@ const TasksColumnsList = ({ filteredTask, currentDay }) => {
     ) {
       return;
     }
-    const task =  filteredTask.find(item => (item._id === draggableId));
+    const task = filteredTask.find(item => item._id === draggableId);
     const { _id, ...newTask } = task;
     const editedTask = { ...newTask, category: destination.droppableId };
     try {
       editTask({ id: task._id, ...editedTask });
       if (isError) {
-      throw new Error();
+        throw new Error();
       }
     } catch (error) {
       showErrorToast('Something went wrong...');
     }
-
-  }
+  };
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext
+      onDragUpdate={updateDrag}
+      disableInteractiveElementBlocking
+    >
       <Container>
-          {isLoading && <ImageAnimation/>}
-        <TasksColumn columnId={"TODO"} category={'To do'} tasks={todoData} />
-        <TasksColumn columnId={"INPROGRESS"} category={'In progress'} tasks={inprogressData} />
-        <TasksColumn columnId={"DONE"} category={'Done'} tasks={doneData} />
+        {isLoading && <ImageAnimation />}
+        <TasksColumn columnId={'TODO'} category={'To do'} tasks={todoData} />
+        <TasksColumn
+          columnId={'INPROGRESS'}
+          category={'In progress'}
+          tasks={inprogressData}
+        />
+        <TasksColumn columnId={'DONE'} category={'Done'} tasks={doneData} />
       </Container>
-      </DragDropContext>
+    </DragDropContext>
   );
 };
 export default TasksColumnsList;

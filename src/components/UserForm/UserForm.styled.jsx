@@ -23,8 +23,10 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 0 40px;
+
+  padding: 60px 10px 40px;
   background-color: var(--main-background-color);
+
   border-radius: 16px;
   text-align: center;
   position: relative;
@@ -34,8 +36,8 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    /* padding: 60px 0; */
     height: 100%;
-    padding: 60px 0;
   }
 `;
 
@@ -220,6 +222,91 @@ export const Forma = styled.form`
     line-height: 14px;
     margin-bottom: 8px;
   }
+
+  & > div > div > div > label {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  & > div > div > div > label > input {
+    width: 100%;
+    height: 42px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    padding: 12px 14px;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    color: #343434;
+    outline: none;
+
+    &::placeholder {
+      color: #343434;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 400;
+    }
+
+    @media screen and (min-width: 375px) and (max-width: 767px) {
+      width: 299px;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 354px;
+      height: 46px;
+    }
+  }
+
+  & > div > div > div > label > p {
+    color: #111111;
+    font-size: 12px;
+    line-height: 14px;
+    margin-bottom: 8px;
+  }
+`;
+
+export const VerifyWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 5px;
+`;
+
+export const VerifyText = styled.p`
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: ${props => (props.verify ? '#008000' : '#f94646')};
+  margin-top: ${props => (props.verify ? '10px' : '0')};
+`;
+
+export const VerifyBtn = styled.button`
+  color: #ffffff;
+  background: #3e85f3;
+  padding: 3px 10px;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 7px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    background-color: #2b78ef;
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    padding: 3px 15px;
+  }
 `;
 
 export const Button = styled.button`
@@ -278,6 +365,7 @@ export const CustomInput = styled.input`
     line-height: 18px;
     font-weight: 400;
   }
+
   @media screen and (min-width: 375px) and (max-width: 767px) {
     width: 299px;
   }
