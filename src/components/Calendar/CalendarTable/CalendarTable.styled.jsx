@@ -36,22 +36,6 @@ const Cell = styled.div`
   border: 1px solid rgba(220, 227, 229, 0.5);
   cursor: pointer;
 
-  &.row__upperLeftCorner {
-    border-top-left-radius: 6px;
-  }
-
-  &.row__upperRightCorner {
-    border-top-right-radius: 6px;
-  }
-
-  &.row__lowerLeftCorner {
-    border-bottom-left-radius: 6px;
-  }
-
-  &.row__lowerRightCorner {
-    border-bottom-right-radius: 6px;
-  }
-
   &:hover {
     background-color: aliceblue;
   }
@@ -89,6 +73,10 @@ const CurrentDate = styled.div`
     background-color: #3e85f3;
     color: #fff;
 
+    width: 20px;
+    height: 22px;
+    padding: 4px 6px;
+
     @media screen and (min-width: 768px) {
       width: 24px;
       height: 24px;
@@ -111,7 +99,7 @@ const RowNumber = styled.time`
     line-height: 18px;
   }
 
-  .row__currentDate:hover & {
+  .rowCurrentDate:hover & {
     color: #fff;
   }
 

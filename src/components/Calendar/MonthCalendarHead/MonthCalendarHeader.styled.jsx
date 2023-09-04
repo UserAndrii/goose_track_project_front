@@ -30,13 +30,6 @@ const MainBlockDayListWrapper = styled.div`
   }
 `;
 
-const DayListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
 const Day = styled.span`
   color: #343434;
   font-size: 16px;
@@ -50,4 +43,4 @@ const Day = styled.span`
   }
 `;
 
-export { MainBlockDayListWrapper, DayListWrapper, Day };
+export { MainBlockDayListWrapper, Day };

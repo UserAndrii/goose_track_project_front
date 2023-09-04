@@ -26,7 +26,7 @@ const CalendarRangeWrapper = styled.div`
   }
 `;
 
-const CalendarRangeButtons = styled.button`
+const CalendarRangeButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,24 @@ const CalendarRangeButtons = styled.button`
   padding: 8px 16px;
   margin-top: 18px;
   color: #3e85f3;
-  background-color: rgba(227, 243, 255, 1);
+  background-color: #e3f3ff;
+
+  &.onMonth {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-right: 1px solid rgba(62, 133, 243, 0.2);
+  }
+
+  &.onDay {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-right: 1px solid rgba(62, 133, 243, 0.2);
+  }
+
+  &.isActive {
+    background-color: #cae8ff;
+  }
+
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(220, 227, 229, 0.5);
 
@@ -44,25 +61,4 @@ const CalendarRangeButtons = styled.button`
   }
 `;
 
-const ActiveButton = styled(CalendarRangeButtons)`
-  background-color: rgba(62, 133, 243, 0.2);
-`;
-
-const MonthButton = styled(CalendarRangeButtons)`
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-right: 1px solid rgba(62, 133, 243, 0.2);
-`;
-
-const DayButton = styled(CalendarRangeButtons)`
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-`;
-
-export {
-  ToolbarWrapper,
-  CalendarRangeWrapper,
-  ActiveButton,
-  MonthButton,
-  DayButton,
-};
+export { ToolbarWrapper, CalendarRangeWrapper, CalendarRangeButton };

@@ -5,7 +5,7 @@ const MainBlockDayListWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 335px;
-  height: 50px;
+  height: 74px;
   background-color: #fff;
   color: black;
   margin-top: 24px;
@@ -16,7 +16,7 @@ const MainBlockDayListWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 704px;
-    height: 46px;
+    height: 68px;
     margin-left: unset;
     margin-right: unset;
   }
@@ -50,39 +50,40 @@ const RowCurrentDate = styled.button`
   position: absolute;
   top: 8px;
   right: 4px;
+
   width: 22px;
   height: 22px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   margin-left: auto;
   margin-right: auto;
   padding: 4px 6px;
+
   border: none;
   border-radius: 8px;
+
   background-color: transparent;
+
   cursor: pointer;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     width: 27px;
     height: 26px;
-  }
-
-  &:hover {
-    background-color: #799cd0;
-    color: #fff;
+    padding: 4px 8px;
   }
 
   &.row__currentDateActive {
     background-color: #3e85f3;
     color: #fff;
+  }
 
-    @media screen and (min-width: 768px) {
-      width: 24px;
-      height: 24px;
-      padding: 4px 8px;
-    }
+  &:hover {
+    background-color: #799cd0;
+    color: #fff;
   }
 `;
 

@@ -8,7 +8,7 @@ const CalendarRange = styled.div`
   }
 `;
 
-const Buttons = styled.button`
+const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,19 +55,4 @@ const Buttons = styled.button`
   }
 `;
 
-const MonthButton = styled(Buttons)`
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-right: 1px solid rgba(62, 133, 243, 0.2);
-
-  background-color: ${props => (props.isMonthPage ? '#e3f3ff' : '#cae8ff')};
-`;
-
-const DayButton = styled(Buttons)`
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-
-  background-color: ${props => (!props.isMonthPage ? '#e3f3ff' : '#cae8ff')};
-`;
-
-export { CalendarRange, Buttons, MonthButton, DayButton };
+export { CalendarRange, Button };
