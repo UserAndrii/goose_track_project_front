@@ -94,7 +94,7 @@ export const CalendarTable = ({
     <DataGrid>
       {monthDays.map(day => {
         const dayOfWeek = day.getDay();
-        const colStart = dayOfWeek + 1;
+        const colStart = dayOfWeek;
         const formattedDay = format(day, 'yyyy-MM-dd');
         const filteredTasksByDay = allTasks
           ? allTasks.data.filter(task => task.date === formattedDay)
