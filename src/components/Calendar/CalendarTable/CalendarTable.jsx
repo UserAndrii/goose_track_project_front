@@ -108,7 +108,6 @@ export const CalendarTable = ({
             style={{ '--col': colStart }}
             onClick={() => {
               if (isSameMonth(currentDay, day)) {
-                setIsMonthPage(false);
                 setCurrentDay(day);
                 navigate(`day/${formattedDay}`);
               }
@@ -148,7 +147,6 @@ export const CalendarTable = ({
                               <ThreeDots
                                 onClick={() => {
                                   setCurrentDay(day);
-                                  setIsMonthPage(false);
                                   navigate(`day/${formattedDay}`);
                                 }}
                               >

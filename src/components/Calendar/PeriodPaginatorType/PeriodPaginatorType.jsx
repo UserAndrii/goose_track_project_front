@@ -17,7 +17,7 @@ const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
         className={`onMonth ${isMonthPage ? 'isActive' : ''}`}
         onClick={() => {
           navigate(`month/${format(parsedCurrentDate, 'yyyy-MM-dd')}`);
-          changeType(true);
+          changeType();
         }}
         isMonthPage
       >
@@ -27,7 +27,7 @@ const PeriodPaginatorType = ({ isMonthPage, changeType }) => {
         className={`onDay ${!isMonthPage ? 'isActive' : ''}`}
         onClick={() => {
           navigate(`day/${format(parsedCurrentDate, 'yyyy-MM-dd')}`);
-          changeType(false);
+          changeType();
         }}
         isMonthPage
       >

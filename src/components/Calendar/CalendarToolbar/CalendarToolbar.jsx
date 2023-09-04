@@ -54,10 +54,6 @@ export const CalendarToolBar = ({
     }
   };
 
-  const changeType = () => {
-    setIsMonthPage(prev => !prev);
-  };
-
   return (
     <>
       <ToolbarWrapper>
@@ -71,7 +67,9 @@ export const CalendarToolBar = ({
 
         <PeriodPaginatorType
           isMonthPage={isMonthPage}
-          changeType={changeType}
+          changeType={() => {
+            setIsMonthPage(prev => !prev);
+          }}
         />
       </ToolbarWrapper>
 
@@ -82,7 +80,7 @@ export const CalendarToolBar = ({
           }`}
           onClick={() => {
             navigate(`month/${format(formattedDay, 'yyyy-MM-dd')}`);
-            changeType(true);
+            setIsMonthPage(prev => !prev);
           }}
         >
           Month
@@ -93,7 +91,7 @@ export const CalendarToolBar = ({
           }`}
           onClick={() => {
             navigate(`day/${format(formattedDay, 'yyyy-MM-dd')}`);
-            changeType(false);
+            setIsMonthPage(prev => !prev);
           }}
         >
           Day
