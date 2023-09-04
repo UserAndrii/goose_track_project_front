@@ -1,3 +1,5 @@
+import { Trans } from 'react-i18next';
+
 import ArrowLeft from '../../images/reviews-arrow-left.svg';
 import ArrowRight from '../../images/reviews-arrow-right.svg';
 import {
@@ -51,7 +53,9 @@ export default function ReviewsSlider() {
 
   return (
     <ReviewsWrapper>
-      <ReviewsHeader>Reviews</ReviewsHeader>
+      <ReviewsHeader>
+        <Trans i18nKey="reviewsSlider.header">Reviews</Trans>
+      </ReviewsHeader>
       {isFetching ? (
         <Spiner />
       ) : (

@@ -42,7 +42,7 @@ export const WrapperText = styled.div`
 
 export const PageHeader = styled.p`
   display: ${props => (props.hide = 'true' ? 'none' : 'block')};
-  color: #111111;
+  color: var(--title-text-main-color);
   margin-right: ${props => (props.tasksСompleted ? 'auto' : 0)};
   text-shadow: 0px 9.4px 57.69px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
@@ -56,11 +56,11 @@ export const PageHeader = styled.p`
 `;
 
 export const Call = styled.span`
-  color: #3e85f3;
+  color: var(--accent-color);
 `;
 
 export const Text = styled.p`
-  color: #111;
+  color: var(--title-text-main-color);
   font-weight: 600;
   font-size: 14px;
   line-height: 1.28;

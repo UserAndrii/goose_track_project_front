@@ -1,46 +1,38 @@
-import css from '../Caledar.module.css';
-import { format, isSameMonth, isToday } from 'date-fns';
+import { useLocation } from 'react-router';
+import { CalendarTable } from '../CalendarTable/CalendarTable';
+import { MonthCalendarHead } from '../MonthCalendarHead/MonthCalendarHead';
+import { parse, isSameDay } from 'date-fns';
 
-export const ChoosedMonth = ({ currentDay, days }) => {
+export const ChoosedMonth = ({
+  currentDay,
+  days,
+  allTasks,
+  setIsMonthPage,
+  week,
+  setCurrentDay,
+  setTasks,
+}) => {
+  const location = useLocation();
+
+  /* eslint-disable */
+  const [_, __, monthOrDay, date] = location.pathname.split('/');
+  /* eslint-enable */
+  const parsedDate = parse(date, 'yyyy-MM-dd', new Date());
+
+  if (monthOrDay === 'day') {
+    setIsMonthPage(false);
+  }
   return (
-    <div className={`${css.mainBlock__data}`}>
-      {days.map(day => {
-        const dayOfWeek = day.getDay();
-        // index 0
-        const colStart = dayOfWeek;
-
-        return (
-          <div
-            key={day.toString()}
-            onClick={() => {}}
-            className={`${css.row__cell} ${css.gridСol}`}
-            style={{ '--col': colStart }}
-          >
-            <div
-              className={`${css.row__currentDate} ${
-                isToday(day) &&
-                isSameMonth(currentDay, day) &&
-                css.row__currentDateActive
-              }`}
-            >
-              <time
-                className={`${css.row__number} ${
-                  isToday(day) &&
-                  isSameMonth(currentDay, day) &&
-                  css.row__ActiveNumber
-                }`}
-                dateTime={format(day, 'yyyy-MM-dd')}
-                style={{
-                  // display: isSameMonth(currentDay, day) ? 'block' : 'none',
-                  display: 'block',
-                }}
-              >
-                {format(day, 'd')}
-              </time>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <MonthCalendarHead week={week} />
+      <CalendarTable
+        monthDays={days}
+        setIsMonthPage={setIsMonthPage}
+        currentDay={currentDay}
+        setCurrentDay={setCurrentDay}
+        allTasks={allTasks && allTasks}
+        setTasks={setTasks}
+      />
+    </>
   );
 };

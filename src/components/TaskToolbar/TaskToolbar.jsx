@@ -6,7 +6,7 @@ import { HiOutlinePencil } from 'react-icons/hi';
 import { CgTrashEmpty } from 'react-icons/cg';
 import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
 import { tasksApi } from 'redux/tasks/tasksApi';
-import Spinner from '../Spiner/Spiner';
+import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 import './ContextMenu.css';
 
@@ -15,7 +15,7 @@ const TaskToolbar = ({ task }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [deleteTask] = tasksApi.useDeleteTasksMutation();
 
-  const [editTask, { isFetching }] = tasksApi.useEditTasksMutation();
+  const [editTask, { isLoading, isError } ] = tasksApi.useEditTasksMutation();
 
   const categories = ['To do', 'In Progress', 'Done'].filter(
     item =>
@@ -74,7 +74,10 @@ const TaskToolbar = ({ task }) => {
 
     try {
       await editTask({ id: task._id, ...editedTask });
-      if (!isFetching) handleCloseContextMenu();
+      if (!isLoading) handleCloseContextMenu();
+      if (isError) {
+      throw new Error();
+      }
     } catch (error) {
       showErrorToast('Something went wrong...');
     }
@@ -82,7 +85,7 @@ const TaskToolbar = ({ task }) => {
 
   return (
     <Container>
-      {isFetching && <Spinner />}
+      {isLoading && <ImageAnimation/>}
       <IconButton onClick={handleClickContextMenu}>
         <AiOutlineLogin />
       </IconButton>

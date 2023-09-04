@@ -19,7 +19,7 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: white;
+  background-color: var(--main-background-color);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   padding: 28px 20px;
@@ -57,7 +57,7 @@ export const ModalCloseButton = styled.button`
   svg {
     width: 24px;
     height: 24px;
-    stroke: black;
+    stroke: var(--label-text-color);
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;

@@ -5,6 +5,10 @@
   border: none;
 }
 
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
 .react-datepicker__day {
   color: white;
   border-radius: 50%;

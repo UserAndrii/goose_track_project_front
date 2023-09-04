@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 1057px;
   height: 100%;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: var(--main-background-color);
   border-radius: 16px;
   padding: 0 114px;
   padding-top: 134px;
@@ -83,18 +83,18 @@ export const WrapLabel = styled.div`
   width: 90px;
   display: flex;
   align-items: center;
-  marginright: 20px;
+  margin-right: 20px;
 
   // justify-content: center;
   // align-items: center;
   // margin: 0 auto;
 
   @media (max-width: 375px) {
-    marginright: 14px;
+    margin-right: 14px;
   }
 
   @media screen and (min-width: 376px) and (max-width: 767px) {
-    marginright: 14px;
+    margin-right: 14px;
   }
 `;
 
@@ -103,9 +103,9 @@ export const Circle = styled.div`
   height: 8px;
   border-radius: 50%;
 `;
-export const Label = styled.p`
-  color: #343434;
-  font-family: Poppins;
+export const LabelT = styled.p`
+  color: var(--calendar-date-color);
+  font-family: Poppins, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

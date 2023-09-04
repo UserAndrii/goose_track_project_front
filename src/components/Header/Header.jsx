@@ -20,12 +20,25 @@ import UserInfo from '../UserInfo';
 import ThemeToggler from '../ThemeToggler';
 import AddFeedbackBtn from '../AddFeedbackBtn';
 import AddFeedbackModal from '../AddFeedbackModal';
+import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 
 const Header = ({ openSidebar }) => {
   const location = useLocation();
   const [activePage, setActivePage] = useState('');
-  const [tasksСompleted] = useState(false); // setTasksСompleted
   const [isModalOpen, setModalOpen] = useState(false);
+
+  const currentPath = location.pathname;
+
+  /* eslint-disable */
+  const [_, currentPage, __, currentDate] = currentPath.split('/');
+  /* eslint-enable */
+
+  const date = currentDate?.substring(0, 7);
+
+  const { data: tasks } = useGetMonthlyTasksQuery(date, {
+    skip: date === undefined,
+  });
+  const filteredTask = tasks?.data?.filter(task => task.category !== 'DONE');
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -38,23 +51,21 @@ const Header = ({ openSidebar }) => {
   };
 
   useEffect(() => {
-    const currentPath = location.pathname;
-
-    switch (currentPath) {
-      case '/account':
+    switch (currentPage) {
+      case 'account':
         return setActivePage('User Profile');
 
-      case '/calendar':
+      case 'calendar':
         return setActivePage('Calendar');
 
-      case '/statistics':
+      case 'statistics':
         return setActivePage('Statistics');
 
       default:
         setActivePage('');
         return;
     }
-  }, [location]);
+  }, [currentPage]);
 
   useEffect(() => {
     const handleKeyDown = event => {
@@ -74,7 +85,7 @@ const Header = ({ openSidebar }) => {
 
   return (
     <Container>
-      {!tasksСompleted && activePage === 'Calendar' ? (
+      {filteredTask?.length !== 0 && activePage === 'Calendar' ? (
         <Wrapper>
           <Picture>
             <source

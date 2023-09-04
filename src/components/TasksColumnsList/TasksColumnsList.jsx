@@ -1,51 +1,61 @@
-import React from // useEffect,
-// useState
-'react';
+import React from 'react';
 import { Container } from './TasksColumnsList.styled';
 import TasksColumn from '../TasksColumn';
-// import { useSelector } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { tasksApi } from 'redux/tasks/tasksApi';
+import { showErrorToast } from '../../utils/showToast';
+import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
-// import { selectTasksByUser } from '../../FakeBackend/selectors';
-import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-// import { all } from 'axios';
 
-const TasksColumnsList = () => {
-  //   console.log('currentDay', currentDay);
+const TasksColumnsList = ({ filteredTask, currentDay }) => {
+  const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();
+  let todoData = [];
+  let inprogressData = [];
+  let doneData = [];
+  if (filteredTask) {
+    todoData = filteredTask.filter(
+      task => task.category.replace(/\s+/g, '').toLowerCase() === 'todo'
+    );
+    inprogressData = filteredTask.filter(
+      task => task.category.replace(/\s+/g, '').toLowerCase() === 'inprogress'
+    );
+    doneData = filteredTask.filter(
+      task => task.category.replace(/\s+/g, '').toLowerCase() === 'done'
+    );
+  }
+  const updateDrag = result => {
+    const { destination, source, draggableId } = result;
 
-  //   const {
-  //     data: { data: tasks },
-  //   } = useGetMonthlyTasksQuery(
-  //     { date: currentDay },
-  //     { skip: currentDay === '' }
-  //   );
-
-  const { data } = useGetMonthlyTasksQuery('2023-08');
-  const tasks = data?.data;
-
-  // if (tasks) {
-  const todoData = tasks.filter(
-    task => task.category.replace(/\s+/g, '').toLowerCase() === 'todo'
-  );
-  const inprogressData = tasks.filter(
-    task => task.category.replace(/\s+/g, '').toLowerCase() === 'inprogress'
-  );
-  const doneData = tasks.filter(
-    task => task.category.replace(/\s+/g, '').toLowerCase() === 'done'
-  );
-  // }
-
+    if (!destination) {
+      return;
+    }
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+    const task =  filteredTask.find(item => (item._id === draggableId));
+    const { _id, ...newTask } = task;
+    const editedTask = { ...newTask, category: destination.droppableId };
+    try {
+      editTask({ id: task._id, ...editedTask });
+      if (isError) {
+      throw new Error();
+      }
+    } catch (error) {
+      showErrorToast('Something went wrong...');
+    }
+  }
   return (
-    <Container>
-      {todoData.length > 0 && (
-        <TasksColumn key={1} category={'To do'} tasks={todoData} />
-      )}
-      {inprogressData.length > 0 && (
-        <TasksColumn key={2} category={'In progress'} tasks={inprogressData} />
-      )}
-      {doneData.length > 0 && (
-        <TasksColumn key={3} category={'Done'} tasks={doneData} />
-      )}
-    </Container>
+    <DragDropContext onDragUpdate={updateDrag}>
+      <Container>
+          {isLoading && <ImageAnimation/>}
+        <TasksColumn columnId={"TODO"} category={'To do'} tasks={todoData} />
+        <TasksColumn columnId={"INPROGRESS"} category={'In progress'} tasks={inprogressData} />
+        <TasksColumn columnId={"DONE"} category={'Done'} tasks={doneData} />
+      </Container>
+      </DragDropContext>
   );
 };
 export default TasksColumnsList;
