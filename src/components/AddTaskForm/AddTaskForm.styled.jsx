@@ -3,6 +3,9 @@ import styled from '@emotion/styled';
 export const Form = styled.form`
   padding: 20px 8px;
   @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justyfi-content:centre;
     width: 85%;
     height: 70%;
   }
@@ -17,24 +20,30 @@ export const Input = styled.input`
   margin-top: 8px;
   border: none;
   border-radius: 8px;
+  width: 100%;
   background: var(--outlet-background-color);
   padding: 14px 18px;
 `;
 export const TimeWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-top: 18px;
+  gap:14px;
   margin-bottom: 28px;
-  gap: 14px;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const TimePickerLabel = styled.label`
-  width: 163px;
-  height: 46px;
+display: flex;
+flex-direction: column;
 `;
 
 export const PriorityLabel = styled.label`
   display: flex;
   align-items: center;
+  margin-left: 6px;
 `;
 
 export const RadioWrapper = styled.div`
@@ -52,7 +61,6 @@ export const Span = styled.span`
 `;
 
 export const RadioInputBlue = styled.input`
-  margin-left: 6px;
   appearance: none;
   width: 15px;
   height: 15px;
@@ -66,7 +74,7 @@ export const RadioInputBlue = styled.input`
   &:not(:checked) {
     width: 10px;
     height: 10px;
-    border: none;
+    border: 2px solid transparent;
     background-color: var(--task-low-color);
   }
 
@@ -78,6 +86,7 @@ export const RadioInputBlue = styled.input`
     background-color: var(--task-low-color);
     border-radius: 50%;
     top: 50%;
+    border: 2px solid transparent;
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: ${props => (props.checked ? '1' : '0')};
@@ -87,7 +96,6 @@ export const RadioInputBlue = styled.input`
 `;
 
 export const RadioInputYellow = styled.input`
-  margin-left: 6px;
   appearance: none;
   width: 15px;
   height: 15px;
@@ -100,13 +108,14 @@ export const RadioInputYellow = styled.input`
   &:not(:checked) {
     width: 10px;
     height: 10px;
-    border: none;
+    border: 2px solid transparent;
     background-color: var(--task-med-color);
   }
 
   &:before {
     content: '';
     position: absolute;
+    border: 2px solid transparent;
     width: 10px;
     height: 10px;
     background-color: var(--task-med-color);
@@ -121,7 +130,7 @@ export const RadioInputYellow = styled.input`
 `;
 
 export const RadioInputRed = styled.input`
-  margin-left: 6px;
+
   appearance: none;
   width: 15px;
   height: 15px;
@@ -134,7 +143,7 @@ export const RadioInputRed = styled.input`
   &:not(:checked) {
     width: 10px;
     height: 10px;
-    border: none;
+    border: 2px solid transparent;
     background-color: var(--task-high-color);
   }
 
@@ -142,6 +151,7 @@ export const RadioInputRed = styled.input`
     content: '';
     position: absolute;
     width: 10px;
+    border: 2px solid transparent;
     height: 10px;
     background-color: var(--task-high-color);
     border-radius: 50%;
@@ -190,6 +200,6 @@ export const ExampleCustomInput = styled.input`
   background: var(--task-field-color);
   padding: 14px 18px;
   border: none;
-  width: 163px;
+  width: 100%;
   height: 46px;
 `;
