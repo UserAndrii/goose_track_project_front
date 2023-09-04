@@ -112,6 +112,8 @@ const globalStyles = css`
     width: 100%;
     height: auto;
   }
+  .recharts-layer {
+  }
 `;
 
 const GlobalStyles = () => <Global styles={globalStyles} />;
