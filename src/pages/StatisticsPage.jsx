@@ -7,6 +7,7 @@ import {
   WrapLabel,
   WrapLabels,
   WrapPeriod,
+  ContainerWrapper,
 } from 'components/StatisticsChart/StatisticsChart.styled';
 import {
   addDays,
@@ -45,42 +46,44 @@ const StatisticsPage = () => {
     setCurrentMonth(day);
   };
   return (
-    <Container>
-      <WrapPeriod>
-        <PeriodPaginator
-          currentDay={currentDay}
-          handleCurrentDay={handleCurrentDay}
-          isMonthPage={false}
-          nextPeriod={next}
-          prevPeriod={previous}
-        />
+    <ContainerWrapper>
+      <Container>
+        <WrapPeriod>
+          <PeriodPaginator
+            currentDay={currentDay}
+            handleCurrentDay={handleCurrentDay}
+            isMonthPage={false}
+            nextPeriod={next}
+            prevPeriod={previous}
+          />
 
-        <WrapLabels>
-          <WrapLabel>
-            <Circle
-              style={{
-                backgroundColor: '#FFD2DD',
-                marginRight: '8px',
-              }}
-            />
-            <LabelT>By Day</LabelT>
-          </WrapLabel>
-          <WrapLabel>
-            <Circle
-              style={{
-                backgroundColor: '#3E85F3',
-                marginRight: '8px',
-              }}
-            />
-            <LabelT>By Month</LabelT>
-          </WrapLabel>
-        </WrapLabels>
-      </WrapPeriod>
-      <StatisticsChart
-        currentDay={format(currentDay, 'yyyy-MM-dd')}
-        currentMonth={format(currentMonth, 'yyyy-MM')}
-      />
-    </Container>
+          <WrapLabels>
+            <WrapLabel>
+              <Circle
+                style={{
+                  backgroundColor: '#FFD2DD',
+                  marginRight: '8px',
+                }}
+              />
+              <LabelT>By Day</LabelT>
+            </WrapLabel>
+            <WrapLabel>
+              <Circle
+                style={{
+                  backgroundColor: '#3E85F3',
+                  marginRight: '8px',
+                }}
+              />
+              <LabelT>By Month</LabelT>
+            </WrapLabel>
+          </WrapLabels>
+        </WrapPeriod>
+        <StatisticsChart
+          currentDay={format(currentDay, 'yyyy-MM-dd')}
+          currentMonth={format(currentMonth, 'yyyy-MM')}
+        />
+      </Container>
+    </ContainerWrapper>
   );
 };
 

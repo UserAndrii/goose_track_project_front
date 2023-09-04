@@ -8,9 +8,9 @@ import {
   LabelList,
   Label,
 } from 'recharts';
-
+import PoppinsFontMedium from '../../fonts/Poppins-Medium.ttf';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-import '../../styles/vars.css';
+// import '../../styles/vars.css';
 const data = [
   {
     name: 'To Do',
@@ -29,25 +29,25 @@ const data = [
   },
 ];
 export default function StatisticsChart({ currentDay, currentMonth }) {
-  const borderStatistics = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue('dark[--border-statistics]');
-  // const titleTextColor = getComputedStyle(
+  // const borderStatistics = getComputedStyle(
   //   document.documentElement
-  // ).getPropertyValue('--title-text-main-color');
-  // const secondaryTextColor = getComputedStyle(
-  //   document.documentElement
-  // ).getPropertyValue('--secondary-text-color');
-  // const accentColor = getComputedStyle(
-  //   document.documentElement
-  // ).getPropertyValue('--accent-color');
-  // const activeSelectionColor = getComputedStyle(
-  //   document.documentElement
-  // ).getPropertyValue('--active-selection');
-  // const btnTextColor = getComputedStyle(
-  //   document.documentElement
-  // ).getPropertyValue('--btn-text-color');
-  console.log(':>> ', borderStatistics);
+  // ).getPropertyValue('dark[--border-statistics]');
+  // // const titleTextColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--title-text-main-color');
+  // // const secondaryTextColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--secondary-text-color');
+  // // const accentColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--accent-color');
+  // // const activeSelectionColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--active-selection');
+  // // const btnTextColor = getComputedStyle(
+  // //   document.documentElement
+  // // ).getPropertyValue('--btn-text-color');
+  // console.log(':>> ', borderStatistics);
   // // Решта вашого коду залишається незмінним
 
   const [chartWidth, setChartWidth] = useState(860);
@@ -160,7 +160,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         setLineHeightL('16px');
         setTasksPosition(0);
         setMarginBar(4);
-      } else if (screenWidth <= 768) {
+      } else if (screenWidth <= 767) {
         setChartWidth(307);
         setChartHeight(418);
         setSizeBar(22);
@@ -260,7 +260,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
           fontSize={fontSize}
           fontStyle={'normal'}
           fontWeight={500}
-          fontFamily="Poppins, sans-serif"
+          fontFamily={PoppinsFontMedium}
           lineheight={lineHeight}
         >
           {value}%
@@ -283,7 +283,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
           fontSize={fontSize}
           fontStyle={'normal'}
           fontWeight={500}
-          fontFamily="Poppins, sans-serif"
+          fontFamily={PoppinsFontMedium}
           lineheight={lineHeight}
         >
           {value}%
@@ -304,6 +304,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
       }}
       style={{
         borderRadius: 16,
+        border: '1px solid  rgba(227, 243, 255, 1)',
       }}
     >
       <CartesianGrid

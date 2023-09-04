@@ -61,7 +61,7 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(getVerifyEmailUser.fulfilled, (state, action) => {
-        state.user.verify = action.payload.verify;
+        state.user.verify = action.payload;
       });
   },
 });

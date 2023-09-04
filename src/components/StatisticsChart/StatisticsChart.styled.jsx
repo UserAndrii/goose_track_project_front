@@ -1,4 +1,20 @@
 import styled from '@emotion/styled';
+import PoppinsFontRegular from '../../fonts/Poppins-Regular.ttf';
+export const ContainerWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px 40px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 32px 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 0 32px 32px;
+  }
+`;
 
 export const Container = styled.div`
   width: 1057px;
@@ -103,7 +119,7 @@ export const Circle = styled.div`
 export const LabelT = styled.p`
   text-wrap: nowrap;
   color: var(--calendar-date-color);
-  font-family: Poppins, sans-serif;
+  font-family: ${PoppinsFontRegular};
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

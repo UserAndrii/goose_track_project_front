@@ -1,13 +1,11 @@
 import TasksColumnsList from 'components/TasksColumnsList/TasksColumnsList';
 import { DayCalendarHead } from '../DayCalendarHead/DayCalendarHead';
-import { useLocation } from 'react-router';
 
 export const ChoosedDay = ({
   week,
   currentDay,
   filteredTask,
   setCurrentDay,
-  setIsMonthPage,
 }) => {
   return (
     <>
