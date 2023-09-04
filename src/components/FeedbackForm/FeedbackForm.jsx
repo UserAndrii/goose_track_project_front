@@ -31,6 +31,7 @@ const FeedbackForm = ({ onClose }) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
 
+  
   const dispatch = useDispatch();
 
   const [createReview] = useCreateReviewMutation();
@@ -55,6 +56,15 @@ const FeedbackForm = ({ onClose }) => {
   const handleDeleteReview = () => {
     setIsDeleteMode(true);
     setIsEditMode(false);
+  };
+
+  const handleChangeReview = (e) => {
+    const text = e.target.value;
+    if (text.length <= 180) {
+      setReview(text);
+    }else{
+      showErrorToast('Your review should be less than 180 characters.');
+    }
   };
 
   const handleSubmit = async event => {
@@ -131,7 +141,7 @@ const FeedbackForm = ({ onClose }) => {
         id="review"
         value={review}
         placeholder="Enter Text"
-        onChange={e => setReview(e.target.value)}
+        onChange={handleChangeReview}
         disabled={!isEditMode && userReviewData}
       />
       {isDeleteMode && (
