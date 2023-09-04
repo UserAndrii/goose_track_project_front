@@ -1,8 +1,16 @@
-import css from './CalendarToolbar.module.css';
+// import css from './CalendarToolbar.module.css';
 
 import PeriodPaginator from '../PeriodPaginator';
 import PeriodPaginatorType from '../PeriodPaginatorType';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import {
+  ToolbarWrapper,
+  CalendarRangeWrapper,
+  ActiveButton,
+  MonthButton,
+  DayButton,
+} from './CalendarToolbar.styled';
 
 import { format, parse, add } from 'date-fns';
 
@@ -50,13 +58,56 @@ export const CalendarToolBar = ({
     }
   };
 
-  const changeType = state => {
-    setIsMonthPage(state);
+  const changeType = () => {
+    setIsMonthPage(prev => !prev);
   };
 
+  // return (
+  //   <>
+  //     <div className={css.toolbar}>
+  //       <PeriodPaginator
+  //         isMonthPage={isMonthPage}
+  //         prevPeriod={prevPeriod}
+  //         nextPeriod={nextPeriod}
+  //         currentDay={currentDay}
+  //         currentMonth={currentMonth}
+  //       />
+
+  //       <PeriodPaginatorType
+  //         isMonthPage={isMonthPage}
+  //         changeType={changeType}
+  //       />
+  //     </div>
+
+  //     <div className={css.calendarRange}>
+  //       <button
+  //         className={`${css.calendarRange__buttons} ${
+  //           css.calendarRange__monthButton
+  //         } ${isMonthPage ? css.calendarRange__ActiveButton : ''}`}
+  //         onClick={() => {
+  //           navigate(`month/${format(formattedDay, 'yyyy-MM-dd')}`);
+  //           changeType(true);
+  //         }}
+  //       >
+  //         Month
+  //       </button>
+  //       <button
+  //         className={`${css.calendarRange__buttons} ${
+  //           css.calendarRange__dayButton
+  //         } ${!isMonthPage ? css.calendarRange__ActiveButton : ''}`}
+  //         onClick={() => {
+  //           navigate(`day/${format(formattedDay, 'yyyy-MM-dd')}`);
+  //           changeType(false);
+  //         }}
+  //       >
+  //         Day
+  //       </button>
+  //     </div>
+  //   </>
+  // );
   return (
     <>
-      <div className={css.toolbar}>
+      <ToolbarWrapper>
         <PeriodPaginator
           isMonthPage={isMonthPage}
           prevPeriod={prevPeriod}
@@ -69,32 +120,28 @@ export const CalendarToolBar = ({
           isMonthPage={isMonthPage}
           changeType={changeType}
         />
-      </div>
+      </ToolbarWrapper>
 
-      <div className={css.calendarRange}>
-        <button
-          className={`${css.calendarRange__buttons} ${
-            css.calendarRange__monthButton
-          } ${isMonthPage ? css.calendarRange__ActiveButton : ''}`}
+      <CalendarRangeWrapper>
+        <MonthButton
+          className={isMonthPage ? 'calendarRange__ActiveButton' : ''}
           onClick={() => {
             navigate(`month/${format(formattedDay, 'yyyy-MM-dd')}`);
             changeType(true);
           }}
         >
           Month
-        </button>
-        <button
-          className={`${css.calendarRange__buttons} ${
-            css.calendarRange__dayButton
-          } ${!isMonthPage ? css.calendarRange__ActiveButton : ''}`}
+        </MonthButton>
+        <DayButton
+          className={!isMonthPage ? 'calendarRange__ActiveButton' : ''}
           onClick={() => {
             navigate(`day/${format(formattedDay, 'yyyy-MM-dd')}`);
             changeType(false);
           }}
         >
           Day
-        </button>
-      </div>
+        </DayButton>
+      </CalendarRangeWrapper>
     </>
   );
 };

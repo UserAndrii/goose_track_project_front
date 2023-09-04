@@ -1,5 +1,6 @@
-/* MainBlock Day List */
-.mainBlock__dayList {
+import styled from '@emotion/styled';
+
+const MainBlockDayListWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -16,39 +17,37 @@
 
   border: 1px solid rgba(220, 227, 229, 0.5);
   border-radius: 8px;
-}
 
-@media screen and (min-width: 768px) {
-  .mainBlock__dayList {
+  @media screen and (min-width: 768px) {
     width: 704px;
     height: 46px;
     margin-left: unset;
     margin-right: unset;
   }
-}
 
-@media screen and (min-width: 1440px) {
-  .mainBlock__dayList {
+  @media screen and (min-width: 1440px) {
     width: 1087px;
   }
-}
+`;
 
-.daylist__wrapper {
+const DayListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+`;
 
-.day {
+const Day = styled.span`
   color: #343434;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 18px;
   text-transform: uppercase;
-}
 
-.weekend {
-  color: #3e85f3;
-}
+  &.weekend {
+    color: #3e85f3;
+  }
+`;
+
+export { MainBlockDayListWrapper, DayListWrapper, Day };
