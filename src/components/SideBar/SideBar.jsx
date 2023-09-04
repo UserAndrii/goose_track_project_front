@@ -9,9 +9,11 @@ import {
   Image,
   Text,
   Span,
+  LangSwitcherWrapper,
 } from './SideBar.styled';
 
 import { useEffect, useState } from 'react';
+import LangSwitcher from 'components/LangSwitcher/LangSwitcher';
 
 const SideBar = ({ closeSidebar, sidebarVisible }) => {
   const { t } = useTranslation();
@@ -85,6 +87,10 @@ const SideBar = ({ closeSidebar, sidebarVisible }) => {
           </Text>
           <CloseBtn onClick={closeSidebar} />
         </Menu>
+        
+          <LangSwitcherWrapper>
+            <LangSwitcher />
+          </LangSwitcherWrapper>
 
         <UserNav closeSidebar={closeSidebar} />
         <LogoutBtn />

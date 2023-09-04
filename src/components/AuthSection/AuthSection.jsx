@@ -12,6 +12,7 @@ import {
   ButtonText,
   ItemIcon,
   AuthLink,
+  LangSwitcherWrapper,
 } from './AuthSection.styled';
 
 import LangSwitcher from 'components/LangSwitcher/LangSwitcher';
@@ -62,7 +63,10 @@ const AuthSection = () => {
 
   return (
     <Container>
-      <LangSwitcher/>
+       <LangSwitcherWrapper>
+        <LangSwitcher />
+      </LangSwitcherWrapper>
+
       <ImageWrapper>
         <Image src={selectedImagePath} alt="Goose" />
       </ImageWrapper>

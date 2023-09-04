@@ -165,3 +165,17 @@ export const sendRenewPass = createAsyncThunk(
     }
   }
 );
+
+export const changePassword = createAsyncThunk(
+  '/changePassword',
+  async (data, thunkAPI) => {
+    try {
+      await axios.post('/changePassword', data);
+      showSuccessToast('Your password has been successfully updated');
+      return;
+    } catch (error) {
+      showErrorToast('You have entered an invalid old password');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

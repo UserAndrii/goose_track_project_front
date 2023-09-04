@@ -1,14 +1,10 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
 
   @media screen and (max-width: 767px) {
@@ -25,6 +21,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 16px;
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  cursor: pointer;
 
   color: var(--accent-color);
   font-family: inherit;
@@ -38,7 +35,6 @@ export const Button = styled.button`
   @media screen and (min-width: 768px) {
     font-size: 14px;
     padding: 10px 20px;
-    margin-left: 24px;
     margin-bottom: 0;
   }
 `;
