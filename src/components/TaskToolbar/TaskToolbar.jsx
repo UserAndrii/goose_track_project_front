@@ -15,7 +15,7 @@ const TaskToolbar = ({ task }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [deleteTask] = tasksApi.useDeleteTasksMutation();
 
-  const [editTask, { isLoading, isError } ] = tasksApi.useEditTasksMutation();
+  const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();
 
   const categories = ['To do', 'In Progress', 'Done'].filter(
     item =>
@@ -76,7 +76,7 @@ const TaskToolbar = ({ task }) => {
       await editTask({ id: task._id, ...editedTask });
       if (!isLoading) handleCloseContextMenu();
       if (isError) {
-      throw new Error();
+        throw new Error();
       }
     } catch (error) {
       showErrorToast('Something went wrong...');
@@ -85,7 +85,7 @@ const TaskToolbar = ({ task }) => {
 
   return (
     <Container>
-      {isLoading && <ImageAnimation/>}
+      {isLoading && <ImageAnimation />}
       <IconButton onClick={handleClickContextMenu}>
         <AiOutlineLogin />
       </IconButton>
@@ -120,7 +120,7 @@ const TaskToolbar = ({ task }) => {
           </Wrapper>
         </MenuItem>
       </Menu>
-      {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
+      {isModalOpen && <AddTaskModal onClose={handleCloseModal} task={task} />}
     </Container>
   );
 };

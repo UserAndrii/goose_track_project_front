@@ -6,7 +6,6 @@ import { tasksApi } from 'redux/tasks/tasksApi';
 import { showErrorToast } from '../../utils/showToast';
 import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
-
 const TasksColumnsList = ({ filteredTask, currentDay }) => {
   const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();
   const priorityOrder = ["LOW", "MEDIUM", "HIGH"];
@@ -36,27 +35,34 @@ const TasksColumnsList = ({ filteredTask, currentDay }) => {
     ) {
       return;
     }
-    const task =  filteredTask.find(item => (item._id === draggableId));
+    const task = filteredTask.find(item => item._id === draggableId);
     const { _id, ...newTask } = task;
     const editedTask = { ...newTask, category: destination.droppableId };
     try {
       editTask({ id: task._id, ...editedTask });
       if (isError) {
-      throw new Error();
+        throw new Error();
       }
     } catch (error) {
       showErrorToast('Something went wrong...');
     }
-  }
+  };
   return (
-    <DragDropContext onDragUpdate={updateDrag}>
+    <DragDropContext
+      onDragUpdate={updateDrag}
+      disableInteractiveElementBlocking
+    >
       <Container>
-          {isLoading && <ImageAnimation/>}
-        <TasksColumn columnId={"TODO"} category={'To do'} tasks={todoData} />
-        <TasksColumn columnId={"INPROGRESS"} category={'In progress'} tasks={inprogressData} />
-        <TasksColumn columnId={"DONE"} category={'Done'} tasks={doneData} />
+        {isLoading && <ImageAnimation />}
+        <TasksColumn columnId={'TODO'} category={'To do'} tasks={todoData} />
+        <TasksColumn
+          columnId={'INPROGRESS'}
+          category={'In progress'}
+          tasks={inprogressData}
+        />
+        <TasksColumn columnId={'DONE'} category={'Done'} tasks={doneData} />
       </Container>
-      </DragDropContext>
+    </DragDropContext>
   );
 };
 export default TasksColumnsList;

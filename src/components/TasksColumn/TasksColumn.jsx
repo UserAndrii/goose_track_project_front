@@ -39,7 +39,7 @@ const TasksColumn = ({ category, tasks, columnId }) => {
          <ColumnHeadBar category={category}/>
        <ColumnsTasksList tasks={tasks} columnId={columnId} />
         <AddTaskBtn onClick={handleOpenModal} />
-         {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
+        {isModalOpen && <AddTaskModal onClose={handleCloseModal} />}
     </Container>
   );
 };
