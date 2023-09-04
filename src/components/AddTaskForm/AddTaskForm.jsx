@@ -23,7 +23,7 @@ import {
   TimeWrapper,
 } from './AddTaskForm.styled';
 
-const AddTaskForm = ({ onClose }) => {
+const AddTaskForm = ({ onClose, task }) => {
   const [title, setTitle] = useState('');
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
