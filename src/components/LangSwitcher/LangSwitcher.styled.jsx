@@ -32,6 +32,11 @@ export const Button = styled.button`
 
   padding: 5px 15px;
 
+  :hover {
+    color: var(--active-btn-color);
+    box-shadow: 4px 2px 16px 0px rgba(255, 255, 255, 0.48);
+  }
+
   @media screen and (min-width: 768px) {
     font-size: 14px;
     padding: 10px 20px;

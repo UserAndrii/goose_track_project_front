@@ -102,6 +102,12 @@ export const Button = styled(Link)`
   border: none;
   border-radius: 16px;
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  cursor: pointer;
+
+  :hover {
+    color: var(--active-btn-color);
+    box-shadow: 4px 2px 16px 0px rgba(255, 255, 255, 0.48);
+  }
 
   padding: 14px 33.5px;
   margin-bottom: 16px;
@@ -142,6 +148,13 @@ export const AuthLink = styled(Link)`
   font-weight: 600;
   line-height: 1.17;
   text-decoration-line: underline;
+  cursor: pointer;
+  transition: font-size 0.3s;
+
+  :hover {
+    text-decoration-line: none;
+    font-size: 90%
+  }
 `;
 
 export const LangSwitcherWrapper = styled.div`
