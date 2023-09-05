@@ -30,8 +30,8 @@ const CurrentDate = styled.button`
   padding: 8px 12px;
   width: 190px;
   height: 30px;
-  color: #fff;
-  background-color: #3e85f3;
+  color: var(--btn-text-color);
+  background-color: var(--accent-background-color);
   border: none;
   border-radius: 8px;
   font-size: 14px;

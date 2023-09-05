@@ -6,8 +6,8 @@ const MainBlockDayListWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 74px;
-  background-color: #fff;
-  color: black;
+  background-color: var(--main-background-color);
+  color: var(--label-text-color);
   margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
@@ -23,7 +23,7 @@ const DayListWrapper = styled.div`
 `;
 
 const Day = styled.span`
-  color: #343434;
+  color: var(--calendar-date-color);
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -31,7 +31,7 @@ const Day = styled.span`
   text-transform: uppercase;
 
   &.weekend {
-    color: #3e85f3;
+    color: var(--accent-color);
   }
 `;
 
@@ -66,18 +66,18 @@ const RowCurrentDate = styled.button`
   }
 
   &.row__currentDateActive {
-    background-color: #3e85f3;
-    color: #fff;
+    background-color: var(--accent-background-color);
+    color: var(--btn-text-color);
   }
 
   &:hover {
-    background-color: #799cd0;
-    color: #fff;
+    background-color: var(--auth-background-color);
+    color: var(--btn-text-color);
   }
 `;
 
 const RowNumber = styled.time`
-  color: #343434;
+  color: var(--calendar-date-color);
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
@@ -91,11 +91,11 @@ const RowNumber = styled.time`
   }
 
   .row__currentDate:hover & {
-    color: #fff;
+    color: var(--btn-text-color);
   }
 
   &.row__ActiveNumber {
-    color: #fff;
+    color: var(--btn-text-color);
   }
 `;
 

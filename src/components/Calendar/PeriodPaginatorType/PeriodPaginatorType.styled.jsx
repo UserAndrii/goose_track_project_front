@@ -16,8 +16,8 @@ const Button = styled.button`
   height: 34px;
   padding: 8px 16px;
   margin-top: 18px;
-  color: #3e85f3;
-  background-color: #e3f3ff;
+  color: var(--accent-color);
+  background-color: var(--auth-background-color);
 
   &.onMonth {
     border-top-left-radius: 8px;
@@ -32,7 +32,7 @@ const Button = styled.button`
   }
 
   &.isActive {
-    background-color: #cae8ff;
+    background-color: var(--outlet-background-color);
   }
 
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);

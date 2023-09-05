@@ -16,7 +16,7 @@ export const Form = styled.form`
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  color: rgba(52, 52, 52, 0.8);
+  color: var(--calendar-date-color);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.16;
@@ -47,7 +47,7 @@ export const TimeWrapper = styled.div`
 export const TimePickerLabel = styled.label`
   display: flex;
   flex-direction: column;
-  color: rgba(52, 52, 52, 0.8);
+  color: var(--calendar-date-color);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.16;

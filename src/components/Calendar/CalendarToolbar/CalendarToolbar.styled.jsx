@@ -26,8 +26,8 @@ const CalendarRangeButton = styled.button`
   height: 34px;
   padding: 8px 16px;
   margin-top: 18px;
-  color: #3e85f3;
-  background-color: #e3f3ff;
+  color: var(--accent-color);
+  background-color: var(--auth-background-color);
 
   &.onMonth {
     border-top-left-radius: 8px;
@@ -42,14 +42,14 @@ const CalendarRangeButton = styled.button`
   }
 
   &.isActive {
-    background-color: #cae8ff;
+    background-color: var(--outlet-background-color);
   }
 
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(220, 227, 229, 0.5);
 
   &:hover {
-    background-color: rgba(11, 104, 234, 0.2);
+    background-color: var(--accent-background-color);
   }
 `;
 
