@@ -20,8 +20,11 @@ import {
 } from 'date-fns';
 
 import { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
 const StatisticsPage = () => {
+  const [isLightTheme] = useOutletContext();
+  console.log('isLightTheme :>> ', isLightTheme);
   const [currentDay, setCurrentDay] = useState(startOfToday());
   const [currentMonth, setCurrentMonth] = useState(currentDay);
   const next = () => {
@@ -78,9 +81,11 @@ const StatisticsPage = () => {
             </WrapLabel>
           </WrapLabels>
         </WrapPeriod>
+
         <StatisticsChart
           currentDay={format(currentDay, 'yyyy-MM-dd')}
           currentMonth={format(currentMonth, 'yyyy-MM')}
+          isLightTheme={isLightTheme}
         />
       </Container>
     </ContainerWrapper>

@@ -16,9 +16,13 @@ import {
 import Header from '../Header';
 import SideBar from '../SideBar';
 // import Spinner from '../Spiner';
+import { loadLocal } from '../ThemeToggler/localStorage';
 import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
+const thema = loadLocal('isLightTheme') ?? true;
+console.log('thema :>> ', thema);
 const MainLayout = () => {
+  const [isLightTheme, setIsLightTheme] = useState(thema);
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
@@ -47,10 +51,14 @@ const MainLayout = () => {
       <Wrapper>
         <SideBar closeSidebar={closeSidebar} sidebarVisible={sidebarVisible} />
         <PageWrapper>
-          <Header openSidebar={openSidebar} />
+          <Header
+            openSidebar={openSidebar}
+            isLightTheme={isLightTheme}
+            setIsLightTheme={setIsLightTheme}
+          />
           <Main>
             <Suspense fallback={<ImageAnimation />}>
-              <Outlet />
+              <Outlet context={[isLightTheme]} />
             </Suspense>
           </Main>
         </PageWrapper>
