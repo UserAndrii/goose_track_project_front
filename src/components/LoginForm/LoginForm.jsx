@@ -52,12 +52,12 @@ const LoginForm = () => {
   const validationSchema = yup.object({
     email: yup
       .string()
-      .matches(emailRegexp, 'Invalid email')
-      .required('This field is required'),
+      .matches(emailRegexp, t('recovery.err1'))
+      .required(t('recovery.err2')),
     password: yup
       .string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('This field is required'),
+      .min(6, t('recovery.err3'))
+      .required(t('recovery.err2')),
   });
 
   const formik = useFormik({
