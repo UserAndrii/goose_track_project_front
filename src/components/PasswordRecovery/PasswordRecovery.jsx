@@ -88,7 +88,9 @@ const PasswordRecovery = () => {
       <Container style={{ display: showAnimation ? 'none' : 'flex' }}>
         <StyledForm onSubmit={formik.handleSubmit}>
           <InputGroupe>
-            <FormName>Password recovery</FormName>
+            <FormName>
+              <Trans i18nKey="recovery.pass">Password recovery</Trans>
+            </FormName>
             <InputList>
               <InputWrapper isEmail={'email'}>
                 <Label
@@ -101,7 +103,7 @@ const PasswordRecovery = () => {
                       : ''
                   }
                 >
-                  <Trans i18nKey="footer.rights">Email</Trans>
+                  {t('recovery.email')}
                 </Label>
                 <Input
                   type="text"

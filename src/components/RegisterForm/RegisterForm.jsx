@@ -125,7 +125,7 @@ const RegisterForm = () => {
                   name="name"
                   autoComplete="true"
                   value={formik.values.name}
-                  placeholder="Enter your name"
+                  placeholder={t('inout.namehold')}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   className={
@@ -169,7 +169,7 @@ const RegisterForm = () => {
                   name="email"
                   autoComplete="true"
                   value={formik.values.email}
-                  placeholder="Enter email"
+                  placeholder={t('inout.emailhold')}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className={
@@ -213,7 +213,7 @@ const RegisterForm = () => {
                     id="password"
                     name="password"
                     value={formik.values.password}
-                    placeholder="Enter password"
+                    placeholder={t('inout.passhold')}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     className={

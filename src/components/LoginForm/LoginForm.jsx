@@ -125,7 +125,7 @@ const LoginForm = () => {
                   name="email"
                   autoComplete="true"
                   value={formik.values.email}
-                  placeholder="Enter email"
+                  placeholder={t('inout.emailhold')}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className={
@@ -169,7 +169,7 @@ const LoginForm = () => {
                     id="password"
                     name="password"
                     value={formik.values.password}
-                    placeholder="Enter password"
+                    placeholder={t('inout.passhold')}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     className={
