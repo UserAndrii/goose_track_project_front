@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useTranslation, Trans } from 'react-i18next';
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -33,6 +34,8 @@ import {
 } from './PasswordRecovery.styled';
 
 const PasswordRecovery = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -44,8 +47,8 @@ const PasswordRecovery = () => {
   const validationSchema = yup.object({
     email: yup
       .string()
-      .matches(emailRegexp, 'Invalid email')
-      .required('This field is required'),
+      .matches(emailRegexp, t('recovery.err1'))
+      .required(t('recovery.err2')),
   });
 
   const formik = useFormik({
@@ -98,7 +101,7 @@ const PasswordRecovery = () => {
                       : ''
                   }
                 >
-                  Email
+                  <Trans i18nKey="footer.rights">Email</Trans>
                 </Label>
                 <Input
                   type="text"
@@ -106,7 +109,7 @@ const PasswordRecovery = () => {
                   name="email"
                   autoComplete="true"
                   value={formik.values.email}
-                  placeholder="Enter email"
+                  placeholder={t('recovery.emailhold')}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className={
@@ -133,7 +136,7 @@ const PasswordRecovery = () => {
               </InputWrapper>
             </InputList>
             <Button type="submit">
-              <ButtonText>Send</ButtonText>
+              <ButtonText>{t('recovery.send')}</ButtonText>
               <ItemIcon />
             </Button>
           </InputGroupe>

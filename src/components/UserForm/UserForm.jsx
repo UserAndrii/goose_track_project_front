@@ -243,10 +243,12 @@ const UserForm = () => {
                 />
               </label>
 
-              <ChangePasswordBtn onClick={handleOpenModal}>Update password</ChangePasswordBtn>
+              <ChangePasswordBtn onClick={handleOpenModal}>
+                {t('userForm.update')}
+              </ChangePasswordBtn>
             </div>
             <Button type="submit" disabled={!someChanges}>
-              Save changes
+              {t('userForm.save')}
             </Button>
           </InputWrapper>
         </Forma>
