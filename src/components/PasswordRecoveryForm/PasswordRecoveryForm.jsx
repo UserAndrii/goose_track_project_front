@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -27,6 +28,8 @@ import { changePassword } from 'redux/auth/operations';
 import { showErrorToast } from 'utils/showToast';
 
 const PasswordRecoveryForm = ({ onClose }) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -34,18 +37,18 @@ const PasswordRecoveryForm = ({ onClose }) => {
   const validationSchema = yup.object({
     oldpassword: yup
       .string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('This field is required'),
+      .min(6, t('recovery.err3'))
+      .required(t('recovery.err2')),
 
     newpassword: yup
       .string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('This field is required'),
+      .min(6, t('recovery.err3'))
+      .required(t('recovery.err2')),
 
     newpassword2: yup
       .string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('This field is required'),
+      .min(6, t('recovery.err3'))
+      .required(t('recovery.err2')),
   });
 
   const formik = useFormik({
@@ -58,7 +61,7 @@ const PasswordRecoveryForm = ({ onClose }) => {
 
     onSubmit: async values => {
       if (values.newpassword !== values.newpassword2) {
-        showErrorToast('Your new passwords do not match');
+        showErrorToast(t('recovery.err4'));
       }
 
       try {
@@ -80,7 +83,9 @@ const PasswordRecoveryForm = ({ onClose }) => {
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
       <InputGroupe>
-        <FormName>Update password</FormName>
+        <FormName>
+          <Trans i18nKey="recovery.update">Update password</Trans>
+        </FormName>
         <InputList>
           <InputWrapper isPassword={'oldpassword'}>
             <Label
@@ -93,7 +98,7 @@ const PasswordRecoveryForm = ({ onClose }) => {
                   : ''
               }
             >
-              Old password
+              {t('recovery.old')}
             </Label>
             <InputWrapperWithIcon>
               <Input
@@ -101,7 +106,7 @@ const PasswordRecoveryForm = ({ onClose }) => {
                 id="oldpassword"
                 name="oldpassword"
                 value={formik.values.oldpassword}
-                placeholder="Enter password"
+                placeholder={t('recovery.passhold')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className={
@@ -147,7 +152,7 @@ const PasswordRecoveryForm = ({ onClose }) => {
                   : ''
               }
             >
-              New password
+              {t('recovery.new')}
             </Label>
             <InputWrapperWithIcon>
               <Input
@@ -155,7 +160,7 @@ const PasswordRecoveryForm = ({ onClose }) => {
                 id="newpassword"
                 name="newpassword"
                 value={formik.values.newpassword}
-                placeholder="Enter password"
+                placeholder={t('recovery.passhold')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className={
@@ -201,7 +206,7 @@ const PasswordRecoveryForm = ({ onClose }) => {
                   : ''
               }
             >
-              Repeat the new password
+              {t('recovery.repeat')}
             </Label>
             <InputWrapperWithIcon>
               <Input
@@ -209,7 +214,7 @@ const PasswordRecoveryForm = ({ onClose }) => {
                 id="newpassword2"
                 name="newpassword2"
                 value={formik.values.newpassword2}
-                placeholder="Enter password"
+                placeholder={t('recovery.passhold')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className={
@@ -247,7 +252,7 @@ const PasswordRecoveryForm = ({ onClose }) => {
           </InputWrapper>
         </InputList>
         <Button type="submit">
-          <ButtonText>Submit</ButtonText>
+          <ButtonText>{t('recovery.submit')}</ButtonText>
           <ItemIcon />
         </Button>
       </InputGroupe>
