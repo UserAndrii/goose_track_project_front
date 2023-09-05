@@ -77,4 +77,11 @@ export const Button = styled(Link)`
   border: none;
   border-radius: 16px;
   text-decoration: underline;
+  transition: font-size 0.3s;
+
+  :hover {
+    color: var(--active-btn-color);
+    text-decoration-line: none;
+    font-size: 105%;
+  }
 `;

@@ -178,9 +178,11 @@ export const TextSpan = styled.a`
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  transition: font-size 0.3s;
 
   &:hover {
     text-decoration: underline;
+    font-size: 130%
   }
 
   @media screen and (min-width: 768px) {
