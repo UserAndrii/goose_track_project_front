@@ -1,13 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import CustomToggle from '../CustomToggle';
-import { saveLocal, loadLocal } from './localStorage';
+import { saveLocal } from './localStorage';
 
-const thema = loadLocal('isLightTheme') ?? true;
-
-const ThemeToggler = () => {
-  const [isLightTheme, setIsLightTheme] = useState(thema);
-
+const ThemeToggler = ({ isLightTheme, setIsLightTheme }) => {
   saveLocal('isLightTheme', isLightTheme);
 
   const handleClick = () => {

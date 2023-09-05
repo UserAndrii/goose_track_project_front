@@ -23,7 +23,7 @@ import AddFeedbackBtn from '../AddFeedbackBtn';
 import AddFeedbackModal from '../AddFeedbackModal';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
 
-const Header = ({ openSidebar }) => {
+const Header = ({ openSidebar, isLightTheme, setIsLightTheme }) => {
   const { t } = useTranslation();
 
   const location = useLocation();
@@ -119,7 +119,10 @@ const Header = ({ openSidebar }) => {
 
       <MenuBtn onClick={openSidebar} hide={'true'} />
       <AddFeedbackBtn onClick={handleOpenModal} />
-      <ThemeToggler />
+      <ThemeToggler
+        isLightTheme={isLightTheme}
+        setIsLightTheme={setIsLightTheme}
+      />
       <UserInfo />
 
       {isModalOpen && <AddFeedbackModal onClose={handleCloseModal} />}
