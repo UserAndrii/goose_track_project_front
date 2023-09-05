@@ -187,7 +187,10 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #343434;
+  color: ${props =>
+    props.isActive
+      ? 'var(--btn-text-color)'
+      : 'var(--feedback-form-text-input)'};
   text-align: center;
   font-family: inherit;
   font-size: 14px;
@@ -200,7 +203,10 @@ export const Button = styled.button`
   width: 100%;
   border: none;
   border-radius: 8px;
-  background-color: var(--background-feedack-form-btn-action);
+  background-color: ${props =>
+    props.isActive
+      ? 'var(--accent-background-color)'
+      : 'var(--background-feedack-form-btn-action)'};
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
@@ -209,8 +215,8 @@ export const Button = styled.button`
 
   cursor: pointer;
   &:hover {
-    color: #fff;
-    background-color: var(--accent-background-color);
+    color: var(--btn-text-color);
+    background: var(--active-btn-color);
   }
 `;
 

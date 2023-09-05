@@ -18,6 +18,7 @@ export const Container = styled.div`
   @media screen and (min-width: 1440px) {
     width: 1440px;
     display: flex;
+    max-height: 100vh;
   }
 `;
 
@@ -53,5 +54,8 @@ export const Main = styled.main`
   display: flex;
   flex-direction: column;
   flex: 1;
-  overflow-y: auto;
+
+  @media screen and (min-width: 1440px) {
+    overflow-y: auto;
+  }
 `;

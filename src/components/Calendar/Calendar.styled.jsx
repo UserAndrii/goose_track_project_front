@@ -5,7 +5,7 @@ display: flex;
 flex-direction: column;
 flex:1;
 width: 100%;
-height: 100vh;
+height: 100%;
   padding: 0px 20px 52px 20px;
 
   @media screen and (min-width: 768px) {

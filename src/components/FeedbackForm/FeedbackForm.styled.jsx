@@ -60,7 +60,10 @@ export const BtnWrapper = styled.div`
 `;
 
 export const Btn = styled.button`
-  color: var(--feedback-form-text-input);
+  color: ${props =>
+    props.isActive
+      ? 'var(--btn-text-color)'
+      : 'var(--feedback-form-text-input)'};
   text-align: center;
   font-family: inherit;
   font-size: 14px;
@@ -72,14 +75,18 @@ export const Btn = styled.button`
   height: 42px;
   border: none;
   border-radius: 8px;
-  background-color: #e5edfa;
+
+  background-color: ${props =>
+    props.isActive
+      ? 'var(--accent-background-color)'
+      : 'var(--background-feedack-form-btn-action)'};
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   cursor: pointer;
   &:hover {
     color: var(--btn-text-color);
-    background-color: var(--accent-background-color);
+    background: var(--active-btn-color);
   }
 
   @media screen and (max-width: 374px) {

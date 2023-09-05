@@ -7,13 +7,14 @@ const DataGrid = styled.div`
 
   overflow: hidden;
   width: 100%;
-  height: 100%;
+  max-height: 100%;
   margin-top: 14px;
   margin-left: auto;
   margin-right: auto;
   background-color: #fff;
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.5);
+  overflow-y: scroll;
 `;
 
 const Cell = styled.div`
@@ -24,6 +25,11 @@ const Cell = styled.div`
 
   &:hover {
     background-color: aliceblue;
+  }
+
+  @media screen and (min-width: 1440px) {
+    min-width: 158px;
+    min-height: 102px;
   }
 `;
 

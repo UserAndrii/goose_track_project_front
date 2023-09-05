@@ -46,7 +46,7 @@ export default function StatisticsChart({
   const [themaText, setThemaText] = useState(
     isLightTheme ? lightText : darkText
   );
-  console.log('object :>> ', isLightTheme, themaLine, themaText);
+  
   const [chartWidth, setChartWidth] = useState(860);
   const [chartHeight, setChartHeight] = useState(440);
   const [sizeBar, setSizeBar] = useState(27);

@@ -112,9 +112,10 @@ export const IconContainer = styled(AiFillPlusCircle)`
   }
 
   @media screen and (min-width: 768px) {
-    right: 23px;
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
+    right: 18px;
+    bottom: -4px;
   }
 `;
 

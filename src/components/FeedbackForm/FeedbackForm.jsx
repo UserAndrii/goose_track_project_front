@@ -41,6 +41,7 @@ const FeedbackForm = ({ onClose }) => {
   const [deleteReview] = useDeleteReviewMutation();
 
   useEffect(() => {
+   
     if (userReviewData) {
       setRating(userReviewData.data.rating);
       setReview(userReviewData.data.review);
@@ -94,11 +95,13 @@ const FeedbackForm = ({ onClose }) => {
   const handleDelete = async () => {
     try {
       await deleteReview();
+      
       showSuccessToast(t('feedback.succ3'));
       setIsDeleteMode(false);
       dispatch(reviewsApi.util.resetApiState());
       onClose();
     } catch (error) {
+      
       showErrorToast(t('feedback.err3'));
     }
   };
@@ -140,7 +143,7 @@ const FeedbackForm = ({ onClose }) => {
       />
       {isDeleteMode && (
         <BtnWrapper>
-          <Btn type="button" onClick={handleDelete}>
+          <Btn type="button" onClick={handleDelete} isActive={true}>
             Delete
           </Btn>
           <Btn type="button" onClick={onClose}>
@@ -150,7 +153,7 @@ const FeedbackForm = ({ onClose }) => {
       )}
       {isEditMode && (
         <BtnWrapper>
-          <Btn type="submit" onClick={handleSubmit}>
+          <Btn type="submit" onClick={handleSubmit} isActive={true}>
             Edit
           </Btn>
           <Btn type="button" onClick={onClose}>
@@ -160,7 +163,9 @@ const FeedbackForm = ({ onClose }) => {
       )}
       {!userReviewData && (
         <BtnWrapper>
-          <Btn type="submit">Save</Btn>
+          <Btn type="submit" isActive={true}>
+            Save
+          </Btn>
           <Btn type="button" onClick={onClose}>
             Cancel
           </Btn>
