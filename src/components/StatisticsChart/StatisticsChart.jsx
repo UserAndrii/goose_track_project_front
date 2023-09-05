@@ -12,7 +12,6 @@ import {
 } from 'recharts';
 import PoppinsFontMedium from '../../fonts/Poppins-Medium.ttf';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-import i18next from 'i18next';
 
 export default function StatisticsChart({
   currentDay,
