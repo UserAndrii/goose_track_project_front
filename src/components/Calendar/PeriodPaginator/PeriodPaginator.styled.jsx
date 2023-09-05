@@ -56,10 +56,10 @@ const ToggleButton = styled.button`
   width: 32px;
   height: 30px;
   padding: 8px 12px;
-  background-color: #fff;
-  color: black;
+  background-color: var(--background-button-day);
+  color: var(--feedback-form-text-input);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(220, 227, 229, 0.5);
+  border: 1px solid var(--calendartable-border-color);
   cursor: pointer;
 
   @media screen and (min-width: 768px) {

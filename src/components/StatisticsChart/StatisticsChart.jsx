@@ -10,6 +10,7 @@ import {
 } from 'recharts';
 import PoppinsFontMedium from '../../fonts/Poppins-Medium.ttf';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
+
 // import '../../styles/vars.css';
 const data = [
   {
@@ -28,28 +29,24 @@ const data = [
     pv: 0,
   },
 ];
-export default function StatisticsChart({ currentDay, currentMonth }) {
-  // const borderStatistics = getComputedStyle(
-  //   document.documentElement
-  // ).getPropertyValue('dark[--border-statistics]');
-  // // const titleTextColor = getComputedStyle(
-  // //   document.documentElement
-  // // ).getPropertyValue('--title-text-main-color');
-  // // const secondaryTextColor = getComputedStyle(
-  // //   document.documentElement
-  // // ).getPropertyValue('--secondary-text-color');
-  // // const accentColor = getComputedStyle(
-  // //   document.documentElement
-  // // ).getPropertyValue('--accent-color');
-  // // const activeSelectionColor = getComputedStyle(
-  // //   document.documentElement
-  // // ).getPropertyValue('--active-selection');
-  // // const btnTextColor = getComputedStyle(
-  // //   document.documentElement
-  // // ).getPropertyValue('--btn-text-color');
-  // console.log(':>> ', borderStatistics);
-  // // Решта вашого коду залишається незмінним
 
+export default function StatisticsChart({
+  currentDay,
+  currentMonth,
+  isLightTheme,
+}) {
+  const lightLine = 'rgba(227, 243, 255, 1)';
+  const darkLine = 'rgba(227, 243, 255, 0.15)';
+  const lightText = '#343434';
+  const darkText = '#FFF';
+
+  const [themaLine, setThemaLine] = useState(
+    isLightTheme ? lightLine : darkLine
+  );
+  const [themaText, setThemaText] = useState(
+    isLightTheme ? lightText : darkText
+  );
+  console.log('object :>> ', isLightTheme, themaLine, themaText);
   const [chartWidth, setChartWidth] = useState(860);
   const [chartHeight, setChartHeight] = useState(440);
   const [sizeBar, setSizeBar] = useState(27);
@@ -64,7 +61,10 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
   const [tasksPosition, setTasksPosition] = useState(-25);
   const [marginBar, setMarginBar] = useState(14);
   const { data: allTasks, refetch } = useGetMonthlyTasksQuery(currentMonth);
-
+  useEffect(() => {
+    setThemaText(isLightTheme ? lightText : darkText);
+    setThemaLine(isLightTheme ? lightLine : darkLine);
+  }, [isLightTheme]);
   useEffect(() => {
     refetch();
     if (allTasks) {
@@ -254,7 +254,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         <text
           x={x + width / 2}
           y={y - radius}
-          fill="#343434"
+          fill={themaText}
           textAnchor="middle"
           dominantBaseline="middle"
           fontSize={fontSize}
@@ -277,7 +277,7 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         <text
           x={x + width / 2 + marginBar}
           y={y - radius}
-          fill="#343434"
+          fill={themaText}
           textAnchor="middle"
           dominantBaseline="middle"
           fontSize={fontSize}
@@ -304,13 +304,13 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
       }}
       style={{
         borderRadius: 16,
-        border: '1px solid  rgba(227, 243, 255, 1)',
+        border: `1px solid ${themaLine}`,
       }}
     >
       <CartesianGrid
         strokeDasharray="0 0"
         vertical={false}
-        stroke={'#E3F3FF'}
+        stroke={themaLine}
         dx={20}
         horizontal={{
           strokeWidth: 1,
@@ -321,9 +321,9 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         dataKey="name"
         axisLine={false}
         tickLine={false}
-        tick={{ dy: 19 }}
-        style={{
-          color: '#343434',
+        tick={{
+          dy: 19,
+          fill: `${themaText}`,
           fontSize: '14px',
           fontWeight: 400,
           lineHeight: '21px',
@@ -334,8 +334,8 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         tickLine={false}
         domain={[0, 100]}
         tick={{
+          fill: `${themaText}`,
           dx: -padChart,
-          color: '#343434',
           fontSize: '14px',
           fontWeight: 400,
           lineHeight: '150%',
@@ -346,8 +346,8 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
           position="top"
           dx={tasksPosition}
           dy={-24}
+          fill={themaText}
           style={{
-            color: '#343434',
             fontSize: fontSizeL,
             fontWeight: 600,
             lineHeight: lineHeightL,
@@ -375,7 +375,6 @@ export default function StatisticsChart({ currentDay, currentMonth }) {
         fill="none"
         style={{
           zIndex: 2,
-
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
         }}
