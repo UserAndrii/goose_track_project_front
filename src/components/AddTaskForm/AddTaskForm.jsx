@@ -160,7 +160,7 @@ const AddTaskForm = ({ onClose, task, category }) => {
             checked={priority === 'MEDIUM'}
             onChange={handlePriorityChange}
           />
-          <Span className="radio-label"> {t('addtask.mid')}</Span>
+          <Span className="radio-label"> {t('addtask.medium')}</Span>
         </PriorityLabel>
 
         <PriorityLabel>

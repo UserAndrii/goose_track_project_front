@@ -137,37 +137,37 @@ const FeedbackForm = ({ onClose }) => {
         name="review"
         id="review"
         value={review}
-        placeholder="Enter Text"
+        placeholder={t('feedback.reviewhold')}
         onChange={handleChangeReview}
         disabled={!isEditMode && userReviewData}
       />
       {isDeleteMode && (
         <BtnWrapper>
           <Btn type="button" onClick={handleDelete} isActive={true}>
-            Delete
+            {t('feedback.delete')}
           </Btn>
           <Btn type="button" onClick={onClose}>
-            Cancel
+            {t('feedback.cancel')}
           </Btn>
         </BtnWrapper>
       )}
       {isEditMode && (
         <BtnWrapper>
           <Btn type="submit" onClick={handleSubmit} isActive={true}>
-            Edit
+            {t('feedback.edit')}
           </Btn>
           <Btn type="button" onClick={onClose}>
-            Cancel
+            {t('feedback.cancel')}
           </Btn>
         </BtnWrapper>
       )}
       {!userReviewData && (
         <BtnWrapper>
           <Btn type="submit" isActive={true}>
-            Save
+            {t('feedback.save')}
           </Btn>
           <Btn type="button" onClick={onClose}>
-            Cancel
+            {t('feedback.cancel')}
           </Btn>
         </BtnWrapper>
       )}

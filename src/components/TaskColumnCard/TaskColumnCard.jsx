@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   Container,
   Text,
@@ -13,8 +14,10 @@ import { selectUser } from 'redux/auth/selectors';
 import { Draggable } from 'react-beautiful-dnd';
 
 const TaskColumnCard = ({ task, index }) => {
+  const { t } = useTranslation();
+
   const { userName, avatarURL } = useSelector(selectUser);
-    const firstName = userName.split(' ')[0];
+  const firstName = userName.split(' ')[0];
   const firstLetter = firstName[0]?.toUpperCase();
 
   return (
@@ -24,7 +27,6 @@ const TaskColumnCard = ({ task, index }) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-  
         >
           <Text>{task.title}</Text>
           <Board>
@@ -37,7 +39,7 @@ const TaskColumnCard = ({ task, index }) => {
                 )}
               </Avatar>
               <PriorityBtn priority={task.priority} type="button">
-                {task.priority}
+                {t(`addtask.${task.priority.trim().toLowerCase()}`)}
               </PriorityBtn>
             </ButtonsContainer>
             <TaskToolbar task={task} />
