@@ -30,19 +30,9 @@ export const InputGroupe = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 32px;
-
-  padding: 40px 24px;
+  
   border-radius: 8px;
   background: #fff;
-
-  @media screen and (max-width: 375px) {
-    max-width: 335px;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 480px;
-    padding: 40px;
-  }
 `;
 
 export const InputList = styled.ul`

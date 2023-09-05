@@ -5,7 +5,6 @@ import { ChoosedMonth } from '../components/Calendar/ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from '../components/Calendar/ChoosedDay/ChoosedDay';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-// import css from '../components/Calendar/Caledar.module.css';
 import { Calendar } from '../components/Calendar/Calendar.styled';
 import {
   format,

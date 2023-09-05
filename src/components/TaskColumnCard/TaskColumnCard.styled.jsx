@@ -1,17 +1,18 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  ${'' /* height: 112px; */}
-  padding: 14px;
-  ${'' /* padding-bottom: 18px; */}
+  width: 300px;
+  height: 112px;
+  gap: 14px;
+
   background-color: var(--outlet-background-color);
   border-radius: 8px;
   border: 1px solid var(--auth-background-color);
-  margin-bottom: 14px;
-  @media screen and (min-width: 768px) {
-    margin-bottom: 18px;
-  }
+
+  padding: 14px 14px 18px;
+  margin-right: 10px;
 `;
+
 export const Text = styled.div`
   font-size: 14px;
   line-height: calc(18 / 14);
@@ -24,11 +25,13 @@ export const Text = styled.div`
   max-width: 100%;
   margin-bottom: 32px;
 `;
+
 export const Board = styled.div`
-display: flex;
-align-items: flex-end;
-justify-content: space-between;
-`
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+`;
+
 export const Avatar = styled.div`
   display: flex;
   justify-content: center;
@@ -38,14 +41,15 @@ export const Avatar = styled.div`
   border: 1.8px solid var(--accent-color);
   border-radius: 32px;
   overflow: hidden;
-   `;
+`;
 export const Letter = styled.p`
   color: var(--accent-color);
   font-weight: 700;
   font-size: 21px;
   line-height: 1.28;
 `;
-const getPriorityColor = (priority) => {
+
+const getPriorityColor = priority => {
   switch (priority) {
     case 'high':
       return '#EA3D65';
@@ -62,7 +66,7 @@ export const PriorityBtn = styled.button`
   cursor: pointer;
   height: 20px;
   border: none;
-  ${'' /* font-family: inherit; */}
+
   font-size: 10px;
   padding-left: 12px;
   padding-right: 12px;
@@ -79,6 +83,6 @@ export const PriorityBtn = styled.button`
   }
 `;
 export const ButtonsContainer = styled.div`
-display:flex;
-align-items: flex-end;
+  display: flex;
+  align-items: flex-end;
 `;

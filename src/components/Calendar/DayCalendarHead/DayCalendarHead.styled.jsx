@@ -4,7 +4,7 @@ const MainBlockDayListWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 335px;
+  width: 100%;
   height: 74px;
   background-color: #fff;
   color: black;
@@ -13,17 +13,6 @@ const MainBlockDayListWrapper = styled.div`
   margin-right: auto;
   border: 1px solid rgba(220, 227, 229, 0.5);
   border-radius: 8px;
-
-  @media screen and (min-width: 768px) {
-    width: 704px;
-    height: 68px;
-    margin-left: unset;
-    margin-right: unset;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 1087px;
-  }
 `;
 
 const DayListWrapper = styled.div`

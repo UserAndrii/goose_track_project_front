@@ -60,14 +60,15 @@ const TasksColumnsList = ({ filteredTask }) => {
       disableInteractiveElementBlocking
     >
       <Container>
-        {isLoading && <ImageAnimation />}
-        <TasksColumn columnId={'TODO'} category={'To do'} tasks={todoData} />
-        <TasksColumn
-          columnId={'INPROGRESS'}
-          category={'In progress'}
-          tasks={inprogressData}
-        />
-        <TasksColumn columnId={'DONE'} category={'Done'} tasks={doneData} />
+        <div>
+          <TasksColumn columnId={'TODO'} category={'To do'} tasks={todoData} />
+          <TasksColumn
+            columnId={'INPROGRESS'}
+            category={'In progress'}
+            tasks={inprogressData}
+          />
+          <TasksColumn columnId={'DONE'} category={'Done'} tasks={doneData} />
+        </div>
       </Container>
     </DragDropContext>
   );

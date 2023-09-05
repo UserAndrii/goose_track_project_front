@@ -15,6 +15,7 @@ import { getVerifyEmailUser } from 'redux/auth/operations';
 import { useTranslation, Trans } from 'react-i18next';
 
 const VerifyEmail = () => {
+  const [isErrorToken, setIsErrorToken] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [pixelRatio, setPixelRatio] = useState(window.devicePixelRatio || 1);
   const isRetina = pixelRatio > 1;
@@ -23,10 +24,15 @@ const VerifyEmail = () => {
   const { t } = useTranslation();
   const { verifyToken } = useParams();
 
-  console.log(verifyToken);
-
   useEffect(() => {
-    dispatch(getVerifyEmailUser(verifyToken));
+    dispatch(getVerifyEmailUser(verifyToken)).then(
+      ({ meta: { rejectedWithValue } }) => {
+        if (rejectedWithValue) {
+          setIsErrorToken(true);
+        }
+        setIsErrorToken(true);
+      }
+    );
 
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
@@ -75,7 +81,9 @@ const VerifyEmail = () => {
         {t('authSection.setrack')}
       </Text>
       <TextVerify>
-        Your email has been successfully verified! Thank you!
+        {isErrorToken
+          ? 'Your email was not verified 🥺, please try again'
+          : 'Your email has been successfully verified 😀! Thank you!'}
       </TextVerify>
       <StyledButton to="/">Back to home</StyledButton>
     </Container>

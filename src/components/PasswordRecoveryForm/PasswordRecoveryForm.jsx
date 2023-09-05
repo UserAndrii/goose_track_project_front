@@ -59,6 +59,7 @@ const PasswordRecoveryForm = ({ onClose }) => {
     onSubmit: async values => {
       if (values.newpassword !== values.newpassword2) {
         showErrorToast('Your new passwords do not match');
+        return;
       }
 
       try {
