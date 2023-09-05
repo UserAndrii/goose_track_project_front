@@ -98,7 +98,6 @@ const FeedbackForm = ({ onClose }) => {
       
       showSuccessToast(t('feedback.succ3'));
       setIsDeleteMode(false);
-      dispatch(reviewsApi.util.resetApiState());
       onClose();
     } catch (error) {
       
