@@ -24,7 +24,7 @@ import { useOutletContext } from 'react-router-dom';
 
 const StatisticsPage = () => {
   const [isLightTheme] = useOutletContext();
-  console.log('isLightTheme :>> ', isLightTheme);
+  
   const [currentDay, setCurrentDay] = useState(startOfToday());
   const [currentMonth, setCurrentMonth] = useState(currentDay);
   const next = () => {

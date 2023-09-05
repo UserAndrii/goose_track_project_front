@@ -20,7 +20,7 @@ import { loadLocal } from '../ThemeToggler/localStorage';
 import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 const thema = loadLocal('isLightTheme') ?? true;
-console.log('thema :>> ', thema);
+
 const MainLayout = () => {
   const [isLightTheme, setIsLightTheme] = useState(thema);
   const dispatch = useDispatch();

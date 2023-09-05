@@ -175,12 +175,11 @@ const AddTaskForm = ({ onClose, task, category }) => {
         </PriorityLabel>
       </RadioWrapper>
       <ButtonWrapper>
-        <Button type="submit">
-          {task ? <EditIcon/>: <PlusIcon/>}
+        <Button type="submit" isActive={true}>
+          {task ? <EditIcon /> : <PlusIcon />}
           {task ? t('addtask.edit') : t('addtask.add')}
         </Button>
         <Button type="button" onClick={onClose}>
-          
           {t('addtask.cancel')}
         </Button>
       </ButtonWrapper>
