@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import PeriodPaginator from 'components/Calendar/PeriodPaginator/PeriodPaginator';
 import StatisticsChart from 'components/StatisticsChart/StatisticsChart';
 import {
@@ -23,6 +24,8 @@ import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 const StatisticsPage = () => {
+  const { t } = useTranslation();
+
   const [isLightTheme] = useOutletContext();
   console.log('isLightTheme :>> ', isLightTheme);
   const [currentDay, setCurrentDay] = useState(startOfToday());
@@ -68,7 +71,9 @@ const StatisticsPage = () => {
                   marginRight: '8px',
                 }}
               />
-              <LabelT>By Day</LabelT>
+              <LabelT>
+                <Trans i18nKey="statChart.day">By Day</Trans>
+              </LabelT>
             </WrapLabel>
             <WrapLabel>
               <Circle
@@ -77,7 +82,7 @@ const StatisticsPage = () => {
                   marginRight: '8px',
                 }}
               />
-              <LabelT>By Month</LabelT>
+              <LabelT>{t('statChart.month')}</LabelT>
             </WrapLabel>
           </WrapLabels>
         </WrapPeriod>

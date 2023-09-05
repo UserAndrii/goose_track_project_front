@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router';
+import { useTranslation, Trans } from 'react-i18next';
 
 import { CalendarRange, Button } from './PeriodPaginatorType.styled';
 
@@ -7,6 +8,7 @@ import { useParams } from 'react-router-dom';
 
 const PeriodPaginatorType = ({ isMonthPage }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { currentDate } = useParams();
   const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
@@ -20,7 +22,7 @@ const PeriodPaginatorType = ({ isMonthPage }) => {
         }}
         isMonthPage
       >
-        Month
+        <Trans i18nKey="calendar.month">Month</Trans>
       </Button>
       <Button
         className={`onDay ${!isMonthPage ? 'isActive' : ''}`}
@@ -29,7 +31,7 @@ const PeriodPaginatorType = ({ isMonthPage }) => {
         }}
         isMonthPage
       >
-        Day
+        {t('calendar.day')}
       </Button>
     </CalendarRange>
   );

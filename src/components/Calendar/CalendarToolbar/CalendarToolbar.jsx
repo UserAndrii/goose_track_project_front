@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import PeriodPaginator from '../PeriodPaginator';
 import PeriodPaginatorType from '../PeriodPaginatorType';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -17,6 +18,7 @@ export const CalendarToolBar = ({
   currentDay,
   setCurrentDay,
 }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { currentDate } = useParams();
   const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
@@ -86,7 +88,7 @@ export const CalendarToolBar = ({
             navigate(`month/${format(formattedDay, 'yyyy-MM-dd')}`);
           }}
         >
-          Month
+          <Trans i18nKey="calendar.month">Month</Trans>
         </CalendarRangeButton>
         <CalendarRangeButton
           className={`onDay ${
@@ -96,7 +98,7 @@ export const CalendarToolBar = ({
             navigate(`day/${format(formattedDay, 'yyyy-MM-dd')}`);
           }}
         >
-          Day
+          {t('calendar.day')}
         </CalendarRangeButton>
       </CalendarRangeWrapper>
     </>

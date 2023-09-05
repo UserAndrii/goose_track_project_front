@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { format, isSameMonth } from 'date-fns';
 import { useMediaQuery } from 'react-responsive';
@@ -20,6 +21,8 @@ export const CalendarTable = ({
   allTasks,
   setCurrentDay,
 }) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const today = new Date().getDate();
 
@@ -193,7 +196,7 @@ export const CalendarTable = ({
                           }}
                         >
                           <TaskTitle>
-                            Tasks:{' '}
+                            <Trans i18nKey="calendar.tasks">Tasks:</Trans>
                             {
                               calculateTaskQuantity(filteredTasksByDay)
                                 .lowTaskCounter
@@ -212,7 +215,7 @@ export const CalendarTable = ({
                           }}
                         >
                           <TaskTitle>
-                            Tasks:{' '}
+                            {t('calendar.tasks')}
                             {
                               calculateTaskQuantity(filteredTasksByDay)
                                 .mediumTaskCounter
@@ -231,7 +234,7 @@ export const CalendarTable = ({
                           }}
                         >
                           <TaskTitle>
-                            Tasks:{' '}
+                            {t('calendar.tasks')}
                             {
                               calculateTaskQuantity(filteredTasksByDay)
                                 .highTaskCounter
