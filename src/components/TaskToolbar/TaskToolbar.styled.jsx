@@ -3,13 +3,9 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   display: flex;
-  width: 62px;
   justify-content: space-between;
   align-items: flex-end;
   background-color: var(--outlet-background-color);
-  @media screen and (min-width: 768px) {
-    width: 68px;
-  }
 `;
 
 export const IconButton = styled.button`
@@ -43,6 +39,6 @@ display:flex;
 justify-content: space-between;
 width: 87px;
 @media screen and (min-width: 768px) {
-   width 99px; 
+   width: 99px; 
   }
 `

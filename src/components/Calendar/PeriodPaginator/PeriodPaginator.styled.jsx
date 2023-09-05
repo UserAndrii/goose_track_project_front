@@ -39,6 +39,7 @@ const CurrentDate = styled.button`
   font-weight: 700;
   line-height: 18px;
   text-transform: uppercase;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     height: 34px;

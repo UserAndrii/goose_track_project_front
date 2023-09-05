@@ -4,15 +4,7 @@ const ToolbarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 335px;
-
-  @media screen and (min-width: 768px) {
-    width: 704px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 1087px;
-  }
+  width: 100%;
 `;
 
 const CalendarRangeWrapper = styled.div`

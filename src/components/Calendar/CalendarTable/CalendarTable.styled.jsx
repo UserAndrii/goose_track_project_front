@@ -3,27 +3,17 @@ import styled from '@emotion/styled';
 const DataGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  flex:1;
+
   overflow: hidden;
-  width: 335px;
-  height: 470px;
+  width: 100%;
+  height: 100%;
   margin-top: 14px;
   margin-left: auto;
   margin-right: auto;
   background-color: #fff;
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.5);
-
-  @media screen and (min-width: 768px) {
-    width: 704px;
-    height: 720px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 1087px;
-    height: 625px;
-    margin-left: unset;
-    margin-right: unset;
-  }
 `;
 
 const Cell = styled.div`
@@ -106,6 +96,7 @@ const RowNumber = styled.time`
 
 const Tasks = styled.div`
   margin-top: 33px;
+  padding-bottom: 3px;
 
   @media screen and (min-width: 768px) {
     margin-top: 58px;
@@ -116,10 +107,11 @@ const Tasks = styled.div`
   }
 `;
 
-const TaskItem = styled.div`
+const TaskItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 5px;
 
   &:not(:first-of-type) {
     margin-top: 5px;
@@ -130,21 +122,11 @@ const TaskContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 15px;
+  padding: 0 5px;
+  width: 100%;
   border-radius: 8px;
   background: #ceeefd;
   cursor: pointer;
-
-  @media screen and (min-width: 768px) {
-    width: 92px;
-    height: 26px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 139px;
-    height: 26px;
-  }
 `;
 
 const TaskTitle = styled.p`
@@ -163,7 +145,7 @@ const TaskTitle = styled.p`
 const ThreeDots = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   width: 20px;
   height: 10px;
   border-radius: 8px;
@@ -173,8 +155,8 @@ const ThreeDots = styled.div`
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    width: 22px;
-    height: 16px;
+    width: 30px;
+    height: 10px;
   }
 
   &:hover {

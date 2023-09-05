@@ -61,7 +61,9 @@ const PasswordRecoveryForm = ({ onClose }) => {
 
     onSubmit: async values => {
       if (values.newpassword !== values.newpassword2) {
+
         showErrorToast(t('recovery.err4'));
+
       }
 
       try {

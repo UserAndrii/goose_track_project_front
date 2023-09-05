@@ -23,6 +23,8 @@ import {
   Span,
   TimePickerLabel,
   TimeWrapper,
+  PlusIcon,
+  EditIcon,
 } from './AddTaskForm.styled';
 
 const AddTaskForm = ({ onClose, task, category }) => {
@@ -174,9 +176,11 @@ const AddTaskForm = ({ onClose, task, category }) => {
       </RadioWrapper>
       <ButtonWrapper>
         <Button type="submit">
+          {task ? <EditIcon/>: <PlusIcon/>}
           {task ? t('addtask.edit') : t('addtask.add')}
         </Button>
         <Button type="button" onClick={onClose}>
+          
           {t('addtask.cancel')}
         </Button>
       </ButtonWrapper>

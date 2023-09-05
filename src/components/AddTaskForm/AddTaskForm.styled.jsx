@@ -1,19 +1,25 @@
 import styled from '@emotion/styled';
+import { BiPlus } from 'react-icons/bi';
+import { FiEdit2 } from 'react-icons/fi';
 
 export const Form = styled.form`
-  padding: 20px 8px;
-  @media (max-width: 767px) {
+ 
     display: flex;
     flex-direction: column;
-    justyfi-content: centre;
-    width: 85%;
-    height: 70%;
-  }
+
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 12px;
+  
 `;
 
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
+  color: rgba(52, 52, 52, 0.8);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.16;
 `;
 
 export const Input = styled.input`
@@ -21,23 +27,30 @@ export const Input = styled.input`
   border: none;
   border-radius: 8px;
   width: 100%;
+  height: 42px;
   background: var(--outlet-background-color);
   padding: 14px 18px;
+
+  @media screen and (min-width: 768px) {
+    height: 46px;
+  }
 `;
+
 export const TimeWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 18px;
-  gap: 14px;
-  margin-bottom: 28px;
-  @media (max-width: 767px) {
-    flex-direction: column;
-  }
+  gap: 15px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 `;
 
 export const TimePickerLabel = styled.label`
   display: flex;
   flex-direction: column;
+  color: rgba(52, 52, 52, 0.8);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.16;
 `;
 
 export const PriorityLabel = styled.label`
@@ -48,6 +61,7 @@ export const PriorityLabel = styled.label`
 
 export const RadioWrapper = styled.div`
   display: flex;
+  gap: 16px;
 `;
 export const Span = styled.span`
   margin-left: 6px;
@@ -165,14 +179,14 @@ export const RadioInputRed = styled.input`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  @media (max-width: 767px) {
-    margin-top: 12px;
-  }
   margin-top: 32px;
   gap: 14px;
 `;
 
 export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #343434;
   text-align: center;
   font-family: inherit;
@@ -180,12 +194,18 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 600;
   line-height: 128%;
+  height: 42px;
 
   padding: 10px 20px;
   width: 100%;
   border: none;
   border-radius: 8px;
   background-color: var(--background-feedack-form-btn-action);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) {
+    height: 48px;
+  }
 
   cursor: pointer;
   &:hover {
@@ -194,11 +214,41 @@ export const Button = styled.button`
   }
 `;
 
+export const PlusIcon = styled(BiPlus)`
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  color: inherit;
+
+  @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
+`;  
+
+export const EditIcon = styled(FiEdit2)`
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  color: inherit;
+
+  @media screen and (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
+`;  
+
 export const ExampleCustomInput = styled.input`
   border-radius: 8px;
   background: var(--task-field-color);
   padding: 14px 18px;
   border: none;
-  width: 100%;
-  height: 46px;
+  width: 140px;
+  height: 42px;
+  margin-top: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 194px;
+    height: 46px;
+  }
 `;

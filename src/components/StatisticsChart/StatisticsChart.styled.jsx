@@ -17,18 +17,17 @@ export const ContainerWrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 1057px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+
+  width: 100%;
   height: 100%;
   box-sizing: border-box;
   background-color: var(--main-background-color);
   border-radius: 16px;
-  padding: 0 114px;
-  padding-top: 134px;
-  padding-bottom: auto;
-
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
 
   @media (max-width: 375px) {
     max-width: 335px;
@@ -36,7 +35,7 @@ export const Container = styled.div`
     margin: 0 auto;
     padding: 0 14px;
     padding-top: 28px;
-    padding-bottom: auto;
+    padding-bottom: 135px;
   }
 
   @media screen and (min-width: 376px) and (max-width: 767px) {
@@ -44,7 +43,7 @@ export const Container = styled.div`
     height: 100%;
     padding: 0 14px;
     padding-top: 28px;
-    padding-bottom: auto;
+    padding-bottom: 135px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
@@ -53,15 +52,15 @@ export const Container = styled.div`
     padding: 0 32px;
     padding-top: 140px;
     padding-bottom: auto;
+    padding-bottom: 224px;
   }
 `;
 
 export const WrapPeriod = styled.div`
   width: 860px;
   display: flex;
-  justify-context: space-between;
   margin-bottom: 40px;
-  padding: 0 40px;
+  padding: 30px 40px 0;
 
   @media (max-width: 375px) {
     max-width: 307px;
