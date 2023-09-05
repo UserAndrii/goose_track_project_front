@@ -23,9 +23,14 @@ export const Container = styled.div`
   overflow-y: scroll;
   margin-bottom: 10px;
 
+  
   @media screen and (min-width: 768px) {
     margin-bottom: ${props => (props.tasksLength > 0 ? '32px' : 0)};
     max-height: 376px;
+  }
+
+  @media screen and (max-height: 820px) and (min-width: 1440px) {
+    max-height: 303px;
   }
 `;
 

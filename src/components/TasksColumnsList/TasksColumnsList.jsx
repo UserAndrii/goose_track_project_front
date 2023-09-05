@@ -4,10 +4,9 @@ import TasksColumn from '../TasksColumn';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { tasksApi } from 'redux/tasks/tasksApi';
 import { showErrorToast } from '../../utils/showToast';
-import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 
 const TasksColumnsList = ({ filteredTask }) => {
-  const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();
+  const [editTask, { isError }] = tasksApi.useEditTasksMutation();
   const priorityOrder = ["LOW", "MEDIUM", "HIGH"];
 
   let todoData = [];

@@ -28,9 +28,13 @@ export const Container = styled.div`
     margin: 16px 0;
   }
 
+  @media screen and (min-width: 768px) {
+    margin: 14px 0 0 0;
+  }
+
   & > div {
     display: flex;
-    flex:1;
+    flex: 1;
     gap: 30px;
 
     @media screen and (min-width: 768px) {
