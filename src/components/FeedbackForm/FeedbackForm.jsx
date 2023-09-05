@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'; // Trans ?
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { showErrorToast, showSuccessToast } from '../../utils/showToast';
