@@ -8,9 +8,14 @@ import {
 } from './PeriodPaginator.styled';
 import { format, parse } from 'date-fns';
 
-import DatePicker from 'react-datepicker';
+import i18next from 'i18next';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../UserForm/CustomDatePicker.css';
+
+registerLocale('uk', uk);
 
 const PeriodPaginator = ({
   isMonthPage,
@@ -29,13 +34,12 @@ const PeriodPaginator = ({
   const formattedDay =
     currentDate === undefined ? currentDay : parsedCurrentDate;
 
-  // const [DataDate, setDataDate] = useState();
-
   return (
     <InnerBlock>
       <CurrentDateWrapper>
         <DatePicker
           dateFormat="dd/MM/yyyy"
+          locale={i18next.language === 'ua' ? 'uk' : 'en'}
           calendarStartDay={1}
           selected={currentDay}
           onChange={date => handleCurrentDay(date)}

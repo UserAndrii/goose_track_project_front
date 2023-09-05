@@ -19,7 +19,9 @@ import {
   ChangePasswordBtn,
 } from './UserForm.styled';
 
-import DatePicker from 'react-datepicker';
+import i18next from 'i18next';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk';
 import 'react-datepicker/dist/react-datepicker.css';
 import './CustomDatePicker.css';
 
@@ -28,6 +30,8 @@ import { selectUser } from 'redux/auth/selectors';
 import { updateUser, sendVerifyEmailUser } from 'redux/auth/operations';
 import { format, parse } from 'date-fns';
 import AddPasswordRecoveryModal from 'components/AddPasswordRecoveryModal/AddPasswordRecoveryModal';
+
+registerLocale('uk', uk);
 
 const UserForm = () => {
   const { t } = useTranslation();
@@ -179,6 +183,7 @@ const UserForm = () => {
                 <p>{t('userForm.birth')}</p>
                 <DatePicker
                   dateFormat="dd/MM/yyyy"
+                  locale={i18next.language === 'ua' ? "uk" : "en"}
                   calendarStartDay={1}
                   selected={startDate}
                   onChange={date => setStartDate(date)}
