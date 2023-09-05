@@ -52,5 +52,25 @@ const CalendarRangeButton = styled.button`
     background-color: rgba(11, 104, 234, 0.2);
   }
 `;
+const ButtonView = styled.button`
+  display: flex;
+  margin-left: 10px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  color: #3e85f3;
+  background-color: #cae8ff;
+  &:hover {
+    background-color: rgba(11, 104, 234, 0.2);
+  }
+`;
 
-export { ToolbarWrapper, CalendarRangeWrapper, CalendarRangeButton };
+export {
+  ToolbarWrapper,
+  CalendarRangeWrapper,
+  CalendarRangeButton,
+  ButtonView,
+};

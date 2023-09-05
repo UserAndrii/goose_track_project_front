@@ -4,8 +4,9 @@ import { CalendarRange, Button } from './PeriodPaginatorType.styled';
 
 import { format, parse } from 'date-fns';
 import { useParams } from 'react-router-dom';
-
-const PeriodPaginatorType = ({ isMonthPage }) => {
+import { ButtonView } from '../CalendarToolbar/CalendarToolbar.styled';
+import { FaRegListAlt, FaThLarge } from 'react-icons/fa';
+const PeriodPaginatorType = ({ isMonthPage, isView, setIsView }) => {
   const navigate = useNavigate();
 
   const { currentDate } = useParams();
@@ -31,6 +32,13 @@ const PeriodPaginatorType = ({ isMonthPage }) => {
       >
         Day
       </Button>
+      <ButtonView
+        onClick={() => {
+          setIsView(prev => !prev);
+        }}
+      >
+        {isView ? <FaThLarge /> : <FaRegListAlt />}
+      </ButtonView>
     </CalendarRange>
   );
 };

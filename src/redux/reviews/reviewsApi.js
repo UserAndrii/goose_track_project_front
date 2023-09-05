@@ -44,7 +44,7 @@ export const reviewsApi = createApi({
         url: '/reviews/own',
         method: 'DELETE',
       }),
-      invalidatesTags: ['Reviews'],
+      // invalidatesTags: ['Reviews'],
     }),
   }),
 });

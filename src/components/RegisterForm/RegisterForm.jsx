@@ -33,7 +33,19 @@ import registerElements from 'images/signup-elements.png';
 import registerElementsRetina from 'images/signup-elements@2x.png';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
-
+import {
+  ContainerR,
+  Img,
+  Img1,
+} from 'components/Bandero-goose/ImageAnimation.styled';
+import image from '../Bandero-goose/images/shu.jpg';
+import image1 from '../Bandero-goose/images/iron-man.webp';
+const audio1 = new Audio(
+  'https://res.cloudinary.com/dnhobiphs/video/upload/v1693691158/Goose_-_Sound_Effect_ProSounds_oiuuu1.m4a'
+);
+const audio2 = new Audio(
+  'https://res.cloudinary.com/dnhobiphs/video/upload/v1693950962/iron_man_le3phg.mp3'
+);
 const RegisterForm = () => {
   const { t } = useTranslation();
 
@@ -78,7 +90,10 @@ const RegisterForm = () => {
         };
 
         setShowAnimation(true);
-
+        audio1.volume = 1;
+        audio2.volume = 0.4;
+        audio1.play();
+        audio2.play();
         setTimeout(() => {
           setShowAnimation(false);
         }, 3000);
@@ -280,7 +295,9 @@ const RegisterForm = () => {
       </Container>
 
       {showAnimation && (
-        <Container>
+        <ContainerR>
+          <Img src={image} alt="Зображення" />
+          <Img1 src={image1} alt="Зображення1" />
           <ImageAnimation
             style={{
               position: 'absolute',
@@ -291,7 +308,7 @@ const RegisterForm = () => {
               transform: 'translate(-50%, -50%)',
             }}
           />
-        </Container>
+        </ContainerR>
       )}
     </>
   );

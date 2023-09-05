@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 const DataGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  flex:1;
+  flex: 1;
 
   overflow: hidden;
   width: 100%;
@@ -171,6 +171,73 @@ const ThreeDots = styled.div`
   }
 `;
 
+const TaskBody = styled.div`
+  position: absolute;
+  border: 2px solid rgba(220, 227, 229, 0.8);
+  border-radius: 15%;
+  left: 50%;
+  top: 50%;
+  width: 65%;
+  height: 65%;
+  background-color: rgba(247, 246, 249, 1);
+  transform: translate(-50%, -30%);
+`;
+
+const TaskHead = styled.div`
+  position: absolute;
+  width: 45%;
+  height: 40%;
+  background-color: rgba(220, 227, 229, 0.8);
+  left: 50%;
+  border-radius: 25%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(52, 52, 52, 1);
+  font-size: 16px;
+  line-height: 17px;
+  font-weight: 700;
+`;
+
+const PriorityContain = styled.div`
+  display: flex;
+  width: 90%;
+  height: 80%;
+  position: absolute;
+  justify-content: space-around;
+  align-items: center;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const Priority = styled.div`
+  width: ${props => (props.count === 3 ? 30 : props.count === 2 ? 45 : 60)}%;
+  height: ${props => (props.count === 3 ? 40 : props.count === 2 ? 50 : 70)}%;
+  background: ${props =>
+    props.color === 1
+      ? 'linear-gradient(to bottom, #72C2F8, #367EBD)'
+      : props.color === 2
+      ? 'linear-gradient(to bottom, #F3B249, rgba(243, 178, 73, 0.6))'
+      : '#EA3D65'};
+  border-radius: 20%;
+  color: #f7f6f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  line-height: 17px;
+  font-weight: 700;
+`;
+
+const TextNo = styled.span`
+  color: white;
+`;
 export {
   DataGrid,
   Cell,
@@ -181,4 +248,9 @@ export {
   TaskContainer,
   TaskTitle,
   ThreeDots,
+  TaskBody,
+  TaskHead,
+  PriorityContain,
+  Priority,
+  TextNo,
 };

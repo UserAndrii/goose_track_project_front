@@ -32,7 +32,7 @@ const CalendarPage = () => {
   // if (!isSameDay(parsedDate, currentDay)) setCurrentDay(parsedDate);
 
   let filteredTask;
-
+  const [isView, setIsView] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
 
   const [isMonthPage, setIsMonthPage] = useState(true);
@@ -144,6 +144,8 @@ const CalendarPage = () => {
         setCurrentMonth={setCurrentMonth}
         isMonthPage={isMonthPage}
         week={week}
+        setIsView={setIsView}
+        isView={isView}
       />
       {isMonthPage ? (
         <ChoosedMonth
@@ -154,6 +156,7 @@ const CalendarPage = () => {
           allTasks={allTasks && allTasks}
           setTasks={setTasks}
           setIsMonthPage={setIsMonthPage}
+          isView={isView}
         />
       ) : (
         <ChoosedDay

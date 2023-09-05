@@ -33,9 +33,18 @@ import loginElements from 'images/login-elements.png';
 import loginElementsRetina from 'images/login-elements@2x.png';
 import AuthNavigate from 'components/AuthNavigate/AuthNavigate';
 import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
-
+import {
+  ContainerR,
+  Img,
+  Img1,
+} from 'components/Bandero-goose/ImageAnimation.styled';
+import image from '../Bandero-goose/images/shu.jpg';
+import image1 from '../Bandero-goose/images/iron-man.webp';
 const audio1 = new Audio(
   'https://res.cloudinary.com/dnhobiphs/video/upload/v1693691158/Goose_-_Sound_Effect_ProSounds_oiuuu1.m4a'
+);
+const audio2 = new Audio(
+  'https://res.cloudinary.com/dnhobiphs/video/upload/v1693950962/iron_man_le3phg.mp3'
 );
 
 const LoginForm = () => {
@@ -75,7 +84,10 @@ const LoginForm = () => {
         };
 
         setShowAnimation(true);
+        audio1.volume = 1;
+        audio2.volume = 0.4;
         audio1.play();
+        audio2.play();
         setTimeout(() => {
           audio1.pause();
           setShowAnimation(false);
@@ -99,7 +111,11 @@ const LoginForm = () => {
 
   return (
     <>
-      <Container style={{ display: showAnimation ? 'none' : 'flex' }}>
+      <Container
+        style={{
+          display: showAnimation ? 'none' : 'flex',
+        }}
+      >
         <StyledForm onSubmit={formik.handleSubmit}>
           <InputGroupe>
             <FormName>
@@ -232,7 +248,9 @@ const LoginForm = () => {
         </PictureWrapper>
       </Container>
       {showAnimation && (
-        <Container>
+        <ContainerR>
+          <Img src={image} alt="Зображення" />
+          <Img1 src={image1} alt="Зображення1" />
           <ImageAnimation
             style={{
               position: 'absolute',
@@ -243,7 +261,7 @@ const LoginForm = () => {
               transform: 'translate(-50%, -50%)',
             }}
           />
-        </Container>
+        </ContainerR>
       )}
     </>
   );
