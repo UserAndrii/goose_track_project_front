@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next'; // Trans ?
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Rating } from 'react-simple-star-rating';
 import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 
 import {
-  reviewsApi,
   useCreateReviewMutation,
   useDeleteReviewMutation,
   useEditReviewMutation,
@@ -33,8 +31,6 @@ const FeedbackForm = ({ onClose }) => {
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
-
-  const dispatch = useDispatch();
 
   const [createReview] = useCreateReviewMutation();
   const [editReview] = useEditReviewMutation();
