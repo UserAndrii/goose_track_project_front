@@ -1,4 +1,6 @@
+import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
+
 import {
   BarChart,
   Bar,
@@ -10,31 +12,15 @@ import {
 } from 'recharts';
 import PoppinsFontMedium from '../../fonts/Poppins-Medium.ttf';
 import { useGetMonthlyTasksQuery } from 'redux/tasks/tasksApi';
-
-// import '../../styles/vars.css';
-const data = [
-  {
-    name: 'To Do',
-    uv: 0,
-    pv: 0,
-  },
-  {
-    name: 'In Progress',
-    uv: 0,
-    pv: 0,
-  },
-  {
-    name: 'Done',
-    uv: 0,
-    pv: 0,
-  },
-];
+import i18next from 'i18next';
 
 export default function StatisticsChart({
   currentDay,
   currentMonth,
   isLightTheme,
 }) {
+  const { t } = useTranslation();
+
   const lightLine = 'rgba(227, 243, 255, 1)';
   const darkLine = 'rgba(227, 243, 255, 0.15)';
   const lightText = '#343434';
@@ -57,93 +43,88 @@ export default function StatisticsChart({
   const [lineHeight, setLineHeight] = useState(18);
   const [fontSizeL, setFontSizeL] = useState(14);
   const [lineHeightL, setLineHeightL] = useState(21);
-  const [dataChart, setDataChart] = useState(data);
+  const [dataChart, setDataChart] = useState([]);
   const [tasksPosition, setTasksPosition] = useState(-25);
   const [marginBar, setMarginBar] = useState(14);
   const { data: allTasks, refetch } = useGetMonthlyTasksQuery(currentMonth);
+  
   useEffect(() => {
     setThemaText(isLightTheme ? lightText : darkText);
     setThemaLine(isLightTheme ? lightLine : darkLine);
   }, [isLightTheme]);
+
   useEffect(() => {
     refetch();
-    if (allTasks) {
-      const tasks = [...allTasks.data];
-      if (tasks && tasks.length > 0) {
-        const data = [
-          {
-            name: 'To Do',
-            uv:
-              tasks.length === 0
-                ? 0
-                : Math.ceil(
-                    (tasks.filter(task => task.category === 'TODO').length /
-                      tasks.length) *
-                      100
-                  ),
-            pv:
-              tasks.filter(task => task.date === currentDay).length === 0
-                ? 0
-                : Math.ceil(
-                    (tasks.filter(
-                      task =>
-                        task.category === 'TODO' && task.date === currentDay
-                    ).length /
-                      tasks.filter(task => task.date === currentDay).length) *
-                      100
-                  ),
-          },
-          {
-            name: 'In Progress',
-            uv:
-              tasks.length === 0
-                ? 0
-                : Math.ceil(
-                    (tasks.filter(task => task.category === 'INPROGRESS')
-                      .length /
-                      tasks.length) *
-                      100
-                  ),
-            pv:
-              tasks.filter(task => task.date === currentDay).length === 0
-                ? 0
-                : Math.ceil(
-                    (tasks.filter(
-                      task =>
-                        task.category === 'INPROGRESS' &&
-                        task.date === currentDay
-                    ).length /
-                      tasks.filter(task => task.date === currentDay).length) *
-                      100
-                  ),
-          },
-          {
-            name: 'Done',
-            uv:
-              tasks.length === 0
-                ? 0
-                : Math.ceil(
-                    (tasks.filter(task => task.category === 'DONE').length /
-                      tasks.length) *
-                      100
-                  ),
-            pv:
-              tasks.filter(task => task.date === currentDay).length === 0
-                ? 0
-                : Math.ceil(
-                    (tasks.filter(
-                      task =>
-                        task.category === 'DONE' && task.date === currentDay
-                    ).length /
-                      tasks.filter(task => task.date === currentDay).length) *
-                      100
-                  ),
-          },
-        ];
-        setDataChart(data);
-      } else setDataChart(data);
-    }
-  }, [allTasks, currentDay, refetch]);
+    const tasks = allTasks ? [...allTasks.data] : [];
+    const data = [
+      {
+        name: t('statChart.todo'),
+        uv:
+          tasks.length === 0
+            ? 0
+            : Math.ceil(
+                (tasks.filter(task => task.category === 'TODO').length /
+                  tasks.length) *
+                  100
+              ),
+        pv:
+          tasks.filter(task => task.date === currentDay).length === 0
+            ? 0
+            : Math.ceil(
+                (tasks.filter(
+                  task => task.category === 'TODO' && task.date === currentDay
+                ).length /
+                  tasks.filter(task => task.date === currentDay).length) *
+                  100
+              ),
+      },
+      {
+        name: t('statChart.inprogress'),
+        uv:
+          tasks.length === 0
+            ? 0
+            : Math.ceil(
+                (tasks.filter(task => task.category === 'INPROGRESS').length /
+                  tasks.length) *
+                  100
+              ),
+        pv:
+          tasks.filter(task => task.date === currentDay).length === 0
+            ? 0
+            : Math.ceil(
+                (tasks.filter(
+                  task =>
+                    task.category === 'INPROGRESS' && task.date === currentDay
+                ).length /
+                  tasks.filter(task => task.date === currentDay).length) *
+                  100
+              ),
+      },
+      {
+        name: t('statChart.done'),
+        uv:
+          tasks.length === 0
+            ? 0
+            : Math.ceil(
+                (tasks.filter(task => task.category === 'DONE').length /
+                  tasks.length) *
+                  100
+              ),
+        pv:
+          tasks.filter(task => task.date === currentDay).length === 0
+            ? 0
+            : Math.ceil(
+                (tasks.filter(
+                  task => task.category === 'DONE' && task.date === currentDay
+                ).length /
+                  tasks.filter(task => task.date === currentDay).length) *
+                  100
+              ),
+      },
+    ];
+    setDataChart(data);
+  }, [allTasks, currentDay, refetch, t]);
+
   useEffect(() => {
     function handleResize() {
       const screenWidth = window.innerWidth;
@@ -342,7 +323,7 @@ export default function StatisticsChart({
         }}
       >
         <Label
-          value="Tasks"
+          value={t('statChart.tasks')}
           position="top"
           dx={tasksPosition}
           dy={-24}
