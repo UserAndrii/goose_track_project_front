@@ -107,8 +107,13 @@ export const Button = styled.button`
   border-radius: 16px;
   background: var(--accent-background-color);
   border: none;
-  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover {
+    color: var(--active-btn-color);
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
 
   @media screen and (min-width: 375px) {
     width: 287px;
@@ -143,6 +148,7 @@ export const ShowHideButton = styled.button`
   right: 30px;
   top: 50%;
   transform: translateY(-50%);
+  color: var(--title-text-main-color);
   background: none;
   border: none;
   cursor: pointer;

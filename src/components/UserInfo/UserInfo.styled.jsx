@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     gap: 14px;

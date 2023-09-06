@@ -59,10 +59,7 @@ const RegisterForm = () => {
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
   const validationSchema = yup.object({
-    name: yup
-      .string()
-      .min(3, t('recovery.err3'))
-      .required(t('recovery.err2')),
+    name: yup.string().min(3, t('recovery.err3')).required(t('recovery.err2')),
     email: yup
       .string()
       .matches(emailRegexp, t('recovery.err1'))

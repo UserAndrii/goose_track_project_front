@@ -25,12 +25,7 @@ const CalendarPage = () => {
 
   /* eslint-disable */
   const [_, __, monthOrDay, date] = location.pathname.split('/');
-
   /* eslint-enable */
-
-  // const parsedDate = parse(date, 'yyyy-MM-dd', new Date());
-
-  // if (!isSameDay(parsedDate, currentDay)) setCurrentDay(parsedDate);
 
   let filteredTask;
   const [isView, setIsView] = useState(view);

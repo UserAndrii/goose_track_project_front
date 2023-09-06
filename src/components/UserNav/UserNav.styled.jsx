@@ -37,9 +37,12 @@ export const LinkNav = styled(Link)`
   color: var(--feedback-form-text-input);
   font-size: 14px;
   font-weight: 600;
+  padding: 10px 20px;
+
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
+    adding: 16px 20px
   }
 `;
 
@@ -98,11 +101,17 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  padding: 10px 20px;
+  width: 185px;
+  height: 40px;
   border-radius: 8px;
 
   @media screen and (min-width: 768px) {
-    padding: 16px 20px;
+    width: 225px;
+    height: 56px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 241px;
   }
 
   &:hover {

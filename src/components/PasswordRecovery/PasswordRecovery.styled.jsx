@@ -107,8 +107,13 @@ export const Button = styled.button`
   border-radius: 16px;
   background: var(--accent-background-color);
   border: none;
-  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+
+  :hover {
+    color: var(--active-btn-color);
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
 
   @media screen and (min-width: 375px) {
     width: 287px;
