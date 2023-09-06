@@ -46,8 +46,12 @@ const PeriodPaginator = ({
           customInput={
             <CurrentDate>
               {isMonthPage
-                ? format(formattedMonth, 'MMMM yyyy')
-                : format(formattedDay, 'd MMMM yyyy')}
+                ? `${i18next.t(
+                    `calendar.${format(formattedMonth, 'MMMM')}`
+                  )} ${format(formattedMonth, 'yyyy')}`
+                : `${format(formattedDay, 'd')} ${i18next.t(
+                    `calendar.${format(formattedDay, 'MMMM')}`
+                  )} ${format(formattedDay, 'yyyy')}`}
             </CurrentDate>
           }
         />
