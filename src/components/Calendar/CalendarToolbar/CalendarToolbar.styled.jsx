@@ -27,6 +27,7 @@ const CalendarRangeButton = styled.button`
   margin-top: 18px;
   color: var(--accent-color);
   background-color: var(--auth-background-color);
+  cursor: pointer;
 
   &.onMonth {
     border-top-left-radius: 8px;
@@ -48,7 +49,7 @@ const CalendarRangeButton = styled.button`
   border: 1px solid rgba(220, 227, 229, 0.5);
 
   &:hover {
-    background-color: var(--accent-background-color);
+    background-color: rgba(11, 104, 234, 0.2);
   }
 `;
 const ButtonView = styled.button`
@@ -56,13 +57,16 @@ const ButtonView = styled.button`
   display: flex;
   margin-right: 10px;
   border-radius: 8px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  padding: 0;
 
   justify-content: center;
   align-items: center;
   width: 32px;
   height: 32px;
   border: 1px solid var(--calendartable-border-color);
-  color: var(--feedback-form-text-input);
+  color: var(--accent);
   background-color: var(--background-button-day);
   &:hover {
     background-color: rgba(11, 104, 234, 0.2);

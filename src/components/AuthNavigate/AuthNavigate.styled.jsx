@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Text = styled.p`
-  color: #111111;
+  color: var(--title-text-main-color);
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
   font-size: 12px;

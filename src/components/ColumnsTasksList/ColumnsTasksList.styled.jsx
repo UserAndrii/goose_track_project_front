@@ -5,23 +5,22 @@ export const Container = styled.div`
   max-height: 300px;
 
   &::-webkit-scrollbar {
-    width: 8px; /* ширина треку */
+    width: 8px;
   }
 
-  /* Стилізація "ползунка" (бару) */
   &::-webkit-scrollbar-thumb {
-    background-color: var(--scroll-color); /* колір ползунка */
-    border-radius: 4px; /* закруглені кути */
+    background-color: var(--scroll-color);
+    border-radius: 4px;
   }
 
-  /* Стилізація треку поза "ползунком" */
   &::-webkit-scrollbar-track {
-    background-color: var(--sidebar-background-color); /* колір треку */
-    border-radius: 4px; /* закруглені кути */
+    background-color: var(--sidebar-background-color);
+    border-radius: 4px;
   }
 
   overflow-y: scroll;
   margin-bottom: 10px;
+  ${props => (props.tasksLength === 0 && 'height: 1px')};
 
   @media screen and (min-width: 768px) {
     margin-bottom: ${props => (props.tasksLength > 0 ? '32px' : 0)};

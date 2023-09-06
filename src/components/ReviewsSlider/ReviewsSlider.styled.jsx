@@ -153,6 +153,11 @@ export const ButtonArrow = styled.button`
   }
 `;
 
-export const Img = styled.img`
-  background-color: inherit;
+export const Svg = styled.svg`
+  stroke: var(--title-text-main-color);
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover {
+    stroke: var(--accent);
+  }
 `;

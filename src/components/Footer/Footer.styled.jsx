@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 export const Container = styled.div`
   background-color: var(--auth-background-color);
   text-align: center;
+  width: 100%;
 
   @media screen and (max-width: 767px) {
-    min-width: 375px;
     padding-top: 28px;
     padding-bottom: 28px;
   }
@@ -15,13 +15,8 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 768px;
     padding-top: 30px;
     padding-bottom: 30px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 1440px;
   }
 `;
 

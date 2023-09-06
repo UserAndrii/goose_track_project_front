@@ -359,7 +359,7 @@ export const CustomInput = styled.input`
   font-size: 14px;
   line-height: 18px;
   font-weight: 600;
-  color: var(--modal-input-lable-color);
+  color: var(--calendar-date-color);
   outline: none;
   background-color: inherit;
 
