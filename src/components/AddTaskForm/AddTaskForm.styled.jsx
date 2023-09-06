@@ -23,13 +23,23 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
+  color: var(--title-text-main-color);
   margin-top: 8px;
   border: none;
   border-radius: 8px;
   width: 100%;
   height: 42px;
-  background: var(--outlet-background-color);
+  background: var(--input-background-color);
   padding: 14px 18px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+
+  &::placeholder {
+    color: var(--calendar-date-color);
+    font-size: 12px;
+    line-height: 1.16;
+    font-weight: 400;
+  }
 
   @media screen and (min-width: 768px) {
     height: 46px;
@@ -47,7 +57,7 @@ export const TimeWrapper = styled.div`
 export const TimePickerLabel = styled.label`
   display: flex;
   flex-direction: column;
-  color: var(--calendar-date-color);
+  color: var(--title-text-main-color);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.16;
@@ -245,6 +255,7 @@ export const EditIcon = styled(FiEdit2)`
 `;  
 
 export const ExampleCustomInput = styled.input`
+  color: var(--title-text-main-color);
   border-radius: 8px;
   background: var(--task-field-color);
   padding: 14px 18px;
@@ -252,6 +263,8 @@ export const ExampleCustomInput = styled.input`
   width: 140px;
   height: 42px;
   margin-top: 8px;
+  border: 1px solid #e0e0e0;
+  outline: none;
 
   @media screen and (min-width: 768px) {
     width: 194px;

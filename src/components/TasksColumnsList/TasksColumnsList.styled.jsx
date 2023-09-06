@@ -19,7 +19,7 @@ export const Container = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      background-color: #f1f1f1;
+      background-color: var(--sidebar-background-color);
       border-radius: 4px;
     }
   }

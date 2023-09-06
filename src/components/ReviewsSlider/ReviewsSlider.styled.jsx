@@ -53,7 +53,7 @@ export const ReviewsHeader = styled.h2`
 export const ReviewsBoxStyle = styled.div`
   padding: 24px;
   border-radius: 8px;
-  border: 1px solid rgba(17, 17, 17, 0.1);
+  border: 1px solid var(--reviews-border);
   height: 187px;
 
   @media ${device.tablet} {
@@ -107,7 +107,7 @@ export const Letter = styled.p`
 
 export const UserName = styled.p`
   margin-bottom: 13px;
-  color: #343434;
+  color: var(--calendar-date-color);
   font-size: 18px;
   font-weight: 700;
   line-height: 18px;
@@ -115,7 +115,7 @@ export const UserName = styled.p`
 
 export const UserReviews = styled.p`
   margin-top: 24px;
-  color: rgba(17, 17, 17, 0.7);
+  color: var(--title-text-main-color);
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
@@ -132,6 +132,7 @@ export const ButtonList = styled.div`
   display: flex;
   gap: 25px;
   margin-top: 8px;
+  background-color: inherit;
 
   @media ${device.tablet} {
     margin-top: 18px;
@@ -144,10 +145,14 @@ export const ButtonList = styled.div`
 
 export const ButtonArrow = styled.button`
   border: none;
-  background-color: #ffffff;
+  background-color: inherit;
   padding: 0;
 
   :hover {
     cursor: pointer;
   }
+`;
+
+export const Img = styled.img`
+  background-color: inherit;
 `;

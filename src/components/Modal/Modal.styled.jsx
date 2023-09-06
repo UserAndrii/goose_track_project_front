@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { CgClose } from 'react-icons/cg';
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -19,7 +20,7 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: var(--main-background-color);
+  background-color: var(--sidebar-background-color);
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   padding: 28px 20px;
@@ -44,24 +45,19 @@ export const ModalContent = styled.div`
   }
 `;
 
-export const ModalCloseButton = styled.button`
+export const CloseBtn = styled(CgClose)`
   position: absolute;
   top: 14px;
   right: 14px;
-  background: none;
-  border: none;
-  font-size: 18px;
+  width: 24px;
+  height: 24px;
+  
+  color: var(--modal-close-icon);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  color: #333;
-  padding: 0;
-  svg {
-    width: 24px;
-    height: 24px;
-    stroke: var(--label-text-color);
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    fill: none;
+
+  :hover {
+    color: var(--accent);
   }
 
   @media (min-width: 767px) {

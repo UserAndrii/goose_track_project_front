@@ -38,7 +38,7 @@ export const Avatar = styled.div`
   align-items: center;
   width: 32px;
   height: 32px;
-  border: 1.8px solid var(--accent-color);
+  border: 1.8px solid var(--accent-background-color);
   border-radius: 32px;
   overflow: hidden;
 `;

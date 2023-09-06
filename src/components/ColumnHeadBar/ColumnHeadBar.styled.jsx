@@ -11,7 +11,7 @@ margin-bottom: 24px;
 }
 `;
 export const Title = styled.h2`
-  color: var(--label-text-color);
+  color: var(--title-text-main-color);
   font-size: 18;
   line-height: calc(20 / 18);
   font-weight: 700;

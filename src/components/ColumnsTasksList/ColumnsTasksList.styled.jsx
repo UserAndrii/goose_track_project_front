@@ -16,14 +16,13 @@ export const Container = styled.div`
 
   /* Стилізація треку поза "ползунком" */
   &::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* колір треку */
+    background-color: var(--sidebar-background-color); /* колір треку */
     border-radius: 4px; /* закруглені кути */
   }
 
   overflow-y: scroll;
   margin-bottom: 10px;
 
-  
   @media screen and (min-width: 768px) {
     margin-bottom: ${props => (props.tasksLength > 0 ? '32px' : 0)};
     max-height: 376px;

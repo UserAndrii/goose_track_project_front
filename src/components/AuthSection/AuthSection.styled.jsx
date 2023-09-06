@@ -96,7 +96,7 @@ export const List = styled.div`
 `;
 
 export const Button = styled(Link)`
-  background: var(--modal-background-color);
+  background: #FFF;
   display: flex;
   align-items: center;
   border: none;
@@ -120,7 +120,7 @@ export const Button = styled(Link)`
 `;
 
 export const ButtonText = styled.span`
-  color: var(--accent-color);
+  color: var(--accent);
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -134,7 +134,7 @@ export const ItemIcon = styled(FiLogIn)`
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  color: var(--accent-color);
+  color: var(--accent);
 `;
 
 export const AuthLink = styled(Link)`
