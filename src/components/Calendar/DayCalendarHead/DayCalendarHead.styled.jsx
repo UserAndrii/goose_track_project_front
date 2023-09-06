@@ -6,12 +6,12 @@ const MainBlockDayListWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 74px;
-  background-color: #fff;
-  color: black;
+  background-color: var(--main-background-color);
+  color: var(--user-name-color);
   margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid rgba(220, 227, 229, 0.5);
+  border: 1px solid var(--btn-border-color);
   border-radius: 8px;
 `;
 
@@ -23,7 +23,7 @@ const DayListWrapper = styled.div`
 `;
 
 const Day = styled.span`
-  color: #343434;
+  color: var(--user-name-color);
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -77,7 +77,7 @@ const RowCurrentDate = styled.button`
 `;
 
 const RowNumber = styled.time`
-  color: #343434;
+  color: var(--user-name-color);
   font-size: 12px;
   font-style: normal;
   font-weight: 700;

@@ -5,8 +5,9 @@ import { CalendarRange, Button } from './PeriodPaginatorType.styled';
 
 import { format, parse } from 'date-fns';
 import { useParams } from 'react-router-dom';
-
-const PeriodPaginatorType = ({ isMonthPage }) => {
+import { ButtonView } from '../CalendarToolbar/CalendarToolbar.styled';
+import { FaRegListAlt, FaThLarge } from 'react-icons/fa';
+const PeriodPaginatorType = ({ isMonthPage, isView, setIsView }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -15,6 +16,21 @@ const PeriodPaginatorType = ({ isMonthPage }) => {
 
   return (
     <CalendarRange>
+      {isMonthPage ? (
+        <ButtonView
+          onClick={() => {
+            setIsView(prev => !prev);
+          }}
+        >
+          {isView ? (
+            <FaThLarge style={{ width: '25px', height: '25px' }} />
+          ) : (
+            <FaRegListAlt style={{ width: '25px', height: '25px' }} />
+          )}
+        </ButtonView>
+      ) : (
+        <></>
+      )}
       <Button
         className={`onMonth ${isMonthPage ? 'isActive' : ''}`}
         onClick={() => {

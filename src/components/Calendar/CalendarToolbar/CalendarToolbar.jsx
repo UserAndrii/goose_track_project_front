@@ -7,9 +7,11 @@ import {
   ToolbarWrapper,
   CalendarRangeWrapper,
   CalendarRangeButton,
+  ButtonView,
 } from './CalendarToolbar.styled';
 
 import { format, parse, add } from 'date-fns';
+import { FaRegListAlt, FaThLarge } from 'react-icons/fa';
 
 export const CalendarToolBar = ({
   isMonthPage,
@@ -17,6 +19,8 @@ export const CalendarToolBar = ({
   setCurrentMonth,
   currentDay,
   setCurrentDay,
+  isView,
+  setIsView,
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -76,7 +80,11 @@ export const CalendarToolBar = ({
           handleCurrentDay={handleCurrentDay}
         />
 
-        <PeriodPaginatorType isMonthPage={isMonthPage} />
+        <PeriodPaginatorType
+          isView={isView}
+          setIsView={setIsView}
+          isMonthPage={isMonthPage}
+        />
       </ToolbarWrapper>
 
       <CalendarRangeWrapper>
@@ -100,6 +108,22 @@ export const CalendarToolBar = ({
         >
           {t('calendar.day')}
         </CalendarRangeButton>
+        {isMonthPage ? (
+          <ButtonView
+            style={{ marginTop: '18px', marginLeft: 'auto', marginRight: '0' }}
+            onClick={() => {
+              setIsView(prev => !prev);
+            }}
+          >
+            {isView ? (
+              <FaThLarge style={{ width: '25px', height: '25px' }} />
+            ) : (
+              <FaRegListAlt style={{ width: '25px', height: '25px' }} />
+            )}
+          </ButtonView>
+        ) : (
+          <></>
+        )}
       </CalendarRangeWrapper>
     </>
   );

@@ -9,6 +9,7 @@ export const ChoosedMonth = ({
   week,
   setCurrentDay,
   setTasks,
+  isView,
 }) => {
   return (
     <>
@@ -20,6 +21,7 @@ export const ChoosedMonth = ({
         setCurrentDay={setCurrentDay}
         allTasks={allTasks && allTasks}
         setTasks={setTasks}
+        isView={isView}
       />
     </>
   );

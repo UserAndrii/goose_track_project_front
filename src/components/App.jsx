@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
-
+import image from './Bandero-goose/images/shu.jpg';
+import image1 from './Bandero-goose/images/iron-man.webp';
 import {
   selectIsFetchingCurrentUser,
   selectIsLoggedIn,
@@ -16,6 +17,7 @@ import MainLayout from './MainLayout/MainLayout';
 import { ChoosedMonth } from './Calendar/ChoosedMonth/ChoosedMonth';
 import { ChoosedDay } from './Calendar/ChoosedDay/ChoosedDay';
 import ImageAnimation from './Bandero-goose/ImageAnimation';
+import { ContainerR, Img, Img1 } from './Bandero-goose/ImageAnimation.styled';
 
 const MainPage = lazy(() => import('pages/MainPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -37,7 +39,11 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <ImageAnimation />
+    <ContainerR>
+      <Img src={image} alt="Зображення" />
+      <Img1 src={image1} alt="Зображення1" />
+      <ImageAnimation />
+    </ContainerR>
   ) : (
     <Suspense fallback={<ImageAnimation />}>
       <Routes>
