@@ -22,22 +22,20 @@ const ImageAnimation = () => {
   });
 
   return (
-    <>
-      <img
-        style={{
-          // backgroundColor: "#dcebf7",
-          position: 'absolute',
-          width: '150px',
-          height: 'auto',
-          left: '50%',
-          top: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
-        id="changing-image"
-        src={imageSources[currentImageIndex]}
-        alt="Змінюючеся зображення"
-      />
-    </>
+    <img
+      style={{
+        // backgroundColor: "#dcebf7",
+        position: 'absolute',
+        width: '150px',
+        height: 'auto',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+      }}
+      id="changing-image"
+      src={imageSources[currentImageIndex]}
+      alt="Змінюючеся зображення"
+    />
   );
 };
 

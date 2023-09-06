@@ -13,6 +13,10 @@ import {
   TaskContainer,
   TaskTitle,
   ThreeDots,
+  Priority,
+  PriorityContain,
+  TaskHead,
+  TaskBody,
 } from './CalendarTable.styled';
 
 export const CalendarTable = ({
@@ -20,6 +24,7 @@ export const CalendarTable = ({
   currentDay,
   allTasks,
   setCurrentDay,
+  isView,
 }) => {
   const { t } = useTranslation();
 
@@ -102,7 +107,19 @@ export const CalendarTable = ({
         const filteredTasksByDay = allTasks
           ? allTasks.data.filter(task => task.date === formattedDay)
           : [];
-
+        const lowTasks = filteredTasksByDay.filter(
+          item => item.priority === 'LOW'
+        ).length;
+        const mediumTasks = filteredTasksByDay.filter(
+          item => item.priority === 'MEDIUM'
+        ).length;
+        const highTasks = filteredTasksByDay.filter(
+          item => item.priority === 'HIGH'
+        ).length;
+        const count =
+          (lowTasks > 0 ? 1 : 0) +
+          (mediumTasks > 0 ? 1 : 0) +
+          (highTasks > 0 ? 1 : 0);
         return (
           <Cell
             key={day.toString()}
@@ -138,114 +155,139 @@ export const CalendarTable = ({
             </CurrentDate>
 
             {allTasks && isSameMonth(currentDay, day) ? (
-              <Tasks>
-                {isTabletScreen ? (
-                  <ul>
-                    {filteredTasksByDay.map(
-                      ({ title, _id, priority }, index) => {
-                        if (index === 2) {
+              isView ? (
+                <Tasks>
+                  {isTabletScreen ? (
+                    <ul>
+                      {filteredTasksByDay.map(
+                        ({ title, _id, priority }, index) => {
+                          if (index === 2) {
+                            return (
+                              <TaskItem className={`tasks__item`} key={_id}>
+                                <ThreeDots
+                                  onClick={() => {
+                                    setCurrentDay(day);
+                                    navigate(`day/${formattedDay}`);
+                                  }}
+                                >
+                                  <TaskTitle>...</TaskTitle>
+                                </ThreeDots>
+                              </TaskItem>
+                            );
+                          }
+                          if (index > 2) {
+                            return null;
+                          }
                           return (
                             <TaskItem className={`tasks__item`} key={_id}>
-                              <ThreeDots
-                                onClick={() => {
-                                  setCurrentDay(day);
-                                  navigate(`day/${formattedDay}`);
+                              <TaskContainer
+                                style={{
+                                  backgroundColor:
+                                    whichPriority(priority).bgColor,
+                                  color: whichPriority(priority).color,
                                 }}
                               >
-                                <TaskTitle>...</TaskTitle>
-                              </ThreeDots>
+                                <TaskTitle>
+                                  {isDesktopScreen && isTabletScreen
+                                    ? title.length >= 13
+                                      ? title.slice(0, 13) + '...'
+                                      : title
+                                    : title.length >= 8
+                                    ? title.slice(0, 8) + '...'
+                                    : title}
+                                </TaskTitle>
+                              </TaskContainer>
                             </TaskItem>
                           );
                         }
-                        if (index > 2) {
-                          return null;
-                        }
-                        return (
-                          <TaskItem className={`tasks__item`} key={_id}>
-                            <TaskContainer
-                              style={{
-                                backgroundColor:
-                                  whichPriority(priority).bgColor,
-                                color: whichPriority(priority).color,
-                              }}
-                            >
-                              <TaskTitle>
-                                {isDesktopScreen && isTabletScreen
-                                  ? title.length >= 13
-                                    ? title.slice(0, 13) + '...'
-                                    : title
-                                  : title.length >= 8
-                                  ? title.slice(0, 8) + '...'
-                                  : title}
-                              </TaskTitle>
-                            </TaskContainer>
-                          </TaskItem>
-                        );
-                      }
-                    )}
-                  </ul>
-                ) : (
-                  <ul>
-                    {calculateTaskQuantity(filteredTasksByDay).lowTaskCounter >
-                      0 && (
-                      <TaskItem className={`tasks__item`}>
-                        <TaskContainer
-                          style={{
-                            backgroundColor: 'rgba(206, 238, 253, 1)',
-                            color: '#3E85F3',
-                          }}
-                        >
-                          <TaskTitle>
-                            <Trans i18nKey="calendar.tasks">Tasks:</Trans>
-                            {
-                              calculateTaskQuantity(filteredTasksByDay)
-                                .lowTaskCounter
-                            }
-                          </TaskTitle>
-                        </TaskContainer>
-                      </TaskItem>
-                    )}
-                    {calculateTaskQuantity(filteredTasksByDay)
-                      .mediumTaskCounter > 0 && (
-                      <TaskItem className={`tasks__item`}>
-                        <TaskContainer
-                          style={{
-                            backgroundColor: 'rgba(252, 240, 212, 1)',
-                            color: '#F3B249',
-                          }}
-                        >
-                          <TaskTitle>
-                            {t('calendar.tasks')}
-                            {
-                              calculateTaskQuantity(filteredTasksByDay)
-                                .mediumTaskCounter
-                            }
-                          </TaskTitle>
-                        </TaskContainer>
-                      </TaskItem>
-                    )}
-                    {calculateTaskQuantity(filteredTasksByDay).highTaskCounter >
-                      0 && (
-                      <TaskItem className={`tasks__item`}>
-                        <TaskContainer
-                          style={{
-                            backgroundColor: 'rgba(255, 210, 221, 1)',
-                            color: '#EA3D65',
-                          }}
-                        >
-                          <TaskTitle>
-                            {t('calendar.tasks')}
-                            {
-                              calculateTaskQuantity(filteredTasksByDay)
-                                .highTaskCounter
-                            }
-                          </TaskTitle>
-                        </TaskContainer>
-                      </TaskItem>
-                    )}
-                  </ul>
-                )}
-              </Tasks>
+                      )}
+                    </ul>
+                  ) : (
+                    <ul>
+                      {calculateTaskQuantity(filteredTasksByDay)
+                        .lowTaskCounter > 0 && (
+                        <TaskItem className={`tasks__item`}>
+                          <TaskContainer
+                            style={{
+                              backgroundColor: 'rgba(206, 238, 253, 1)',
+                              color: '#3E85F3',
+                            }}
+                          >
+                            <TaskTitle>
+                              <Trans i18nKey="calendar.tasks">Tasks:</Trans>
+                              {
+                                calculateTaskQuantity(filteredTasksByDay)
+                                  .lowTaskCounter
+                              }
+                            </TaskTitle>
+                          </TaskContainer>
+                        </TaskItem>
+                      )}
+                      {calculateTaskQuantity(filteredTasksByDay)
+                        .mediumTaskCounter > 0 && (
+                        <TaskItem className={`tasks__item`}>
+                          <TaskContainer
+                            style={{
+                              backgroundColor: 'rgba(252, 240, 212, 1)',
+                              color: '#F3B249',
+                            }}
+                          >
+                            <TaskTitle>
+                              {t('calendar.tasks')}
+                              {
+                                calculateTaskQuantity(filteredTasksByDay)
+                                  .mediumTaskCounter
+                              }
+                            </TaskTitle>
+                          </TaskContainer>
+                        </TaskItem>
+                      )}
+                      {calculateTaskQuantity(filteredTasksByDay)
+                        .highTaskCounter > 0 && (
+                        <TaskItem className={`tasks__item`}>
+                          <TaskContainer
+                            style={{
+                              backgroundColor: 'rgba(255, 210, 221, 1)',
+                              color: '#EA3D65',
+                            }}
+                          >
+                            <TaskTitle>
+                              {t('calendar.tasks')}
+                              {
+                                calculateTaskQuantity(filteredTasksByDay)
+                                  .highTaskCounter
+                              }
+                            </TaskTitle>
+                          </TaskContainer>
+                        </TaskItem>
+                      )}
+                    </ul>
+                  )}
+                </Tasks>
+              ) : count > 0 ? (
+                <TaskBody>
+                  <TaskHead>
+                    {count <= 0 ? null : filteredTasksByDay.length}
+                  </TaskHead>
+                  <PriorityContain>
+                    {lowTasks !== 0 ? (
+                      <Priority count={count} color={1}>
+                        {lowTasks}
+                      </Priority>
+                    ) : null}
+                    {mediumTasks !== 0 ? (
+                      <Priority count={count} color={2}>
+                        {mediumTasks}
+                      </Priority>
+                    ) : null}
+                    {highTasks !== 0 ? (
+                      <Priority count={count} color={3}>
+                        {highTasks}
+                      </Priority>
+                    ) : null}
+                  </PriorityContain>
+                </TaskBody>
+              ) : null
             ) : (
               <></>
             )}

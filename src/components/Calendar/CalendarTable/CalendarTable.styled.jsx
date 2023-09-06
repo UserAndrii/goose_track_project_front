@@ -5,22 +5,27 @@ const DataGrid = styled.div`
   grid-template-columns: repeat(7, 1fr);
   flex: 1;
 
+
+
   overflow: hidden;
   width: 100%;
   max-height: 100%;
   margin-top: 14px;
   margin-left: auto;
   margin-right: auto;
+
   background-color: var(-main-background-color);
+
   border-radius: 8px;
-  border: 1px solid rgba(220, 227, 229, 0.5);
+  border: 1px solid var(--calendar-border-color);
   overflow-y: scroll;
 `;
 
 const Cell = styled.div`
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(220, 227, 229, 0.5);
+
+  border: 1px solid var(--btn-border-color);
   cursor: pointer;
 
   &:hover {
@@ -171,6 +176,103 @@ const ThreeDots = styled.div`
   }
 `;
 
+const TaskBody = styled.div`
+  position: absolute;
+  border: 2px solid var(--btn-border-color);
+  border-radius: 15%;
+  left: 50%;
+  top: 50%;
+  width: 65%;
+  height: 70%;
+  background: linear-gradient(
+    to bottom right,
+    var(--task-body-linear-top),
+    var(--task-body-linear-bottom)
+  );
+  transform: translate(-50%, -40%);
+
+  @media screen and (min-width: 768px) and (max-width: 1440px) {
+    height: 60%;
+    width: 70%;
+    top: 60%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    top: 62%;
+    height: 60%;
+  }
+`;
+
+const TaskHead = styled.div`
+  position: absolute;
+  width: 45%;
+  height: 40%;
+  background: linear-gradient(
+    to bottom right,
+    var(--btn-head-color),
+    var(--linear-gradient)
+  );
+  left: 50%;
+  border-radius: 25%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--calendar-date-color);
+  font-size: 16px;
+  line-height: 17px;
+  font-weight: 700;
+  @media screen and (max-width: 768px) {
+    height: 30%;
+    font-size: 12px;
+    width: 65%;
+    font-weight: 700;
+  }
+`;
+
+const PriorityContain = styled.div`
+  display: flex;
+  width: 90%;
+  height: 80%;
+  position: absolute;
+  justify-content: space-around;
+  align-items: center;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    top: 17%;
+  }
+`;
+
+const Priority = styled.div`
+  width: ${props => (props.count === 3 ? 30 : props.count === 2 ? 45 : 60)}%;
+  height: ${props => (props.count === 3 ? 40 : props.count === 2 ? 50 : 70)}%;
+  background: ${props =>
+    props.color === 1
+      ? 'linear-gradient(  to bottom right, #72C2F8, #367EBD)'
+      : props.color === 2
+      ? 'linear-gradient(  to bottom right,rgba(243, 178, 73, 0.6), #F3B249 )'
+      : 'linear-gradient(  to bottom right, #EA3D65, #8B0000)'};
+  border-radius: 20%;
+  color: #f7f6f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  line-height: 17px;
+  font-weight: 700;
+  @media screen and (max-width: 768px) {
+    width: 55%;
+    font-size: 10px;
+    font-weight: 500;
+    height: ${props => (props.count === 3 ? 30 : props.count === 2 ? 45 : 70)}%;
+  }
+`;
+
 export {
   DataGrid,
   Cell,
@@ -181,4 +283,8 @@ export {
   TaskContainer,
   TaskTitle,
   ThreeDots,
+  TaskBody,
+  TaskHead,
+  PriorityContain,
+  Priority,
 };

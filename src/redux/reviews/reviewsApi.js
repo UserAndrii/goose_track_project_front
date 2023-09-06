@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 export const reviewsApi = createApi({
   reducerPath: 'reviews',
   baseQuery: fetchBaseQuery({
@@ -11,40 +12,42 @@ export const reviewsApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Reviews'],
+  refetchOnMountOrArgChange: true,
+  refetchOnReconnect: false,
+  keepUnusedDataFor: 1,
+
   endpoints: builder => ({
     fetchReviews: builder.query({
       query: () => '/reviews',
-      providesTags: ['Reviews'],
     }),
+
     getUserReview: builder.query({
       query: () => ({
         url: '/reviews/own',
       }),
-      providesTags: ['Reviews'],
     }),
+
     createReview: builder.mutation({
       query: data => ({
         url: '/reviews/own',
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['Reviews'],
     }),
+
     editReview: builder.mutation({
       query: data => ({
         url: '/reviews/own',
         method: 'PATCH',
         body: data,
       }),
-      invalidatesTags: ['Reviews'],
     }),
+
     deleteReview: builder.mutation({
       query: () => ({
         url: '/reviews/own',
         method: 'DELETE',
       }),
-      invalidatesTags: ['Reviews'],
     }),
   }),
 });

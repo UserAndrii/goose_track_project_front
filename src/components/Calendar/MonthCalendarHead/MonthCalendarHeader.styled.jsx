@@ -9,16 +9,20 @@ const MainBlockDayListWrapper = styled.div`
   height: 50px;
 
   background-color: var(--main-background-color);
+
   color: var(--label-text-color);
+
 
   margin-top: 24px;
 
-  border: 1px solid rgba(220, 227, 229, 0.5);
+  border: 1px solid var(--btn-border-color);
   border-radius: 8px;
 `;
 
 const Day = styled.span`
+
   color: var(--calendar-day-color);
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;

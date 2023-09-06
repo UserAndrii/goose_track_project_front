@@ -17,7 +17,8 @@ import {
   startOfToday,
   parse,
 } from 'date-fns';
-
+import { loadLocal, saveLocal } from 'components/ThemeToggler/localStorage';
+const view = loadLocal('isView') ?? true;
 const CalendarPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,7 +33,7 @@ const CalendarPage = () => {
   // if (!isSameDay(parsedDate, currentDay)) setCurrentDay(parsedDate);
 
   let filteredTask;
-
+  const [isView, setIsView] = useState(view);
   const [isModalOpen, setModalOpen] = useState(false);
 
   const [isMonthPage, setIsMonthPage] = useState(true);
@@ -44,6 +45,9 @@ const CalendarPage = () => {
   const [currentMonth, setCurrentMonth] = useState(
     format(startOfToday(), 'MMM-yyyy')
   );
+  useEffect(() => {
+    saveLocal('isView', isView);
+  }, [isView]);
   const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date());
 
   const days = eachDayOfInterval({
@@ -144,6 +148,8 @@ const CalendarPage = () => {
         setCurrentMonth={setCurrentMonth}
         isMonthPage={isMonthPage}
         week={week}
+        setIsView={setIsView}
+        isView={isView}
       />
       {isMonthPage ? (
         <ChoosedMonth
@@ -154,6 +160,7 @@ const CalendarPage = () => {
           allTasks={allTasks && allTasks}
           setTasks={setTasks}
           setIsMonthPage={setIsMonthPage}
+          isView={isView}
         />
       ) : (
         <ChoosedDay
