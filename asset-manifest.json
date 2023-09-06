@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/goose_track_project_front/static/css/main.18130e8b.css",
-    "main.js": "/goose_track_project_front/static/js/main.20cb4882.js",
+    "main.css": "/goose_track_project_front/static/css/main.ffdfffd9.css",
+    "main.js": "/goose_track_project_front/static/js/main.1f1451dc.js",
     "static/css/31.529a94b0.chunk.css": "/goose_track_project_front/static/css/31.529a94b0.chunk.css",
-    "static/js/31.54ea76d2.chunk.js": "/goose_track_project_front/static/js/31.54ea76d2.chunk.js",
+    "static/js/31.b4e0c620.chunk.js": "/goose_track_project_front/static/js/31.b4e0c620.chunk.js",
     "static/js/851.86b016a2.chunk.js": "/goose_track_project_front/static/js/851.86b016a2.chunk.js",
     "static/js/56.75954d9c.chunk.js": "/goose_track_project_front/static/js/56.75954d9c.chunk.js",
     "static/css/275.9af143d5.chunk.css": "/goose_track_project_front/static/css/275.9af143d5.chunk.css",
-    "static/js/275.95371859.chunk.js": "/goose_track_project_front/static/js/275.95371859.chunk.js",
+    "static/js/275.be6d7670.chunk.js": "/goose_track_project_front/static/js/275.be6d7670.chunk.js",
     "static/css/899.9af143d5.chunk.css": "/goose_track_project_front/static/css/899.9af143d5.chunk.css",
-    "static/js/899.808bd3a7.chunk.js": "/goose_track_project_front/static/js/899.808bd3a7.chunk.js",
+    "static/js/899.1c123086.chunk.js": "/goose_track_project_front/static/js/899.1c123086.chunk.js",
     "static/css/306.9af143d5.chunk.css": "/goose_track_project_front/static/css/306.9af143d5.chunk.css",
     "static/js/306.dd454ef9.chunk.js": "/goose_track_project_front/static/js/306.dd454ef9.chunk.js",
     "static/js/442.70ae164f.chunk.js": "/goose_track_project_front/static/js/442.70ae164f.chunk.js",
@@ -84,16 +84,16 @@
     "index.html": "/goose_track_project_front/index.html",
     "static/media/reviews-arrow-right.svg": "/goose_track_project_front/static/media/reviews-arrow-right.a22cdf87a7132e781406da0f90b2321e.svg",
     "static/media/reviews-arrow-left.svg": "/goose_track_project_front/static/media/reviews-arrow-left.419843934514a4ec72e12d89da762d2a.svg",
-    "main.18130e8b.css.map": "/goose_track_project_front/static/css/main.18130e8b.css.map",
-    "main.20cb4882.js.map": "/goose_track_project_front/static/js/main.20cb4882.js.map",
+    "main.ffdfffd9.css.map": "/goose_track_project_front/static/css/main.ffdfffd9.css.map",
+    "main.1f1451dc.js.map": "/goose_track_project_front/static/js/main.1f1451dc.js.map",
     "31.529a94b0.chunk.css.map": "/goose_track_project_front/static/css/31.529a94b0.chunk.css.map",
-    "31.54ea76d2.chunk.js.map": "/goose_track_project_front/static/js/31.54ea76d2.chunk.js.map",
+    "31.b4e0c620.chunk.js.map": "/goose_track_project_front/static/js/31.b4e0c620.chunk.js.map",
     "851.86b016a2.chunk.js.map": "/goose_track_project_front/static/js/851.86b016a2.chunk.js.map",
     "56.75954d9c.chunk.js.map": "/goose_track_project_front/static/js/56.75954d9c.chunk.js.map",
     "275.9af143d5.chunk.css.map": "/goose_track_project_front/static/css/275.9af143d5.chunk.css.map",
-    "275.95371859.chunk.js.map": "/goose_track_project_front/static/js/275.95371859.chunk.js.map",
+    "275.be6d7670.chunk.js.map": "/goose_track_project_front/static/js/275.be6d7670.chunk.js.map",
     "899.9af143d5.chunk.css.map": "/goose_track_project_front/static/css/899.9af143d5.chunk.css.map",
-    "899.808bd3a7.chunk.js.map": "/goose_track_project_front/static/js/899.808bd3a7.chunk.js.map",
+    "899.1c123086.chunk.js.map": "/goose_track_project_front/static/js/899.1c123086.chunk.js.map",
     "306.9af143d5.chunk.css.map": "/goose_track_project_front/static/css/306.9af143d5.chunk.css.map",
     "306.dd454ef9.chunk.js.map": "/goose_track_project_front/static/js/306.dd454ef9.chunk.js.map",
     "442.70ae164f.chunk.js.map": "/goose_track_project_front/static/js/442.70ae164f.chunk.js.map",
@@ -107,7 +107,7 @@
     "812.0fc4513b.chunk.js.map": "/goose_track_project_front/static/js/812.0fc4513b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.18130e8b.css",
-    "static/js/main.20cb4882.js"
+    "static/css/main.ffdfffd9.css",
+    "static/js/main.1f1451dc.js"
   ]
 }
