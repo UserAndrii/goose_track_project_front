@@ -179,6 +179,7 @@ const ThreeDots = styled.div`
 const TaskBody = styled.div`
   position: absolute;
   border: 2px solid var(--btn-border-color);
+  box-shadow: 2px 2px 16px 0px rgba(136, 165, 191, 0.48);
   border-radius: 15%;
   left: 50%;
   top: 50%;
