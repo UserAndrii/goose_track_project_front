@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router';
+import { useTranslation, Trans } from 'react-i18next';
 
 import { CalendarRange, Button } from './PeriodPaginatorType.styled';
 
@@ -8,12 +9,28 @@ import { ButtonView } from '../CalendarToolbar/CalendarToolbar.styled';
 import { FaRegListAlt, FaThLarge } from 'react-icons/fa';
 const PeriodPaginatorType = ({ isMonthPage, isView, setIsView }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { currentDate } = useParams();
   const parsedCurrentDate = parse(currentDate, 'yyyy-MM-dd', new Date());
 
   return (
     <CalendarRange>
+      {isMonthPage ? (
+        <ButtonView
+          onClick={() => {
+            setIsView(prev => !prev);
+          }}
+        >
+          {isView ? (
+            <FaThLarge style={{ width: '25px', height: '25px' }} />
+          ) : (
+            <FaRegListAlt style={{ width: '25px', height: '25px' }} />
+          )}
+        </ButtonView>
+      ) : (
+        <></>
+      )}
       <Button
         className={`onMonth ${isMonthPage ? 'isActive' : ''}`}
         onClick={() => {
@@ -21,7 +38,7 @@ const PeriodPaginatorType = ({ isMonthPage, isView, setIsView }) => {
         }}
         isMonthPage
       >
-        Month
+        <Trans i18nKey="calendar.month">Month</Trans>
       </Button>
       <Button
         className={`onDay ${!isMonthPage ? 'isActive' : ''}`}
@@ -30,15 +47,8 @@ const PeriodPaginatorType = ({ isMonthPage, isView, setIsView }) => {
         }}
         isMonthPage
       >
-        Day
+        {t('calendar.day')}
       </Button>
-      <ButtonView
-        onClick={() => {
-          setIsView(prev => !prev);
-        }}
-      >
-        {isView ? <FaThLarge /> : <FaRegListAlt />}
-      </ButtonView>
     </CalendarRange>
   );
 };

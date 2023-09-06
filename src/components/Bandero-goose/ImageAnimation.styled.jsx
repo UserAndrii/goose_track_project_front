@@ -5,7 +5,7 @@ const moveAnimation = keyframes`
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-20vh); /* Переміщення на 100% ширини вікна */
+    transform: translateX(-20vh); 
   }
 `;
 const moveAnimation1 = keyframes`
@@ -38,7 +38,7 @@ const Img1 = styled.img`
   max-height: 30vh;
   position: absolute;
 
-  animation: ${moveAnimation1} 3s linear infinite;
+  animation: ${moveAnimation1} 3s linear forwards;
 `;
 
 export { ContainerR, Img, Img1 };

@@ -8,17 +8,17 @@ const MainBlockDayListWrapper = styled.div`
   width: 100%;
   height: 50px;
 
-  background-color: #fff;
-  color: black;
+  background-color: var(--main-background-color);
+  color: var(--user-name-color);
 
   margin-top: 24px;
 
-  border: 1px solid rgba(220, 227, 229, 0.5);
+  border: 1px solid var(--btn-border-color);
   border-radius: 8px;
 `;
 
 const Day = styled.span`
-  color: #343434;
+  color: var(--user-name-color);
   font-size: 16px;
   font-style: normal;
   font-weight: 600;

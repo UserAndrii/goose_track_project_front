@@ -9,15 +9,18 @@ import { tasksApi } from 'redux/tasks/tasksApi';
 import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
 import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 import './ContextMenu.css';
+import { useTranslation } from 'react-i18next';
 
 const TaskToolbar = ({ task }) => {
+  const { t } = useTranslation();
+
   const [isModalOpen, setModalOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [deleteTask] = tasksApi.useDeleteTasksMutation();
 
   const [editTask, { isLoading, isError }] = tasksApi.useEditTasksMutation();
 
-  const categories = ['To do', 'In Progress', 'Done'].filter(
+  const categories = ['todo', 'inprogress', 'done'].filter(
     item =>
       task.category.replace(/\s+/g, '').toLowerCase() !==
       item.replace(/\s+/g, '').toLowerCase()
@@ -63,9 +66,9 @@ const TaskToolbar = ({ task }) => {
   const handleDelete = () => {
     try {
       deleteTask(task._id);
-      showSuccessToast('Task deleted');
+      showSuccessToast(t('addTask.succ3'));
     } catch (error) {
-      showErrorToast('Something went wrong...');
+      showErrorToast(t('addTask.err4'));
     }
   };
   async function handleChangePriority(newCategory) {
@@ -79,7 +82,7 @@ const TaskToolbar = ({ task }) => {
         throw new Error();
       }
     } catch (error) {
-      showErrorToast('Something went wrong...');
+      showErrorToast(t('addTask.err4'));
     }
   }
 
@@ -106,16 +109,17 @@ const TaskToolbar = ({ task }) => {
           style={{ height: 14, marginBottom: 14, padding: 0 }}
         >
           <Wrapper>
-            <Text>{categories[0]}</Text>
+            <Text>{t(`statChart.${categories[0]}`)}</Text>
             <AiOutlineLogin />
           </Wrapper>
         </MenuItem>
+
         <MenuItem
           onClick={() => handleChangePriority(categoriesDB[1])}
           style={{ height: 14, padding: 0 }}
         >
           <Wrapper>
-            <Text>{categories[1]}</Text>
+            <Text> {t(`statChart.${categories[1]}`)}</Text>
             <AiOutlineLogin />
           </Wrapper>
         </MenuItem>

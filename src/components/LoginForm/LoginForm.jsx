@@ -61,12 +61,12 @@ const LoginForm = () => {
   const validationSchema = yup.object({
     email: yup
       .string()
-      .matches(emailRegexp, 'Invalid email')
-      .required('This field is required'),
+      .matches(emailRegexp, t('recovery.err1'))
+      .required(t('recovery.err2')),
     password: yup
       .string()
-      .min(6, 'Password must be at least 6 characters')
-      .required('This field is required'),
+      .min(6, t('recovery.err3'))
+      .required(t('recovery.err2')),
   });
 
   const formik = useFormik({
@@ -141,7 +141,7 @@ const LoginForm = () => {
                   name="email"
                   autoComplete="true"
                   value={formik.values.email}
-                  placeholder="Enter email"
+                  placeholder={t('inout.emailhold')}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className={
@@ -185,7 +185,7 @@ const LoginForm = () => {
                     id="password"
                     name="password"
                     value={formik.values.password}
-                    placeholder="Enter password"
+                    placeholder={t('inout.passhold')}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     className={

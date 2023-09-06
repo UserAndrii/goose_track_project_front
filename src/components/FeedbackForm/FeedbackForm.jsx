@@ -1,11 +1,9 @@
-import { useTranslation } from 'react-i18next'; // Trans ?
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Rating } from 'react-simple-star-rating';
 import { showErrorToast, showSuccessToast } from '../../utils/showToast';
 
 import {
-  reviewsApi,
   useCreateReviewMutation,
   useDeleteReviewMutation,
   useEditReviewMutation,
@@ -33,8 +31,6 @@ const FeedbackForm = ({ onClose }) => {
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
-
-  const dispatch = useDispatch();
 
   const [createReview] = useCreateReviewMutation();
   const [editReview] = useEditReviewMutation();
@@ -98,7 +94,6 @@ const FeedbackForm = ({ onClose }) => {
       
       showSuccessToast(t('feedback.succ3'));
       setIsDeleteMode(false);
-      dispatch(reviewsApi.util.resetApiState());
       onClose();
     } catch (error) {
       
@@ -137,37 +132,37 @@ const FeedbackForm = ({ onClose }) => {
         name="review"
         id="review"
         value={review}
-        placeholder="Enter Text"
+        placeholder={t('feedback.reviewhold')}
         onChange={handleChangeReview}
         disabled={!isEditMode && userReviewData}
       />
       {isDeleteMode && (
         <BtnWrapper>
           <Btn type="button" onClick={handleDelete} isActive={true}>
-            Delete
+            {t('feedback.delete')}
           </Btn>
           <Btn type="button" onClick={onClose}>
-            Cancel
+            {t('feedback.cancel')}
           </Btn>
         </BtnWrapper>
       )}
       {isEditMode && (
         <BtnWrapper>
           <Btn type="submit" onClick={handleSubmit} isActive={true}>
-            Edit
+            {t('feedback.edit')}
           </Btn>
           <Btn type="button" onClick={onClose}>
-            Cancel
+            {t('feedback.cancel')}
           </Btn>
         </BtnWrapper>
       )}
       {!userReviewData && (
         <BtnWrapper>
           <Btn type="submit" isActive={true}>
-            Save
+            {t('feedback.save')}
           </Btn>
           <Btn type="button" onClick={onClose}>
-            Cancel
+            {t('feedback.cancel')}
           </Btn>
         </BtnWrapper>
       )}

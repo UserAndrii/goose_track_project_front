@@ -9,9 +9,8 @@ const ToolbarWrapper = styled.div`
 
 const CalendarRangeWrapper = styled.div`
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  width: 335px;
+
+  max-width: 100%;
 
   @media screen and (min-width: 768px) {
     display: none;
@@ -53,16 +52,18 @@ const CalendarRangeButton = styled.button`
   }
 `;
 const ButtonView = styled.button`
+  box-sizing: content-box;
   display: flex;
-  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 8px;
+
   justify-content: center;
   align-items: center;
-  width: 34px;
-  height: 34px;
-  border: none;
-  color: #3e85f3;
-  background-color: #cae8ff;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--calendartable-border-color);
+  color: var(--feedback-form-text-input);
+  background-color: var(--background-button-day);
   &:hover {
     background-color: rgba(11, 104, 234, 0.2);
   }

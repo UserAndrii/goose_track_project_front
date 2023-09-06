@@ -15,6 +15,7 @@
   --calendar-date-color: #343434;
   --calendar-day-color: #343434;
   --accent: #3e85f3;
+  --tasks-back-color: rgba(247, 246, 249, 1);
   --input-border-color: #11111126;
   --label-text-color: #111111;
   --text-priority-high-color: #f7f6f9;
@@ -25,7 +26,7 @@
   --title-sidebar: rgba(52, 52, 52, 0.5);
   --logo-text: #3e85f3;
   --btn-border-color: rgba(220, 227, 229, 0.8);
-
+  --btn-head-color: rgba(230, 237, 239, 0.8);
   /* backgroung */
   --main-background-color: #ffffff;
   --auth-background-color: #dcebf7;
@@ -48,8 +49,11 @@
   --priority-high-color: #ffd2dd;
   --priority-med-color: #fcf0d4;
   --priority-low-color: #ceeefd;
-
+  --linear-gradient: rgba(170, 170, 170, 0.8);
+  --task-body-linear-top: rgba(247, 246, 249, 1);
+  --task-body-linear-bottom: rgba(150, 150, 150, 0.5);
   /* other */
+
   --scroll-color: #e7e5e5;
   --scroll-background-color: #f2f2f2;
   --frame-border-color: #e1e7e9;
@@ -89,6 +93,7 @@
 }
 
 [dark] {
+  --tasks-back-color: rgba(247, 246, 249, 1);
   /* text */
   --active-btn-calendar-switch: rgba(255, 255, 255, 1);
   --noactive-btn-calendar-switch: rgba(62, 133, 243, 1);
@@ -111,7 +116,7 @@
   --title-sidebar: rgba(250, 250, 250, 0.3);
   --logo-text: #e3f3ff;
   --btn-border-color: rgba(255, 255, 255, 0.15);
-
+  --btn-head-color: rgba(150, 150, 150, 0.7);
   /* backgroung */
   --calendar-bg-color: rgba(33, 34, 44, 1);
   --next-btn-calendar: rgba(255, 255, 255, 0.15);
@@ -153,6 +158,9 @@
   --user-name-color: #ffffff;
   --calendar-bg-color: #21222c;
   --calendar-border-color: rgba(255, 255, 255, 0.15);
+  --linear-gradient: rgba(0, 0, 0, 1);
+  --task-body-linear-top: rgba(40, 40, 40, 1);
+  --task-body-linear-bottom: rgba(0, 0, 0, 0.5);
 
   --background-button-day: rgba(33, 34, 44, 1);
   --background-button-day-add: #3e85f3;

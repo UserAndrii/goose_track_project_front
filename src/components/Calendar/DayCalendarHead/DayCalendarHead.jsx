@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from 'react-responsive';
 import { format, isSameDay } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
@@ -11,10 +12,27 @@ import {
 
 export const DayCalendarHead = ({ week, currentDay, setCurrentDay }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
-  const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const abbreviatedDayNames = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  const dayNames = [
+    t('calendar.1'),
+    t('calendar.2'),
+    t('calendar.3'),
+    t('calendar.4'),
+    t('calendar.5'),
+    t('calendar.6'),
+    t('calendar.7'),
+  ];
+  const abbreviatedDayNames = [
+    t('calendar.m1'),
+    t('calendar.m2'),
+    t('calendar.m3'),
+    t('calendar.m4'),
+    t('calendar.m5'),
+    t('calendar.m6'),
+    t('calendar.m7'),
+  ];
 
   return (
     <MainBlockDayListWrapper>
