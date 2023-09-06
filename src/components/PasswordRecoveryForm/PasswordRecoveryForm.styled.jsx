@@ -9,6 +9,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: inherit;
 `;
 
 export const FormName = styled.h1`
@@ -30,9 +31,10 @@ export const InputGroupe = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 32px;
-  
+
   border-radius: 8px;
   background: #fff;
+  background-color: inherit;
 `;
 
 export const InputList = styled.ul`
@@ -40,12 +42,19 @@ export const InputList = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  background: var(--main-background-color);
+  background: inherit;
 `;
 
 export const InputWrapper = styled.li`
   display: flex;
   flex-direction: column;
+
+  input {
+    color: var(--title-text-main-color);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+  }
 
   Input::placeholder {
     color: #858688;
@@ -65,12 +74,21 @@ export const InputWrapperWithIcon = styled.div`
   align-items: flex-start;
   gap: 8px;
   position: relative;
+  background: inherit;
+
+  input {
+    color: var(--title-text-main-color);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
   Input::placeholder {
     color: #858688;
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
-    background-color: var(--main-background-color);
+    background-color: inherit;
   }
 `;
 
@@ -84,11 +102,15 @@ export const Button = styled.button`
   padding-bottom: 14px;
   gap: 10px;
 
+  border: none;
   border-radius: 16px;
   background: var(--accent-background-color);
-  border: none;
-  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  :hover {
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  }
 
   @media screen and (min-width: 375px) {
     width: 287px;
@@ -103,7 +125,7 @@ export const Button = styled.button`
 
 export const ButtonText = styled.span`
   white-space: nowrap;
-  color: var(--main-background-color);
+  color: #fff;
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -128,6 +150,7 @@ export const ShowHideButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: var(--title-text-main-color);
 `;
 
 export const Label = styled.label`
@@ -164,8 +187,7 @@ export const Input = styled.input`
   border-radius: 8px;
   padding: 14px;
   border: 1px solid rgba(220, 227, 229, 0.6);
-  background: ${props =>
-    props.isPassword || props.isEmail ? '#FFFFFF' : 'none'};
+  background: inherit;
   outline: none;
 
   &.valid-input {
@@ -174,6 +196,16 @@ export const Input = styled.input`
 
   &.invalid-input {
     border: 1px solid #ff0000;
+  }
+
+  &::placeholder {
+    color: var(--modal-input-lable-color);
+    font-size: 12px;
+    font-weight: 600;
+
+    @media screen and (min-width: 768px) {
+      font-size: 14px;
+    }
   }
 
   &:hover,

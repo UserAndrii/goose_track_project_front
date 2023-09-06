@@ -8,6 +8,10 @@ export const Form = styled.form`
   flex: 1;
 `;
 
+export const RatingLabel = styled.p`
+  color: var(--title-text-main-color);
+`;
+
 export const RatingArea = styled.div`
   overflow: hidden;
   margin: 8px 0 24px 0;
@@ -30,6 +34,7 @@ export const TextAreaLabel = styled.label`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  color: var(--title-text-main-color);
 `;
 
 export const TextArea = styled.textarea`
@@ -45,9 +50,11 @@ export const TextArea = styled.textarea`
   border-radius: 8px;
   border-width: 0;
   margin-top: 8px;
-  background: var(--main-background-color);
+  background: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  outline: none;
 
-  resize: vertical;
+  resize: none;
   height: auto;
   min-height: 130px;
   max-height: 330px;
@@ -114,7 +121,7 @@ export const StyledEditIcon = styled(VscEdit)`
   justify-content: center;
   align-items: center;
   border-radius: 50px;
-  background: var(--accent-color);
+  background: var(--accent);
   cursor: pointer;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   :hover {

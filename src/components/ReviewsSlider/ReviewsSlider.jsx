@@ -8,6 +8,7 @@ import {
   ButtonList,
   UserReviewsBlock,
   ReviewsWrapper,
+  Img,
 } from './ReviewsSlider.styled';
 import ReviewsBox from './ReviewsBox';
 import 'slick-carousel/slick/slick.css';
@@ -79,10 +80,10 @@ export default function ReviewsSlider() {
           </UserReviewsBlock>
           <ButtonList>
             <ButtonArrow onClick={handlePrevious}>
-              <img src={ArrowLeft} alt="Scroll left to review" />
+              <Img src={ArrowLeft} alt="Scroll left to review" />
             </ButtonArrow>
             <ButtonArrow onClick={handleNext}>
-              <img src={ArrowRight} alt="Scroll right to review" />
+              <Img src={ArrowRight} alt="Scroll right to review" />
             </ButtonArrow>
           </ButtonList>
         </>

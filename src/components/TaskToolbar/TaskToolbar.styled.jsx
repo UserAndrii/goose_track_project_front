@@ -1,5 +1,6 @@
 // TaskToolbar.styled.js
 import styled from '@emotion/styled';
+import { AiOutlineLogin } from 'react-icons/ai';
 
 export const Container = styled.div`
   display: flex;
@@ -36,9 +37,16 @@ export const Text = styled.p`
 `;
 export const Wrapper = styled.div`
 display:flex;
+align-items: center;
 justify-content: space-between;
+padding: 0 5px;
 width: 87px;
+
 @media screen and (min-width: 768px) {
    width: 99px; 
   }
 `
+
+export const Icon = styled(AiOutlineLogin)`
+  color: var(--title-text-main-color);
+`;

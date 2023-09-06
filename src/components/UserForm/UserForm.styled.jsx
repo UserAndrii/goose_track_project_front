@@ -199,6 +199,7 @@ export const Forma = styled.form`
     font-weight: 600;
     color: var(--calendar-date-color);
     outline: none;
+    background-color: inherit;
 
     &::placeholder {
       color: var(--calendar-date-color);
@@ -241,6 +242,7 @@ export const Forma = styled.form`
     font-weight: 600;
     color: var(--calendar-date-color);
     outline: none;
+    background-color: inherit;
 
     &::placeholder {
       color: var(--calendar-date-color);
@@ -333,7 +335,7 @@ export const Button = styled.button`
   }
   &:disabled {
     background-color: var(--outlet-background-color);
-    cursor: default;
+    cursor: not-allowed;
   }
 
   @media screen and (min-width: 768px) {
@@ -359,6 +361,7 @@ export const CustomInput = styled.input`
   font-weight: 600;
   color: var(--modal-input-lable-color);
   outline: none;
+  background-color: inherit;
 
   &::placeholder {
     color: var(--modal-input-lable-color);

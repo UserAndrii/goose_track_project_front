@@ -32,6 +32,7 @@
   --auth-background-color: #dcebf7;
   --outlet-background-color: #f7f6f9;
   --accent-background-color: #3e85f3;
+  --input-background-color: #F6F6F6;
   --sidebar-background-color: #ffffff;
   --active-btn-color: #2b78ef;
 
@@ -63,6 +64,7 @@
   --fill-icon: rgba(52, 52, 52, 0.5);
   --border-statistics: #e3f3ff;
   --calendartable-border-color: rgba(220, 227, 229, 0.8);
+  --reviews-border: rgba(17, 17, 17, 0.1);
 
   /* form */
   --input-bcg-color: #f7f7f7;
@@ -121,11 +123,13 @@
   --calendar-bg-color: rgba(33, 34, 44, 1);
   --next-btn-calendar: rgba(255, 255, 255, 0.15);
   --outlet-background-color: #171820;
+  --input-background-color: #171820;
   --main-background-color: #21222c;
   --sidebar-background-color: #13151a;
   --task-field-color: #171820;
   --active-btn-color: #2b78ef;
   --task-field-color: #171820;
+  --auth-background-color:rgba(255, 255, 255, 0.15);
   /* form */
   --input-bcg-color: #171820;
   --border-input: #ffffff2f;
@@ -152,6 +156,7 @@
   /* backgroung button */
   --background-button-month: #3e85f3;
   --background-button-day: #21222c;
+  --reviews-border: #42434c;
 
   /* calendar */
   --input-text-color: #ffffff;

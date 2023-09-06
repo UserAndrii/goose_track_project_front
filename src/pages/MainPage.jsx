@@ -12,7 +12,7 @@ const MainPage = () => {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'inherit',
       }}
     >
       <AuthSection />

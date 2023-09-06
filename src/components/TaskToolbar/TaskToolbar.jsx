@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
 import { Menu, MenuItem } from '@mui/material';
-import { Container, IconButton, Text, Wrapper } from './TaskToolbar.styled';
+import React, { useState, useEffect } from 'react';
+import { CgTrashEmpty } from 'react-icons/cg';
+import { useTranslation } from 'react-i18next';
 import { AiOutlineLogin } from 'react-icons/ai';
 import { HiOutlinePencil } from 'react-icons/hi';
-import { CgTrashEmpty } from 'react-icons/cg';
-import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
-import { tasksApi } from 'redux/tasks/tasksApi';
-import ImageAnimation from 'components/Bandero-goose/ImageAnimation';
-import { showErrorToast, showSuccessToast } from '../../utils/showToast';
+
 import './ContextMenu.css';
-import { useTranslation } from 'react-i18next';
+import { tasksApi } from 'redux/tasks/tasksApi';
+import AddTaskModal from 'components/AddTaskModal/AddTaskModal';
+import { showErrorToast, showSuccessToast } from '../../utils/showToast';
+import {
+  Container,
+  IconButton,
+  Text,
+  Wrapper,
+  Icon,
+} from './TaskToolbar.styled';
 
 const TaskToolbar = ({ task }) => {
   const { t } = useTranslation();
@@ -88,7 +94,6 @@ const TaskToolbar = ({ task }) => {
 
   return (
     <Container>
-      {isLoading && <ImageAnimation />}
       <IconButton onClick={handleClickContextMenu}>
         <AiOutlineLogin />
       </IconButton>
@@ -106,21 +111,21 @@ const TaskToolbar = ({ task }) => {
       >
         <MenuItem
           onClick={() => handleChangePriority(categoriesDB[0])}
-          style={{ height: 14, marginBottom: 14, padding: 0 }}
+          style={{ height: 30, marginBottom: 10, padding: 0 }}
         >
           <Wrapper>
             <Text>{t(`statChart.${categories[0]}`)}</Text>
-            <AiOutlineLogin />
+            <Icon />
           </Wrapper>
         </MenuItem>
 
         <MenuItem
           onClick={() => handleChangePriority(categoriesDB[1])}
-          style={{ height: 14, padding: 0 }}
+          style={{ height: 30, padding: 0 }}
         >
           <Wrapper>
             <Text> {t(`statChart.${categories[1]}`)}</Text>
-            <AiOutlineLogin />
+            <Icon />
           </Wrapper>
         </MenuItem>
       </Menu>

@@ -31,7 +31,7 @@ export const Avatar = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 32px;
-  border: 1.8px solid var(--accent-color);
+  border: 1.8px solid var(--accent-background-color);
   overflow: hidden;
 
   @media screen and (min-width: 768px) {

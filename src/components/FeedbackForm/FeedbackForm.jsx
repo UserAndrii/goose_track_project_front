@@ -10,6 +10,7 @@ import {
   useGetUserReviewQuery,
 } from '../../redux/reviews/reviewsApi';
 import {
+  RatingLabel,
   Btn,
   BtnWrapper,
   Form,
@@ -37,7 +38,6 @@ const FeedbackForm = ({ onClose }) => {
   const [deleteReview] = useDeleteReviewMutation();
 
   useEffect(() => {
-   
     if (userReviewData) {
       setRating(userReviewData.data.rating);
       setReview(userReviewData.data.review);
@@ -91,12 +91,11 @@ const FeedbackForm = ({ onClose }) => {
   const handleDelete = async () => {
     try {
       await deleteReview();
-      
+
       showSuccessToast(t('feedback.succ3'));
       setIsDeleteMode(false);
       onClose();
     } catch (error) {
-      
       showErrorToast(t('feedback.err3'));
     }
   };
@@ -104,7 +103,7 @@ const FeedbackForm = ({ onClose }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <RatingWrapper>
-        <p>{t('feedback.rating')}</p>
+        <RatingLabel>{t('feedback.rating')}</RatingLabel>
         <Rating
           name="rating"
           id="rating"

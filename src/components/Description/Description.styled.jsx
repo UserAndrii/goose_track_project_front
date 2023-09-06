@@ -114,22 +114,24 @@ export const SubTitle = styled.div`
 `;
 
 export const TextSpan = styled.div`
-    display: inline-block;
-    // width: 335px;
-    color: rgba(17, 17, 17, 0.90);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.29;
+  display: inline-block;
+  // width: 335px;
+  color: rgba(17, 17, 17, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.29;
+  color: var(--secondary-text-color);
 
-    @media screen and (min-width: 768px) {
-        width: 275px;
-    }
+  @media screen and (min-width: 768px) {
+    width: 275px;
+  }
 `;
 
 export const ImageWrapper = styled.div`
   display: block;
   border-radius: 40px;
-  background: var(--background-button-day);
+  background: inherit;
+  overflow: hidden;
 
   @media screen and (max-width: 767px) {
     max-width: 335px;

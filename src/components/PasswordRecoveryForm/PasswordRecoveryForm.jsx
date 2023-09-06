@@ -61,9 +61,8 @@ const PasswordRecoveryForm = ({ onClose }) => {
 
     onSubmit: async values => {
       if (values.newpassword !== values.newpassword2) {
-
         showErrorToast(t('recovery.err4'));
-
+        return;
       }
 
       try {
@@ -124,7 +123,11 @@ const PasswordRecoveryForm = ({ onClose }) => {
                   type="button"
                   onClick={() => setShowPassword(show => !show)}
                 >
-                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                  {showPassword ? (
+                    <FiEyeOff style={{ color: 'inherit' }} />
+                  ) : (
+                    <FiEye style={{ color: 'inherit' }} />
+                  )}
                 </ShowHideButton>
               )}
             </InputWrapperWithIcon>
