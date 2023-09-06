@@ -43,7 +43,7 @@ export const InputGroupe = styled.div`
 
   padding: 40px 24px;
   border-radius: 8px;
-  background: #fff;
+  background: var(--main-background-color);
 
   @media screen and (max-width: 375px) {
     max-width: 335px;
@@ -68,7 +68,7 @@ export const InputWrapper = styled.li`
   flex-direction: column;
 
   Input::placeholder {
-    color: #858688;
+    color: var(--secondary-text-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
@@ -86,7 +86,7 @@ export const InputWrapperWithIcon = styled.div`
   gap: 8px;
   position: relative;
   Input::placeholder {
-    color: #858688;
+    color: var(--secondary-text-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
@@ -123,7 +123,7 @@ export const Button = styled.button`
 
 export const ButtonText = styled.span`
   white-space: nowrap;
-  color: var(--main-background-color);
+  color: var(--btn-text-color);
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -148,6 +148,7 @@ export const ShowHideButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
+  color: var(--btn-text-color);
 `;
 
 export const LinksContainer = styled.nav`
@@ -189,7 +190,8 @@ export const Input = styled.input`
   width: 100%;
   height: 46px;
   padding: 14px;
-
+  
+  color: var(--title-text-main-color);
   border-radius: 8px;
   padding: 14px;
   border: 1px solid rgba(220, 227, 229, 0.6);

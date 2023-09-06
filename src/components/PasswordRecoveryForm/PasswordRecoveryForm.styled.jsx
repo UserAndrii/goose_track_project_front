@@ -33,7 +33,7 @@ export const InputGroupe = styled.div`
   gap: 32px;
 
   border-radius: 8px;
-  background: #fff;
+  background: var(--main-background-color);
   background-color: inherit;
 `;
 
@@ -57,7 +57,7 @@ export const InputWrapper = styled.li`
   }
 
   Input::placeholder {
-    color: #858688;
+    color: var(--secondary-text-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
@@ -84,7 +84,7 @@ export const InputWrapperWithIcon = styled.div`
   }
 
   Input::placeholder {
-    color: #858688;
+    color: var(--secondary-text-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
@@ -125,7 +125,7 @@ export const Button = styled.button`
 
 export const ButtonText = styled.span`
   white-space: nowrap;
-  color: #fff;
+  color: var(--btn-text-color);
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;

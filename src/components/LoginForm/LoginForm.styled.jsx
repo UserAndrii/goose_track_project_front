@@ -43,7 +43,7 @@ export const InputGroupe = styled.div`
 
   padding: 40px 24px;
   border-radius: 8px;
-  background: #fff;
+  background: var(--main-background-color);
 
   @media screen and (max-width: 375px) {
     max-width: 335px;
@@ -68,7 +68,7 @@ export const InputWrapper = styled.li`
   flex-direction: column;
 
   Input::placeholder {
-    color: #858688;
+    color: var(--secondary-text-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
@@ -86,7 +86,7 @@ export const InputWrapperWithIcon = styled.div`
   gap: 8px;
   position: relative;
   Input::placeholder {
-    color: #858688;
+    color: var(--secondary-text-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
@@ -189,7 +189,8 @@ export const Input = styled.input`
   width: 100%;
   height: 46px;
   padding: 14px;
-
+  
+  color: var(--title-text-main-color);
   border-radius: 8px;
   padding: 14px;
   border: 1px solid var(--btn-border-color);
