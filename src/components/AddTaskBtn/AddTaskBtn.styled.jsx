@@ -32,5 +32,5 @@ export const PlusIcon = styled(IoAdd)`
   width: 24px;
   height: 24px;
   margin-right: 8px;
-  color: var(--title-text-main-color);
+  color: var(--label-text-color);
 `;  

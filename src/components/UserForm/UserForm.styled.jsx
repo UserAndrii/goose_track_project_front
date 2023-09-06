@@ -197,11 +197,11 @@ export const Forma = styled.form`
     font-size: 14px;
     line-height: 18px;
     font-weight: 600;
-    color: #343434;
+    color: var(--calendar-date-color);
     outline: none;
 
     &::placeholder {
-      color: #343434;
+      color: var(--calendar-date-color);
       font-size: 14px;
       line-height: 18px;
       font-weight: 400;
@@ -239,11 +239,11 @@ export const Forma = styled.form`
     font-size: 14px;
     line-height: 18px;
     font-weight: 600;
-    color: #343434;
+    color: var(--calendar-date-color);
     outline: none;
 
     &::placeholder {
-      color: #343434;
+      color: var(--calendar-date-color);
       font-size: 14px;
       line-height: 18px;
       font-weight: 400;
@@ -260,7 +260,7 @@ export const Forma = styled.form`
   }
 
   & > div > div > div > label > p {
-    color: #111111;
+    color: var(--label-text-color);
     font-size: 12px;
     line-height: 14px;
     margin-bottom: 8px;
@@ -285,8 +285,8 @@ export const VerifyText = styled.p`
 `;
 
 export const VerifyBtn = styled.button`
-  color: #ffffff;
-  background: #3e85f3;
+  color: var(--btn-text-color);
+  background: var(--accent-background-color);
   padding: 3px 10px;
 
   font-size: 10px;
@@ -300,7 +300,7 @@ export const VerifyBtn = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #2b78ef;
+    background-color: var(--active-btn-color);
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   }
 
@@ -384,7 +384,7 @@ export const ChangePasswordBtn = styled.button`
   line-height: 18px;
   font-weight: 600;
 
-  color: #343434;
+  color: var(--calendar-date-color);
   cursor: pointer;
   padding: 12px 20px;
 

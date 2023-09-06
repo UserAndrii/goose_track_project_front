@@ -4,13 +4,18 @@ const DataGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   flex: 1;
-  background-color: var(--scroll-background-color);
+
+
+
   overflow: hidden;
   width: 100%;
   max-height: 100%;
   margin-top: 14px;
   margin-left: auto;
   margin-right: auto;
+
+  background-color: var(-main-background-color);
+
   border-radius: 8px;
   border: 1px solid var(--calendar-border-color);
   overflow-y: scroll;
@@ -24,7 +29,7 @@ const Cell = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: aliceblue;
+    background-color: var(--auth-background-color);
   }
 
   @media screen and (min-width: 1440px) {
@@ -57,13 +62,13 @@ const CurrentDate = styled.div`
   }
 
   &:hover {
-    background-color: #799cd0;
-    color: #fff;
+    background-color: var(--outlet-background-color);
+    color: var(--text-priority-high-color);
   }
 
   &.row__currentDateActive {
-    background-color: #3e85f3;
-    color: #fff;
+    background-color: var(--accent-background-color);
+    color: var(--text-priority-high-color);
 
     width: 20px;
     height: 22px;
@@ -92,11 +97,11 @@ const RowNumber = styled.time`
   }
 
   .rowCurrentDate:hover & {
-    color: #fff;
+    color: var(--text-priority-high-color);
   }
 
   &.row__ActiveNumber {
-    color: #fff;
+    color: var(--text-priority-high-color);
   }
 `;
 
@@ -131,7 +136,7 @@ const TaskContainer = styled.div`
   padding: 0 5px;
   width: 100%;
   border-radius: 8px;
-  background: #ceeefd;
+  background: var(--auth-background-color);
   cursor: pointer;
 `;
 
@@ -155,9 +160,9 @@ const ThreeDots = styled.div`
   width: 20px;
   height: 10px;
   border-radius: 8px;
-  background-color: hsl(212, 13%, 82%);
+  background-color: var(--outlet-background-color);
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: black;
+  color: var(--title-text-main-color);
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
@@ -166,8 +171,8 @@ const ThreeDots = styled.div`
   }
 
   &:hover {
-    background-color: hsl(240, 2%, 61%);
-    color: #fff;
+    background-color: var(--auth-background-color);
+    color: var(--btn-text-color);
   }
 `;
 

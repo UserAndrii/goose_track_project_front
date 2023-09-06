@@ -9,7 +9,9 @@ const MainBlockDayListWrapper = styled.div`
   height: 50px;
 
   background-color: var(--main-background-color);
-  color: var(--user-name-color);
+
+  color: var(--label-text-color);
+
 
   margin-top: 24px;
 
@@ -18,7 +20,9 @@ const MainBlockDayListWrapper = styled.div`
 `;
 
 const Day = styled.span`
-  color: var(--user-name-color);
+
+  color: var(--calendar-day-color);
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -26,7 +30,7 @@ const Day = styled.span`
   text-transform: uppercase;
 
   &.weekend {
-    color: #3e85f3;
+    color: var(--accent-color);
   }
 `;
 

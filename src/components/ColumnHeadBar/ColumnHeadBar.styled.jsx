@@ -11,14 +11,14 @@ margin-bottom: 24px;
 }
 `;
 export const Title = styled.h2`
-color:#111111;
-font-size: 18;
-line-height: calc(20/18);
-font-weight: 700;
-@media screen and (min-width: 768px){
-  font-size: 20;
-line-height: calc(24/20);
-}
+  color: var(--label-text-color);
+  font-size: 18;
+  line-height: calc(20 / 18);
+  font-weight: 700;
+  @media screen and (min-width: 768px) {
+    font-size: 20;
+    line-height: calc(24 / 20);
+  }
 `;
 export const PlusBtn = styled(FiPlusCircle)`
   width: 22px;
