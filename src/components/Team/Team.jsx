@@ -3,7 +3,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import YuriiKlim from '../../images/America_YKlim.png';
 import YuriiKag from '../../images/Ant-Man_YKag.webp';
 import SergiyS from '../../images/Black_Panter_SS.jpg';
-import GalinaK from '../../images/Black_Widow_GK.jpg';
+import GalinaK from '../../images/Red_Witch_GK.png';
 import AnnaT from '../../images/Captain_Marvel_AT.jpg';
 import AndriiK from '../../images/Doctor_Strange_AK.jpg';
 import AndriiG from '../../images/Fury_AG.jpg';
