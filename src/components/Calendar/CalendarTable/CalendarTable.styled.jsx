@@ -33,7 +33,6 @@ const Cell = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    min-width: 158px;
     min-height: 102px;
   }
 `;

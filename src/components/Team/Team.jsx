@@ -1,14 +1,14 @@
 import { useTranslation, Trans } from 'react-i18next';
 
-import YuriiKlim from '../../images/America_YKlim.jpg';
-import YuriiKag from '../../images/Ant-Man_YKag.jpg';
+import YuriiKlim from '../../images/America_YKlim.png';
+import YuriiKag from '../../images/Ant-Man_YKag.webp';
 import SergiyS from '../../images/Black_Panter_SS.jpg';
-import GalinaK from '../../images/Red_Witch_GK.jpg';
+import GalinaK from '../../images/Black_Widow_GK.jpg';
 import AnnaT from '../../images/Captain_Marvel_AT.jpg';
 import AndriiK from '../../images/Doctor_Strange_AK.jpg';
 import AndriiG from '../../images/Fury_AG.jpg';
 import AlexV from '../../images/Hulk_OV.jpg';
-import OleksandD from '../../images/Iron_Man_OD.jpg';
+import OleksandD from '../../images/Iron_Man_OD.png';
 import VolodymrK from '../../images/Spider_Man_VK.jpg';
 import IvettaD from '../../images/Gamora_ID.jpg';
 import AndriyH from '../../images/Thor_AH.jpg';

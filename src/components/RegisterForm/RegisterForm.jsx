@@ -43,9 +43,9 @@ import image1 from '../Bandero-goose/images/iron-man.webp';
 const audio1 = new Audio(
   'https://res.cloudinary.com/dnhobiphs/video/upload/v1693691158/Goose_-_Sound_Effect_ProSounds_oiuuu1.m4a'
 );
-const audio2 = new Audio(
-  'https://res.cloudinary.com/dnhobiphs/video/upload/v1693950962/iron_man_le3phg.mp3'
-);
+// const audio2 = new Audio(
+//   'https://res.cloudinary.com/dnhobiphs/video/upload/v1693950962/iron_man_le3phg.mp3'
+// );
 const RegisterForm = () => {
   const { t } = useTranslation();
 
@@ -88,9 +88,9 @@ const RegisterForm = () => {
 
         setShowAnimation(true);
         audio1.volume = 1;
-        audio2.volume = 0.4;
+        // audio2.volume = 0.4;
         audio1.play();
-        audio2.play();
+        // audio2.play();
         setTimeout(() => {
           setShowAnimation(false);
         }, 3000);

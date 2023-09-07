@@ -3,12 +3,11 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   display: flex;
   margin: 14px 0;
-
-  overflow-x: auto;
   flex: 1;
-  overflow-x: scroll;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1439px) {
+    overflow-x: scroll;
+
     &::-webkit-scrollbar {
       width: 12px;
     }
