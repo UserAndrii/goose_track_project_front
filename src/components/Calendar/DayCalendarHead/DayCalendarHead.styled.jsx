@@ -5,16 +5,22 @@ const MainBlockDayListWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 74px;
   background-color: var(--main-background-color);
+  padding: 14px 18px;
 
   color: var(--label-text-color);
 
   margin-top: 24px;
-  margin-left: auto;
-  margin-right: auto;
   border: 1px solid var(--btn-border-color);
   border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    padding: 10px 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 10px 46px;
+  }
 `;
 
 const DayListWrapper = styled.div`
